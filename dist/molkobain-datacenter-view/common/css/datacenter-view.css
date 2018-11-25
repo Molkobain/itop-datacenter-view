@@ -1,0 +1,135 @@
+/*!
+ * Copyright (c) 2015 - 2018 Molkobain.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+/* Variables */
+.molkobain-datacenter-view {
+  /* Reset for admin console mostly */
+  box-sizing: border-box;
+}
+.molkobain-datacenter-view * {
+  box-sizing: border-box;
+}
+.molkobain-datacenter-view *:before, .molkobain-datacenter-view *:after {
+  box-sizing: border-box;
+}
+.molkobain-datacenter-view .mdv-templates {
+  display: none;
+}
+.molkobain-datacenter-view .mdv-views {
+  display: flex;
+  flex-direction: row;
+}
+.molkobain-datacenter-view .mdv-rack-panel {
+  text-align: center;
+}
+.molkobain-datacenter-view .mdv-rack-panel .mdv-rp-title {
+  margin-left: 1.8rem;
+  /* Must equals to .mdv-ru-left width */
+  margin-bottom: 0.3rem;
+  font-size: 0.85rem;
+}
+.molkobain-datacenter-view .mdv-rack-unit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 0.7rem;
+  /* Rack & units border */
+}
+.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-left {
+  padding: 0 0.3rem;
+  width: 1.8rem;
+  text-align: right;
+}
+.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot {
+  display: flex;
+  /*flex-grow: 1;*/
+  /* For parent flex property */
+  position: relative;
+  /* In order to make devices absolute and higher than the slot */
+  height: 20px;
+  width: 120px;
+  box-sizing: content-box;
+  /* Cause content has a fixed size */
+  background-color: #fff;
+}
+.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot .mdv-device, .molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot .mdv-enclosure {
+  flex-grow: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot .mdv-enclosure::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  bottom: 0px;
+  width: 4px;
+  height: 100%;
+  background-color: #83a967;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+}
+.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot {
+  border-left: 1px solid #c5c5c5;
+  border-right: 1px solid #c5c5c5;
+  border-bottom: 1px solid #eaeaea;
+}
+.molkobain-datacenter-view .mdv-rack-unit:first-child .mdv-ru-slot {
+  border-top: 1px solid #c5c5c5;
+}
+.molkobain-datacenter-view .mdv-rack-unit:last-child .mdv-ru-slot {
+  border-bottom: 1px solid #c5c5c5;
+}
+.molkobain-datacenter-view .mdv-device, .molkobain-datacenter-view .mdv-enclosure {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #fff;
+  width: 120px;
+  height: 20px;
+  padding: 0 0.3rem;
+}
+.molkobain-datacenter-view .mdv-device > *, .molkobain-datacenter-view .mdv-enclosure > * {
+  flex-grow: 1;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.molkobain-datacenter-view .mdv-device a, .molkobain-datacenter-view .mdv-enclosure a, .molkobain-datacenter-view .mdv-device a:hover, .molkobain-datacenter-view .mdv-enclosure a:hover, .molkobain-datacenter-view .mdv-device a:active, .molkobain-datacenter-view .mdv-enclosure a:active, .molkobain-datacenter-view .mdv-device a:visited, .molkobain-datacenter-view .mdv-enclosure a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+.molkobain-datacenter-view .mdv-device[data-class="Server"] {
+  background-color: #3f627e;
+  /*lightblue;*/
+}
+.molkobain-datacenter-view .mdv-device[data-class="NetworkDevice"] {
+  background-color: #c85454;
+  /*lightcoral;*/
+}
+.molkobain-datacenter-view .mdv-device[data-class="SANSwitch"] {
+  background-color: lightsalmon;
+}
+.molkobain-datacenter-view .mdv-device[data-class="NAS"] {
+  background-color: #80b469;
+  /*lightsteelblue;*/
+}
+.molkobain-datacenter-view .mdv-device[data-class="StorageSystem"] {
+  background-color: #eb913b;
+  /*lightgoldenrodyellow;*/
+}
+.molkobain-datacenter-view .mdv-device[data-class="TapeLibrary"] {
+  background-color: #7da9bc;
+  /*lightgrey;*/
+}
+.molkobain-datacenter-view .mdv-enclosure {
+  background-color: #eaeaea;
+}

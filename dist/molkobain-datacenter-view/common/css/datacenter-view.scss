@@ -1,0 +1,155 @@
+/*!
+ * Copyright (c) 2015 - 2018 Molkobain.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+@import '../datamodels/2.x/itop-portal-base/portal/web/css/variables.scss';
+
+/* Variables */
+$rack-unit-number-width: 1.8rem;
+$rack-unit-slot-width: 120px;
+$rack-unit-slot-height: 20px;
+
+.molkobain-datacenter-view{
+	/* Reset for admin console mostly */
+	box-sizing: border-box;
+	*{
+		box-sizing: border-box;
+
+		&:before,
+		&:after{
+			box-sizing: border-box;
+		}
+	}
+
+	.mdv-templates{
+		display: none;
+	}
+
+	.mdv-views{
+		display: flex;
+		flex-direction: row;
+	}
+	.mdv-rack-panel{
+		text-align: center;
+
+		.mdv-rp-title{
+			margin-left: $rack-unit-number-width; /* Must equals to .mdv-ru-left width */
+			margin-bottom: 0.3rem;
+			font-size: 0.85rem;
+		}
+		.mdv-rp-view{
+		}
+	}
+	.mdv-rack-unit{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-around;
+		font-size: 0.7rem;
+
+		.mdv-ru-left{
+			padding: 0 0.3rem;
+			width: $rack-unit-number-width;
+			text-align: right;
+		}
+		.mdv-ru-slot{
+			display: flex;
+			/*flex-grow: 1;*/ /* For parent flex property */
+			position: relative; /* In order to make devices absolute and higher than the slot */
+			height: $rack-unit-slot-height;
+			width: $rack-unit-slot-width;
+			box-sizing: content-box; /* Cause content has a fixed size */
+			background-color: #ffffff;
+
+			.mdv-device,
+			.mdv-enclosure{
+				flex-grow: 1;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+			}
+			.mdv-enclosure{
+				&::after{
+					content: "";
+					position: absolute;
+					right: -4px;
+					bottom: 0px;
+					width: 4px;
+					height: 100%;
+					background-color: #83a967;
+					border-top-right-radius: 2px;
+					border-bottom-right-radius: 2px;
+					box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+				}
+			}
+		}
+
+		/* Rack & units border */
+		&{
+			.mdv-ru-slot{
+				border-left: 1px solid #c5c5c5;
+				border-right: 1px solid #c5c5c5;
+				border-bottom: 1px solid #eaeaea;
+			}
+			&:first-child{
+				.mdv-ru-slot{
+					border-top: 1px solid #c5c5c5;
+				}
+			}
+			&:last-child{
+				.mdv-ru-slot{
+					border-bottom: 1px solid #c5c5c5;
+				}
+			}
+		}
+	}
+	.mdv-device,
+	.mdv-enclosure{
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		color: #ffffff;
+		width: $rack-unit-slot-width;
+		height: $rack-unit-slot-height;
+		padding: 0 0.3rem;
+
+		> *{
+			flex-grow: 1;
+			overflow-x: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		a, a:hover, a:active, a:visited {
+			color: inherit;
+			text-decoration: none;
+		}
+	}
+	.mdv-device{
+		&[data-class="Server"]{
+			background-color: #3f627e; /*lightblue;*/
+		}
+		&[data-class="NetworkDevice"]{
+			background-color: #c85454; /*lightcoral;*/
+		}
+		&[data-class="SANSwitch"]{
+			background-color: lightsalmon;
+		}
+		&[data-class="NAS"]{
+			background-color: #80b469; /*lightsteelblue;*/
+		}
+		&[data-class="StorageSystem"]{
+			background-color: #eb913b; /*lightgoldenrodyellow;*/
+		}
+		&[data-class="TapeLibrary"]{
+			background-color: #7da9bc; /*lightgrey;*/
+		}
+	}
+	.mdv-enclosure{
+		background-color: #eaeaea;
+	}
+}
