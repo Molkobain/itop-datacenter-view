@@ -1,5 +1,3 @@
-👋 [Available on Molkobain I/O!](TODO)
-
 # iTop extension: molkobain-datacenter-view
 
 ### Description
