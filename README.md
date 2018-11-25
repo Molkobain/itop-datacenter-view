@@ -1,4 +1,4 @@
-👋 [Available on MOlkobain I/O!](TODO)
+👋 [Available on Molkobain I/O!](TODO)
 
 # iTop extension: molkobain-datacenter-view
 
