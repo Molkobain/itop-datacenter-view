@@ -15,12 +15,6 @@ $(function()
 		{
 			options: {
 				object_type: 'rack',
-				enums: {
-					assembly: {
-						mounted: 'mounted',
-						unmounted: 'unmounted',
-					},
-				},
 				defaults: {
 					panel: 'front',
 				},
@@ -64,9 +58,7 @@ $(function()
 			_initializeUnmounted: function()
 			{
 				// Enclosures
-				var oEnclosuresContainer = this._cloneTemplate('unmounted-type')
-					.attr('data-type', 'enclosure')
-					.appendTo( this.element.find('.mdv-unmounted') );
+				this._buildUnmountedContainer('enclosure');
 
 				// Devices
 				this._super();
@@ -122,7 +114,7 @@ $(function()
 
 						// Full height of n Us plus the bottom-border of n-1 Us
 						oEnclosureElem
-							.css('height', 'calc(' + (oEnclosure.nb_u * 100) + '% + ' + (oEnclosure.nb_u - 1) + 'px)');
+							.css('height', 'calc(' + (oEnclosure.nb_u * 20) + 'px + ' + (oEnclosure.nb_u - 1) + 'px)');
 
 						if(sAssemblyCode === this.options.enums.assembly.mounted)
 						{
@@ -134,6 +126,14 @@ $(function()
 						}
 
 						// TODO: Put enclosures' elements
+						if(oEnclosure.devices.mounted.length > 0)
+						{
+
+						}
+						else
+						{
+							oEnclosureElem.html(oEnclosure.url);
+						}
 					}
 				}
 			},
@@ -156,7 +156,7 @@ $(function()
 						.html(oDevice.url);
 
 					oDeviceElem
-						.css('height', 'calc(' + (oDevice.nb_u * 100) + '% + ' + (oDevice.nb_u - 1) + 'px)');
+						.css('height', 'calc(' + (oDevice.nb_u * 20) + 'px + ' + (oDevice.nb_u - 1) + 'px)');
 
 					oDeviceElem.appendTo( this._getRackSlotElement(oDevice.position_v, oDevice.position_p) );
 				}

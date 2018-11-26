@@ -20,5 +20,11 @@ Dict::Add('EN US', 'English', 'English', array(
 
 	// UI
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Graphical view',
+	// - Rack
 	'Molkobain:DatacenterView:Rack:Panel:Front:Title' => 'Front',
+	// - Unmounted elements
+	'Molkobain:DatacenterView:Unmounted:Enclosures:Title' => 'Unmounted enclosures',
+	'Molkobain:DatacenterView:Unmounted:Enclosures:Title+' => 'Attached to this rack but no position set (Edit the enclosure to do so)',
+	'Molkobain:DatacenterView:Unmounted:Devices:Title' => 'Unmounted devices',
+	'Molkobain:DatacenterView:Unmounted:Devices:Title+' => 'Attached to this rack / enclosure but no position set (Edit the enclosure to do so)',
 ));

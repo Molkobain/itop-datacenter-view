@@ -15,6 +15,7 @@ use DBObject;
 use DBObjectSearch;
 use DBObjectSet;
 use Dict;
+use MetaModel;
 
 /**
  * Class DataHelper
@@ -23,6 +24,26 @@ use Dict;
  */
 class DataHelper
 {
+	/**
+	 * Returns the $oObject data for the JS widget either as a PHP array or JSON string
+	 *
+	 * @param \DBObject $oObject
+	 * @param bool $bAsJSON
+	 *
+	 * @return array|string
+	 */
+	public static function GetWidgetData(DBObject $oObject, $bAsJSON = false)
+	{
+		$aData = array(
+			'debug' => ConfigHelper::IsDebugEnabled(),
+			'object_type' => static::GetObjectType($oObject),
+			'object_data' => static::GetObjectData($oObject),
+			'dict' => static::GetDictEntries(),
+		);
+
+		return ($bAsJSON) ? json_encode($aData) : $aData;
+	}
+
 	/**
 	 * Returns if the $oObject is a rack|enclosure|device
 	 *
@@ -56,12 +77,32 @@ class DataHelper
 	 *
 	 * @return array
 	 */
-	public static function GetData(DBObject $oObject)
+	public static function GetObjectData(DBObject $oObject)
 	{
 		$sObjType = static::GetObjectType($oObject);
 		$sMethodName = 'Get'.ucfirst($sObjType).'Data';
 
 		return static::$sMethodName($oObject);
+	}
+
+	/**
+	 * @param \DBObject $oObject
+	 *
+	 * @return array
+	 * @throws \CoreException
+	 */
+	protected static function GetObjectBaseData(DBObject $oObject)
+	{
+		$aData = array(
+			'class' => get_class($oObject),
+			'id' => $oObject->GetKey(),
+			'name' => $oObject->GetName(),
+			'icon' => $oObject->GetIcon(false),
+			'url' => $oObject->GetHyperlink(), // Note: GetHyperlink() actually return the HTML markup
+			'nb_u' => $oObject->Get('nb_u'),
+		);
+
+		return $aData;
 	}
 
 	/**
@@ -77,10 +118,12 @@ class DataHelper
 	    		'front' => Dict::S('Molkobain:DatacenterView:Rack:Panel:Front:Title'),
 		    ),
 		    'enclosures' => array(
+		    	'icon' => MetaModel::GetClassIcon('Enclosure', false),
 			    'mounted' => array(),
 			    'unmounted' => array(),
 		    ),
 		    'devices' => array(
+			    'icon' => MetaModel::GetClassIcon('DatacenterDevice', false),
 		    	'mounted' => array(),
 			    'unmounted' => array(),
 		    ),
@@ -121,6 +164,7 @@ class DataHelper
     		'position_v' => (int) $oEnclosure->Get('position_v'),
     		'position_p' => 'front',
     		'devices' => array(
+			    'icon' => MetaModel::GetClassIcon('DatacenterDevice', false),
 	            'mounted' => array(),
 			    'unmounted' => array(),
 		    ),
@@ -155,22 +199,13 @@ class DataHelper
 	    return $aData;
     }
 
-	/**
-	 * @param \DBObject $oObject
-	 *
-	 * @return array
-	 */
-    protected static function GetObjectBaseData(DBObject $oObject)
+    protected static function GetDictEntries()
     {
-	    $aData = array(
-		    'class' => get_class($oObject),
-		    'id' => $oObject->GetKey(),
-		    'name' => $oObject->GetName(),
-		    'icon' => $oObject->GetIcon(false),
-		    'url' => $oObject->GetHyperlink(), // Note: GetHyperlink() actually return the HTML markup
-		    'nb_u' => $oObject->Get('nb_u'),
+    	return array(
+    		'Molkobain:DatacenterView:Unmounted:Enclosures:Title' => Dict::S('Molkobain:DatacenterView:Unmounted:Enclosures:Title'),
+    		'Molkobain:DatacenterView:Unmounted:Enclosures:Title+' => Dict::S('Molkobain:DatacenterView:Unmounted:Enclosures:Title+'),
+    		'Molkobain:DatacenterView:Unmounted:Devices:Title' => Dict::S('Molkobain:DatacenterView:Unmounted:Devices:Title'),
+    		'Molkobain:DatacenterView:Unmounted:Devices:Title+' => Dict::S('Molkobain:DatacenterView:Unmounted:Devices:Title+'),
 	    );
-
-	    return $aData;
     }
 }

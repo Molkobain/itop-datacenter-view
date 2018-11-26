@@ -27,6 +27,13 @@ $(function()
 				debug: false,
 				object_type: 'rack',
 				object_data: null,
+				enums: {
+					assembly: {
+						mounted: 'mounted',
+						unmounted: 'unmounted',
+					},
+				},
+				dict: {},
 			},
 
 			// Constructor
@@ -71,6 +78,7 @@ $(function()
 				this._initializeViews();
 				this._initializeUnmounted();
 				this._initializeElements();
+				this._initializeTooltips();
 			},
 			// - Make the markup for views (eg. rack panels, enclosure panel, ...)
 			_initializeViews: function()
@@ -80,12 +88,25 @@ $(function()
 			// - Make the markup for unmounted elements to be displayed in
 			_initializeUnmounted: function()
 			{
-				// Meant for overloading.
+				// Devices
+				this._buildUnmountedContainer('device');
 			},
 			// - Make the markup for elements (mounted or not) and display them where they belong
 			_initializeElements: function()
 			{
 				// Meant for overloading.
+			},
+			// - Instanciate tooltips on elements
+			_initializeTooltips: function()
+			{
+				this.element.find('[data-toggle="tooltip"][title!=""]').each(function(){
+					// Put tooltip
+					var sContent = $('<div />').text($(this).attr('title')).html();
+					$(this).qtip( { content: sContent, show: 'mouseover', hide: 'mouseout', style: { name: 'dark', tip: 'bottomMiddle' }, position: { corner: { target: 'topCenter', tooltip: 'bottomMiddle' }, adjust: { y: -15}} } );
+
+					// Remove native title
+					$(this).attr('title', '');
+				});
 			},
 
 			// Getters
@@ -99,6 +120,11 @@ $(function()
 				}
 
 				return this.options.object_data[sCode];
+			},
+			// - Return the dictionary entry identified by sCode if found, sCode otherwise
+			_getDictEntry: function(sCode)
+			{
+				return (this.options.dict[sCode] !== undefined) ? this.options.dict[sCode] : sCode;
 			},
 
 			// Helpers
@@ -119,6 +145,26 @@ $(function()
 				}
 
 				return oElem;
+			},
+			// - Add markup for unmounted container for elements of type sType
+			_buildUnmountedContainer: function(sType)
+			{
+				var sTypeForElementCategory = sType + 's';
+				var sTypeForDictEntry = sType.charAt(0).toUpperCase() + sType.slice(1) + 's';
+
+				var oContainer = this._cloneTemplate('unmounted-type')
+                    .attr('data-type', sType)
+                    .appendTo( this.element.find('.mdv-unmounted') );
+
+				oContainer
+					.find('.mdv-ut-icon')
+					.html('<img src="' + this._getObjectDatum(sTypeForElementCategory).icon + '" />');
+
+				oContainer
+					.find('.mdv-ut-name')
+					.attr('title', this._getDictEntry('Molkobain:DatacenterView:Unmounted:' + sTypeForDictEntry + ':Title+'))
+					.attr('data-toggle', 'tooltip')
+					.text(this._getDictEntry('Molkobain:DatacenterView:Unmounted:' + sTypeForDictEntry + ':Title'));
 			},
 			// Display trace in js console
 			_trace: function(sMessage)

@@ -7,12 +7,29 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-@import '../datamodels/2.x/itop-portal-base/portal/web/css/variables.scss';
 
 /* Variables */
+/* - Helpers */
+$tooltip-indicator-color: #434343;
+$box-shadow-small: 0 1px 1px rgba(0, 0, 0, 0.15);
+
+/* - Unmounted container */
+$unmounted-container-bg-color: #ffffff;
+/* - Rack panel */
+$rack-panel-outer-border-color: #c5c5c5;
+$rack-panel-outer-border: 1px solid $rack-panel-outer-border-color;
+/* - Rack unit */
 $rack-unit-number-width: 1.8rem;
+/* - Rack unit slot */
 $rack-unit-slot-width: 120px;
 $rack-unit-slot-height: 20px;
+$rack-unit-slot-bg-color: #ffffff;
+$rack-unit-slot-separator-color: #eaeaea;
+/* - Enclosure */
+$enclosure-color: #939393;
+$enclosure-bg-color: #eaeaea;
+/* - Device */
+$device-color: #ffffff;
 
 .molkobain-datacenter-view{
 	/* Reset for admin console mostly */
@@ -26,6 +43,15 @@ $rack-unit-slot-height: 20px;
 		}
 	}
 
+	/* Fail-safe against very narrow pages */
+	min-width: 600px;
+	background-color: #eeeeee; /* Not in /css/css-variables.scss */
+
+	/* Proper properties */
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+
 	.mdv-templates{
 		display: none;
 	}
@@ -34,6 +60,51 @@ $rack-unit-slot-height: 20px;
 		display: flex;
 		flex-direction: row;
 	}
+	.mdv-unmounted{
+		.mdv-unmounted-type{
+			margin-bottom: 3rem;
+
+			.mdv-ut-header{
+				display: flex;
+				align-items: center;
+				font-size: 0.9rem;
+
+				.mdv-ut-icon{
+					margin-right: 0.5rem;
+
+					img{
+						max-width: 38px;
+					}
+				}
+				.mdv-ut-name{
+					position: relative;
+
+					&::after{
+						content: "?";
+						position: absolute;
+						right: -0.4rem;
+						font-size: 0.6rem;
+						color: $tooltip-indicator-color;
+						cursor: pointer;
+					}
+				}
+			}
+			.mdv-ut-content{
+				padding: 0.3rem;
+				width: 260px;
+				min-height: 140px;
+				max-height: 250px;
+				overflow: hidden auto;
+				background-color: $unmounted-container-bg-color;
+				box-shadow: $box-shadow-small;
+			}
+
+			&:last-child{
+				margin-bottom: 0;
+			}
+		}
+	}
+
 	.mdv-rack-panel{
 		text-align: center;
 
@@ -59,12 +130,13 @@ $rack-unit-slot-height: 20px;
 		}
 		.mdv-ru-slot{
 			display: flex;
-			/*flex-grow: 1;*/ /* For parent flex property */
+			/*flex-grow: 1;*/
+			/* For parent flex property */
 			position: relative; /* In order to make devices absolute and higher than the slot */
 			height: $rack-unit-slot-height;
 			width: $rack-unit-slot-width;
 			box-sizing: content-box; /* Cause content has a fixed size */
-			background-color: #ffffff;
+			background-color: $rack-unit-slot-bg-color;
 
 			.mdv-device,
 			.mdv-enclosure{
@@ -84,7 +156,7 @@ $rack-unit-slot-height: 20px;
 					background-color: #83a967;
 					border-top-right-radius: 2px;
 					border-bottom-right-radius: 2px;
-					box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+					box-shadow: $box-shadow-small;
 				}
 			}
 		}
@@ -92,18 +164,18 @@ $rack-unit-slot-height: 20px;
 		/* Rack & units border */
 		&{
 			.mdv-ru-slot{
-				border-left: 1px solid #c5c5c5;
-				border-right: 1px solid #c5c5c5;
-				border-bottom: 1px solid #eaeaea;
+				border-left: $rack-panel-outer-border;
+				border-right: $rack-panel-outer-border;
+				border-bottom: 1px solid $rack-unit-slot-separator-color;
 			}
 			&:first-child{
 				.mdv-ru-slot{
-					border-top: 1px solid #c5c5c5;
+					border-top: $rack-panel-outer-border;
 				}
 			}
 			&:last-child{
 				.mdv-ru-slot{
-					border-bottom: 1px solid #c5c5c5;
+					border-bottom: $rack-panel-outer-border;
 				}
 			}
 		}
@@ -113,7 +185,6 @@ $rack-unit-slot-height: 20px;
 		display: flex;
 		align-items: center;
 		justify-content: space-around;
-		color: #ffffff;
 		width: $rack-unit-slot-width;
 		height: $rack-unit-slot-height;
 		padding: 0 0.3rem;
@@ -124,12 +195,14 @@ $rack-unit-slot-height: 20px;
 			text-overflow: ellipsis;
 			white-space: nowrap;
 		}
-		a, a:hover, a:active, a:visited {
+		a, a:hover, a:active, a:visited{
 			color: inherit;
 			text-decoration: none;
 		}
 	}
 	.mdv-device{
+		color: $device-color;
+
 		&[data-class="Server"]{
 			background-color: #3f627e; /*lightblue;*/
 		}
@@ -150,6 +223,7 @@ $rack-unit-slot-height: 20px;
 		}
 	}
 	.mdv-enclosure{
-		background-color: #eaeaea;
+		color: $enclosure-color;
+		background-color: $enclosure-bg-color;
 	}
 }

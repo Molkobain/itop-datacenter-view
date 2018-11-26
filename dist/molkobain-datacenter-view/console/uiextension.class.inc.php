@@ -46,14 +46,9 @@ class UIExtension implements iApplicationUIExtension
 			return;
 		}
 
-		$bDebug = ConfigHelper::IsDebugEnabled();
-
 		// Retrieve data
-		$sObjType = DataHelper::GetObjectType($oObject);
-		$sObjData = DataHelper::GetData($oObject);
-
-		$sJSWidgetName = 'datacenter_' . $sObjType . '_view';
-		$sObjDataJSON = json_encode($sObjData);
+		$sJSWidgetName = 'datacenter_' . DataHelper::GetObjectType($oObject) . '_view';
+		$sJSWidgetDataJSON = DataHelper::GetWidgetData($oObject, true);
 
 		// Add JS files
 		$sJSRootUrl = utils::GetAbsoluteUrlModulesRoot() . ConfigHelper::GetModuleCode() . '/common/js/';
@@ -66,9 +61,10 @@ class UIExtension implements iApplicationUIExtension
 		// Add markup
 		$sPreviousTab = $oPage->GetCurrentTab();
 		$oPage->SetCurrentTab(Dict::S('Molkobain:DatacenterView:Tabs:View:Title'));
+
 		$oPage->add(
-			<<<EOF
-	<div class="molkobain-datacenter-view-container">
+<<<EOF
+	<div class="molkobain-datacenter-view-container" data-portal="backoffice">
 		<div class="mdv-views">
 		</div>
 		
@@ -120,10 +116,7 @@ EOF
 	// Molkobain datacenter view
     // - Initializing widget
     $.molkobain.{$sJSWidgetName}(
-        {
-            debug: {$bDebug},
-            object_data: {$sObjDataJSON},
-        },
+        $sJSWidgetDataJSON,
         $('.molkobain-datacenter-view-container')
     );
 EOF
