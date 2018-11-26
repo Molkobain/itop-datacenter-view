@@ -97,6 +97,14 @@ $device-color: #ffffff;
 				overflow: hidden auto;
 				background-color: $unmounted-container-bg-color;
 				box-shadow: $box-shadow-small;
+
+				> .mdv-device, .mdv-enclosure{
+					margin-bottom: 0.1rem;
+
+					&:last-of-type{
+						margin-bottom: 0;
+					}
+				}
 			}
 
 			&:last-child{
@@ -188,6 +196,8 @@ $device-color: #ffffff;
 		width: $rack-unit-slot-width;
 		height: $rack-unit-slot-height;
 		padding: 0 0.3rem;
+		text-align: center;
+		font-size: 0.7rem;
 
 		> *{
 			flex-grow: 1;

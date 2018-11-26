@@ -149,6 +149,8 @@ class DataHelper
 		    $aData['devices'][$sDeviceAssembly][] = $aDeviceData;
 	    }
 
+
+
 	    return $aData;
     }
 
@@ -199,6 +201,12 @@ class DataHelper
 	    return $aData;
     }
 
+	/**
+	 * Returns dictionary entries used by the JS widget
+	 *
+	 * @return array
+	 * @throws \DictExceptionMissingString
+	 */
     protected static function GetDictEntries()
     {
     	return array(

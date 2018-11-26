@@ -88,7 +88,7 @@ $(function()
 
 					for(var iUnitsIdx = 1; iUnitsIdx <= this._getObjectDatum('nb_u'); iUnitsIdx++)
 					{
-						var oRackUnitElem = this._cloneTemplate('rack-unit')
+						this._cloneTemplate('rack-unit')
 	                        .attr('data-unit-number', iUnitsIdx)
 	                        .find('.mdv-ru-left')
 	                        .text(iUnitsIdx + 'U')
@@ -100,7 +100,7 @@ $(function()
 			// - Rack's enclosures
 			_initializeEnclosures: function()
 			{
-				for(var sAssemblyCode in this.options.enums.assembly)
+				for(var sAssemblyCode in this.enums.assembly)
 				{
 					for(var iEnclosureIdx in this._getObjectDatum('enclosures')[sAssemblyCode])
 					{
@@ -116,7 +116,7 @@ $(function()
 						oEnclosureElem
 							.css('height', 'calc(' + (oEnclosure.nb_u * 20) + 'px + ' + (oEnclosure.nb_u - 1) + 'px)');
 
-						if(sAssemblyCode === this.options.enums.assembly.mounted)
+						if(sAssemblyCode === this.enums.assembly.mounted)
 						{
 							oEnclosureElem.appendTo(this._getRackSlotElement(oEnclosure.position_v, oEnclosure.position_p));
 						}
@@ -140,25 +140,37 @@ $(function()
 			// - Rack's devices
 			_initializeDevices: function()
 			{
-				for(var iDeviceIdx in this._getObjectDatum('devices').mounted)
+				for(var sAssemblyCode in this.enums.assembly)
 				{
-					var oDevice = this._getObjectDatum('devices').mounted[iDeviceIdx];
-					var oDeviceElem = this._cloneTemplate('device')
-						.attr('data-class', oDevice.class)
-						.attr('data-id', oDevice.id)
-						.attr('data-name', oDevice.name)
-						.attr('data-rack-id', this._getObjectDatum('id'))
-						.attr('data-position-v', oDevice.position_v);
+					for(var iDeviceIdx in this._getObjectDatum('devices').mounted)
+					{
+						var oDevice = this._getObjectDatum('devices').mounted[iDeviceIdx];
+						var oDeviceElem = this._cloneTemplate('device')
+						                      .attr('data-class', oDevice.class)
+						                      .attr('data-id', oDevice.id)
+						                      .attr('data-name', oDevice.name)
+						                      .attr('data-rack-id', this._getObjectDatum('id'))
+						                      .attr('data-position-v', oDevice.position_v);
 
-					// Note: Url actually contains the hyperlink markup
-					oDeviceElem
-						.find('.mdv-d-name')
-						.html(oDevice.url);
+						// Note: Url actually contains the hyperlink markup
+						oDeviceElem
+							.find('.mdv-d-name')
+							.html(oDevice.url);
 
-					oDeviceElem
-						.css('height', 'calc(' + (oDevice.nb_u * 20) + 'px + ' + (oDevice.nb_u - 1) + 'px)');
+						oDeviceElem
+							.css('height', 'calc(' + (oDevice.nb_u * 20) + 'px + ' + (oDevice.nb_u - 1) + 'px)');
 
-					oDeviceElem.appendTo( this._getRackSlotElement(oDevice.position_v, oDevice.position_p) );
+						oDeviceElem.appendTo(this._getRackSlotElement(oDevice.position_v, oDevice.position_p));
+
+						if(sAssemblyCode === this.enums.assembly.mounted)
+						{
+							oDeviceElem.appendTo(this._getRackSlotElement(oDevice.position_v, oDevice.position_p));
+						}
+						else
+						{
+							oDeviceElem.appendTo(this.element.find('.mdv-unmounted-type[data-type="device"] .mdv-ut-content'));
+						}
+					}
 				}
 			},
 

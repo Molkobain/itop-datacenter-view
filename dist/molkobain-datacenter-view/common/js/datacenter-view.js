@@ -27,13 +27,14 @@ $(function()
 				debug: false,
 				object_type: 'rack',
 				object_data: null,
-				enums: {
-					assembly: {
-						mounted: 'mounted',
-						unmounted: 'unmounted',
-					},
-				},
 				dict: {},
+			},
+
+			enums: {
+				assembly: {
+					mounted: 'mounted',
+					unmounted: 'unmounted',
+				},
 			},
 
 			// Constructor

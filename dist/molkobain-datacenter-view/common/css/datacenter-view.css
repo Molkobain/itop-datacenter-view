@@ -74,6 +74,12 @@
   background-color: #fff;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 }
+.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type .mdv-ut-content > .mdv-device, .molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type .mdv-ut-content .mdv-enclosure {
+  margin-bottom: 0.1rem;
+}
+.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type .mdv-ut-content > .mdv-device:last-of-type, .molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type .mdv-ut-content .mdv-enclosure:last-of-type {
+  margin-bottom: 0;
+}
 .molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type:last-child {
   margin-bottom: 0;
 }
@@ -147,6 +153,8 @@
   width: 120px;
   height: 20px;
   padding: 0 0.3rem;
+  text-align: center;
+  font-size: 0.7rem;
 }
 .molkobain-datacenter-view .mdv-device > *, .molkobain-datacenter-view .mdv-enclosure > * {
   flex-grow: 1;
