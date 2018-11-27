@@ -20,6 +20,8 @@ Dict::Add('EN US', 'English', 'English', array(
 
 	// UI
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Graphical view',
+	'Molkobain:DatacenterView:Element:Tooltip:Attribute' => '%1$s: %2$s',
+
 	// - Rack
 	'Molkobain:DatacenterView:Rack:Panel:Front:Title' => 'Front',
 	// - Unmounted elements

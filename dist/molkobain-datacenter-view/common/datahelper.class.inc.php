@@ -15,6 +15,7 @@ use DBObject;
 use DBObjectSearch;
 use DBObjectSet;
 use Dict;
+use AttributeExternalKey;
 use MetaModel;
 
 /**
@@ -31,6 +32,7 @@ class DataHelper
 	 * @param bool $bAsJSON
 	 *
 	 * @return array|string
+	 * @throws \DictExceptionMissingString
 	 */
 	public static function GetWidgetData(DBObject $oObject, $bAsJSON = false)
 	{
@@ -93,13 +95,18 @@ class DataHelper
 	 */
 	protected static function GetObjectBaseData(DBObject $oObject)
 	{
+		$iNbU = (empty($oObject->Get('nb_u'))) ? 1 : (int) $oObject->Get('nb_u');
+
 		$aData = array(
 			'class' => get_class($oObject),
 			'id' => $oObject->GetKey(),
 			'name' => $oObject->GetName(),
 			'icon' => $oObject->GetIcon(false),
 			'url' => $oObject->GetHyperlink(), // Note: GetHyperlink() actually return the HTML markup
-			'nb_u' => $oObject->Get('nb_u'),
+			'nb_u' => $iNbU,
+			'tooltip' => array(
+				'content' => static::MakeDeviceTooltipContent($oObject),
+			),
 		);
 
 		return $aData;
@@ -179,7 +186,7 @@ class DataHelper
 	    	$aDeviceData = static::GetDeviceData($oDevice);
 	    	$sDeviceAssembly = ($aDeviceData['position_v'] > 0) ? 'mounted' : 'unmounted';
 
-	    	$aData[$sDeviceAssembly][] = $aDeviceData;
+	    	$aData['devices'][$sDeviceAssembly][] = $aDeviceData;
 	    }
 
 	    return $aData;
@@ -199,6 +206,81 @@ class DataHelper
 	    );
 
 	    return $aData;
+    }
+
+	/**
+	 * Returns the HTML content for the device's tooltip
+	 *
+	 * @param \DBObject $oObject
+	 *
+	 * @return string
+	 * @throws \CoreException
+	 * @throws \Exception
+	 */
+    protected static function MakeDeviceTooltipContent(DBObject $oObject)
+    {
+    	$sObjClass = get_class($oObject);
+    	$aObjAttCodes = array();
+
+    	// Retrieving attributes to display in the "more" part
+    	$aAttCodesFromSettings = ConfigHelper::GetSetting('device_tooltip_attributes');
+        foreach(MetaModel::EnumParentClasses($sObjClass, ENUM_PARENT_CLASSES_ALL, false) as $sClass)
+	    {
+	    	if(is_array($aAttCodesFromSettings) && array_key_exists($sClass, $aAttCodesFromSettings) && is_array($aAttCodesFromSettings[$sClass]))
+		    {
+		    	$aObjAttCodes = $aAttCodesFromSettings[$sClass];
+		    	break;
+		    }
+	    }
+
+	    // Building the HTML markup
+	    // - Base info
+	    $sClassImage = $oObject->GetIcon();
+        $sClassName = MetaModel::GetName($sObjClass);
+        // - Optional attributes
+	    $sAttributeHTML = '';
+	    if(count($aObjAttCodes) > 0)
+	    {
+	    	$sAttributeHTML .= '<div class="mdv-dt-more-info">';
+	    	$sAttributeHTML .= '<ul>';
+	    	foreach($aObjAttCodes as $sAttCode)
+		    {
+		    	if(!MetaModel::IsValidAttCode($sObjClass, $sAttCode))
+			    {
+			    	continue;
+			    }
+
+		    	$sAttLabel = MetaModel::GetLabel($sObjClass, $sAttCode);
+			    /** @var \AttributeDefinition $oAttDef */
+			    $oAttDef = MetaModel::GetAttributeDef($sObjClass, $sAttCode);
+			    if($oAttDef instanceof AttributeExternalKey)
+			    {
+		    	    $sAttValue = htmlentities($oObject->Get($sAttCode.'_friendlyname'), ENT_QUOTES, 'UTF-8');
+			    }
+			    else
+			    {
+				    $sAttValue = htmlentities($oAttDef->GetValueLabel($oObject->Get($sAttCode)), ENT_QUOTES, 'UTF-8');
+			    }
+		    	$sAttributeHTML .= '<li>'.Dict::Format('Molkobain:DatacenterView:Element:Tooltip:Attribute', $sAttLabel, $sAttValue).'</li>';
+		    }
+		    $sAttributeHTML .= '</ul>';
+	    	$sAttributeHTML .= '</div>';
+	    }
+
+	    $sHTML = <<<EOF
+	<div class="mdv-device-tooltip">
+		<div class="mdv-dt-header">
+			<span class="mdv-dth-icon">{$sClassImage}</span>
+			<span class="mdv-dth-name">{$sClassName}</span>
+		</div>
+		<div class="mdv-dt-general-info">
+		
+		</div>
+		{$sAttributeHTML}
+	</div>
+EOF;
+\IssueLog::Error($sHTML);
+	    return $sHTML;
     }
 
 	/**

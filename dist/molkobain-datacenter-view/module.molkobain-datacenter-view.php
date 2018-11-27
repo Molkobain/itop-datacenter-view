@@ -47,6 +47,31 @@ SetupWebPage::AddModule(
 	        // Module specific settings go here, if any
 	        'enabled' => true,
 	        'debug' => false,
+	        'device_tooltip_attributes' => array(
+		        'DatacenterDevice' => array(
+			        'brand_id',
+			        'model_id',
+			        'serialnumber',
+			        'asset_number',
+		        ),
+		        'NetworkDevice' => array(
+		        	'networkdevicetype_id',
+			        'brand_id',
+			        'model_id',
+			        'ram',
+			        'serialnumber',
+			        'asset_number',
+		        ),
+		        'Server' => array(
+			        'brand_id',
+			        'model_id',
+			        'osfamily_id',
+			        'cpu',
+			        'ram',
+			        'serialnumber',
+			        'asset_number',
+		        ),
+	        ),
         ),
 	)
 );

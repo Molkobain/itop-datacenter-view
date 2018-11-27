@@ -122,6 +122,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
+  z-index: 1;
 }
 .molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot .mdv-enclosure::after {
   content: "";
@@ -155,6 +156,8 @@
   padding: 0 0.3rem;
   text-align: center;
   font-size: 0.7rem;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s linear;
 }
 .molkobain-datacenter-view .mdv-device > *, .molkobain-datacenter-view .mdv-enclosure > * {
   flex-grow: 1;
@@ -165,6 +168,9 @@
 .molkobain-datacenter-view .mdv-device a, .molkobain-datacenter-view .mdv-enclosure a, .molkobain-datacenter-view .mdv-device a:hover, .molkobain-datacenter-view .mdv-enclosure a:hover, .molkobain-datacenter-view .mdv-device a:active, .molkobain-datacenter-view .mdv-enclosure a:active, .molkobain-datacenter-view .mdv-device a:visited, .molkobain-datacenter-view .mdv-enclosure a:visited {
   color: inherit;
   text-decoration: none;
+}
+.molkobain-datacenter-view .mdv-device:hover, .molkobain-datacenter-view .mdv-enclosure:hover {
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.23);
 }
 .molkobain-datacenter-view .mdv-device {
   color: #fff;

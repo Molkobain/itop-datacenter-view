@@ -26,6 +26,7 @@ class ConfigHelper
 
     const DEFAULT_SETTING_ENABLED = true;
     const DEFAULT_SETTING_DEBUG = true;
+    const DEFAULT_SETTING_DEVICE_TOOLTIP_ATTRIBUTES = null;
 
     /**
      * @return string

@@ -142,9 +142,9 @@ $(function()
 			{
 				for(var sAssemblyCode in this.enums.assembly)
 				{
-					for(var iDeviceIdx in this._getObjectDatum('devices').mounted)
+					for(var iDeviceIdx in this._getObjectDatum('devices')[sAssemblyCode])
 					{
-						var oDevice = this._getObjectDatum('devices').mounted[iDeviceIdx];
+						var oDevice = this._getObjectDatum('devices')[sAssemblyCode][iDeviceIdx];
 						var oDeviceElem = this._cloneTemplate('device')
 						                      .attr('data-class', oDevice.class)
 						                      .attr('data-id', oDevice.id)
@@ -157,19 +157,26 @@ $(function()
 							.find('.mdv-d-name')
 							.html(oDevice.url);
 
+						// Dynamic height to occupy desired Us
 						oDeviceElem
 							.css('height', 'calc(' + (oDevice.nb_u * 20) + 'px + ' + (oDevice.nb_u - 1) + 'px)');
 
-						oDeviceElem.appendTo(this._getRackSlotElement(oDevice.position_v, oDevice.position_p));
-
+						// Position and tooltip
+						var oQTipOptions = { content: oDevice.tooltip.content, show: 'mouseover', hide: 'mouseout', style: { name: 'light', tip: 'leftMiddle' }, position: { corner: { target: 'rightMiddle', tooltip: 'leftMiddle' }, adjust: {}} };
 						if(sAssemblyCode === this.enums.assembly.mounted)
 						{
 							oDeviceElem.appendTo(this._getRackSlotElement(oDevice.position_v, oDevice.position_p));
 						}
 						else
 						{
+							oQTipOptions.style.tip = 'rightMiddle';
+							oQTipOptions.position.corner.target = 'leftMiddle';
+							oQTipOptions.position.corner.tooltip = 'rightMiddle';
+							oQTipOptions.position.adjust.x = -15;
+
 							oDeviceElem.appendTo(this.element.find('.mdv-unmounted-type[data-type="device"] .mdv-ut-content'));
 						}
+						oDeviceElem.qtip(oQTipOptions);
 					}
 				}
 			},
