@@ -38,6 +38,14 @@ $device-color: #ffffff;
 $tooltip-indicator-color: #434343;
 $tooltip-list-label-width: 7.5rem;
 
+/* - Object classes */
+$obj-class-server-bg-color: #3f627e;
+$obj-class-networkdevice-bg-color: #c85454;
+$obj-class-sanswitch-bg-color: lightsalmon;
+$obj-class-nas-bg-color: #80b469;
+$obj-class-storagesystem-bg-color: #eb913b;
+$obj-class-tapelibrary-bg-color: #7da9bc;
+
 .molkobain-datacenter-view{
 	/* Reset for admin console mostly */
 	box-sizing: border-box;
@@ -57,33 +65,108 @@ $tooltip-list-label-width: 7.5rem;
 	/* Proper properties */
 	display: flex;
 	flex-direction: row;
-	justify-content: space-evenly;
+	justify-content: space-between;
 
 	.mdv-templates{
 		display: none;
 	}
 
+	.mdv-panel{
+		margin-bottom: 3rem;
+
+		.mdv-p-header{
+			display: flex;
+			align-items: center;
+			margin-bottom: 0.5rem;
+			font-size: 0.9rem;
+
+			.mdv-ph-icon{
+				margin-right: 0.5rem;
+
+				img{
+					max-width: 38px;
+				}
+			}
+		}
+		.mdv-p-body{
+			padding: 0.3rem;
+			overflow: hidden auto;
+			background-color: $unmounted-container-bg-color;
+			box-shadow: $box-shadow-small;
+		}
+
+		&:last-child{
+			margin-bottom: 0;
+		}
+	}
+
+	.mdv-legend{
+		width: 200px;
+
+		.mdv-p-body{
+			padding: 0.6rem;
+
+			ul{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				font-size: 0.8rem;
+
+				li{
+					margin-bottom: 0.3rem;
+					cursor: pointer;
+
+					&::before{
+						content: "";
+						display: inline-block;
+						margin-right: 0.5rem;
+						width: 8px;
+						height: 8px;
+						border-radius: 100%;
+					}
+
+					&[data-class="Server"]::before{
+						 background-color: $obj-class-server-bg-color;
+					 }
+					&[data-class="NetworkDevice"]::before{
+						background-color: $obj-class-networkdevice-bg-color;
+					}
+					&[data-class="SANSwitch"]::before{
+						background-color: $obj-class-sanswitch-bg-color;
+					}
+					&[data-class="NAS"]::before{
+						background-color: $obj-class-nas-bg-color;
+					}
+					&[data-class="StorageSystem"]::before{
+						background-color: $obj-class-storagesystem-bg-color;
+					}
+					&[data-class="TapeLibrary"]::before{
+						background-color: $obj-class-tapelibrary-bg-color;
+					}
+				}
+			}
+		}
+	}
 	.mdv-views{
 		display: flex;
 		flex-direction: row;
+
+		.mdv-rack-panel{
+			margin-right: 120px;
+
+			&:last-child{
+				margin-right: 0;
+			}
+		}
 	}
 	.mdv-unmounted{
-		.mdv-unmounted-type{
-			margin-bottom: 3rem;
+		.mdv-unmounted-type.mdv-panel{
+			width: 260px;
 
-			.mdv-ut-header{
-				display: flex;
-				align-items: center;
-				font-size: 0.9rem;
+			.mdv-p-header{
+				margin-bottom: 0.2rem;
 
-				.mdv-ut-icon{
-					margin-right: 0.5rem;
-
-					img{
-						max-width: 38px;
-					}
-				}
-				.mdv-ut-name{
+				.mdv-ph-title{
 					position: relative;
 
 					&::after{
@@ -96,14 +179,9 @@ $tooltip-list-label-width: 7.5rem;
 					}
 				}
 			}
-			.mdv-ut-content{
-				padding: 0.3rem;
-				width: 260px;
+			.mdv-p-body{
 				min-height: 140px;
 				max-height: 250px;
-				overflow: hidden auto;
-				background-color: $unmounted-container-bg-color;
-				box-shadow: $box-shadow-small;
 
 				> .mdv-device, .mdv-enclosure{
 					margin-bottom: 0.3rem;
@@ -112,10 +190,6 @@ $tooltip-list-label-width: 7.5rem;
 						margin-bottom: 0;
 					}
 				}
-			}
-
-			&:last-child{
-				margin-bottom: 0;
 			}
 		}
 	}
@@ -184,22 +258,22 @@ $tooltip-list-label-width: 7.5rem;
 		}
 
 		&[data-class="Server"]{
-			background-color: #3f627e;
+			background-color: $obj-class-server-bg-color;
 		}
 		&[data-class="NetworkDevice"]{
-			background-color: #c85454;
+			background-color: $obj-class-networkdevice-bg-color;
 		}
 		&[data-class="SANSwitch"]{
-			background-color: lightsalmon;
+			background-color: $obj-class-sanswitch-bg-color;
 		}
 		&[data-class="NAS"]{
-			background-color: #80b469;
+			background-color: $obj-class-nas-bg-color;
 		}
 		&[data-class="StorageSystem"]{
-			background-color: #eb913b;
+			background-color: $obj-class-storagesystem-bg-color;
 		}
 		&[data-class="TapeLibrary"]{
-			background-color: #7da9bc;
+			background-color: $obj-class-tapelibrary-bg-color;
 		}
 
 		/*color: #444;
@@ -318,6 +392,10 @@ $tooltip-list-label-width: 7.5rem;
 				}
 			}
 		}
+	}
+
+	.mdv-fade-for-highlighting{
+		opacity: 0.6;
 	}
 }
 .mdv-tooltip{

@@ -65,13 +65,25 @@ class UIExtension implements iApplicationUIExtension
 		$oPage->add(
 <<<EOF
 	<div class="molkobain-datacenter-view-container" data-portal="backoffice">
-		<div class="mdv-legend">
+		<div class="mdv-legend mdv-panel">
+			<div class="mdv-p-header">
+				<span class="mdv-ph-icon"><span class="fa fa-list"></span></span>
+				<span class="mdv-ph-title" title="" data-toggle="tooltip">Legend</span>
+			</div>
+			<div class="mdv-p-body">
+				<ul>
+					<li data-class="Server">Server (8)</li>
+					<li data-class="NetworkDevice">Network device (1)</li>
+					<li data-class="StorageSystem">Storage system (1)</li>
+					<li data-class="Enclosure">Enclosure (4)</li>
+				</ul>
+			</div>
 		</div>
 	
 		<div class="mdv-views">
 		</div>
 		
-		<div class="mdv-unmounted">
+		<div class="mdv-unmounted mdv-panel">
 		</div>
 		
 		<div class="mdv-templates">
@@ -106,12 +118,12 @@ class UIExtension implements iApplicationUIExtension
 				<span class="mdv-d-name"></span>
 			</div>
 			
-			<div class="mdv-unmounted-type" data-type="">
-				<div class="mdv-ut-header">
-					<span class="mdv-ut-icon"></span>
-					<span class="mdv-ut-name"></span>
+			<div class="mdv-unmounted-type mdv-panel" data-type="">
+				<div class="mdv-p-header">
+					<span class="mdv-ph-icon"></span>
+					<span class="mdv-ph-title"></span>
 				</div>
-				<div class="mdv-ut-content">
+				<div class="mdv-p-body">
 				</div>
 			</div>
 		</div>

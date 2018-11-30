@@ -128,11 +128,11 @@ $(function()
 					{
 						var oEnclosure = this._getObjectDatum('enclosures')[sAssemblyCode][iEnclosureIdx];
 						var oEnclosureElem = this._cloneTemplate('enclosure')
-						                         .attr('data-class', oEnclosure.class)
-						                         .attr('data-id', oEnclosure.id)
-						                         .attr('data-name', oEnclosure.name)
-						                         .attr('data-rack-id', this._getObjectDatum('id'))
-						                         .attr('data-position-v', oEnclosure.position_v);
+							.attr('data-class', oEnclosure.class)
+							.attr('data-id', oEnclosure.id)
+							.attr('data-name', oEnclosure.name)
+							.attr('data-rack-id', this._getObjectDatum('id'))
+							.attr('data-position-v', oEnclosure.position_v);
 
 						// Note: Url actually contains the hyperlink markup
 						$('<div />')
@@ -151,13 +151,14 @@ $(function()
 						oEnclosureElem
 							.css('height', 'calc(' + (oEnclosure.nb_u * 20) + 'px + ' + (oEnclosure.nb_u - 1) + 'px)');
 
+						var oHostElem;
 						if( (sAssemblyCode === this.enums.assembly.mounted) && (oEnclosure.position_v !== 0) )
 						{
-							var oHostElem = this._getRackSlotElement(oEnclosure.position_v, oEnclosure.position_p);
+							oHostElem = this._getRackSlotElement(oEnclosure.position_v, oEnclosure.position_p);
 						}
 						else
 						{
-							var oHostElem = this.element.find('.mdv-unmounted-type[data-type="enclosure"] .mdv-ut-content');
+							oHostElem = this.element.find('.mdv-unmounted-type[data-type="enclosure"] .mdv-p-body');
 						}
 						oEnclosureElem.appendTo(oHostElem);
 
@@ -218,7 +219,7 @@ $(function()
 					oHostElem = this._getRackSlotElement(oDevice.position_v, oDevice.position_p);
 					if(oHostElem === false)
 					{
-						oHostElem = this.element.find('.mdv-unmounted-type[data-type="device"] .mdv-ut-content')
+						oHostElem = this.element.find('.mdv-unmounted-type[data-type="device"] .mdv-p-body')
 					}
 				}
 

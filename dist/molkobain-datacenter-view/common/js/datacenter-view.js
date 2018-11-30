@@ -76,23 +76,39 @@ $(function()
 					return false;
 				}
 
+				this._initializeLegend();
 				this._initializeViews();
 				this._initializeUnmounted();
 				this._initializeElements();
 				this._initializeTooltips();
 			},
-			// - Make the markup for views (eg. rack panels, enclosure panel, ...)
+			// - Make the markup & events binding for the legend
+			_initializeLegend: function()
+			{
+				var me = this;
+				this.element.find('.mdv-legend ul > li').hover(
+					function(){
+						var sObjClass = $(this).attr('data-class');
+						me.element.find('.mdv-device[data-class!="' + sObjClass + '"]').addClass('mdv-fade-for-highlighting');
+					},
+					function(){
+						var sObjClass = $(this).attr('data-class');
+						me.element.find('.mdv-device').removeClass('mdv-fade-for-highlighting');
+					}
+				);
+			},
+			// - Make the markup & events binding  for views (eg. rack panels, enclosure panel, ...)
 			_initializeViews: function()
 			{
 				// Meant for overloading.
 			},
-			// - Make the markup for unmounted elements to be displayed in
+			// - Make the markup & events binding  for unmounted elements to be displayed in
 			_initializeUnmounted: function()
 			{
 				// Devices
 				this._buildUnmountedContainer('device');
 			},
-			// - Make the markup for elements (mounted or not) and display them where they belong
+			// - Make the markup & events binding  for elements (mounted or not) and display them where they belong
 			_initializeElements: function()
 			{
 				// Meant for overloading.
@@ -158,11 +174,11 @@ $(function()
                     .appendTo( this.element.find('.mdv-unmounted') );
 
 				oContainer
-					.find('.mdv-ut-icon')
+					.find('.mdv-ph-icon')
 					.html('<img src="' + this._getObjectDatum(sTypeForElementCategory).icon + '" />');
 
 				oContainer
-					.find('.mdv-ut-name')
+					.find('.mdv-ph-title')
 					.attr('title', this._getDictEntry('Molkobain:DatacenterView:Unmounted:' + sTypeForDictEntry + ':Title+'))
 					.attr('data-toggle', 'tooltip')
 					.text(this._getDictEntry('Molkobain:DatacenterView:Unmounted:' + sTypeForDictEntry + ':Title'));
