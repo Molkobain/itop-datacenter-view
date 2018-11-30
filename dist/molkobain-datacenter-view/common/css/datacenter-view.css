@@ -14,7 +14,9 @@
 /* - Rack unit */
 /* - Rack unit slot */
 /* - Enclosure */
+/* - Enclosure unit slot */
 /* - Device */
+/* - Tooltip */
 .molkobain-datacenter-view {
   /* Reset for admin console mostly */
   box-sizing: border-box;
@@ -26,6 +28,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  /* Used as a comment next to the element (device / enclosure) */
 }
 .molkobain-datacenter-view * {
   box-sizing: border-box;
@@ -75,13 +78,26 @@
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 }
 .molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type .mdv-ut-content > .mdv-device, .molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type .mdv-ut-content .mdv-enclosure {
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.3rem;
 }
 .molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type .mdv-ut-content > .mdv-device:last-of-type, .molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type .mdv-ut-content .mdv-enclosure:last-of-type {
   margin-bottom: 0;
 }
 .molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type:last-child {
   margin-bottom: 0;
+}
+.molkobain-datacenter-view .mdv-element-note {
+  position: absolute;
+  top: 40%;
+  right: calc(-100% - 10px);
+  width: 100%;
+  text-align: left;
+  color: #444;
+  font-style: italic;
+}
+.molkobain-datacenter-view .mdv-element-note > i {
+  margin-right: 0.3rem;
+  font-size: 0.6rem;
 }
 .molkobain-datacenter-view .mdv-rack-panel {
   text-align: center;
@@ -92,72 +108,14 @@
   margin-bottom: 0.3rem;
   font-size: 0.85rem;
 }
-.molkobain-datacenter-view .mdv-rack-unit {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  font-size: 0.7rem;
-  /* Rack & units border */
-}
-.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-left {
-  padding: 0 0.3rem;
-  width: 1.8rem;
-  text-align: right;
-}
-.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot {
-  display: flex;
-  /*flex-grow: 1;*/
-  /* For parent flex property */
-  position: relative;
-  /* In order to make devices absolute and higher than the slot */
-  height: 20px;
-  width: 120px;
-  box-sizing: content-box;
-  /* Cause content has a fixed size */
-  background-color: #fff;
-}
-.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot .mdv-device, .molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot .mdv-enclosure {
-  flex-grow: 1;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-}
-.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot .mdv-enclosure::after {
-  content: "";
-  position: absolute;
-  right: -4px;
-  bottom: 0px;
-  width: 4px;
-  height: 100%;
-  background-color: #83a967;
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-}
-.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot {
-  border-left: 1px solid #c5c5c5;
-  border-right: 1px solid #c5c5c5;
-  border-bottom: 1px solid #eaeaea;
-}
-.molkobain-datacenter-view .mdv-rack-unit:first-child .mdv-ru-slot {
-  border-top: 1px solid #c5c5c5;
-}
-.molkobain-datacenter-view .mdv-rack-unit:last-child .mdv-ru-slot {
-  border-bottom: 1px solid #c5c5c5;
-}
 .molkobain-datacenter-view .mdv-device, .molkobain-datacenter-view .mdv-enclosure {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+  position: relative;
   width: 120px;
   height: 20px;
-  padding: 0 0.3rem;
   text-align: center;
   font-size: 0.7rem;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-  transition: all 0.2s linear;
+  transition: all 0.2s ease-in-out;
 }
 .molkobain-datacenter-view .mdv-device > *, .molkobain-datacenter-view .mdv-enclosure > * {
   flex-grow: 1;
@@ -173,32 +131,203 @@
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.23);
 }
 .molkobain-datacenter-view .mdv-device {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 0.3rem;
   color: #fff;
+  /*color: #444;
+   &::before{
+   content: "";
+   display: inline-block;
+   margin-right: 0.3rem;
+   width: 8px;
+   height: 8px;
+   border-radius: 100%;
+   }
+   &[data-class="Server"]::before{
+   background-color: #3f627e;
+   }
+   &[data-class="NetworkDevice"]::before{
+   background-color: #c85454;
+   }
+   &[data-class="SANSwitch"]::before{
+   background-color: lightsalmon;
+   }
+   &[data-class="NAS"]::before{
+   background-color: #80b469;
+   }
+   &[data-class="StorageSystem"]::before{
+   background-color: #eb913b;
+   }
+   &[data-class="TapeLibrary"]::before{
+   background-color: #7da9bc;
+   }*/
+}
+.molkobain-datacenter-view .mdv-device .mdv-element-note {
+  top: 20%;
 }
 .molkobain-datacenter-view .mdv-device[data-class="Server"] {
   background-color: #3f627e;
-  /*lightblue;*/
 }
 .molkobain-datacenter-view .mdv-device[data-class="NetworkDevice"] {
   background-color: #c85454;
-  /*lightcoral;*/
 }
 .molkobain-datacenter-view .mdv-device[data-class="SANSwitch"] {
   background-color: lightsalmon;
 }
 .molkobain-datacenter-view .mdv-device[data-class="NAS"] {
   background-color: #80b469;
-  /*lightsteelblue;*/
 }
 .molkobain-datacenter-view .mdv-device[data-class="StorageSystem"] {
   background-color: #eb913b;
-  /*lightgoldenrodyellow;*/
 }
 .molkobain-datacenter-view .mdv-device[data-class="TapeLibrary"] {
   background-color: #7da9bc;
-  /*lightgrey;*/
 }
 .molkobain-datacenter-view .mdv-enclosure {
   color: #939393;
   background-color: #eaeaea;
+}
+.molkobain-datacenter-view .mdv-enclosure .mdv-enclosure-unit .mdv-eu-slot {
+  border-top: 1px solid #d9d9d9;
+}
+.molkobain-datacenter-view .mdv-enclosure .mdv-enclosure-unit:first-of-type .mdv-eu-slot {
+  border-top: none;
+}
+.molkobain-datacenter-view .mdv-enclosure::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  bottom: 0px;
+  width: 4px;
+  height: 100%;
+  background-color: #da5757;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+}
+.molkobain-datacenter-view .mdv-rack-unit, .molkobain-datacenter-view .mdv-enclosure-unit {
+  font-size: 0.7rem;
+}
+.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot, .molkobain-datacenter-view .mdv-enclosure-unit .mdv-ru-slot, .molkobain-datacenter-view .mdv-rack-unit .mdv-eu-slot, .molkobain-datacenter-view .mdv-enclosure-unit .mdv-eu-slot {
+  display: flex;
+  position: relative;
+  /* In order to make devices absolute and higher than the slot */
+  height: 20px;
+  width: 120px;
+  box-sizing: content-box;
+  /* Cause content has a fixed size */
+}
+.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot > .mdv-device, .molkobain-datacenter-view .mdv-enclosure-unit .mdv-ru-slot > .mdv-device, .molkobain-datacenter-view .mdv-rack-unit .mdv-eu-slot > .mdv-device, .molkobain-datacenter-view .mdv-enclosure-unit .mdv-eu-slot > .mdv-device, .molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot .mdv-enclosure, .molkobain-datacenter-view .mdv-enclosure-unit .mdv-ru-slot .mdv-enclosure, .molkobain-datacenter-view .mdv-rack-unit .mdv-eu-slot .mdv-enclosure, .molkobain-datacenter-view .mdv-enclosure-unit .mdv-eu-slot .mdv-enclosure {
+  flex-grow: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot .mdv-enclosure::after, .molkobain-datacenter-view .mdv-enclosure-unit .mdv-ru-slot .mdv-enclosure::after, .molkobain-datacenter-view .mdv-rack-unit .mdv-eu-slot .mdv-enclosure::after, .molkobain-datacenter-view .mdv-enclosure-unit .mdv-eu-slot .mdv-enclosure::after {
+  background-color: #83a967;
+}
+.molkobain-datacenter-view .mdv-rack-unit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  /* Rack & units border */
+}
+.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-left {
+  padding: 0 0.3rem;
+  width: 1.8rem;
+  text-align: right;
+}
+.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot {
+  background-color: #fff;
+  border-left: 1px solid #c5c5c5;
+  border-right: 1px solid #c5c5c5;
+  border-bottom: 1px solid #eaeaea;
+}
+.molkobain-datacenter-view .mdv-rack-unit:first-child .mdv-ru-slot {
+  border-top: 1px solid #c5c5c5;
+}
+.molkobain-datacenter-view .mdv-rack-unit:last-child .mdv-ru-slot {
+  border-bottom: 1px solid #c5c5c5;
+}
+.mdv-tooltip {
+  /* Reset for admin console mostly */
+  box-sizing: border-box;
+  /* qTip tooltips */
+}
+.mdv-tooltip * {
+  box-sizing: border-box;
+}
+.mdv-tooltip *:before, .mdv-tooltip *:after {
+  box-sizing: border-box;
+}
+.mdv-tooltip .mdv-dt-header {
+  margin-bottom: 1.2rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.mdv-tooltip .mdv-dt-header .mdv-dth-icon {
+  margin-right: 0.2rem;
+}
+.mdv-tooltip .mdv-dt-header .mdv-dth-icon img {
+  max-width: 32px;
+}
+.mdv-tooltip .mdv-dt-list-wrapper {
+  margin-bottom: 1.5rem;
+  padding: 0 3px;
+}
+.mdv-tooltip .mdv-dt-list-wrapper fieldset {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+}
+.mdv-tooltip .mdv-dt-list-wrapper fieldset legend {
+  margin-bottom: 0.5rem;
+  padding: 0 0 0.1rem 0;
+  width: 100%;
+  text-align: left;
+  color: #444;
+  background-color: transparent;
+  border-bottom: 1px solid #dedede;
+  border-radius: 0;
+}
+.mdv-tooltip .mdv-dt-list-wrapper fieldset ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+.mdv-tooltip .mdv-dt-list-wrapper fieldset ul li {
+  margin-bottom: 0.3rem;
+  font-size: 11px;
+}
+.mdv-tooltip .mdv-dt-list-wrapper fieldset ul li .mdv-dtl-label {
+  display: inline-block;
+  width: 7.5rem;
+  font-weight: bold;
+}
+.mdv-tooltip .mdv-dt-list-wrapper fieldset ul li .mdv-dtl-label::after {
+  content: ":";
+  margin-right: 0.3rem;
+}
+.mdv-tooltip .mdv-dt-list-wrapper fieldset ul li:last-of-type {
+  margin-bottom: 0;
+}
+.mdv-tooltip .mdv-dt-list-wrapper:last-of-type {
+  margin-bottom: 0;
+}
+.mdv-tooltip.qtip .qtip-tip {
+  z-index: 1;
+  /* To put tip above wrapper box-shadow */
+}
+.mdv-tooltip.qtip .qtip-wrapper {
+  box-shadow: 0 2px 15px 2px rgba(0, 0, 0, 0.15);
+}
+.mdv-tooltip.qtip .qtip-wrapper .qtip-contentWrapper {
+  border: none !important;
+}
+.mdv-tooltip.qtip .qtip-wrapper .qtip-contentWrapper .qtip-content {
+  padding: 9px 9px !important;
 }

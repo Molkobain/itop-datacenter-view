@@ -10,7 +10,6 @@
 
 /* Variables */
 /* - Helpers */
-$tooltip-indicator-color: #434343;
 $box-shadow-small: 0 1px 1px rgba(0, 0, 0, 0.15);
 
 /* - Unmounted container */
@@ -28,8 +27,16 @@ $rack-unit-slot-separator-color: #eaeaea;
 /* - Enclosure */
 $enclosure-color: #939393;
 $enclosure-bg-color: #eaeaea;
+$enclosure-sidebar-bg-color-mounted: #83a967;
+$enclosure-sidebar-bg-color-unmounted: #da5757;
+/* - Enclosure unit slot */
+$enclosure-unit-slot-separator-color: #d9d9d9;
 /* - Device */
 $device-color: #ffffff;
+
+/* - Tooltip */
+$tooltip-indicator-color: #434343;
+$tooltip-list-label-width: 7.5rem;
 
 .molkobain-datacenter-view{
 	/* Reset for admin console mostly */
@@ -99,7 +106,7 @@ $device-color: #ffffff;
 				box-shadow: $box-shadow-small;
 
 				> .mdv-device, .mdv-enclosure{
-					margin-bottom: 0.1rem;
+					margin-bottom: 0.3rem;
 
 					&:last-of-type{
 						margin-bottom: 0;
@@ -110,6 +117,22 @@ $device-color: #ffffff;
 			&:last-child{
 				margin-bottom: 0;
 			}
+		}
+	}
+
+	/* Used as a comment next to the element (device / enclosure) */
+	.mdv-element-note{
+		position: absolute;
+		top: 40%;
+		right: calc(-100% - 10px);
+		width: 100%;
+		text-align: left;
+		color: #444444;
+		font-style: italic;
+
+		> i{
+			margin-right: 0.3rem;
+			font-size: 0.6rem;
 		}
 	}
 
@@ -124,83 +147,15 @@ $device-color: #ffffff;
 		.mdv-rp-view{
 		}
 	}
-	.mdv-rack-unit{
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-around;
-		font-size: 0.7rem;
-
-		.mdv-ru-left{
-			padding: 0 0.3rem;
-			width: $rack-unit-number-width;
-			text-align: right;
-		}
-		.mdv-ru-slot{
-			display: flex;
-			/*flex-grow: 1;*/
-			/* For parent flex property */
-			position: relative; /* In order to make devices absolute and higher than the slot */
-			height: $rack-unit-slot-height;
-			width: $rack-unit-slot-width;
-			box-sizing: content-box; /* Cause content has a fixed size */
-			background-color: $rack-unit-slot-bg-color;
-
-			.mdv-device,
-			.mdv-enclosure{
-				flex-grow: 1;
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				z-index: 1;
-			}
-			.mdv-enclosure{
-				&::after{
-					content: "";
-					position: absolute;
-					right: -4px;
-					bottom: 0px;
-					width: 4px;
-					height: 100%;
-					background-color: #83a967;
-					border-top-right-radius: 2px;
-					border-bottom-right-radius: 2px;
-					box-shadow: $box-shadow-small;
-				}
-			}
-		}
-
-		/* Rack & units border */
-		&{
-			.mdv-ru-slot{
-				border-left: $rack-panel-outer-border;
-				border-right: $rack-panel-outer-border;
-				border-bottom: 1px solid $rack-unit-slot-separator-color;
-			}
-			&:first-child{
-				.mdv-ru-slot{
-					border-top: $rack-panel-outer-border;
-				}
-			}
-			&:last-child{
-				.mdv-ru-slot{
-					border-bottom: $rack-panel-outer-border;
-				}
-			}
-		}
-	}
 	.mdv-device,
 	.mdv-enclosure{
-		display: flex;
-		align-items: center;
-		justify-content: space-around;
+		position: relative;
 		width: $rack-unit-slot-width;
 		height: $rack-unit-slot-height;
-		padding: 0 0.3rem;
 		text-align: center;
 		font-size: 0.7rem;
 		box-shadow: $box-shadow-small;
-		transition: all 0.2s linear;
+		transition: all 0.2s ease-in-out;
 
 		> *{
 			flex-grow: 1;
@@ -218,29 +173,246 @@ $device-color: #ffffff;
 		}
 	}
 	.mdv-device{
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		padding: 0 0.3rem;
 		color: $device-color;
 
+		.mdv-element-note{
+			top: 20%;
+		}
+
 		&[data-class="Server"]{
-			background-color: #3f627e; /*lightblue;*/
+			background-color: #3f627e;
 		}
 		&[data-class="NetworkDevice"]{
-			background-color: #c85454; /*lightcoral;*/
+			background-color: #c85454;
 		}
 		&[data-class="SANSwitch"]{
 			background-color: lightsalmon;
 		}
 		&[data-class="NAS"]{
-			background-color: #80b469; /*lightsteelblue;*/
+			background-color: #80b469;
 		}
 		&[data-class="StorageSystem"]{
-			background-color: #eb913b; /*lightgoldenrodyellow;*/
+			background-color: #eb913b;
 		}
 		&[data-class="TapeLibrary"]{
-			background-color: #7da9bc; /*lightgrey;*/
+			background-color: #7da9bc;
 		}
+
+		/*color: #444;
+		&::before{
+			content: "";
+			display: inline-block;
+			margin-right: 0.3rem;
+			width: 8px;
+			height: 8px;
+			border-radius: 100%;
+		}
+
+		&[data-class="Server"]::before{
+			background-color: #3f627e;
+		}
+		&[data-class="NetworkDevice"]::before{
+			background-color: #c85454;
+		}
+		&[data-class="SANSwitch"]::before{
+			background-color: lightsalmon;
+		}
+		&[data-class="NAS"]::before{
+			background-color: #80b469;
+		}
+		&[data-class="StorageSystem"]::before{
+			background-color: #eb913b;
+		}
+		&[data-class="TapeLibrary"]::before{
+			background-color: #7da9bc;
+		}*/
 	}
 	.mdv-enclosure{
 		color: $enclosure-color;
 		background-color: $enclosure-bg-color;
+
+		.mdv-enclosure-unit{
+			.mdv-eu-slot{
+				border-top: 1px solid $enclosure-unit-slot-separator-color;
+			}
+			&:first-of-type{
+				.mdv-eu-slot{
+					border-top: none;
+				}
+			}
+		}
+
+		&::after{
+			content: "";
+			position: absolute;
+			right: -4px;
+			bottom: 0px;
+			width: 4px;
+			height: 100%;
+			background-color: $enclosure-sidebar-bg-color-unmounted;
+			border-top-right-radius: 3px;
+			border-bottom-right-radius: 3px;
+			box-shadow: $box-shadow-small;
+		}
+	}
+
+	.mdv-rack-unit,
+	.mdv-enclosure-unit{
+		font-size: 0.7rem;
+
+		.mdv-ru-slot,
+		.mdv-eu-slot{
+			display: flex;
+			position: relative; /* In order to make devices absolute and higher than the slot */
+			height: $rack-unit-slot-height;
+			width: $rack-unit-slot-width;
+			box-sizing: content-box; /* Cause content has a fixed size */
+
+			> .mdv-device,
+			.mdv-enclosure{
+				flex-grow: 1;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				z-index: 1;
+			}
+			.mdv-enclosure{
+				&::after{
+					background-color: $enclosure-sidebar-bg-color-mounted;
+				}
+			}
+		}
+	}
+	.mdv-rack-unit{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-around;
+
+		.mdv-ru-left{
+			padding: 0 0.3rem;
+			width: $rack-unit-number-width;
+			text-align: right;
+		}
+
+		/* Rack & units border */
+		&{
+			.mdv-ru-slot{
+				background-color: $rack-unit-slot-bg-color;
+				border-left: $rack-panel-outer-border;
+				border-right: $rack-panel-outer-border;
+				border-bottom: 1px solid $rack-unit-slot-separator-color;
+			}
+			&:first-child{
+				.mdv-ru-slot{
+					border-top: $rack-panel-outer-border;
+				}
+			}
+			&:last-child{
+				.mdv-ru-slot{
+					border-bottom: $rack-panel-outer-border;
+				}
+			}
+		}
+	}
+}
+.mdv-tooltip{
+	/* Reset for admin console mostly */
+	box-sizing: border-box;
+	*{
+		box-sizing: border-box;
+
+		&:before,
+		&:after{
+			box-sizing: border-box;
+		}
+	}
+
+	.mdv-dt-header{
+		margin-bottom: 1.2rem;
+		font-weight: bold;
+		font-size: 0.9rem;
+
+		.mdv-dth-icon{
+			margin-right: 0.2rem;
+
+			img{
+				max-width: 32px;
+			}
+		}
+	}
+	.mdv-dt-list-wrapper{
+		margin-bottom: 1.5rem;
+		padding: 0 3px;
+
+		fieldset{
+			padding: 0;
+			border: none;
+			border-radius: 0;
+
+			legend{
+				margin-bottom: 0.5rem;
+				padding: 0 0 0.1rem 0;
+				width: 100%;
+				text-align: left;
+				color: #444444;
+				background-color: transparent;
+				border-bottom: 1px solid #dedede;
+				border-radius: 0;
+			}
+			ul{
+				margin: 0;
+				padding-left: 0;
+				list-style: none;
+
+				li{
+					margin-bottom: 0.3rem;
+					font-size: 11px;
+
+					.mdv-dtl-label{
+						display: inline-block;
+						width: $tooltip-list-label-width;
+						font-weight: bold;
+
+						&::after{
+							content: ":";
+							margin-right: 0.3rem;
+						}
+					}
+					.mdv-dtl-value{
+					}
+
+					&:last-of-type{
+						margin-bottom: 0;
+					}
+				}
+			}
+		}
+
+		&:last-of-type{
+			margin-bottom: 0;
+		}
+	}
+
+	/* qTip tooltips */
+	&.qtip{
+		.qtip-tip{
+			z-index: 1; /* To put tip above wrapper box-shadow */
+		}
+		.qtip-wrapper{
+			box-shadow: 0 2px 15px 2px rgba(0, 0, 0, 0.15);
+
+			.qtip-contentWrapper{
+				border: none !important;
+
+				.qtip-content{
+					padding: 9px 9px !important;
+				}
+			}
+		}
 	}
 }

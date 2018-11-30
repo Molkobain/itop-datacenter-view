@@ -220,7 +220,8 @@ class DataHelper
     protected static function MakeDeviceTooltipContent(DBObject $oObject)
     {
     	$sObjClass = get_class($oObject);
-    	$aObjAttCodes = array();
+    	$aObjMandatoryAttCodes = array('finalclass', 'org_id', 'status', 'business_criticity', 'enclosure_id');
+    	$aObjOptionalAttCodes = array();
 
     	// Retrieving attributes to display in the "more" part
     	$aAttCodesFromSettings = ConfigHelper::GetSetting('device_tooltip_attributes');
@@ -228,58 +229,64 @@ class DataHelper
 	    {
 	    	if(is_array($aAttCodesFromSettings) && array_key_exists($sClass, $aAttCodesFromSettings) && is_array($aAttCodesFromSettings[$sClass]))
 		    {
-		    	$aObjAttCodes = $aAttCodesFromSettings[$sClass];
+		    	$aObjOptionalAttCodes = $aAttCodesFromSettings[$sClass];
 		    	break;
 		    }
 	    }
+
+	    $aObjAttCodes = array(
+		    'base-info' => $aObjMandatoryAttCodes,
+		    'more-info' => $aObjOptionalAttCodes,
+	    );
 
 	    // Building the HTML markup
 	    // - Base info
 	    $sClassImage = $oObject->GetIcon();
         $sClassName = MetaModel::GetName($sObjClass);
-        // - Optional attributes
-	    $sAttributeHTML = '';
-	    if(count($aObjAttCodes) > 0)
-	    {
-	    	$sAttributeHTML .= '<div class="mdv-dt-more-info">';
-	    	$sAttributeHTML .= '<ul>';
-	    	foreach($aObjAttCodes as $sAttCode)
-		    {
-		    	if(!MetaModel::IsValidAttCode($sObjClass, $sAttCode))
-			    {
-			    	continue;
-			    }
+	    $sObjName = $oObject->GetName();
+        // - Attributes
+        $sAttributesHTML = '';
+        foreach($aObjAttCodes as $sAttCategory => $aAttCodes)
+        {
+	        if(count($aAttCodes) > 0)
+	        {
+		        $sAttributesHTML .= '<div class="mdv-dt-list-wrapper mdv-dt-' . $sAttCategory . '">';
+		        $sAttributesHTML .= '<fieldset><legend>' . Dict::S('Molkobain:DatacenterView:Element:Tooltip:Fieldset:'.$sAttCategory) . '</legend>';
+		        $sAttributesHTML .= '<ul>';
+		        foreach($aAttCodes as $sAttCode)
+		        {
+			        if(!MetaModel::IsValidAttCode($sObjClass, $sAttCode))
+			        {
+				        continue;
+			        }
 
-		    	$sAttLabel = MetaModel::GetLabel($sObjClass, $sAttCode);
-			    /** @var \AttributeDefinition $oAttDef */
-			    $oAttDef = MetaModel::GetAttributeDef($sObjClass, $sAttCode);
-			    if($oAttDef instanceof AttributeExternalKey)
-			    {
-		    	    $sAttValue = htmlentities($oObject->Get($sAttCode.'_friendlyname'), ENT_QUOTES, 'UTF-8');
-			    }
-			    else
-			    {
-				    $sAttValue = htmlentities($oAttDef->GetValueLabel($oObject->Get($sAttCode)), ENT_QUOTES, 'UTF-8');
-			    }
-		    	$sAttributeHTML .= '<li>'.Dict::Format('Molkobain:DatacenterView:Element:Tooltip:Attribute', $sAttLabel, $sAttValue).'</li>';
-		    }
-		    $sAttributeHTML .= '</ul>';
-	    	$sAttributeHTML .= '</div>';
-	    }
+			        $sAttLabel = MetaModel::GetLabel($sObjClass, $sAttCode);
+			        /** @var \AttributeDefinition $oAttDef */
+			        $oAttDef = MetaModel::GetAttributeDef($sObjClass, $sAttCode);
+			        if($oAttDef instanceof AttributeExternalKey)
+			        {
+				        $sAttValue = htmlentities($oObject->Get($sAttCode.'_friendlyname'), ENT_QUOTES, 'UTF-8');
+			        }
+			        else
+			        {
+				        $sAttValue = htmlentities($oAttDef->GetValueLabel($oObject->Get($sAttCode)), ENT_QUOTES, 'UTF-8');
+			        }
+			        $sAttributesHTML .= '<li><span class="mdv-dtl-label">' . $sAttLabel . '</span><span class="mdv-dtl-value">' . $sAttValue . '</span></li>';
+		        }
+		        $sAttributesHTML .= '</ul>';
+		        $sAttributesHTML .= '</fieldset>';
+		        $sAttributesHTML .= '</div>';
+	        }
+        }
 
 	    $sHTML = <<<EOF
-	<div class="mdv-device-tooltip">
-		<div class="mdv-dt-header">
-			<span class="mdv-dth-icon">{$sClassImage}</span>
-			<span class="mdv-dth-name">{$sClassName}</span>
-		</div>
-		<div class="mdv-dt-general-info">
-		
-		</div>
-		{$sAttributeHTML}
+	<div class="mdv-dt-header">
+		<span class="mdv-dth-icon">{$sClassImage}</span>
+		<span class="mdv-dth-name">{$sObjName}</span>
 	</div>
+	{$sAttributesHTML}
 EOF;
-\IssueLog::Error($sHTML);
+
 	    return $sHTML;
     }
 

@@ -65,6 +65,9 @@ class UIExtension implements iApplicationUIExtension
 		$oPage->add(
 <<<EOF
 	<div class="molkobain-datacenter-view-container" data-portal="backoffice">
+		<div class="mdv-legend">
+		</div>
+	
 		<div class="mdv-views">
 		</div>
 		
@@ -90,7 +93,13 @@ class UIExtension implements iApplicationUIExtension
 			</div>
 			
 			<!-- Enclosure template -->
-			<div class="mdv-enclosure" data-class="" data-id="" data-name="" data-rack-id="" data-position-v=""></div>
+			<div class="mdv-enclosure" data-class="" data-id="" data-name="" data-rack-id="" data-position-v="">
+			</div>
+			
+			<!-- Enclosure unit template -->
+			<div class="mdv-enclosure-unit" data-unit-number="">
+				<div class="mdv-eu-slot"></div>
+			</div>
 			
 			<!-- Device template -->
 			<div class="mdv-device" data-class="" data-id="" data-name="" data-rack-id="" data-enclosure-id="" data-position-v="">

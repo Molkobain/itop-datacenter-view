@@ -17,6 +17,28 @@ $(function()
 				object_type: 'rack',
 				defaults: {
 					panel: 'front',
+					tooltip_options: {
+						show: 'mouseover',
+						hide: 'mouseout',
+						style: {
+							name: 'light',
+							tip: {
+								corner: 'leftMiddle',
+								color: '#ffffff',
+								size: { x: 8, y: 16},
+							},
+							classes: {
+								tooltip: 'mdv-tooltip',
+							},
+						},
+						position: {
+							corner: {
+								target: 'rightMiddle',
+								tooltip: 'leftMiddle',
+							},
+							adjust: {}
+						},
+					},
 				},
 			},
 
@@ -112,30 +134,70 @@ $(function()
 						                         .attr('data-rack-id', this._getObjectDatum('id'))
 						                         .attr('data-position-v', oEnclosure.position_v);
 
+						// Note: Url actually contains the hyperlink markup
+						$('<div />')
+							.addClass('mdv-element-note')
+							.html(oEnclosure.url)
+							.appendTo(oEnclosureElem);
+
+						for(var iUnitsIdx = 1; iUnitsIdx <= oEnclosure.nb_u; iUnitsIdx++)
+						{
+							this._cloneTemplate('enclosure-unit')
+							    .attr('data-unit-number', iUnitsIdx)
+							    .prependTo(oEnclosureElem);
+						}
+
 						// Full height of n Us plus the bottom-border of n-1 Us
 						oEnclosureElem
 							.css('height', 'calc(' + (oEnclosure.nb_u * 20) + 'px + ' + (oEnclosure.nb_u - 1) + 'px)');
 
-						if(sAssemblyCode === this.enums.assembly.mounted)
+						if( (sAssemblyCode === this.enums.assembly.mounted) && (oEnclosure.position_v !== 0) )
 						{
-							oEnclosureElem.appendTo(this._getRackSlotElement(oEnclosure.position_v, oEnclosure.position_p));
+							var oHostElem = this._getRackSlotElement(oEnclosure.position_v, oEnclosure.position_p);
 						}
 						else
 						{
-							oEnclosureElem.appendTo(this.element.find('.mdv-unmounted-type[data-type="enclosure"] .mdv-ut-content'));
+							var oHostElem = this.element.find('.mdv-unmounted-type[data-type="enclosure"] .mdv-ut-content');
+						}
+						oEnclosureElem.appendTo(oHostElem);
+
+						// Put enclosures' elements
+						for(var sEnclosureDevicesAssemblyCode in this.enums.assembly)
+						{
+							for(var iDeviceIdx in oEnclosure.devices[sEnclosureDevicesAssemblyCode])
+							{
+								var oDevice = oEnclosure.devices[sEnclosureDevicesAssemblyCode][iDeviceIdx];
+								var oDeviceHostElem = (sEnclosureDevicesAssemblyCode === this.enums.assembly.mounted) ? this._getEnclosureSlotElement(oDevice.position_v, oEnclosure.id) : null;
+
+								var oDeviceElem = this._initializeDevice(oDevice, oDeviceHostElem);
+								if(oDeviceHostElem === null)
+								{
+									// Note: Url actually contains the hyperlink markup
+									$('<div />')
+										.addClass('mdv-element-note')
+										.html('<i class="fa fa-link" aria-hidden="true"></i>' + oEnclosure.url)
+										.appendTo(oDeviceElem);
+								}
+							}
 						}
 
-						// TODO: Put enclosures' elements
-						if(oEnclosure.devices.mounted.length > 0)
-						{
-
-						}
-						else
-						{
-							oEnclosureElem.html(oEnclosure.url);
-						}
+						// Tooltip
+						// Note: We need to do a deep copy
+						var oQTipOptions = $.extend(
+							true,
+							{},
+							{ content: oEnclosure.tooltip.content },
+							this.options.defaults.tooltip_options
+						);
+						oQTipOptions.style.tip.corner = 'rightMiddle';
+						oQTipOptions.position.corner.target = 'leftMiddle';
+						oQTipOptions.position.corner.tooltip = 'rightMiddle';
+						oQTipOptions.position.adjust.x = -15;
+						oEnclosureElem.find('.mdv-element-note').qtip(oQTipOptions);
 					}
 				}
+
+				return oEnclosureElem;
 			},
 			// - Rack's devices
 			_initializeDevices: function()
@@ -145,40 +207,58 @@ $(function()
 					for(var iDeviceIdx in this._getObjectDatum('devices')[sAssemblyCode])
 					{
 						var oDevice = this._getObjectDatum('devices')[sAssemblyCode][iDeviceIdx];
-						var oDeviceElem = this._cloneTemplate('device')
-						                      .attr('data-class', oDevice.class)
-						                      .attr('data-id', oDevice.id)
-						                      .attr('data-name', oDevice.name)
-						                      .attr('data-rack-id', this._getObjectDatum('id'))
-						                      .attr('data-position-v', oDevice.position_v);
-
-						// Note: Url actually contains the hyperlink markup
-						oDeviceElem
-							.find('.mdv-d-name')
-							.html(oDevice.url);
-
-						// Dynamic height to occupy desired Us
-						oDeviceElem
-							.css('height', 'calc(' + (oDevice.nb_u * 20) + 'px + ' + (oDevice.nb_u - 1) + 'px)');
-
-						// Position and tooltip
-						var oQTipOptions = { content: oDevice.tooltip.content, show: 'mouseover', hide: 'mouseout', style: { name: 'light', tip: 'leftMiddle' }, position: { corner: { target: 'rightMiddle', tooltip: 'leftMiddle' }, adjust: {}} };
-						if(sAssemblyCode === this.enums.assembly.mounted)
-						{
-							oDeviceElem.appendTo(this._getRackSlotElement(oDevice.position_v, oDevice.position_p));
-						}
-						else
-						{
-							oQTipOptions.style.tip = 'rightMiddle';
-							oQTipOptions.position.corner.target = 'leftMiddle';
-							oQTipOptions.position.corner.tooltip = 'rightMiddle';
-							oQTipOptions.position.adjust.x = -15;
-
-							oDeviceElem.appendTo(this.element.find('.mdv-unmounted-type[data-type="device"] .mdv-ut-content'));
-						}
-						oDeviceElem.qtip(oQTipOptions);
+						this._initializeDevice(oDevice);
 					}
 				}
+			},
+			_initializeDevice: function(oDevice, oHostElem)
+			{
+				if((oHostElem === false) || (oHostElem === undefined) || (oHostElem === null))
+				{
+					oHostElem = this._getRackSlotElement(oDevice.position_v, oDevice.position_p);
+					if(oHostElem === false)
+					{
+						oHostElem = this.element.find('.mdv-unmounted-type[data-type="device"] .mdv-ut-content')
+					}
+				}
+
+				var oDeviceElem = this._cloneTemplate('device')
+				                      .attr('data-class', oDevice.class)
+				                      .attr('data-id', oDevice.id)
+				                      .attr('data-name', oDevice.name)
+				                      .attr('data-rack-id', this._getObjectDatum('id'))
+				                      .attr('data-position-v', oDevice.position_v);
+
+				// Note: Url actually contains the hyperlink markup
+				oDeviceElem
+					.find('.mdv-d-name')
+					.html(oDevice.url);
+
+				// Dynamic height to occupy desired Us
+				oDeviceElem
+					.css('height', 'calc(' + (oDevice.nb_u * 20) + 'px + ' + (oDevice.nb_u - 1) + 'px)');
+
+				// Tooltip
+				// Note: We need to do a deep copy
+				var oQTipOptions = $.extend(
+					true,
+					{},
+					{ content: oDevice.tooltip.content },
+					this.options.defaults.tooltip_options
+				);
+				// Note: We don't use the .closest() yet for performance reasons. If this goes recurse, we might want to consider it though.
+				if(oHostElem.closest('.mdv-unmounted-type').length > 0)
+				{
+					oQTipOptions.style.tip.corner = 'rightMiddle';
+					oQTipOptions.position.corner.target = 'leftMiddle';
+					oQTipOptions.position.corner.tooltip = 'rightMiddle';
+					oQTipOptions.position.adjust.x = -15;
+				}
+				oDeviceElem.qtip(oQTipOptions);
+
+				oDeviceElem.appendTo(oHostElem);
+
+				return oDeviceElem;
 			},
 
 			// Getters
@@ -198,6 +278,17 @@ $(function()
 
 				return oSlotElem;
 			},
+			_getEnclosureSlotElement: function(iSlotNumber, iEnclosureId)
+			{
+				var oSlotElem = this.element.find('.mdv-enclosure[data-id="' + iEnclosureId + '"] .mdv-enclosure-unit[data-unit-number="' + iSlotNumber + '"] .mdv-eu-slot');
+				if(oSlotElem.length === 0)
+				{
+					this._trace('Could not find enclosure slot "' + iSlotNumber + 'U" for "' + iEnclosureId + '".');
+					return false;
+				}
+
+				return oSlotElem;
+			}
 
 			// Helpers
 		}
