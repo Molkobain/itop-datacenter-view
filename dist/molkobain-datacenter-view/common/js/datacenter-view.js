@@ -27,11 +27,31 @@ $(function()
 				debug: false,
 				object_type: 'rack',
 				object_data: null,
+				legend: {},
 				dict: {},
+				defaults: {
+					tooltip_options: {
+						show: 'mouseover',
+						hide: 'mouseout',
+						style: {
+							name: 'molkobain-light',
+							tip: {
+								corner: 'leftMiddle',
+							},
+						},
+						position: {
+							corner: {
+								target: 'rightMiddle',
+								tooltip: 'leftMiddle',
+							},
+							adjust: {}
+						},
+					},
+				},
 			},
 
 			enums: {
-				assembly: {
+				assembly_type: {
 					mounted: 'mounted',
 					unmounted: 'unmounted',
 				},
@@ -86,6 +106,19 @@ $(function()
 			_initializeLegend: function()
 			{
 				var me = this;
+
+				// Make markup
+				for(var sClass in this.options.legend.classes)
+				{
+					var oClass = this.options.legend.classes[sClass];
+					var oItemElem = this._cloneTemplate('legend-item')
+						.attr('data-class', sClass)
+						.attr('data-count', oClass.count)
+						.text(oClass.title + ' (' + oClass.count + ')')
+						.appendTo( this.element.find('.mdv-legend ul') );
+				}
+
+				// Bind highlight effect on hover
 				this.element.find('.mdv-legend ul > li').hover(
 					function(){
 						var sObjClass = $(this).attr('data-class');
@@ -150,7 +183,7 @@ $(function()
 			{
 				var oElem = null;
 
-				var oTemplate = this.element.find('.mdv-templates > .mdv-' + sCode);
+				var oTemplate = this.element.find('.mhf-templates > .mdv-' + sCode);
 				if(oTemplate.length === 0)
 				{
 					this._trace('Could not find template for "' + sCode + '".');
@@ -174,11 +207,11 @@ $(function()
                     .appendTo( this.element.find('.mdv-unmounted') );
 
 				oContainer
-					.find('.mdv-ph-icon')
+					.find('.mhf-ph-icon')
 					.html('<img src="' + this._getObjectDatum(sTypeForElementCategory).icon + '" />');
 
 				oContainer
-					.find('.mdv-ph-title')
+					.find('.mhf-ph-title')
 					.attr('title', this._getDictEntry('Molkobain:DatacenterView:Unmounted:' + sTypeForDictEntry + ':Title+'))
 					.attr('data-toggle', 'tooltip')
 					.text(this._getDictEntry('Molkobain:DatacenterView:Unmounted:' + sTypeForDictEntry + ':Title'));

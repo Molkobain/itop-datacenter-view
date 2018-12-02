@@ -37,74 +37,54 @@
 .molkobain-datacenter-view *:before, .molkobain-datacenter-view *:after {
   box-sizing: border-box;
 }
-.molkobain-datacenter-view .mdv-templates {
-  display: none;
-}
-.molkobain-datacenter-view .mdv-panel {
-  margin-bottom: 3rem;
-}
-.molkobain-datacenter-view .mdv-panel .mdv-p-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
-}
-.molkobain-datacenter-view .mdv-panel .mdv-p-header .mdv-ph-icon {
-  margin-right: 0.5rem;
-}
-.molkobain-datacenter-view .mdv-panel .mdv-p-header .mdv-ph-icon img {
-  max-width: 38px;
-}
-.molkobain-datacenter-view .mdv-panel .mdv-p-body {
-  padding: 0.3rem;
-  overflow: hidden auto;
-  background-color: #fff;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-}
-.molkobain-datacenter-view .mdv-panel:last-child {
-  margin-bottom: 0;
-}
 .molkobain-datacenter-view .mdv-legend {
   width: 200px;
 }
-.molkobain-datacenter-view .mdv-legend .mdv-p-body {
+.molkobain-datacenter-view .mdv-legend .mhf-p-body {
   padding: 0.6rem;
 }
-.molkobain-datacenter-view .mdv-legend .mdv-p-body ul {
+.molkobain-datacenter-view .mdv-legend .mhf-p-body ul {
   margin: 0;
   padding: 0;
   list-style: none;
   font-size: 0.8rem;
 }
-.molkobain-datacenter-view .mdv-legend .mdv-p-body ul li {
+.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li {
   margin-bottom: 0.3rem;
   cursor: pointer;
 }
-.molkobain-datacenter-view .mdv-legend .mdv-p-body ul li::before {
+.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li::before {
   content: "";
   display: inline-block;
   margin-right: 0.5rem;
   width: 8px;
   height: 8px;
   border-radius: 100%;
+  background-color: #8db46e;
 }
-.molkobain-datacenter-view .mdv-legend .mdv-p-body ul li[data-class="Server"]::before {
+.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="Enclosure"]::before {
+  background-color: #eaeaea;
+}
+.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="Server"]::before {
   background-color: #3f627e;
 }
-.molkobain-datacenter-view .mdv-legend .mdv-p-body ul li[data-class="NetworkDevice"]::before {
+.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="NetworkDevice"]::before {
   background-color: #c85454;
 }
-.molkobain-datacenter-view .mdv-legend .mdv-p-body ul li[data-class="SANSwitch"]::before {
+.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="SANSwitch"]::before {
   background-color: lightsalmon;
 }
-.molkobain-datacenter-view .mdv-legend .mdv-p-body ul li[data-class="NAS"]::before {
+.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="NAS"]::before {
   background-color: #80b469;
 }
-.molkobain-datacenter-view .mdv-legend .mdv-p-body ul li[data-class="StorageSystem"]::before {
+.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="StorageSystem"]::before {
   background-color: #eb913b;
 }
-.molkobain-datacenter-view .mdv-legend .mdv-p-body ul li[data-class="TapeLibrary"]::before {
+.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="TapeLibrary"]::before {
   background-color: #7da9bc;
+}
+.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li:last-of-type {
+  margin-bottom: 0;
 }
 .molkobain-datacenter-view .mdv-views {
   display: flex;
@@ -116,16 +96,16 @@
 .molkobain-datacenter-view .mdv-views .mdv-rack-panel:last-child {
   margin-right: 0;
 }
-.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mdv-panel {
+.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel {
   width: 260px;
 }
-.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mdv-panel .mdv-p-header {
+.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-header {
   margin-bottom: 0.2rem;
 }
-.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mdv-panel .mdv-p-header .mdv-ph-title {
+.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-header .mhf-ph-title {
   position: relative;
 }
-.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mdv-panel .mdv-p-header .mdv-ph-title::after {
+.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-header .mhf-ph-title::after {
   content: "?";
   position: absolute;
   right: -0.4rem;
@@ -133,14 +113,14 @@
   color: #434343;
   cursor: pointer;
 }
-.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mdv-panel .mdv-p-body {
+.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body {
   min-height: 140px;
   max-height: 250px;
 }
-.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mdv-panel .mdv-p-body > .mdv-device, .molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mdv-panel .mdv-p-body .mdv-enclosure {
+.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body > .mdv-device, .molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body .mdv-enclosure {
   margin-bottom: 0.3rem;
 }
-.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mdv-panel .mdv-p-body > .mdv-device:last-of-type, .molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mdv-panel .mdv-p-body .mdv-enclosure:last-of-type {
+.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body > .mdv-device:last-of-type, .molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body .mdv-enclosure:last-of-type {
   margin-bottom: 0;
 }
 .molkobain-datacenter-view .mdv-element-note {
@@ -311,40 +291,39 @@
   border-bottom: 1px solid #c5c5c5;
 }
 .molkobain-datacenter-view .mdv-fade-for-highlighting {
-  opacity: 0.6;
+  opacity: 0.3;
 }
-.mdv-tooltip {
+.mhf-tooltip {
   /* Reset for admin console mostly */
   box-sizing: border-box;
-  /* qTip tooltips */
 }
-.mdv-tooltip * {
+.mhf-tooltip * {
   box-sizing: border-box;
 }
-.mdv-tooltip *:before, .mdv-tooltip *:after {
+.mhf-tooltip *:before, .mhf-tooltip *:after {
   box-sizing: border-box;
 }
-.mdv-tooltip .mdv-dt-header {
+.mhf-tooltip .mdv-dt-header {
   margin-bottom: 1.2rem;
   font-weight: bold;
   font-size: 0.9rem;
 }
-.mdv-tooltip .mdv-dt-header .mdv-dth-icon {
+.mhf-tooltip .mdv-dt-header .mdv-dth-icon {
   margin-right: 0.2rem;
 }
-.mdv-tooltip .mdv-dt-header .mdv-dth-icon img {
+.mhf-tooltip .mdv-dt-header .mdv-dth-icon img {
   max-width: 32px;
 }
-.mdv-tooltip .mdv-dt-list-wrapper {
+.mhf-tooltip .mdv-dt-list-wrapper {
   margin-bottom: 1.5rem;
   padding: 0 3px;
 }
-.mdv-tooltip .mdv-dt-list-wrapper fieldset {
+.mhf-tooltip .mdv-dt-list-wrapper fieldset {
   padding: 0;
   border: none;
   border-radius: 0;
 }
-.mdv-tooltip .mdv-dt-list-wrapper fieldset legend {
+.mhf-tooltip .mdv-dt-list-wrapper fieldset legend {
   margin-bottom: 0.5rem;
   padding: 0 0 0.1rem 0;
   width: 100%;
@@ -354,40 +333,27 @@
   border-bottom: 1px solid #dedede;
   border-radius: 0;
 }
-.mdv-tooltip .mdv-dt-list-wrapper fieldset ul {
+.mhf-tooltip .mdv-dt-list-wrapper fieldset ul {
   margin: 0;
   padding-left: 0;
   list-style: none;
 }
-.mdv-tooltip .mdv-dt-list-wrapper fieldset ul li {
+.mhf-tooltip .mdv-dt-list-wrapper fieldset ul li {
   margin-bottom: 0.3rem;
   font-size: 11px;
 }
-.mdv-tooltip .mdv-dt-list-wrapper fieldset ul li .mdv-dtl-label {
+.mhf-tooltip .mdv-dt-list-wrapper fieldset ul li .mdv-dtl-label {
   display: inline-block;
   width: 7.5rem;
   font-weight: bold;
 }
-.mdv-tooltip .mdv-dt-list-wrapper fieldset ul li .mdv-dtl-label::after {
+.mhf-tooltip .mdv-dt-list-wrapper fieldset ul li .mdv-dtl-label::after {
   content: ":";
   margin-right: 0.3rem;
 }
-.mdv-tooltip .mdv-dt-list-wrapper fieldset ul li:last-of-type {
+.mhf-tooltip .mdv-dt-list-wrapper fieldset ul li:last-of-type {
   margin-bottom: 0;
 }
-.mdv-tooltip .mdv-dt-list-wrapper:last-of-type {
+.mhf-tooltip .mdv-dt-list-wrapper:last-of-type {
   margin-bottom: 0;
-}
-.mdv-tooltip.qtip .qtip-tip {
-  z-index: 1;
-  /* To put tip above wrapper box-shadow */
-}
-.mdv-tooltip.qtip .qtip-wrapper {
-  box-shadow: 0 2px 15px 2px rgba(0, 0, 0, 0.15);
-}
-.mdv-tooltip.qtip .qtip-wrapper .qtip-contentWrapper {
-  border: none !important;
-}
-.mdv-tooltip.qtip .qtip-wrapper .qtip-contentWrapper .qtip-content {
-  padding: 9px 9px !important;
 }

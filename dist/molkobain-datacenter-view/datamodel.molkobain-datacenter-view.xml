@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.3">
 	<classes>
+		<class id="Rack" _delta="must_exist">
+			<fields>
+				<field id="nb_u" xsi:type="AttributeMHFRackUnit" _delta="redefine">
+					<sql>nb_u</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+		</class>
 		<class id="Enclosure" _delta="must_exist">
 			<fields>
-				<field id="position_v" xsi:type="AttributeInteger" _delta="define">
+				<field id="nb_u" xsi:type="AttributeMHFRackUnit" _delta="redefine">
+					<sql>nb_u</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="position_v" xsi:type="AttributeMHFRackUnit" _delta="define">
 					<sql>position_v</sql>
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
@@ -21,7 +35,12 @@
 		</class>
 		<class id="DatacenterDevice" _delta="must_exist">
 			<fields>
-				<field id="position_v" xsi:type="AttributeInteger" _delta="define">
+				<field id="nb_u" xsi:type="AttributeMHFRackUnit" _delta="redefine">
+					<sql>nb_u</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="position_v" xsi:type="AttributeMHFRackUnit" _delta="define">
 					<sql>position_v</sql>
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>

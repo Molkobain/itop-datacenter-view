@@ -25,6 +25,35 @@ use MetaModel;
  */
 class DataHelper
 {
+	const ENUM_ASSEMBLY_TYPE_MOUNTED = 'mounted';
+	const ENUM_ASSEMBLY_TYPE_UNMOUNTED = 'unmounted';
+	const ENUM_ELEMENT_TYPE_RACK = 'rack';
+	const ENUM_ELEMENT_TYPE_ENCLOSURE = 'enclosure';
+	const ENUM_ELEMENT_TYPE_DEVICE = 'device';
+
+	/**
+	 * @return array
+	 */
+	public static function EnumAssemblyTypes()
+	{
+		return array(
+			static::ENUM_ASSEMBLY_TYPE_MOUNTED,
+			static::ENUM_ASSEMBLY_TYPE_UNMOUNTED,
+		);
+	}
+
+	/**
+	 * @return array
+	 */
+	public static function EnumElementTypes()
+	{
+		return array(
+			static::ENUM_ELEMENT_TYPE_RACK,
+			static::ENUM_ELEMENT_TYPE_ENCLOSURE,
+			static::ENUM_ELEMENT_TYPE_DEVICE,
+		);
+	}
+
 	/**
 	 * Returns the $oObject data for the JS widget either as a PHP array or JSON string
 	 *
@@ -36,10 +65,13 @@ class DataHelper
 	 */
 	public static function GetWidgetData(DBObject $oObject, $bAsJSON = false)
 	{
+		$aObjectData = static::GetObjectData($oObject);
+
 		$aData = array(
 			'debug' => ConfigHelper::IsDebugEnabled(),
 			'object_type' => static::GetObjectType($oObject),
-			'object_data' => static::GetObjectData($oObject),
+			'object_data' => $aObjectData,
+			'legend' => static::GetLegendData($aObjectData),
 			'dict' => static::GetDictEntries(),
 		);
 
@@ -126,13 +158,13 @@ class DataHelper
 		    ),
 		    'enclosures' => array(
 		    	'icon' => MetaModel::GetClassIcon('Enclosure', false),
-			    'mounted' => array(),
-			    'unmounted' => array(),
+			    static::ENUM_ASSEMBLY_TYPE_MOUNTED => array(),
+			    static::ENUM_ASSEMBLY_TYPE_UNMOUNTED => array(),
 		    ),
 		    'devices' => array(
 			    'icon' => MetaModel::GetClassIcon('DatacenterDevice', false),
-		    	'mounted' => array(),
-			    'unmounted' => array(),
+		    	static::ENUM_ASSEMBLY_TYPE_MOUNTED => array(),
+			    static::ENUM_ASSEMBLY_TYPE_UNMOUNTED => array(),
 		    ),
 	    );
 
@@ -141,9 +173,9 @@ class DataHelper
 	    while($oEnclosure = $oEnclosureSet->Fetch())
 	    {
 		    $aEnclosureData = static::GetEnclosureData($oEnclosure);
-		    $sEnclosureAssembly = ($aEnclosureData['position_v'] > 0) ? 'mounted' : 'unmounted';
+		    $sEnclosureAssemblyType = ($aEnclosureData['position_v'] > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
 
-		    $aData['enclosures'][$sEnclosureAssembly][] = $aEnclosureData;
+		    $aData['enclosures'][$sEnclosureAssemblyType][] = $aEnclosureData;
 	    }
 
 	    $oDeviceSearch = DBObjectSearch::FromOQL('SELECT DatacenterDevice WHERE rack_id = :rack_id AND enclosure_id = 0');
@@ -151,9 +183,9 @@ class DataHelper
 	    while($oDevice = $oDeviceSet->Fetch())
 	    {
 		    $aDeviceData = static::GetDeviceData($oDevice);
-		    $sDeviceAssembly = ($aDeviceData['position_v'] > 0) ? 'mounted' : 'unmounted';
+		    $sDeviceAssemblyType = ($aDeviceData['position_v'] > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
 
-		    $aData['devices'][$sDeviceAssembly][] = $aDeviceData;
+		    $aData['devices'][$sDeviceAssemblyType][] = $aDeviceData;
 	    }
 
 
@@ -174,8 +206,8 @@ class DataHelper
     		'position_p' => 'front',
     		'devices' => array(
 			    'icon' => MetaModel::GetClassIcon('DatacenterDevice', false),
-	            'mounted' => array(),
-			    'unmounted' => array(),
+	            static::ENUM_ASSEMBLY_TYPE_MOUNTED => array(),
+			    static::ENUM_ASSEMBLY_TYPE_UNMOUNTED => array(),
 		    ),
 	    );
 
@@ -184,9 +216,9 @@ class DataHelper
 	    while($oDevice = $oDeviceSet->Fetch())
 	    {
 	    	$aDeviceData = static::GetDeviceData($oDevice);
-	    	$sDeviceAssembly = ($aDeviceData['position_v'] > 0) ? 'mounted' : 'unmounted';
+	    	$sDeviceAssemblyType = ($aDeviceData['position_v'] > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
 
-	    	$aData['devices'][$sDeviceAssembly][] = $aDeviceData;
+	    	$aData['devices'][$sDeviceAssemblyType][] = $aDeviceData;
 	    }
 
 	    return $aData;
@@ -289,6 +321,64 @@ EOF;
 
 	    return $sHTML;
     }
+
+	/**
+	 * Returns data to build the legend (classes, counts, ...) from the $aObjectData.
+	 *
+	 * @param array $aObjectData	 *
+	 * @param array $aLegendData Passed by reference
+	 *
+	 * @return array
+	 */
+	protected static function GetLegendData($aObjectData, &$aLegendData = array())
+	{
+		if(empty($aLegendData))
+		{
+			$aLegendData = array(
+				'classes' => array(),
+			);
+		}
+
+		foreach(static::EnumElementTypes() as $sElementType)
+		{
+			$sElementTypePlural = $sElementType . 's';
+			if(!array_key_exists($sElementTypePlural, $aObjectData))
+			{
+				continue;
+			}
+
+			foreach(static::EnumAssemblyTypes() as $sAssemblyType)
+			{
+				if(!array_key_exists($sAssemblyType, $aObjectData[$sElementTypePlural]))
+				{
+					continue;
+				}
+
+				foreach($aObjectData[$sElementTypePlural][$sAssemblyType] as $aElement)
+				{
+					if(!array_key_exists($aElement['class'], $aLegendData['classes']))
+					{
+						$aLegendData['classes'][$aElement['class']] = array(
+							'title' => MetaModel::GetName($aElement['class']),
+							'count' => 0,
+						);
+					}
+					$aLegendData['classes'][$aElement['class']]['count']++;
+
+					foreach(static::EnumElementTypes() as $sSubElementType)
+					{
+						$sSubElementTypePlural = $sSubElementType . 's';
+						if(array_key_exists($sSubElementTypePlural, $aElement))
+						{
+							static::GetLegendData($aElement, $aLegendData);
+						}
+					}
+				}
+			}
+		}
+
+		return $aLegendData;
+	}
 
 	/**
 	 * Returns dictionary entries used by the JS widget

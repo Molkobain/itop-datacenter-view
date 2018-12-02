@@ -11,62 +11,22 @@
 
 namespace Molkobain\iTop\DatacenterView\Common\Helper;
 
-use Exception;
-use MetaModel;
+use Molkobain\iTop\HandyFramework\Common\Helper\ConfigHelper as BaseConfigHelper;
 
 /**
  * Class ConfigHelper
  *
  * @package Molkobain\iTop\DatacenterView\Common\Helper
  */
-class ConfigHelper
+class ConfigHelper extends BaseConfigHelper
 {
     const MODULE_NAME = 'molkobain-datacenter-view';
     const SETTING_CONST_FQCN = 'Molkobain\\iTop\\DatacenterView\\Common\\Helper\\ConfigHelper';
 
-    const DEFAULT_SETTING_ENABLED = true;
     const DEFAULT_SETTING_DEBUG = true;
     const DEFAULT_SETTING_DEVICE_TOOLTIP_ATTRIBUTES = null;
 
     /**
-     * @return string
-     */
-    public static function GetModuleCode()
-    {
-        return static::MODULE_NAME;
-    }
-
-    /**
-     * Returns the value of the $sName module setting or its default value if not set in the conf file.
-     *
-     * @param string $sName Name of the module setting to get
-     * @return mixed
-     */
-    public static function GetSetting($sName)
-    {
-        try
-        {
-            $defaultValue = constant(static::SETTING_CONST_FQCN.'::DEFAULT_SETTING_'.strtoupper($sName));
-        }
-        catch(Exception $e)
-        {
-            $defaultValue = null;
-        }
-
-        return MetaModel::GetModuleSetting(static::MODULE_NAME, $sName, $defaultValue);
-    }
-
-    /**
-     * Returns true if the module is enabled
-     *
-     * @return boolean
-     */
-    public static function IsEnabled()
-    {
-        return static::GetSetting('enabled');
-    }
-
-	/**
 	 * Returns true if the debug option is enabled
 	 *
 	 * @return boolean

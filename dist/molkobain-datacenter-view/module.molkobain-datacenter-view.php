@@ -11,14 +11,15 @@
 
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'molkobain-datacenter-view/1.0.0', array(
+	'molkobain-datacenter-view/0.9.0', array(
         // Identification
         'label' => 'TODO: Datacenter view (racks visual representation)',
-        'category' => 'cmdb',
+        'category' => 'business',
 
         // Setup
         'dependencies' => array(
-            'itop-datacenter-mgmt/2.2.0||itop-config-mgmt/2.2.0||itop-storage-mgmt/2.2.0',
+            //'molkobain-handy-framework/1.0.0',
+            '(itop-datacenter-mgmt/2.2.0||itop-config-mgmt/2.2.0||itop-storage-mgmt/2.2.0)&&(molkobain-handy-framework/1.0.0)&&(molkobain-console-tooltips/1.0.2)',
         ),
         'mandatory' => false,
         'visible' => true,
@@ -27,7 +28,7 @@ SetupWebPage::AddModule(
         'datamodel' => array(
             'common/confighelper.class.inc.php',
             'common/datahelper.class.inc.php',
-            'console/uiextension.class.inc.php',
+            'console/applicationuiextension.class.inc.php',
         ),
         'webservice' => array(
         ),

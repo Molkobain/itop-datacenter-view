@@ -20,11 +20,11 @@ use WebPage;
 use Molkobain\iTop\DatacenterView\Common\Helper\ConfigHelper;
 
 /**
- * Class UIExtension
+ * Class ApplicationUIExtension
  *
  * @package Molkobain\iTop\Console\DatacenterView\Extension
  */
-class UIExtension implements iApplicationUIExtension
+class ApplicationUIExtension implements iApplicationUIExtension
 {
 	/**
 	 * @inheritdoc
@@ -62,20 +62,18 @@ class UIExtension implements iApplicationUIExtension
 		$sPreviousTab = $oPage->GetCurrentTab();
 		$oPage->SetCurrentTab(Dict::S('Molkobain:DatacenterView:Tabs:View:Title'));
 
+		$sLegendTitle = Dict::S('Molkobain:DatacenterView:Legend:Title');
+
 		$oPage->add(
 <<<EOF
 	<div class="molkobain-datacenter-view-container" data-portal="backoffice">
-		<div class="mdv-legend mdv-panel">
-			<div class="mdv-p-header">
-				<span class="mdv-ph-icon"><span class="fa fa-list"></span></span>
-				<span class="mdv-ph-title" title="" data-toggle="tooltip">Legend</span>
+		<div class="mdv-legend mhf-panel">
+			<div class="mhf-p-header">
+				<span class="mhf-ph-icon"><span class="fa fa-list"></span></span>
+				<span class="mhf-ph-title">{$sLegendTitle}</span>
 			</div>
-			<div class="mdv-p-body">
+			<div class="mhf-p-body">
 				<ul>
-					<li data-class="Server">Server (8)</li>
-					<li data-class="NetworkDevice">Network device (1)</li>
-					<li data-class="StorageSystem">Storage system (1)</li>
-					<li data-class="Enclosure">Enclosure (4)</li>
 				</ul>
 			</div>
 		</div>
@@ -83,10 +81,13 @@ class UIExtension implements iApplicationUIExtension
 		<div class="mdv-views">
 		</div>
 		
-		<div class="mdv-unmounted mdv-panel">
+		<div class="mdv-unmounted mhf-panel">
 		</div>
 		
-		<div class="mdv-templates">
+		<div class="mhf-templates">
+			<!-- Legend item template -->
+			<li class="mdv-legend-item" data-class="" data-count=""></li>
+			
 			<!-- Rack panel template -->
 			<div class="mdv-rack-panel" data-class="" data-id="" data-code="" data-name="">
 				<div class="mdv-rp-title"></div>
@@ -118,12 +119,13 @@ class UIExtension implements iApplicationUIExtension
 				<span class="mdv-d-name"></span>
 			</div>
 			
-			<div class="mdv-unmounted-type mdv-panel" data-type="">
-				<div class="mdv-p-header">
-					<span class="mdv-ph-icon"></span>
-					<span class="mdv-ph-title"></span>
+			<!-- Unmounted type template (enclosures / devices) -->
+			<div class="mdv-unmounted-type mhf-panel" data-type="">
+				<div class="mhf-p-header">
+					<span class="mhf-ph-icon"></span>
+					<span class="mhf-ph-title"></span>
 				</div>
-				<div class="mdv-p-body">
+				<div class="mhf-p-body">
 				</div>
 			</div>
 		</div>

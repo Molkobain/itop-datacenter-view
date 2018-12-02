@@ -11,13 +11,11 @@
 ;
 $(function()
 {
-	$.widget('molkobain.datacenter_rack_view', $.molkobain.datacenter_view,
+	$.widget('molkobain.datacenter_enclosure_view', $.molkobain.datacenter_view,
 		{
 			options: {
-				object_type: 'rack',
-				defaults: {
-					panel: 'front',
-				},
+				object_type: 'enclosure',
+				defaults: {},
 			},
 
 			// Constructor
@@ -25,13 +23,13 @@ $(function()
 			{
 				this._super();
 
-				this.element.addClass('molkobain-datacenter-rack-view');
+				this.element.addClass('molkobain-datacenter-enclosure-view');
 			},
 			// Events bound via _bind are removed automatically
 			// Revert other modifications here
 			_destroy: function()
 			{
-				this.element.removeClass('molkobain-datacenter-rack-view');
+				this.element.removeClass('molkobain-datacenter-enclosure-view');
 
 				this._super();
 			},
