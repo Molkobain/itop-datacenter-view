@@ -86,7 +86,7 @@ Some configuration parameters are available from the Configuration editor of the
 ```
 
 ### How to
-##### Position a device on a rack
+#### Position a device on a rack
 A quick example to show how to manually position a device on a rack.
 
 In this example, the *Rack 2* has a *Server* attached but is listed among the *unmounted* devices. This is because the *server* has no *position* set.
