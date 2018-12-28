@@ -52,7 +52,7 @@ No configuration needed.
 
 #### Parameters
 Some configuration parameters are available from the Configuration editor of the console:
-* `enabled` Enable / disable the extension without having to uninstall it. value can be `true` or `false`.
+* `enabled` Enable / disable the extension without having to uninstall it. Value can be `true` or `false`.
 * `device_tooltip_attributes` Specify which attributes to display in the devices tooltip on hover. Must be an array of object classes pointing to an array of attributes (see example below).
 
 *Default values:*
