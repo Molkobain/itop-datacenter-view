@@ -80,7 +80,7 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 				font-size: 0.8rem;
 
 				li{
-					margin-bottom: 0.3rem;
+					padding-bottom: 0.3rem; /* Padding instead of margin for a smoother transition between elements while fading */
 					cursor: pointer;
 
 					&::before{
@@ -116,7 +116,7 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 					}
 
 					&:last-of-type{
-						margin-bottom: 0;
+						padding-bottom: 0;
 					}
 				}
 			}

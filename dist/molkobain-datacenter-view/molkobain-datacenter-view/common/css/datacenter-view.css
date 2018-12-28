@@ -48,7 +48,7 @@
   font-size: 0.8rem;
 }
 .molkobain-datacenter-view .mdv-legend .mhf-p-body ul li {
-  margin-bottom: 0.3rem;
+  padding-bottom: 0.3rem;
   cursor: pointer;
 }
 .molkobain-datacenter-view .mdv-legend .mhf-p-body ul li::before {
@@ -82,7 +82,7 @@
   background-color: #7da9bc;
 }
 .molkobain-datacenter-view .mdv-legend .mhf-p-body ul li:last-of-type {
-  margin-bottom: 0;
+  padding-bottom: 0;
 }
 .molkobain-datacenter-view .mdv-views {
   display: flex;
