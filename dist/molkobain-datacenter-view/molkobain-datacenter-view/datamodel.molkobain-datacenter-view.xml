@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.3">
+	<classes>
+		<class id="Rack" _delta="must_exist">
+			<fields>
+				<field id="nb_u" xsi:type="AttributeMHFRackUnit" _delta="redefine">
+					<sql>nb_u</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+		</class>
+		<class id="Enclosure" _delta="must_exist">
+			<fields>
+				<field id="nb_u" xsi:type="AttributeMHFRackUnit" _delta="redefine">
+					<sql>nb_u</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="position_v" xsi:type="AttributeMHFRackUnit" _delta="define">
+					<sql>position_v</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<presentation>
+				<details>
+					<items>
+						<item id="position_v" _delta="define">
+							<rank>92</rank>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="nb_u" _delta="define">
+							<rank>150</rank>
+						</item>
+						<item id="position_v" _delta="define">
+							<rank>160</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="DatacenterDevice" _delta="must_exist">
+			<fields>
+				<field id="nb_u" xsi:type="AttributeMHFRackUnit" _delta="redefine">
+					<sql>nb_u</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="position_v" xsi:type="AttributeMHFRackUnit" _delta="define">
+					<sql>position_v</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<presentation>
+				<details>
+					<items>
+						<item id="position_v" _delta="define">
+							<rank>102</rank>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="nb_u" _delta="define">
+							<rank>150</rank>
+						</item>
+						<item id="position_v" _delta="define">
+							<rank>160</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="NAS" _delta="must_exist">
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<items>
+								<item id="fieldset:Server:baseinfo">
+									<items>
+										<item id="position_v" _delta="define">
+											<rank>72</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="nb_u" _delta="define">
+							<rank>150</rank>
+						</item>
+						<item id="position_v" _delta="define">
+							<rank>160</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="NetworkDevice" _delta="must_exist">
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<items>
+								<item id="fieldset:Server:baseinfo">
+									<items>
+										<item id="position_v" _delta="define">
+											<rank>72</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="nb_u" _delta="define">
+							<rank>150</rank>
+						</item>
+						<item id="position_v" _delta="define">
+							<rank>160</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="SANSwitch" _delta="must_exist">
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<items>
+								<item id="fieldset:Server:baseinfo">
+									<items>
+										<item id="position_v" _delta="define">
+											<rank>72</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="nb_u" _delta="define">
+							<rank>150</rank>
+						</item>
+						<item id="position_v" _delta="define">
+							<rank>160</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="Server" _delta="must_exist">
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<items>
+								<item id="fieldset:Server:baseinfo">
+									<items>
+										<item id="position_v" _delta="define">
+											<rank>72</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="nb_u" _delta="define">
+							<rank>150</rank>
+						</item>
+						<item id="position_v" _delta="define">
+							<rank>160</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="StorageSystem" _delta="must_exist">
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<items>
+								<item id="fieldset:Server:baseinfo">
+									<items>
+										<item id="position_v" _delta="define">
+											<rank>72</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="nb_u" _delta="define">
+							<rank>150</rank>
+						</item>
+						<item id="position_v" _delta="define">
+							<rank>160</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="TapeLibrary" _delta="must_exist">
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<items>
+								<item id="fieldset:Server:baseinfo">
+									<items>
+										<item id="position_v" _delta="define">
+											<rank>72</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="nb_u" _delta="define">
+							<rank>150</rank>
+						</item>
+						<item id="position_v" _delta="define">
+							<rank>160</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+	</classes>
+</itop_design>

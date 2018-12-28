@@ -31,6 +31,16 @@
 						</item>
 					</items>
 				</details>
+				<list>
+					<items>
+						<item id="nb_u" _delta="define">
+							<rank>150</rank>
+						</item>
+						<item id="position_v" _delta="define">
+							<rank>160</rank>
+						</item>
+					</items>
+				</list>
 			</presentation>
 		</class>
 		<class id="DatacenterDevice" _delta="must_exist">
@@ -54,6 +64,16 @@
 						</item>
 					</items>
 				</details>
+				<list>
+					<items>
+						<item id="nb_u" _delta="define">
+							<rank>150</rank>
+						</item>
+						<item id="position_v" _delta="define">
+							<rank>160</rank>
+						</item>
+					</items>
+				</list>
 			</presentation>
 		</class>
 		<class id="NAS" _delta="must_exist">
@@ -73,6 +93,16 @@
 						</item>
 					</items>
 				</details>
+				<list>
+					<items>
+						<item id="nb_u" _delta="define">
+							<rank>150</rank>
+						</item>
+						<item id="position_v" _delta="define">
+							<rank>160</rank>
+						</item>
+					</items>
+				</list>
 			</presentation>
 		</class>
 		<class id="NetworkDevice" _delta="must_exist">
@@ -92,6 +122,16 @@
 						</item>
 					</items>
 				</details>
+				<list>
+					<items>
+						<item id="nb_u" _delta="define">
+							<rank>150</rank>
+						</item>
+						<item id="position_v" _delta="define">
+							<rank>160</rank>
+						</item>
+					</items>
+				</list>
 			</presentation>
 		</class>
 		<class id="SANSwitch" _delta="must_exist">
@@ -111,6 +151,16 @@
 						</item>
 					</items>
 				</details>
+				<list>
+					<items>
+						<item id="nb_u" _delta="define">
+							<rank>150</rank>
+						</item>
+						<item id="position_v" _delta="define">
+							<rank>160</rank>
+						</item>
+					</items>
+				</list>
 			</presentation>
 		</class>
 		<class id="Server" _delta="must_exist">
@@ -130,6 +180,16 @@
 						</item>
 					</items>
 				</details>
+				<list>
+					<items>
+						<item id="nb_u" _delta="define">
+							<rank>150</rank>
+						</item>
+						<item id="position_v" _delta="define">
+							<rank>160</rank>
+						</item>
+					</items>
+				</list>
 			</presentation>
 		</class>
 		<class id="StorageSystem" _delta="must_exist">
@@ -149,6 +209,16 @@
 						</item>
 					</items>
 				</details>
+				<list>
+					<items>
+						<item id="nb_u" _delta="define">
+							<rank>150</rank>
+						</item>
+						<item id="position_v" _delta="define">
+							<rank>160</rank>
+						</item>
+					</items>
+				</list>
 			</presentation>
 		</class>
 		<class id="TapeLibrary" _delta="must_exist">
@@ -168,6 +238,16 @@
 						</item>
 					</items>
 				</details>
+				<list>
+					<items>
+						<item id="nb_u" _delta="define">
+							<rank>150</rank>
+						</item>
+						<item id="position_v" _delta="define">
+							<rank>160</rank>
+						</item>
+					</items>
+				</list>
 			</presentation>
 		</class>
 	</classes>
