@@ -48,13 +48,14 @@ class ApplicationUIExtension implements iApplicationUIExtension
 		if(get_class($oObject) == 'Enclosure') return;
 
 		// Retrieve data
+		$sJSWidgetFilename = 'datacenter-' . strtolower(DatacenterView::GetObjectType($oObject)) . '-view.js';
 		$sJSWidgetName = 'datacenter_' . DatacenterView::GetObjectType($oObject) . '_view';
 		$sJSWidgetDataJSON = DatacenterView::GetWidgetData($oObject, true);
 
 		// Add JS files
 		$sJSRootUrl = utils::GetAbsoluteUrlModulesRoot() . ConfigHelper::GetModuleCode() . '/common/js/';
 		$oPage->add_linked_script($sJSRootUrl . 'datacenter-view.js');
-		$oPage->add_linked_script($sJSRootUrl . 'datacenter-rack-view.js');
+		$oPage->add_linked_script($sJSRootUrl . $sJSWidgetFilename);
 
 		// Add CSS files
 		$oPage->add_saas('env-' . utils::GetCurrentEnvironment() . '/' . ConfigHelper::GetModuleCode() . '/common/css/datacenter-view.scss');
