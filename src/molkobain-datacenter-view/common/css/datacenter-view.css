@@ -1,11 +1,9 @@
 /*!
- * Copyright (c) 2015 - 2018 Molkobain.
+ * Copyright (c) 2015 - 2019 Molkobain.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * This file is part of licensed extension.
  *
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
 /* Variables */
 /* - Helpers */
@@ -28,7 +26,7 @@
   /* Proper properties */
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   /* Used as a comment next to the element (device / enclosure) */
 }
 .molkobain-datacenter-view * {
@@ -156,9 +154,6 @@
 }
 .molkobain-datacenter-view .mdv-device > *, .molkobain-datacenter-view .mdv-enclosure > * {
   flex-grow: 1;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .molkobain-datacenter-view .mdv-device a, .molkobain-datacenter-view .mdv-enclosure a, .molkobain-datacenter-view .mdv-device a:hover, .molkobain-datacenter-view .mdv-enclosure a:hover, .molkobain-datacenter-view .mdv-device a:active, .molkobain-datacenter-view .mdv-enclosure a:active, .molkobain-datacenter-view .mdv-device a:visited, .molkobain-datacenter-view .mdv-enclosure a:visited {
   color: inherit;
@@ -200,6 +195,11 @@
    &[data-class="TapeLibrary"]::before{
    background-color: #7da9bc;
    }*/
+}
+.molkobain-datacenter-view .mdv-device > * {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .molkobain-datacenter-view .mdv-device .mdv-element-note {
   top: 20%;
@@ -291,17 +291,7 @@
   border-bottom: 1px solid #c5c5c5;
 }
 .molkobain-datacenter-view .mdv-fade-for-highlighting {
-  opacity: 0.3;
-}
-.mhf-tooltip {
-  /* Reset for admin console mostly */
-  box-sizing: border-box;
-}
-.mhf-tooltip * {
-  box-sizing: border-box;
-}
-.mhf-tooltip *:before, .mhf-tooltip *:after {
-  box-sizing: border-box;
+  opacity: 0.1;
 }
 .mhf-tooltip .mdv-dt-header {
   margin-bottom: 1.2rem;

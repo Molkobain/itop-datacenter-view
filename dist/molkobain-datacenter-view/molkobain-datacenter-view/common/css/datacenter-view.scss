@@ -1,0 +1,444 @@
+/*!
+ * Copyright (c) 2015 - 2019 Molkobain.
+ *
+ * This file is part of licensed extension.
+ *
+ * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
+ */
+
+/* Variables */
+/* - Helpers */
+$box-shadow-small: 0 1px 1px rgba(0, 0, 0, 0.15);
+
+/* - Unmounted container */
+$unmounted-container-bg-color: #ffffff;
+/* - Rack panel */
+$rack-panel-outer-border-color: #c5c5c5;
+$rack-panel-outer-border: 1px solid $rack-panel-outer-border-color;
+/* - Rack unit */
+$rack-unit-number-width: 1.8rem;
+/* - Rack unit slot */
+$rack-unit-slot-width: 120px;
+$rack-unit-slot-height: 20px;
+$rack-unit-slot-bg-color: #ffffff;
+$rack-unit-slot-separator-color: #eaeaea;
+/* - Enclosure */
+$enclosure-color: #939393;
+$enclosure-bg-color: #eaeaea;
+$enclosure-sidebar-bg-color-mounted: #83a967;
+$enclosure-sidebar-bg-color-unmounted: #da5757;
+/* - Enclosure unit slot */
+$enclosure-unit-slot-separator-color: #d9d9d9;
+/* - Device */
+$device-color: #ffffff;
+
+/* - Tooltip */
+$tooltip-indicator-color: #434343;
+$tooltip-list-label-width: 7.5rem;
+
+/* - Object classes */
+$obj-class-default-bg-color: #8db46e;
+$obj-class-enclosure-bg-color: #eaeaea;
+$obj-class-server-bg-color: #3f627e;
+$obj-class-networkdevice-bg-color: #c85454;
+$obj-class-sanswitch-bg-color: lightsalmon;
+$obj-class-nas-bg-color: #80b469;
+$obj-class-storagesystem-bg-color: #eb913b;
+$obj-class-tapelibrary-bg-color: #7da9bc;
+
+.molkobain-datacenter-view{
+	/* Reset for admin console mostly */
+	box-sizing: border-box;
+	*{
+		box-sizing: border-box;
+
+		&:before,
+		&:after{
+			box-sizing: border-box;
+		}
+	}
+
+	/* Fail-safe against very narrow pages */
+	min-width: 600px;
+	background-color: #eeeeee; /* Not in /css/css-variables.scss */
+
+	/* Proper properties */
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+
+	.mdv-legend{
+		width: 200px;
+
+		.mhf-p-body{
+			padding: 0.6rem;
+
+			ul{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				font-size: 0.8rem;
+
+				li{
+					margin-bottom: 0.3rem;
+					cursor: pointer;
+
+					&::before{
+						content: "";
+						display: inline-block;
+						margin-right: 0.5rem;
+						width: 8px;
+						height: 8px;
+						border-radius: 100%;
+						background-color: $obj-class-default-bg-color;
+					}
+
+					&[data-class="Enclosure"]::before{
+						background-color: $obj-class-enclosure-bg-color;
+					}
+					&[data-class="Server"]::before{
+						background-color: $obj-class-server-bg-color;
+					}
+					&[data-class="NetworkDevice"]::before{
+						background-color: $obj-class-networkdevice-bg-color;
+					}
+					&[data-class="SANSwitch"]::before{
+						background-color: $obj-class-sanswitch-bg-color;
+					}
+					&[data-class="NAS"]::before{
+						background-color: $obj-class-nas-bg-color;
+					}
+					&[data-class="StorageSystem"]::before{
+						background-color: $obj-class-storagesystem-bg-color;
+					}
+					&[data-class="TapeLibrary"]::before{
+						background-color: $obj-class-tapelibrary-bg-color;
+					}
+
+					&:last-of-type{
+						margin-bottom: 0;
+					}
+				}
+			}
+		}
+	}
+	.mdv-views{
+		display: flex;
+		flex-direction: row;
+
+		.mdv-rack-panel{
+			margin-right: 120px;
+
+			&:last-child{
+				margin-right: 0;
+			}
+		}
+	}
+	.mdv-unmounted{
+		.mdv-unmounted-type.mhf-panel{
+			width: 260px;
+
+			.mhf-p-header{
+				margin-bottom: 0.2rem;
+
+				.mhf-ph-title{
+					position: relative;
+
+					&::after{
+						content: "?";
+						position: absolute;
+						right: -0.4rem;
+						font-size: 0.6rem;
+						color: $tooltip-indicator-color;
+						cursor: pointer;
+					}
+				}
+			}
+			.mhf-p-body{
+				min-height: 140px;
+				max-height: 250px;
+
+				> .mdv-device, .mdv-enclosure{
+					margin-bottom: 0.3rem;
+
+					&:last-of-type{
+						margin-bottom: 0;
+					}
+				}
+			}
+		}
+	}
+
+	/* Used as a comment next to the element (device / enclosure) */
+	.mdv-element-note{
+		position: absolute;
+		top: 40%;
+		right: calc(-100% - 10px);
+		width: 100%;
+		text-align: left;
+		color: #444444;
+		font-style: italic;
+
+		> i{
+			margin-right: 0.3rem;
+			font-size: 0.6rem;
+		}
+	}
+
+	.mdv-rack-panel{
+		text-align: center;
+
+		.mdv-rp-title{
+			margin-left: $rack-unit-number-width; /* Must equals to .mdv-ru-left width */
+			margin-bottom: 0.3rem;
+			font-size: 0.85rem;
+		}
+		.mdv-rp-view{
+		}
+	}
+	.mdv-device,
+	.mdv-enclosure{
+		position: relative;
+		width: $rack-unit-slot-width;
+		height: $rack-unit-slot-height;
+		text-align: center;
+		font-size: 0.7rem;
+		box-shadow: $box-shadow-small;
+		transition: all 0.2s ease-in-out;
+
+		> *{
+			flex-grow: 1;
+		}
+		a, a:hover, a:active, a:visited{
+			color: inherit;
+			text-decoration: none;
+		}
+
+		&:hover{
+			box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.23);
+		}
+	}
+	.mdv-device{
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		padding: 0 0.3rem;
+		color: $device-color;
+
+		> *{
+			overflow-x: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		.mdv-element-note{
+			top: 20%;
+		}
+
+		&[data-class="Server"]{
+			background-color: $obj-class-server-bg-color;
+		}
+		&[data-class="NetworkDevice"]{
+			background-color: $obj-class-networkdevice-bg-color;
+		}
+		&[data-class="SANSwitch"]{
+			background-color: $obj-class-sanswitch-bg-color;
+		}
+		&[data-class="NAS"]{
+			background-color: $obj-class-nas-bg-color;
+		}
+		&[data-class="StorageSystem"]{
+			background-color: $obj-class-storagesystem-bg-color;
+		}
+		&[data-class="TapeLibrary"]{
+			background-color: $obj-class-tapelibrary-bg-color;
+		}
+
+		/*color: #444;
+		&::before{
+			content: "";
+			display: inline-block;
+			margin-right: 0.3rem;
+			width: 8px;
+			height: 8px;
+			border-radius: 100%;
+		}
+
+		&[data-class="Server"]::before{
+			background-color: #3f627e;
+		}
+		&[data-class="NetworkDevice"]::before{
+			background-color: #c85454;
+		}
+		&[data-class="SANSwitch"]::before{
+			background-color: lightsalmon;
+		}
+		&[data-class="NAS"]::before{
+			background-color: #80b469;
+		}
+		&[data-class="StorageSystem"]::before{
+			background-color: #eb913b;
+		}
+		&[data-class="TapeLibrary"]::before{
+			background-color: #7da9bc;
+		}*/
+	}
+	.mdv-enclosure{
+		color: $enclosure-color;
+		background-color: $enclosure-bg-color;
+
+		.mdv-enclosure-unit{
+			.mdv-eu-slot{
+				border-top: 1px solid $enclosure-unit-slot-separator-color;
+			}
+			&:first-of-type{
+				.mdv-eu-slot{
+					border-top: none;
+				}
+			}
+		}
+
+		&::after{
+			content: "";
+			position: absolute;
+			right: -4px;
+			bottom: 0px;
+			width: 4px;
+			height: 100%;
+			background-color: $enclosure-sidebar-bg-color-unmounted;
+			border-top-right-radius: 3px;
+			border-bottom-right-radius: 3px;
+			box-shadow: $box-shadow-small;
+		}
+	}
+
+	.mdv-rack-unit,
+	.mdv-enclosure-unit{
+		font-size: 0.7rem;
+
+		.mdv-ru-slot,
+		.mdv-eu-slot{
+			display: flex;
+			position: relative; /* In order to make devices absolute and higher than the slot */
+			height: $rack-unit-slot-height;
+			width: $rack-unit-slot-width;
+			box-sizing: content-box; /* Cause content has a fixed size */
+
+			> .mdv-device,
+			.mdv-enclosure{
+				flex-grow: 1;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				z-index: 1;
+			}
+			.mdv-enclosure{
+				&::after{
+					background-color: $enclosure-sidebar-bg-color-mounted;
+				}
+			}
+		}
+	}
+	.mdv-rack-unit{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-around;
+
+		.mdv-ru-left{
+			padding: 0 0.3rem;
+			width: $rack-unit-number-width;
+			text-align: right;
+		}
+
+		/* Rack & units border */
+		&{
+			.mdv-ru-slot{
+				background-color: $rack-unit-slot-bg-color;
+				border-left: $rack-panel-outer-border;
+				border-right: $rack-panel-outer-border;
+				border-bottom: 1px solid $rack-unit-slot-separator-color;
+			}
+			&:first-child{
+				.mdv-ru-slot{
+					border-top: $rack-panel-outer-border;
+				}
+			}
+			&:last-child{
+				.mdv-ru-slot{
+					border-bottom: $rack-panel-outer-border;
+				}
+			}
+		}
+	}
+
+	.mdv-fade-for-highlighting{
+		opacity: 0.1;
+	}
+}
+.mhf-tooltip{
+	.mdv-dt-header{
+		margin-bottom: 1.2rem;
+		font-weight: bold;
+		font-size: 0.9rem;
+
+		.mdv-dth-icon{
+			margin-right: 0.2rem;
+
+			img{
+				max-width: 32px;
+			}
+		}
+	}
+	.mdv-dt-list-wrapper{
+		margin-bottom: 1.5rem;
+		padding: 0 3px;
+
+		fieldset{
+			padding: 0;
+			border: none;
+			border-radius: 0;
+
+			legend{
+				margin-bottom: 0.5rem;
+				padding: 0 0 0.1rem 0;
+				width: 100%;
+				text-align: left;
+				color: #444444;
+				background-color: transparent;
+				border-bottom: 1px solid #dedede;
+				border-radius: 0;
+			}
+			ul{
+				margin: 0;
+				padding-left: 0;
+				list-style: none;
+
+				li{
+					margin-bottom: 0.3rem;
+					font-size: 11px;
+
+					.mdv-dtl-label{
+						display: inline-block;
+						width: $tooltip-list-label-width;
+						font-weight: bold;
+
+						&::after{
+							content: ":";
+							margin-right: 0.3rem;
+						}
+					}
+					.mdv-dtl-value{
+					}
+
+					&:last-of-type{
+						margin-bottom: 0;
+					}
+				}
+			}
+		}
+
+		&:last-of-type{
+			margin-bottom: 0;
+		}
+	}
+}

@@ -1,0 +1,17 @@
+/*
+ * Copyright (c) 2015 - 2019 Molkobain.
+ *
+ * This file is part of licensed extension.
+ *
+ * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
+ */
+
+.mct-decoration{
+    display: inline-block !important;
+    padding: 2px 0px 0px 2px !important;
+    vertical-align: top !important;
+    font-family: Font Awesome\ 5 Free !important;
+    font-size: 7px !important;
+    color: #7d8281 !important;
+    cursor: pointer;
+}
