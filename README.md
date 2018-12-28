@@ -16,7 +16,7 @@ Identify specific devices type by hovering the legend
 #### Advanced features in the paid version
 * Drag & drop elements in the graphical view to easily set their position instead of manually editing each elements!
 * Rear panel support for racks
-* Optional consistency checks on elements creation / update:
+* Consistency checks (optionals) on elements creation / update:
   * Overlapping elements
   * Malpositioned elements (outside rack's / enclosure's grid)
   * Total elements' height exceeds rack's / enclosure's capacity
