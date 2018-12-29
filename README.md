@@ -13,7 +13,7 @@ Access device's main information on hover (customizable)
 Identify specific devices type by hovering the legend
 ![Overview - Legend](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-overview-03.png)
 
-#### Advanced features in the paid version
+#### Advanced features in the paid version 🚀
 * Drag & drop elements in the graphical view to easily set their position instead of manually editing each elements!
 * Rear panel support for racks
 * Consistency checks (optionals) on elements creation / update:
