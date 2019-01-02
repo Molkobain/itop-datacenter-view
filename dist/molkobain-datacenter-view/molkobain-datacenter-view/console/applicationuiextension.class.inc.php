@@ -45,7 +45,7 @@ class ApplicationUIExtension implements iApplicationUIExtension
 		}
 
 		// TODO: Make it work for enclosure
-		if(get_class($oObject) == 'Enclosure') return;
+//		if(get_class($oObject) == 'Enclosure') return;
 
 		// Retrieve data
 		$sJSWidgetFilename = 'datacenter-' . strtolower(DatacenterView::GetObjectType($oObject)) . '-view.js';
@@ -113,7 +113,9 @@ class ApplicationUIExtension implements iApplicationUIExtension
 			
 			<!-- Enclosure unit template -->
 			<div class="mdv-enclosure-unit" data-unit-number="">
+				<div class="mdv-eu-left"></div>
 				<div class="mdv-eu-slot"></div>
+				<div class="mdv-eu-right"></div>
 			</div>
 			
 			<!-- Device template -->

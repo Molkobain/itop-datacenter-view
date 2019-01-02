@@ -103,30 +103,13 @@ $(function()
 					for(var iEnclosureIdx in this._getObjectDatum('enclosures')[sAssemblyType])
 					{
 						var oEnclosure = this._getObjectDatum('enclosures')[sAssemblyType][iEnclosureIdx];
-						var oEnclosureElem = this._cloneTemplate('enclosure')
-							.attr('data-class', oEnclosure.class)
-							.attr('data-id', oEnclosure.id)
-							.attr('data-name', oEnclosure.name)
-							.attr('data-rack-id', oEnclosure.rack_id)
-							.attr('data-position-v', oEnclosure.position_v)
-							.attr('data-position-p', oEnclosure.position_p);
+						var oEnclosureElem = this._initializeEnclosure(oEnclosure);
 
 						// Note: Url actually contains the hyperlink markup
 						$('<div />')
 							.addClass('mdv-element-note')
 							.html(oEnclosure.url)
 							.appendTo(oEnclosureElem);
-
-						for(var iUnitsIdx = 1; iUnitsIdx <= oEnclosure.nb_u; iUnitsIdx++)
-						{
-							this._cloneTemplate('enclosure-unit')
-							    .attr('data-unit-number', iUnitsIdx)
-							    .prependTo(oEnclosureElem);
-						}
-
-						// Full height of n Us plus the bottom-border of n-1 Us
-						oEnclosureElem
-							.css('height', 'calc(' + (oEnclosure.nb_u * 20) + 'px + ' + (oEnclosure.nb_u - 1) + 'px)');
 
 						var oHostElem;
 						if( (sAssemblyType === this.enums.assembly_type.mounted) && (oEnclosure.position_v !== 0) )
@@ -174,18 +157,7 @@ $(function()
 
 				return oEnclosureElem;
 			},
-			// - Rack's devices
-			_initializeDevices: function()
-			{
-				for(var sAssemblyType in this.enums.assembly_type)
-				{
-					for(var iDeviceIdx in this._getObjectDatum('devices')[sAssemblyType])
-					{
-						var oDevice = this._getObjectDatum('devices')[sAssemblyType][iDeviceIdx];
-						this._initializeDevice(oDevice);
-					}
-				}
-			},
+			// - Device. Overloaded to put in rack slot
 			_initializeDevice: function(oDevice, oHostElem)
 			{
 				if((oHostElem === false) || (oHostElem === undefined) || (oHostElem === null))
@@ -197,42 +169,7 @@ $(function()
 					}
 				}
 
-				var oDeviceElem = this._cloneTemplate('device')
-				                      .attr('data-class', oDevice.class)
-				                      .attr('data-id', oDevice.id)
-				                      .attr('data-name', oDevice.name)
-				                      .attr('data-rack-id', oDevice.rack_id)
-				                      .attr('data-enclosure-id', oDevice.enclosure_id)
-				                      .attr('data-position-v', oDevice.position_v)
-				                      .attr('data-position-p', oDevice.position_p);
-
-				// Note: Url actually contains the hyperlink markup
-				oDeviceElem
-					.find('.mdv-d-name')
-					.html(oDevice.url);
-
-				// Dynamic height to occupy desired Us
-				oDeviceElem
-					.css('height', 'calc(' + (oDevice.nb_u * 20) + 'px + ' + (oDevice.nb_u - 1) + 'px)');
-
-				// Tooltip
-				// Note: We need to do a deep copy
-				var oQTipOptions = $.extend(
-					true,
-					{},
-					{ content: oDevice.tooltip.content },
-					this.options.defaults.tooltip_options
-				);
-				// Note: We don't use the .closest() yet for performance reasons. If this goes recurse, we might want to consider it though.
-				if(oHostElem.closest('.mdv-unmounted-type').length > 0)
-				{
-					oQTipOptions.position.adjust.x = -15;
-				}
-				oDeviceElem.qtip(oQTipOptions);
-
-				oDeviceElem.appendTo(oHostElem);
-
-				return oDeviceElem;
+				return this._super(oDevice, oHostElem);
 			},
 
 			// Getters
@@ -252,19 +189,6 @@ $(function()
 
 				return oSlotElem;
 			},
-			_getEnclosureSlotElement: function(iSlotNumber, iEnclosureId)
-			{
-				var oSlotElem = this.element.find('.mdv-enclosure[data-id="' + iEnclosureId + '"] .mdv-enclosure-unit[data-unit-number="' + iSlotNumber + '"] .mdv-eu-slot');
-				if(oSlotElem.length === 0)
-				{
-					this._trace('Could not find enclosure slot "' + iSlotNumber + 'U" for "' + iEnclosureId + '".');
-					return false;
-				}
-
-				return oSlotElem;
-			}
-
-			// Helpers
 		}
 	);
 });
