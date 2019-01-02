@@ -150,9 +150,9 @@ $(function()
 				{
 					this._cloneTemplate('enclosure-unit')
 					    .attr('data-unit-number', iUnitsIdx)
-					    // .find('.mdv-ru-left')
-					    // .text(iUnitsIdx + 'U')
-					    // .end()
+					    .find('.mdv-eu-left')
+					    .text(iUnitsIdx + 'U')
+					    .end()
 					    .prependTo(oEnclosureElem);
 				}
 

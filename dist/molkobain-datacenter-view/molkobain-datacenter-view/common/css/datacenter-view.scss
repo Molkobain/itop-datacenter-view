@@ -203,6 +203,42 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 		.mdv-rp-view,
 		.mdv-ep-view{
 		}
+
+		/* Specificities for enclosures in main view */
+		.mdv-ep-view{
+			.mdv-enclosure{
+				width: initial;
+				box-shadow: none;
+
+				.mdv-enclosure-unit{
+					.mdv-eu-left{
+						display: flex;
+					}
+
+					/* Enclosure & units border */
+					.mdv-eu-slot{
+						/*background-color: $rack-unit-slot-bg-color;*/
+						border-left: $rack-panel-outer-border;
+						border-right: $rack-panel-outer-border;
+						border-bottom: 1px solid $rack-unit-slot-separator-color;
+					}
+					&:first-child{
+						.mdv-eu-slot{
+							border-top: $rack-panel-outer-border;
+						}
+					}
+					&:last-child{
+						.mdv-eu-slot{
+							border-bottom: $rack-panel-outer-border;
+						}
+					}
+				}
+
+				&::after{
+					display: none;
+				}
+			}
+		}
 	}
 	.mdv-device,
 	.mdv-enclosure{
@@ -291,11 +327,13 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 		}*/
 	}
 	.mdv-enclosure{
-		color: $enclosure-color;
-		background-color: $enclosure-bg-color;
-
 		.mdv-enclosure-unit{
+			.mdv-eu-left{
+				display: none; /* Will be displayed ONLY on enclosure page, when displayed as a panel */
+			}
 			.mdv-eu-slot{
+				color: $enclosure-color;
+				background-color: $enclosure-bg-color;
 				border-top: 1px solid $enclosure-unit-slot-separator-color;
 			}
 			&:first-of-type{
@@ -341,13 +379,15 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 			}
 		}
 	}
-	.mdv-rack-unit{
+	.mdv-rack-unit,
+	.mdv-enclosure-unit{
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-around;
 
-		.mdv-ru-left{
+		.mdv-ru-left,
+		.mdv-eu-left{
 			padding: 0 0.3rem;
 			width: $rack-unit-number-width;
 			text-align: right;

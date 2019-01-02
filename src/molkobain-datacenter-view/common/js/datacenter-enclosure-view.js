@@ -48,9 +48,21 @@ $(function()
 			// - Make the markup for views (eg. rack panels, enclosure panel, ...)
 			_initializeViews: function()
 			{
-				var oEnclosureElem = this._initializeEnclosure(this.options.object_data);
+				var oEnclosurePanel = $('<div />')
+					.addClass('mdv-enclosure-panel')
+					.append(
+						$('<div />')
+							.addClass('mdv-ep-title')
+							.text(this._getObjectDatum('name'))
+					)
+					.append(
+						$('<div />')
+							.addClass('mdv-ep-view')
+					)
+					.appendTo(this.element.find('.mdv-views'));
 
-				oEnclosureElem.appendTo(this.element.find('.mdv-views'));
+				var oEnclosureElem = this._initializeEnclosure(this.options.object_data);
+				oEnclosureElem.appendTo(this.element.find('.mdv-views .mdv-ep-view'));
 			},
 			// - Make the markup for elements (mounted or not) and display them where they belong
 			_initializeElements: function()
