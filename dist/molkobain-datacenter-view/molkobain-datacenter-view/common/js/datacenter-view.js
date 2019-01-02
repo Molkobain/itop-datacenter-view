@@ -33,7 +33,7 @@ $(function()
 								tooltip: 'rightMiddle',
 							},
 							adjust: {
-								x: -38,
+								x: -35,
 							},
 						},
 					},

@@ -190,15 +190,18 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 		}
 	}
 
-	.mdv-rack-panel{
+	.mdv-rack-panel,
+	.mdv-enclosure-panel{
 		text-align: center;
 
-		.mdv-rp-title{
+		.mdv-rp-title,
+		.mdv-ep-title{
 			margin-left: $rack-unit-number-width; /* Must equals to .mdv-ru-left width */
 			margin-bottom: 0.3rem;
 			font-size: 0.85rem;
 		}
-		.mdv-rp-view{
+		.mdv-rp-view,
+		.mdv-ep-view{
 		}
 	}
 	.mdv-device,

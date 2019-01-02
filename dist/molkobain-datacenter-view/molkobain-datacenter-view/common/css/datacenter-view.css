@@ -138,10 +138,10 @@
   margin-right: 0.3rem;
   font-size: 0.6rem;
 }
-.molkobain-datacenter-view .mdv-rack-panel {
+.molkobain-datacenter-view .mdv-rack-panel, .molkobain-datacenter-view .mdv-enclosure-panel {
   text-align: center;
 }
-.molkobain-datacenter-view .mdv-rack-panel .mdv-rp-title {
+.molkobain-datacenter-view .mdv-rack-panel .mdv-rp-title, .molkobain-datacenter-view .mdv-enclosure-panel .mdv-rp-title, .molkobain-datacenter-view .mdv-rack-panel .mdv-ep-title, .molkobain-datacenter-view .mdv-enclosure-panel .mdv-ep-title {
   margin-left: 1.8rem;
   /* Must equals to .mdv-ru-left width */
   margin-bottom: 0.3rem;
