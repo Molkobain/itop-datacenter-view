@@ -345,7 +345,6 @@ class DatacenterView
 		// Building the HTML markup
 		// - Base info
 		$sClassImage = $oObject->GetIcon();
-		$sClassName = MetaModel::GetName($sObjClass);
 		$sObjName = $oObject->GetName();
 		// - Attributes
 		$sAttributesHTML = '';

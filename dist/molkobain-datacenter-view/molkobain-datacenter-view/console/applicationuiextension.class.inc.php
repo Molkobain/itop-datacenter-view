@@ -44,9 +44,6 @@ class ApplicationUIExtension implements iApplicationUIExtension
 			return;
 		}
 
-		// TODO: Make it work for enclosure
-//		if(get_class($oObject) == 'Enclosure') return;
-
 		// Retrieve data
 		$sJSWidgetFilename = 'datacenter-' . strtolower(DatacenterView::GetObjectType($oObject)) . '-view.js';
 		$sJSWidgetName = 'datacenter_' . DatacenterView::GetObjectType($oObject) . '_view';
