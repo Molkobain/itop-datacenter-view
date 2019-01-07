@@ -1,0 +1,65 @@
+/*
+ * Copyright (c) 2015 - 2019 Molkobain.
+ *
+ * This file is part of licensed extension.
+ *
+ * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
+ */
+/* Variables */
+/* - Helpers */
+/* Panel */
+/* Can't put a global CSS class to reset stuff as classes will be used here and there by extensions, so we use this injection */
+.mhf-templates, .mhf-panel, .mhf-tooltip {
+  /* Reset for admin console mostly */
+  box-sizing: border-box;
+}
+.mhf-templates *, .mhf-panel *, .mhf-tooltip * {
+  box-sizing: border-box;
+}
+.mhf-templates *:before, .mhf-panel *:before, .mhf-tooltip *:before, .mhf-templates *:after, .mhf-panel *:after, .mhf-tooltip *:after {
+  box-sizing: border-box;
+}
+.mhf-templates {
+  display: none;
+}
+.mhf-panel {
+  margin-bottom: 3rem;
+}
+.mhf-panel .mhf-p-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0 0.2rem;
+  font-size: 0.9rem;
+}
+.mhf-panel .mhf-p-header .mhf-ph-icon {
+  margin-right: 0.5rem;
+}
+.mhf-panel .mhf-p-header .mhf-ph-icon img {
+  max-width: 38px;
+}
+.mhf-panel .mhf-p-body {
+  padding: 0.3rem;
+  overflow: hidden auto;
+  background-color: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+}
+.mhf-panel:last-child {
+  margin-bottom: 0;
+}
+.mhf-tooltip {
+  /* qTip tooltips */
+}
+.mhf-tooltip.qtip .qtip-tip {
+  z-index: 1;
+  /* To put tip above wrapper box-shadow */
+}
+.mhf-tooltip.qtip .qtip-wrapper {
+  box-shadow: 0 2px 15px 2px rgba(0, 0, 0, 0.15);
+}
+.mhf-tooltip.qtip .qtip-wrapper .qtip-contentWrapper {
+  border: none !important;
+}
+.mhf-tooltip.qtip .qtip-wrapper .qtip-contentWrapper .qtip-content {
+  padding: 9px 9px !important;
+}
