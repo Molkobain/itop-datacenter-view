@@ -68,8 +68,6 @@ if(class_exists('AbstractPortalUIExtension'))
 
 		/**
 		 * @inheritdoc
-		 *
-		 * @throws \DictExceptionMissingString
 		 */
 		public function GetJSInline(Application $oApp)
 		{
