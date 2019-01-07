@@ -99,5 +99,9 @@ To fix this, edit the *server* and make sure it has both *position* and *rack un
 Save the object and go back to the *rack*. The *server* will now appear in the *front* panel!
 ![How to - Result](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-howto-positionserver-03.png)
 
+### Contributors
+I would like to give a special thank you to the people who contributed to this:
+ - Bostoen, Jeffrey
+
 ### Licensing
 This extension is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
