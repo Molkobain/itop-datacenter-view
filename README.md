@@ -4,6 +4,7 @@
 Easily manage & visualize your racks, enclosures and datacenter devices.
 * See at a glace where your devices are.
 * Check which attached devices have no position set.
+* Full support of english, french & dutch languages.
 
 ![Overview](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-overview-01.png)
 
@@ -13,22 +14,28 @@ Access device's main information on hover (customizable)
 Identify specific devices type by hovering the legend
 ![Overview - Legend](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-overview-03.png)
 
+
 #### Advanced features in the paid version 🚀
-* Drag & drop elements in the graphical view to easily set their position instead of manually editing each elements!
+Drag & drop elements in the graphical view to easily set their position instead of manually editing each elements!
 ![Pro features - Rear panel](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-profeatures-drag-01.png)
-* Rear panel support for racks
+
+Rear panel support for racks
 ![Pro features - Rear panel](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-profeatures-panels-01.png)
-* Consistency checks (optionals) on elements creation / update:
-  * Overlapping elements
-  * Malpositioned elements (outside rack's / enclosure's grid)
-  * Total elements' height exceeds rack's / enclosure's capacity
+
+Consistency checks (optionals) on elements creation / update:
+* Overlapping elements
+* Malpositioned elements (outside rack's / enclosure's grid)
+* Total elements' height exceeds rack's / enclosure's capacity
+
 ![Pro features - Consistency checks](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-profeatures-consistency-01.png)
-* Audit rules:
-  * Production elements should have position set when attached to a rack or enclosure
-  * Positioned elements should be attached to a rack or enclosure
-  * Positioned elements should have *Rack units* attribute set
-  * Positioned elements should not overlap another one
-  * Positioned elements should not be outside its rack's or enclosure's (exceed height or malpositioned)
+
+Audit rules:
+* Production elements should have position set when attached to a rack or enclosure
+* Positioned elements should be attached to a rack or enclosure
+* Positioned elements should have *Rack units* attribute set
+* Positioned elements should not overlap another one
+* Positioned elements should not be outside its rack's or enclosure's (exceed height or malpositioned)
+
 
 ### Compatibility
 Compatible with iTop 2.3+
