@@ -15,11 +15,14 @@ Identify specific devices type by hovering the legend
 
 #### Advanced features in the paid version 🚀
 * Drag & drop elements in the graphical view to easily set their position instead of manually editing each elements!
+![Pro features - Rear panel](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-profeatures-drag-01.png)
 * Rear panel support for racks
+![Pro features - Rear panel](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-profeatures-panels-01.png)
 * Consistency checks (optionals) on elements creation / update:
   * Overlapping elements
   * Malpositioned elements (outside rack's / enclosure's grid)
   * Total elements' height exceeds rack's / enclosure's capacity
+![Pro features - Consistency checks](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-profeatures-consistency-01.png)
 * Audit rules:
   * Production elements should have position set when attached to a rack or enclosure
   * Positioned elements should be attached to a rack or enclosure
