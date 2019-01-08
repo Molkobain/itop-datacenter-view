@@ -1,17 +1,12 @@
 👋 [Available on Molkobain I/O](https://www.molkobain.com/product/datacenter-view/)
 
 # iTop extension: molkobain-datacenter-view
-[Description](#description)
-
-[Advanced features](#advanced-features-in-the-paid-version-)
-
-[Compatibility](#compatibility)
-
-[Installation](#installation)
-
-[Configuration](#configuration)
-
-[How to](#how-to)
+* [Description](#description)
+* [Advanced features](#advanced-features-in-the-paid-version-)
+* [Compatibility](#compatibility)
+* [Installation](#installation)
+* [Configuration](#configuration)
+* [How to](#how-to)
 
 
 ### Description
