@@ -8,7 +8,6 @@
 * [Configuration](#configuration)
 * [How to](#how-to)
 
-
 ## Description
 Easily manage & visualize your racks, enclosures and datacenter devices.
 * See at a glace where your devices are.
@@ -44,7 +43,6 @@ Audit rules:
 * Positioned elements should have *Rack units* attribute set
 * Positioned elements should not overlap another one
 * Positioned elements should not be outside its rack's or enclosure's (exceed height or malpositioned)
-
 
 ## Compatibility
 Compatible with iTop 2.3+
