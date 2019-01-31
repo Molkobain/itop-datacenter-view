@@ -24,6 +24,9 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Graphical view',
 	// - Legend
 	'Molkobain:DatacenterView:Legend:Title' => 'Legend',
+	// - Options
+	'Molkobain:DatacenterView:Options:Title' => 'Options',
+	'Molkobain:DatacenterView:Options:Option:ShowObsolete' => 'Show obsolete elements',
 	// - Tooltip
 	'Molkobain:DatacenterView:Element:Tooltip:Fieldset:base-info' => 'Base information',
 	'Molkobain:DatacenterView:Element:Tooltip:Fieldset:more-info' => 'More information',

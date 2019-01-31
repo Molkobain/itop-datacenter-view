@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (c) 2015 - 2019 Molkobain.
  *
  * This file is part of licensed extension.
@@ -8,20 +8,36 @@
 /* Variables */
 /* - Helpers */
 /* Panel */
+/* Toggle buttons */
 /* Can't put a global CSS class to reset stuff as classes will be used here and there by extensions, so we use this injection */
-.mhf-templates, .mhf-panel, .mhf-tooltip {
+.mhf-templates, .mhf-panel, .mhf-tooltip, .mhf-toggle-button {
   /* Reset for admin console mostly */
   box-sizing: border-box;
 }
-.mhf-templates *, .mhf-panel *, .mhf-tooltip * {
+.mhf-templates *, .mhf-panel *, .mhf-tooltip *, .mhf-toggle-button * {
   box-sizing: border-box;
 }
-.mhf-templates *:before, .mhf-panel *:before, .mhf-tooltip *:before, .mhf-templates *:after, .mhf-panel *:after, .mhf-tooltip *:after {
+.mhf-templates *:before, .mhf-panel *:before, .mhf-tooltip *:before, .mhf-toggle-button *:before, .mhf-templates *:after, .mhf-panel *:after, .mhf-tooltip *:after, .mhf-toggle-button *:after {
   box-sizing: border-box;
 }
+/* Helpers */
+.mhf-pull-left {
+  float: left;
+}
+.mhf-pull-left:after {
+  clear: both;
+}
+.mhf-pull-right {
+  float: right;
+}
+.mhf-pull-right:after {
+  clear: both;
+}
+/* Templates: HTML markup to be cloned for creating elements, always hidden */
 .mhf-templates {
   display: none;
 }
+/* Panels: Simple panel with an header and a body to display content nicely */
 .mhf-panel {
   margin-bottom: 3rem;
 }
@@ -46,6 +62,7 @@
 .mhf-panel:last-child {
   margin-bottom: 0;
 }
+/* Tooltips */
 .mhf-tooltip {
   /* qTip tooltips */
 }
@@ -61,4 +78,59 @@
 }
 .mhf-tooltip.qtip .qtip-wrapper .qtip-contentWrapper .qtip-content {
   padding: 9px 9px !important;
+}
+/* Toggle buttons: Inspired by Mauricio Allende @ https://codepen.io/mallendeo/pen/eLIiG */
+.mhf-toggle-button {
+  font-size: 12pt;
+}
+.mhf-toggle-button .mhf-tb-input {
+  display: none;
+  /* Themes */
+  /* - Flat */
+}
+.mhf-toggle-button .mhf-tb-input + .mhf-tb-button {
+  outline: 0;
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.8em;
+  height: 1em;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+.mhf-toggle-button .mhf-tb-input + .mhf-tb-button:after, .mhf-toggle-button .mhf-tb-input + .mhf-tb-button:before {
+  position: relative;
+  display: block;
+  content: "";
+  width: 50%;
+  height: 100%;
+}
+.mhf-toggle-button .mhf-tb-input + .mhf-tb-button:after {
+  left: 0;
+}
+.mhf-toggle-button .mhf-tb-input + .mhf-tb-button:before {
+  display: none;
+}
+.mhf-toggle-button .mhf-tb-input:checked + .mhf-tb-button:after {
+  left: 50%;
+}
+.mhf-toggle-button .mhf-tb-input.mhf-tb-flat + .mhf-tb-button {
+  padding: 2px;
+  border-radius: 2em;
+  background: #eaeaea;
+  box-shadow: inset 0 1px 1px 0px rgba(0, 0, 0, 0.15);
+  transition: all 0.4s ease;
+}
+.mhf-toggle-button .mhf-tb-input.mhf-tb-flat + .mhf-tb-button:after {
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.12);
+  transition: all 0.2s ease;
+}
+.mhf-toggle-button .mhf-tb-input.mhf-tb-flat:checked + .mhf-tb-button {
+  background: #ea7d1e;
+}
+.mhf-toggle-button.mhf-pull-left .mhf-tb-button, .mhf-toggle-button.mhf-pull-right .mhf-tb-button, .mhf-pull-left .mhf-toggle-button .mhf-tb-button, .mhf-pull-right .mhf-toggle-button .mhf-tb-button {
+  vertical-align: initial;
+  /* Reset vertical alignment if floated */
 }

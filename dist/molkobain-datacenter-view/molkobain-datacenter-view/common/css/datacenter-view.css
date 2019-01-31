@@ -35,24 +35,24 @@
 .molkobain-datacenter-view *:before, .molkobain-datacenter-view *:after {
   box-sizing: border-box;
 }
-.molkobain-datacenter-view .mdv-legend {
+.molkobain-datacenter-view .mdv-controls .mhf-panel {
   width: 200px;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body {
+.molkobain-datacenter-view .mdv-controls .mhf-panel .mhf-p-body {
   padding: 0.6rem;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul {
+.molkobain-datacenter-view .mdv-controls .mhf-panel .mhf-p-body ul {
   margin: 0;
   padding: 0;
   list-style: none;
   font-size: 0.8rem;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li {
   padding-bottom: 0.3rem;
   /* Padding instead of margin for a smoother transition between elements while fading */
   cursor: pointer;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li::before {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li::before {
   content: "";
   display: inline-block;
   margin-right: 0.5rem;
@@ -61,28 +61,28 @@
   border-radius: 100%;
   background-color: #8db46e;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="Enclosure"]::before {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="Enclosure"]::before {
   background-color: #eaeaea;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="Server"]::before {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="Server"]::before {
   background-color: #3f627e;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="NetworkDevice"]::before {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="NetworkDevice"]::before {
   background-color: #c85454;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="SANSwitch"]::before {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="SANSwitch"]::before {
   background-color: lightsalmon;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="NAS"]::before {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="NAS"]::before {
   background-color: #80b469;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="StorageSystem"]::before {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="StorageSystem"]::before {
   background-color: #eb913b;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="TapeLibrary"]::before {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="TapeLibrary"]::before {
   background-color: #7da9bc;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li:last-of-type {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li:last-of-type {
   padding-bottom: 0;
 }
 .molkobain-datacenter-view .mdv-views {
