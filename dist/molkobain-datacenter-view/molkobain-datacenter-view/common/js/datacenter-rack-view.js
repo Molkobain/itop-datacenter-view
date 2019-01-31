@@ -147,8 +147,8 @@ $(function()
 						var oQTipOptions = $.extend(
 							true,
 							{},
-							{ content: oEnclosure.tooltip.content },
-							this.options.defaults.tooltip_options
+							this.options.defaults.tooltip_options,
+							{ content: oEnclosure.tooltip.content }
 						);
 						oQTipOptions.position.adjust.x = -15;
 						oEnclosureElem.find('.mdv-element-note').qtip(oQTipOptions);

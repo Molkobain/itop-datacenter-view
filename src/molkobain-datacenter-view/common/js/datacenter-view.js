@@ -205,8 +205,8 @@ $(function()
 				var oQTipOptions = $.extend(
 					true,
 					{},
-					{ content: oDevice.tooltip.content },
-					this.options.defaults.tooltip_options
+					this.options.defaults.tooltip_options,
+					{ content: oDevice.tooltip.content }
 				);
 				// Note: We don't use the .closest() yet for performance reasons. If this goes recurse, we might want to consider it though.
 				if(oHostElem.closest('.mdv-unmounted-type').length > 0)
