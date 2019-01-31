@@ -48,7 +48,8 @@ $(function()
 			// - Make the markup for views (eg. rack panels, enclosure panel, ...)
 			_initializeViews: function()
 			{
-				var oEnclosurePanel = $('<div />')
+				/* var oEnclosurePanel */
+				$('<div />')
 					.addClass('mdv-enclosure-panel')
 					.append(
 						$('<div />')

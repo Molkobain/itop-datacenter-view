@@ -101,7 +101,8 @@ $(function()
 				for(var sClass in this.options.legend.classes)
 				{
 					var oClass = this.options.legend.classes[sClass];
-					var oItemElem = this._cloneTemplate('legend-item')
+					/* var oItemElem */
+					this._cloneTemplate('legend-item')
 						.attr('data-class', sClass)
 						.attr('data-count', oClass.count)
 						.text(oClass.title + ' (' + oClass.count + ')')
@@ -115,7 +116,6 @@ $(function()
 						me.element.find('.mdv-device[data-class!="' + sObjClass + '"]').addClass('mdv-fade-for-highlighting');
 					},
 					function(){
-						var sObjClass = $(this).attr('data-class');
 						me.element.find('.mdv-device').removeClass('mdv-fade-for-highlighting');
 					}
 				);
