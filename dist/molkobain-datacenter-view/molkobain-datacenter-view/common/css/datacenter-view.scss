@@ -248,7 +248,7 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 		text-align: center;
 		font-size: 0.7rem;
 		box-shadow: $box-shadow-small;
-		transition: all 0.2s ease-in-out;
+		transition: box-shadow 0.2s ease-in-out;
 
 		> *{
 			flex-grow: 1;

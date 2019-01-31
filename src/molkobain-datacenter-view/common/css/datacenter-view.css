@@ -180,7 +180,7 @@
   text-align: center;
   font-size: 0.7rem;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-  transition: all 0.2s ease-in-out;
+  transition: box-shadow 0.2s ease-in-out;
 }
 .molkobain-datacenter-view .mdv-device > *, .molkobain-datacenter-view .mdv-enclosure > * {
   flex-grow: 1;
