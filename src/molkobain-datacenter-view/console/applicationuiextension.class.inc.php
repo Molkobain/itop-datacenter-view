@@ -136,7 +136,7 @@ EOF
 
 		// Init JS widget
 		$oPage->add_ready_script(
-			<<<EOF
+<<<EOF
 	// Molkobain datacenter view
     // - Initializing widget
     $.molkobain.{$sJSWidgetName}(
