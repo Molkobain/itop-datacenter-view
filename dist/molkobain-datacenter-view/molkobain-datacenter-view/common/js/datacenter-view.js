@@ -105,7 +105,12 @@ $(function()
 					this._cloneTemplate('legend-item')
 						.attr('data-class', sClass)
 						.attr('data-count', oClass.count)
-						.text(oClass.title + ' (' + oClass.count + ')')
+						.find('.mdv-li-title')
+						.text(oClass.title)
+						.end()
+						.find('.mdv-li-count')
+						.text(oClass.count)
+						.end()
 						.appendTo( this.element.find('.mdv-legend ul') );
 				}
 

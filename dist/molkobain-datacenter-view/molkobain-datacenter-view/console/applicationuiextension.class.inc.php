@@ -105,7 +105,10 @@ class ApplicationUIExtension implements iApplicationUIExtension
 	
 	<div class="mhf-templates">
 		<!-- Legend item template -->
-		<li class="mdv-legend-item" data-class="" data-count=""></li>
+		<li class="mdv-legend-item" data-class="" data-count="">
+			<span class="mdv-li-title"></span>
+			<span class="mdv-li-count mhf-pull-right"></span>
+		</li>
 		
 		<!-- Rack panel template -->
 		<div class="mdv-rack-panel" data-class="" data-id="" data-code="" data-name="">

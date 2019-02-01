@@ -67,18 +67,23 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 	flex-direction: row;
 	justify-content: space-around;
 
-	.mdv-legend{
-		width: 200px;
+	.mdv-controls{
+		.mhf-panel{
+			width: 200px;
 
-		.mhf-p-body{
-			padding: 0.6rem;
+			.mhf-p-body{
+				padding: 0.6rem;
 
+				ul{
+					margin: 0;
+					padding: 0;
+					list-style: none;
+					font-size: 0.8rem;
+				}
+			}
+		}
+		.mdv-legend{
 			ul{
-				margin: 0;
-				padding: 0;
-				list-style: none;
-				font-size: 0.8rem;
-
 				li{
 					padding-bottom: 0.3rem; /* Padding instead of margin for a smoother transition between elements while fading */
 					cursor: pointer;
@@ -248,7 +253,9 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 		text-align: center;
 		font-size: 0.7rem;
 		box-shadow: $box-shadow-small;
-		transition: box-shadow 0.2s ease-in-out;
+		transition-property: box-shadow, opacity;
+		transition-duration: 0.2s, 0.3s;
+		transition-timing-function: ease-in-out;
 
 		> *{
 			flex-grow: 1;
