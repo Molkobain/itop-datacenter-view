@@ -350,7 +350,7 @@ EOF
 		$oEnclosureSet = $oRack->Get('enclosure_list');
 		while($oEnclosure = $oEnclosureSet->Fetch())
 		{
-			// Note: Here we can't filter set on none obsolete data only because since iTop 2.4 it returns an ormLinkSet instead of a DBObjectSet
+			// Note: Here we can't filter set on none obsolete data (SetShowObsoleteData()) only because since iTop 2.4 it returns an ormLinkSet instead of a DBObjectSet
 			if($oEnclosure->IsObsolete() && ($this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE) === false))
 			{
 				continue;
@@ -399,7 +399,7 @@ EOF
 		$oDeviceSet = $oEnclosure->Get('device_list');
 		while($oDevice = $oDeviceSet->Fetch())
 		{
-			// Note: Here we can't filter set on none obsolete data only because since iTop 2.4 it returns an ormLinkSet instead of a DBObjectSet
+			// Note: Here we can't filter set on none obsolete data (SetShowObsoleteData()) only because since iTop 2.4 it returns an ormLinkSet instead of a DBObjectSet
 			if($oDevice->IsObsolete() && ($this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE) === false))
 			{
 				continue;

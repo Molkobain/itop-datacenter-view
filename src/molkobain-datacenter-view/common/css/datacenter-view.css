@@ -24,6 +24,7 @@
   background-color: #eee;
   /* Not in /css/css-variables.scss */
   /* Proper properties */
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
