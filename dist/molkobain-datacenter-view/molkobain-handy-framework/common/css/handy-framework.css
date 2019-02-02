@@ -62,6 +62,9 @@
   font-size: 3em;
   color: #000;
 }
+.mhf-loader .fa-spin {
+  animation-duration: 1s;
+}
 /* Panels: Simple panel with an header and a body to display content nicely */
 .mhf-panel {
   margin-bottom: 3rem;
