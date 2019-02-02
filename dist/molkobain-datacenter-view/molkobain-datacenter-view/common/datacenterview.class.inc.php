@@ -36,6 +36,7 @@ class DatacenterView
 	const ENUM_ELEMENT_TYPE_DEVICE = 'device';
 
 	const ENUM_ENDPOINT_OPERATION_RENDERTAB = 'render_tab';
+	const ENUM_ENDPOINT_OPERATION_SUBMITOPTIONS = 'submit_options';
 
 	const ENUM_OPTION_CODE_SHOWOBSOLETE = 'show_obsolete';
 
@@ -120,16 +121,15 @@ class DatacenterView
 		$sJSWidgetName = 'datacenter_' . $this->sType . '_view';
 		$sJSWidgetDataJSON = $this->GetDataForJSWidget(true);
 
-		$aOptions = $this->PrepareOptions();
-
 		// Add markup
 		// - Legend
 		$sLegendTitle = Dict::S('Molkobain:DatacenterView:Legend:Title');
 
 		// - Options
 		$sOptionsTitle = Dict::S('Molkobain:DatacenterView:Options:Title');
+		$sOptionsOperation = static::ENUM_ENDPOINT_OPERATION_SUBMITOPTIONS;
 		$sOptionsItemsHtml = '';
-		foreach($aOptions as $sOptionCode => $aOptionData)
+		foreach($this->PrepareOptions() as $sOptionCode => $aOptionData)
 		{
 			// Note: Escaping tooltip to avoid breaking HTML tag and XSS attacks
 			$sEscapedOptionTooltip = htmlentities($aOptionData['tooltip'], ENT_QUOTES, 'UTF-8');
@@ -141,7 +141,6 @@ class DatacenterView
 </li>
 EOF;
 		}
-
 
 		// Note: We could split this in protected methods for overloading (PrepareHtml, PrepareJs, ...)
 		$oOutput->AddHtml(<<<EOF
@@ -164,6 +163,7 @@ EOF;
 			</div>
 			<div class="mhf-p-body">
 				<form method="post" class="mdv-options-form">
+					<input type="hidden" name="operation" value="{$sOptionsOperation}" />
 					<ul>
 						{$sOptionsItemsHtml}
 					</ul>
@@ -228,6 +228,12 @@ EOF;
 			</div>
 		</div>
 	</div>
+	
+	<div class="mhf-loader mhf-hide">
+		<div class="mhf-loader-text">
+			<span class="fa fa-spin fa-refresh fa-fw"></span>
+		</div>
+	</div>
 </div>
 EOF
 		);
@@ -269,6 +275,7 @@ EOF
 			'debug' => ConfigHelper::IsDebugEnabled(),
 			'object_type' => $this->sType,
 			'object_data' => $aObjectData,
+			'endpoint' => $this->GetEndpoint(),
 			'legend' => $this->GetLegendData($aObjectData),
 			'dict' => $this->GetDictEntries(),
 		);
@@ -343,6 +350,12 @@ EOF
 		$oEnclosureSet = $oRack->Get('enclosure_list');
 		while($oEnclosure = $oEnclosureSet->Fetch())
 		{
+			// Note: Here we can't filter set on none obsolete data only because since iTop 2.4 it returns an ormLinkSet instead of a DBObjectSet
+			if($oEnclosure->IsObsolete() && ($this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE) === false))
+			{
+				continue;
+			}
+
 			$aEnclosureData = $this->GetEnclosureData($oEnclosure);
 			$sEnclosureAssemblyType = ($aEnclosureData['position_v'] > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
 
@@ -350,6 +363,7 @@ EOF
 		}
 
 		$oDeviceSearch = DBObjectSearch::FromOQL('SELECT DatacenterDevice WHERE rack_id = :rack_id AND enclosure_id = 0');
+		$oDeviceSearch->SetShowObsoleteData($this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE));
 		$oDeviceSet = new DBObjectSet($oDeviceSearch, array(), array('rack_id' => $oRack->GetKey()));
 		while($oDevice = $oDeviceSet->Fetch())
 		{
@@ -385,6 +399,12 @@ EOF
 		$oDeviceSet = $oEnclosure->Get('device_list');
 		while($oDevice = $oDeviceSet->Fetch())
 		{
+			// Note: Here we can't filter set on none obsolete data only because since iTop 2.4 it returns an ormLinkSet instead of a DBObjectSet
+			if($oDevice->IsObsolete() && ($this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE) === false))
+			{
+				continue;
+			}
+
 			$aDeviceData = $this->GetDeviceData($oDevice);
 			$sDeviceAssemblyType = ($aDeviceData['position_v'] > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
 
@@ -581,7 +601,7 @@ EOF;
 	 *
 	 * @return string
 	 */
-	public function GetOption($sCode, $defaultValue)
+	public function GetOption($sCode, $defaultValue = null)
 	{
 		$sUserPrefCodeForObject = ConfigHelper::GetModuleCode() . '|object|' . $this->GetObjectClass() . '|' . $this->GetObjectId();
 		$aPrefs = appUserPreferences::GetPref($sUserPrefCodeForObject, array());
@@ -616,6 +636,20 @@ EOF;
 	}
 
 	/**
+	 * Read options from posted params and updates user preferences
+	 *
+	 * @return $this
+	 */
+	public function ReadPostedOptions()
+	{
+		// Show obsolete
+		$bShowObsolete = (utils::ReadPostedParam(static::ENUM_OPTION_CODE_SHOWOBSOLETE, '') === 'on') ? true : false;
+		$this->SetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsolete);
+
+		return $this;
+	}
+
+	/**
 	 * Returns options data:
 	 *
 	 * array(
@@ -641,7 +675,7 @@ EOF;
 		$aOptions[static::ENUM_OPTION_CODE_SHOWOBSOLETE] = array(
 			'label' => Dict::S('Molkobain:DatacenterView:Options:Option:ShowObsolete'),
 			'tooltip' => Dict::S('Molkobain:DatacenterView:Options:Option:ShowObsolete+'),
-			'input_html' => UIHelper::MakeToggleButton(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsolete, null, 'console.log("Coucou");'),
+			'input_html' => UIHelper::MakeToggleButton(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsolete, null, '$(this).closest(".molkobain-datacenter-view").trigger("mdv.refresh_view")'),
 		);
 
 		return $aOptions;
@@ -702,6 +736,20 @@ EOF;
 		return array(
 			static::ENUM_ASSEMBLY_TYPE_MOUNTED,
 			static::ENUM_ASSEMBLY_TYPE_UNMOUNTED,
+		);
+	}
+
+	/**
+	 * Return only option codes, not their labels.
+	 *
+	 * Note: Using a static method instead of a static array as it is not possible in PHP 5.6
+	 *
+	 * @return array
+	 */
+	public static function EnumOptionCodes()
+	{
+		return array(
+			static::ENUM_OPTION_CODE_SHOWOBSOLETE,
 		);
 	}
 }
