@@ -24,6 +24,10 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Grafische weergave',
 	// - Legend
 	'Molkobain:DatacenterView:Legend:Title' => 'Legende',
+	// - Options
+	'Molkobain:DatacenterView:Options:Title' => 'Options~~',
+	'Molkobain:DatacenterView:Options:Option:ShowObsolete' => 'Show obsolete elements~~',
+	'Molkobain:DatacenterView:Options:Option:ShowObsolete+' => 'Changing value will override the global user preference for this element only~~',
 	// - Tooltip
 	'Molkobain:DatacenterView:Element:Tooltip:Fieldset:base-info' => 'Basisinfo',
 	'Molkobain:DatacenterView:Element:Tooltip:Fieldset:more-info' => 'Meer info',
