@@ -35,6 +35,14 @@ try
 	switch ($sOperation)
 	{
 		case $oDatacenterView::ENUM_ENDPOINT_OPERATION_RENDERTAB:
+		case $oDatacenterView::ENUM_ENDPOINT_OPERATION_SUBMITOPTIONS:
+			// Retrieve options if present
+			if($sOperation === $oDatacenterView::ENUM_ENDPOINT_OPERATION_SUBMITOPTIONS)
+			{
+				$oDatacenterView->ReadPostedOptions();
+			}
+
+			// Render tab
 			$oPage->SetContentType('text/html');
 			$oOutput = $oDatacenterView->Render();
 

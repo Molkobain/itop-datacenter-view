@@ -15,6 +15,7 @@ $(function()
 				debug: false,
 				object_type: 'rack',
 				object_data: null,
+				endpoint: null,
 				legend: {},
 				dict: {},
 				defaults: {
@@ -86,11 +87,29 @@ $(function()
 					return false;
 				}
 
+				if(this.options.endpoint === null)
+				{
+					this._trace('Could not initialize widget with no endpoint.');
+					return false;
+				}
+
+				this._bindEvents();
+
 				this._initializeLegend();
 				this._initializeViews();
 				this._initializeUnmounted();
 				this._initializeElements();
 				this._initializeTooltips();
+			},
+			// - Bind external events
+			_bindEvents: function()
+			{
+				var me = this;
+
+				// Refresh view
+				this.element.bind('mdv.refresh_view', function(){
+					return me._onRefreshView();
+				});
 			},
 			// - Make the markup & events binding for the legend
 			_initializeLegend: function()
@@ -237,6 +256,30 @@ $(function()
 				});
 			},
 
+			// Event handlers
+			// - Refresh view from server with current options
+			_onRefreshView: function()
+			{
+				var me = this;
+
+				this._showLoader();
+				$.post(
+					this.options.endpoint,
+					this.element.find('.mdv-options-form').serialize(),
+					'html'
+				)
+					.done(function(sResponse){
+						me.element.parent().html(sResponse);
+					})
+					.fail(function(){
+						// TODO: Show generic error message
+					})
+					.always(function(){
+						me._hideLoader();
+					});
+
+			},
+
 			// Getters
 			// - Return a single datum from the object_data set
 			_getObjectDatum: function(sCode)
@@ -305,6 +348,14 @@ $(function()
 					.attr('title', this._getDictEntry('Molkobain:DatacenterView:Unmounted:' + sTypeForDictEntry + ':Title+'))
 					.attr('data-toggle', 'tooltip')
 					.text(this._getDictEntry('Molkobain:DatacenterView:Unmounted:' + sTypeForDictEntry + ':Title'));
+			},
+			_showLoader: function()
+			{
+				this.element.find('.mhf-loader').removeClass('mhf-hide');
+			},
+			_hideLoader: function()
+			{
+				this.element.find('.mhf-loader').addClass('mhf-hide');
 			},
 			// Display trace in js console
 			_trace: function(sMessage)
