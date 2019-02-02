@@ -16,6 +16,7 @@ use Dict;
 use AttributeExternalKey;
 use MetaModel;
 use utils;
+use appUserPreferences;
 use Combodo\iTop\Renderer\RenderingOutput;
 use Molkobain\iTop\Extension\HandyFramework\Common\Helper\UIHelper;
 use Molkobain\iTop\Extension\DatacenterView\Common\Helper\ConfigHelper;
@@ -36,6 +37,8 @@ class DatacenterView
 
 	const ENUM_ENDPOINT_OPERATION_RENDERTAB = 'render_tab';
 
+	const ENUM_OPTION_CODE_SHOWOBSOLETE = 'show_obsolete';
+
 	/** @var \DBObject $oObject */
 	protected $oObject;
 	/** @var string $sType */
@@ -47,6 +50,32 @@ class DatacenterView
 	{
 		$this->oObject = $oObject;
 		$this->sType = static::FindObjectType($this->oObject);
+	}
+
+	/**
+	 * Returns if the $oObject is a rack|enclosure|device (see ENUM_ELEMENT_TYPE_XXX constants)
+	 *
+	 * @param \DBObject $oObject
+	 *
+	 * @return string
+	 */
+	public static function FindObjectType(DBObject $oObject)
+	{
+		$sObjClass = get_class($oObject);
+		switch($sObjClass)
+		{
+			case 'Rack':
+				$sObjType = 'rack';
+				break;
+			case 'Enclosure':
+				$sObjType = 'enclosure';
+				break;
+			default:
+				$sObjType = 'device';
+				break;
+		}
+
+		return $sObjType;
 	}
 
 	/**
@@ -65,22 +94,6 @@ class DatacenterView
 	public function GetType()
 	{
 		return $this->sType;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function GetObjectClass()
-	{
-		return get_class($this->oObject);
-	}
-
-	/**
-	 * @return int
-	 */
-	public function GetObjectId()
-	{
-		return $this->oObject->GetKey();
 	}
 
 	/**
@@ -107,6 +120,27 @@ class DatacenterView
 	}
 
 	/**
+	 * @return string
+	 */
+	public function GetObjectClass()
+	{
+		return get_class($this->oObject);
+	}
+
+	/**
+	 * @return int
+	 */
+	public function GetObjectId()
+	{
+		return $this->oObject->GetKey();
+	}
+
+
+	//---------
+	// Data
+	//---------
+
+	/**
 	 * Returns the whole view (legend, elements, ...) as fragments (HTML, JS files, JS inline, CSS files, CSS inline)
 	 *
 	 * @return \Combodo\iTop\Renderer\RenderingOutput
@@ -119,17 +153,31 @@ class DatacenterView
 		$sJSWidgetName = 'datacenter_' . $this->sType . '_view';
 		$sJSWidgetDataJSON = $this->GetDataForJSWidget(true);
 
+		$aOptions = $this->PrepareOptions();
+
 		// Add markup
 		$sLegendTitle = Dict::S('Molkobain:DatacenterView:Legend:Title');
 
 		// TODO: Retrieve options from DatacenterView class and make it extensible
 		$sOptionsTitle = Dict::S('Molkobain:DatacenterView:Options:Title');
-		$sToggleObsoleteOptionLabel = Dict::S('Molkobain:DatacenterView:Options:Option:ShowObsolete');
-		$sToggleObsoleteOptionInput = UIHelper::MakeToggleButton();
+
+		$sOptionsItemsHtml = '';
+		foreach($aOptions as $sOptionCode => $aOptionData)
+		{
+			// Note: Escaping tooltip to avoid breaking HTML tag and XSS attacks
+			$sEscapedOptionTooltip = htmlentities($aOptionData['tooltip'], ENT_QUOTES, 'UTF-8');
+
+			$sOptionsItemsHtml .= <<<EOF
+<li class="mdv-of-item">
+	<span title="{$sEscapedOptionTooltip}" data-toggle="tooltip">{$aOptionData['label']}</span>
+	<span class="mhf-pull-right">{$aOptionData['input_html']}</span>
+</li>
+EOF;
+		}
+
 
 		// Note: We could split this in protected methods for overloading (PrepareHtml, PrepareJs, ...)
-		$oOutput->AddHtml(
-<<<EOF
+		$oOutput->AddHtml(<<<EOF
 <div class="molkobain-datacenter-view-container" data-portal="backoffice">
 	<div class="mdv-controls">
 		<div class="mdv-legend mhf-panel">
@@ -148,12 +196,11 @@ class DatacenterView
 				<span class="mhf-ph-title">{$sOptionsTitle}</span>
 			</div>
 			<div class="mhf-p-body">
-				<ul>
-					<li>
-						<span>{$sToggleObsoleteOptionLabel}</span>
-						<span class="mhf-pull-right">{$sToggleObsoleteOptionInput}</span>
-					</li>
-				</ul>
+				<form method="post" class="mdv-options-form">
+					<ul>
+						{$sOptionsItemsHtml}
+					</ul>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -219,8 +266,7 @@ EOF
 		);
 
 		// Init JS widget
-		$oOutput->AddJs(
-<<<EOF
+		$oOutput->AddJs(<<<EOF
 // Molkobain datacenter view
 // - Initializing widget
 $.molkobain.{$sJSWidgetName}(
@@ -232,11 +278,6 @@ EOF
 
 		return $oOutput;
 	}
-
-
-	//---------
-	// Data
-	//---------
 
 	/**
 	 * Returns the object data for the JS widget either as a PHP array or JSON string
@@ -273,130 +314,6 @@ EOF
 		$sMethodName = 'Get' . ucfirst($this->sType) . 'Data';
 
 		return static::$sMethodName($this->oObject);
-	}
-
-	/**
-	 * Returns base data of $oObject (which can be $this->oObject or one of its devices)
-	 *
-	 * @param \DBObject $oObject
-	 *
-	 * @return array
-	 * @throws \CoreException
-	 */
-	protected function GetObjectBaseData(DBObject $oObject)
-	{
-		$iNbU = (empty($oObject->Get('nb_u'))) ? 1 : (int) $oObject->Get('nb_u');
-
-		$aData = array(
-			'class' => get_class($oObject),
-			'id' => $oObject->GetKey(),
-			'name' => $oObject->GetName(),
-			'icon' => $oObject->GetIcon(false),
-			'url' => $oObject->GetHyperlink(), // Note: GetHyperlink() actually return the HTML markup
-			'nb_u' => $iNbU,
-			'tooltip' => array(
-				'content' => $this->MakeDeviceTooltipContent($oObject),
-			),
-		);
-
-		return $aData;
-	}
-
-	/**
-	 * @param \DBObject $oRack
-	 *
-	 * @return array
-	 * @throws \CoreException
-	 */
-	protected function GetRackData(DBObject $oRack)
-	{
-		$aData = $this->GetObjectBaseData($oRack) + array(
-				'panels' => array(
-					'front' => Dict::S('Molkobain:DatacenterView:Rack:Panel:Front:Title'),
-				),
-				'enclosures' => array(
-					'icon' => MetaModel::GetClassIcon('Enclosure', false),
-					static::ENUM_ASSEMBLY_TYPE_MOUNTED => array(),
-					static::ENUM_ASSEMBLY_TYPE_UNMOUNTED => array(),
-				),
-				'devices' => array(
-					'icon' => MetaModel::GetClassIcon('DatacenterDevice', false),
-					static::ENUM_ASSEMBLY_TYPE_MOUNTED => array(),
-					static::ENUM_ASSEMBLY_TYPE_UNMOUNTED => array(),
-				),
-			);
-
-		/** @var \DBObjectSet $oEnclosureSet */
-		$oEnclosureSet = $oRack->Get('enclosure_list');
-		while($oEnclosure = $oEnclosureSet->Fetch())
-		{
-			$aEnclosureData = $this->GetEnclosureData($oEnclosure);
-			$sEnclosureAssemblyType = ($aEnclosureData['position_v'] > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
-
-			$aData['enclosures'][$sEnclosureAssemblyType][] = $aEnclosureData;
-		}
-
-		$oDeviceSearch = DBObjectSearch::FromOQL('SELECT DatacenterDevice WHERE rack_id = :rack_id AND enclosure_id = 0');
-		$oDeviceSet = new DBObjectSet($oDeviceSearch, array(), array('rack_id' => $oRack->GetKey()));
-		while($oDevice = $oDeviceSet->Fetch())
-		{
-			$aDeviceData = $this->GetDeviceData($oDevice);
-			$sDeviceAssemblyType = ($aDeviceData['position_v'] > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
-
-			$aData['devices'][$sDeviceAssemblyType][] = $aDeviceData;
-		}
-
-		return $aData;
-	}
-
-	/**
-	 * @param \DBObject $oEnclosure
-	 *
-	 * @return array
-	 * @throws \CoreException
-	 */
-	protected function GetEnclosureData(DBObject $oEnclosure)
-	{
-		$aData = $this->GetObjectBaseData($oEnclosure) + array(
-				'rack_id' => (int) $oEnclosure->Get('rack_id'),
-				'position_v' => (int) $oEnclosure->Get('position_v'),
-				'position_p' => 'front',
-				'devices' => array(
-					'icon' => MetaModel::GetClassIcon('DatacenterDevice', false),
-					static::ENUM_ASSEMBLY_TYPE_MOUNTED => array(),
-					static::ENUM_ASSEMBLY_TYPE_UNMOUNTED => array(),
-				),
-			);
-
-		/** @var \DBObjectSet $oDeviceSet */
-		$oDeviceSet = $oEnclosure->Get('device_list');
-		while($oDevice = $oDeviceSet->Fetch())
-		{
-			$aDeviceData = $this->GetDeviceData($oDevice);
-			$sDeviceAssemblyType = ($aDeviceData['position_v'] > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
-
-			$aData['devices'][$sDeviceAssemblyType][] = $aDeviceData;
-		}
-
-		return $aData;
-	}
-
-	/**
-	 * @param \DBObject $oDevice
-	 *
-	 * @return array
-	 * @throws \CoreException
-	 */
-	protected function GetDeviceData(DBObject $oDevice)
-	{
-		$aData = $this->GetObjectBaseData($oDevice) + array(
-				'rack_id' => (int) $oDevice->Get('rack_id'),
-				'enclosure_id' => (int) $oDevice->Get('enclosure_id'),
-				'position_v' => (int) $oDevice->Get('position_v'),
-				'position_p' => 'front',
-			);
-
-		return $aData;
 	}
 
 	/**
@@ -457,6 +374,206 @@ EOF
 
 		return $aLegendData;
 	}
+
+	/**
+	 * Note: Using a static method instead of a static array as it is not possible in PHP 5.6
+	 *
+	 * @return array
+	 */
+	public static function EnumElementTypes()
+	{
+		return array(
+			static::ENUM_ELEMENT_TYPE_RACK,
+			static::ENUM_ELEMENT_TYPE_ENCLOSURE,
+			static::ENUM_ELEMENT_TYPE_DEVICE,
+		);
+	}
+
+	/**
+	 * Note: Using a static method instead of a static array as it is not possible in PHP 5.6
+	 *
+	 * @return array
+	 */
+	public static function EnumAssemblyTypes()
+	{
+		return array(
+			static::ENUM_ASSEMBLY_TYPE_MOUNTED,
+			static::ENUM_ASSEMBLY_TYPE_UNMOUNTED,
+		);
+	}
+
+	/**
+	 * Returns dictionary entries used by the JS widget
+	 *
+	 * @return array
+	 * @throws \DictExceptionMissingString
+	 */
+	protected function GetDictEntries()
+	{
+		return array(
+			'Molkobain:DatacenterView:Unmounted:Enclosures:Title' => Dict::S('Molkobain:DatacenterView:Unmounted:Enclosures:Title'),
+			'Molkobain:DatacenterView:Unmounted:Enclosures:Title+' => Dict::S('Molkobain:DatacenterView:Unmounted:Enclosures:Title+'),
+			'Molkobain:DatacenterView:Unmounted:Devices:Title' => Dict::S('Molkobain:DatacenterView:Unmounted:Devices:Title'),
+			'Molkobain:DatacenterView:Unmounted:Devices:Title+' => Dict::S('Molkobain:DatacenterView:Unmounted:Devices:Title+'),
+		);
+	}
+
+	/**
+	 * Returns options data:
+	 *
+	 * array(
+	 *   'label' => 'abc',
+	 *   'tooltip' => 'def',        // Not escaped, can't be displayed in HTML as-is
+	 *   'input_html' => '<foo>',
+	 * )
+	 *
+	 * @return array
+	 * @throws \DictExceptionMissingString
+	 */
+	protected function PrepareOptions()
+	{
+		$aOptions = array();
+
+		// Show obsolete
+		// - Retrieve value. Value is defined as follows: user pref on object >> user pref >> instance config parameter
+		$bShowObsoleteConfigDefault = MetaModel::GetConfig()->Get('obsolescence.show_obsolete_data');
+		$bShowObsoleteUserDefault = appUserPreferences::GetPref('show_obsolete_data', $bShowObsoleteConfigDefault);
+		$bShowObsolete = $this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsoleteUserDefault);
+		// - Add to options
+		$aOptions[static::ENUM_OPTION_CODE_SHOWOBSOLETE] = array(
+			'label' => Dict::S('Molkobain:DatacenterView:Options:Option:ShowObsolete'),
+			'tooltip' => Dict::S('Molkobain:DatacenterView:Options:Option:ShowObsolete+'),
+			'input_html' => UIHelper::MakeToggleButton(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsolete, null, 'console.log("Coucou");'),
+		);
+
+		return $aOptions;
+	}
+
+	/**
+	 * Returns the $sCode option for the current object in the appUserPreferences
+	 *
+	 * @param string $sCode
+	 * @param mixed $defaultValue
+	 *
+	 * @return string
+	 */
+	public function GetOption($sCode, $defaultValue)
+	{
+		$sUserPrefCodeForObject = ConfigHelper::GetModuleCode() . '|object|' . $this->GetObjectClass() . '|' . $this->GetObjectId();
+		$aPrefs = appUserPreferences::GetPref($sUserPrefCodeForObject, array());
+
+		return (array_key_exists($sCode, $aPrefs)) ? $aPrefs[$sCode] : $defaultValue;
+	}
+
+
+	//----------
+	// Options
+	//----------
+
+	/**
+	 * Sets the $sCode option to $value for the current object in the appUserPreferences
+	 *
+	 * @param string $sCode
+	 * @param mixed $value
+	 *
+	 * @return $this
+	 */
+	public function SetOption($sCode, $value)
+	{
+		$sUserPrefCodeForObject = ConfigHelper::GetModuleCode() . '|object|' . $this->GetObjectClass() . '|' . $this->GetObjectId();
+		$aPrefs = appUserPreferences::GetPref($sUserPrefCodeForObject, array());
+
+		if(array_key_exists($sCode, $aPrefs) && ($aPrefs[$sCode] === $value))
+		{
+			// Do not write it again
+		}
+		else
+		{
+			$aPrefs[$sCode] = $value;
+			appUserPreferences::SetPref($sUserPrefCodeForObject, $aPrefs);
+		}
+
+		return $this;
+	}
+
+	/**
+	 * @param \DBObject $oRack
+	 *
+	 * @return array
+	 * @throws \CoreException
+	 */
+	protected function GetRackData(DBObject $oRack)
+	{
+		$aData = $this->GetObjectBaseData($oRack) + array(
+				'panels' => array(
+					'front' => Dict::S('Molkobain:DatacenterView:Rack:Panel:Front:Title'),
+				),
+				'enclosures' => array(
+					'icon' => MetaModel::GetClassIcon('Enclosure', false),
+					static::ENUM_ASSEMBLY_TYPE_MOUNTED => array(),
+					static::ENUM_ASSEMBLY_TYPE_UNMOUNTED => array(),
+				),
+				'devices' => array(
+					'icon' => MetaModel::GetClassIcon('DatacenterDevice', false),
+					static::ENUM_ASSEMBLY_TYPE_MOUNTED => array(),
+					static::ENUM_ASSEMBLY_TYPE_UNMOUNTED => array(),
+				),
+			);
+
+		/** @var \DBObjectSet $oEnclosureSet */
+		$oEnclosureSet = $oRack->Get('enclosure_list');
+		while($oEnclosure = $oEnclosureSet->Fetch())
+		{
+			$aEnclosureData = $this->GetEnclosureData($oEnclosure);
+			$sEnclosureAssemblyType = ($aEnclosureData['position_v'] > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
+
+			$aData['enclosures'][$sEnclosureAssemblyType][] = $aEnclosureData;
+		}
+
+		$oDeviceSearch = DBObjectSearch::FromOQL('SELECT DatacenterDevice WHERE rack_id = :rack_id AND enclosure_id = 0');
+		$oDeviceSet = new DBObjectSet($oDeviceSearch, array(), array('rack_id' => $oRack->GetKey()));
+		while($oDevice = $oDeviceSet->Fetch())
+		{
+			$aDeviceData = $this->GetDeviceData($oDevice);
+			$sDeviceAssemblyType = ($aDeviceData['position_v'] > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
+
+			$aData['devices'][$sDeviceAssemblyType][] = $aDeviceData;
+		}
+
+		return $aData;
+	}
+
+	/**
+	 * Returns base data of $oObject (which can be $this->oObject or one of its devices)
+	 *
+	 * @param \DBObject $oObject
+	 *
+	 * @return array
+	 * @throws \CoreException
+	 */
+	protected function GetObjectBaseData(DBObject $oObject)
+	{
+		$iNbU = (empty($oObject->Get('nb_u'))) ? 1 : (int) $oObject->Get('nb_u');
+
+		$aData = array(
+			'class' => get_class($oObject),
+			'id' => $oObject->GetKey(),
+			'name' => $oObject->GetName(),
+			'icon' => $oObject->GetIcon(false),
+			'url' => $oObject->GetHyperlink(), // Note: GetHyperlink() actually return the HTML markup
+			'nb_u' => $iNbU,
+			'tooltip' => array(
+				'content' => $this->MakeDeviceTooltipContent($oObject),
+			),
+		);
+
+		return $aData;
+	}
+
+
+	//-----------------
+	// Static methods
+	//-----------------
 
 	/**
 	 * Returns the HTML content for the device's tooltip
@@ -540,77 +657,52 @@ EOF;
 	}
 
 	/**
-	 * Returns dictionary entries used by the JS widget
+	 * @param \DBObject $oEnclosure
 	 *
 	 * @return array
-	 * @throws \DictExceptionMissingString
+	 * @throws \CoreException
 	 */
-	protected function GetDictEntries()
+	protected function GetEnclosureData(DBObject $oEnclosure)
 	{
-		return array(
-			'Molkobain:DatacenterView:Unmounted:Enclosures:Title' => Dict::S('Molkobain:DatacenterView:Unmounted:Enclosures:Title'),
-			'Molkobain:DatacenterView:Unmounted:Enclosures:Title+' => Dict::S('Molkobain:DatacenterView:Unmounted:Enclosures:Title+'),
-			'Molkobain:DatacenterView:Unmounted:Devices:Title' => Dict::S('Molkobain:DatacenterView:Unmounted:Devices:Title'),
-			'Molkobain:DatacenterView:Unmounted:Devices:Title+' => Dict::S('Molkobain:DatacenterView:Unmounted:Devices:Title+'),
-		);
-	}
+		$aData = $this->GetObjectBaseData($oEnclosure) + array(
+				'rack_id' => (int) $oEnclosure->Get('rack_id'),
+				'position_v' => (int) $oEnclosure->Get('position_v'),
+				'position_p' => 'front',
+				'devices' => array(
+					'icon' => MetaModel::GetClassIcon('DatacenterDevice', false),
+					static::ENUM_ASSEMBLY_TYPE_MOUNTED => array(),
+					static::ENUM_ASSEMBLY_TYPE_UNMOUNTED => array(),
+				),
+			);
 
-
-	//-----------------
-	// Static methods
-	//-----------------
-
-
-	/**
-	 * Note: Using a static method instead of a static array as it is not possible in PHP 5.6
-	 *
-	 * @return array
-	 */
-	public static function EnumElementTypes()
-	{
-		return array(
-			static::ENUM_ELEMENT_TYPE_RACK,
-			static::ENUM_ELEMENT_TYPE_ENCLOSURE,
-			static::ENUM_ELEMENT_TYPE_DEVICE,
-		);
-	}
-
-	/**
-	 * Note: Using a static method instead of a static array as it is not possible in PHP 5.6
-	 *
-	 * @return array
-	 */
-	public static function EnumAssemblyTypes()
-	{
-		return array(
-			static::ENUM_ASSEMBLY_TYPE_MOUNTED,
-			static::ENUM_ASSEMBLY_TYPE_UNMOUNTED,
-		);
-	}
-
-	/**
-	 * Returns if the $oObject is a rack|enclosure|device (see ENUM_ELEMENT_TYPE_XXX constants)
-	 *
-	 * @param \DBObject $oObject
-	 *
-	 * @return string
-	 */
-	public static function FindObjectType(DBObject $oObject)
-	{
-		$sObjClass = get_class($oObject);
-		switch($sObjClass)
+		/** @var \DBObjectSet $oDeviceSet */
+		$oDeviceSet = $oEnclosure->Get('device_list');
+		while($oDevice = $oDeviceSet->Fetch())
 		{
-			case 'Rack':
-				$sObjType = 'rack';
-				break;
-			case 'Enclosure':
-				$sObjType = 'enclosure';
-				break;
-			default:
-				$sObjType = 'device';
-				break;
+			$aDeviceData = $this->GetDeviceData($oDevice);
+			$sDeviceAssemblyType = ($aDeviceData['position_v'] > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
+
+			$aData['devices'][$sDeviceAssemblyType][] = $aDeviceData;
 		}
 
-		return $sObjType;
+		return $aData;
+	}
+
+	/**
+	 * @param \DBObject $oDevice
+	 *
+	 * @return array
+	 * @throws \CoreException
+	 */
+	protected function GetDeviceData(DBObject $oDevice)
+	{
+		$aData = $this->GetObjectBaseData($oDevice) + array(
+				'rack_id' => (int) $oDevice->Get('rack_id'),
+				'enclosure_id' => (int) $oDevice->Get('enclosure_id'),
+				'position_v' => (int) $oDevice->Get('position_v'),
+				'position_p' => 'front',
+			);
+
+		return $aData;
 	}
 }

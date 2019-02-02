@@ -52,8 +52,8 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 	*{
 		box-sizing: border-box;
 
-		&:before,
-		&:after{
+		&::before,
+		&::after{
 			box-sizing: border-box;
 		}
 	}
@@ -145,19 +145,6 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 
 			.mhf-p-header{
 				margin-bottom: 0.2rem;
-
-				.mhf-ph-title{
-					position: relative;
-
-					&::after{
-						content: "?";
-						position: absolute;
-						right: -0.4rem;
-						font-size: 0.6rem;
-						color: $tooltip-indicator-color;
-						cursor: pointer;
-					}
-				}
 			}
 			.mhf-p-body{
 				min-height: 140px;
@@ -264,6 +251,10 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 			color: inherit;
 			text-decoration: none;
 		}
+		.object-ref-icon{
+			margin-right: 0.3rem;
+			vertical-align: initial; /* Overload the 1px from console CSS */
+		}
 
 		&:hover{
 			box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.23);
@@ -303,35 +294,6 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 		&[data-class="TapeLibrary"]{
 			background-color: $obj-class-tapelibrary-bg-color;
 		}
-
-		/*color: #444;
-		&::before{
-			content: "";
-			display: inline-block;
-			margin-right: 0.3rem;
-			width: 8px;
-			height: 8px;
-			border-radius: 100%;
-		}
-
-		&[data-class="Server"]::before{
-			background-color: #3f627e;
-		}
-		&[data-class="NetworkDevice"]::before{
-			background-color: #c85454;
-		}
-		&[data-class="SANSwitch"]::before{
-			background-color: lightsalmon;
-		}
-		&[data-class="NAS"]::before{
-			background-color: #80b469;
-		}
-		&[data-class="StorageSystem"]::before{
-			background-color: #eb913b;
-		}
-		&[data-class="TapeLibrary"]::before{
-			background-color: #7da9bc;
-		}*/
 	}
 	.mdv-enclosure{
 		.mdv-enclosure-unit{
@@ -425,6 +387,22 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 		opacity: 0.1;
 	}
 }
+
+/* Tooltips */
+/* - Tooltip indicator */
+[data-toggle="tooltip"]{
+	position: relative;
+
+	&::after{
+		content: "?";
+		position: absolute;
+		right: -0.4rem;
+		font-size: 0.6rem;
+		color: $tooltip-indicator-color;
+		cursor: pointer;
+	}
+}
+/* - Tooltip itself */
 .mhf-tooltip{
 	.mdv-dt-header{
 		margin-bottom: 1.2rem;
