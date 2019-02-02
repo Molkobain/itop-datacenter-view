@@ -17,20 +17,20 @@
 .mhf-templates *, .mhf-panel *, .mhf-tooltip *, .mhf-toggle-button * {
   box-sizing: border-box;
 }
-.mhf-templates *:before, .mhf-panel *:before, .mhf-tooltip *:before, .mhf-toggle-button *:before, .mhf-templates *:after, .mhf-panel *:after, .mhf-tooltip *:after, .mhf-toggle-button *:after {
+.mhf-templates *::before, .mhf-panel *::before, .mhf-tooltip *::before, .mhf-toggle-button *::before, .mhf-templates *::after, .mhf-panel *::after, .mhf-tooltip *::after, .mhf-toggle-button *::after {
   box-sizing: border-box;
 }
 /* Helpers */
 .mhf-pull-left {
   float: left;
 }
-.mhf-pull-left:after {
+.mhf-pull-left::after {
   clear: both;
 }
 .mhf-pull-right {
   float: right;
 }
-.mhf-pull-right:after {
+.mhf-pull-right::after {
   clear: both;
 }
 /* Templates: HTML markup to be cloned for creating elements, always hidden */
@@ -98,20 +98,20 @@
   cursor: pointer;
   user-select: none;
 }
-.mhf-toggle-button .mhf-tb-input + .mhf-tb-button:after, .mhf-toggle-button .mhf-tb-input + .mhf-tb-button:before {
+.mhf-toggle-button .mhf-tb-input + .mhf-tb-button::after, .mhf-toggle-button .mhf-tb-input + .mhf-tb-button::before {
   position: relative;
   display: block;
   content: "";
   width: 50%;
   height: 100%;
 }
-.mhf-toggle-button .mhf-tb-input + .mhf-tb-button:after {
+.mhf-toggle-button .mhf-tb-input + .mhf-tb-button::after {
   left: 0;
 }
-.mhf-toggle-button .mhf-tb-input + .mhf-tb-button:before {
+.mhf-toggle-button .mhf-tb-input + .mhf-tb-button::before {
   display: none;
 }
-.mhf-toggle-button .mhf-tb-input:checked + .mhf-tb-button:after {
+.mhf-toggle-button .mhf-tb-input:checked + .mhf-tb-button::after {
   left: 50%;
 }
 .mhf-toggle-button .mhf-tb-input.mhf-tb-flat + .mhf-tb-button {
@@ -121,7 +121,7 @@
   box-shadow: inset 0 1px 1px 0px rgba(0, 0, 0, 0.15);
   transition: all 0.4s ease;
 }
-.mhf-toggle-button .mhf-tb-input.mhf-tb-flat + .mhf-tb-button:after {
+.mhf-toggle-button .mhf-tb-input.mhf-tb-flat + .mhf-tb-button::after {
   border-radius: 50%;
   background: #fff;
   box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.12);

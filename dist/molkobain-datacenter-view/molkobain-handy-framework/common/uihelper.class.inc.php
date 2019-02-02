@@ -19,35 +19,45 @@ class UIHelper
 {
 	protected static $iIdCounter = 0;
 
-    /**
-     * Returns HTML markup for a toggle button based on a checkbox
-     *
-     * @todo Parameters for default value, id, labels, extra CSS classes
-     *
-     * @return string
-     */
-    public static function MakeToggleButton($bOn = true)
-    {
-    	$sId = 'mhf-tb-' . time() . '-' . static::GetNextId();
-    	$sOffLabel = '';
-    	$sOnLabel = '';
+	/**
+	 * Returns HTML markup for a toggle button based on a checkbox
+	 *
+	 * @param string $sInputName "name" attribute of the HTML input
+	 * @param bool $bOn Default state of the toggle
+	 * @param string|null $sInputId "id" attribute of the HTML input, if null one will be generated
+	 * @param string|null $sJSOnChangeCallback Javascript callback to execute on change
+	 * @param string|null $sOnLabel Label to display when toggle is "On", display depends on the theme
+	 * @param string|null $sOffLabel Label to display when toggle is "Off", display depends on the theme
+	 *
+	 * @return string
+	 */
+	public static function MakeToggleButton($sInputName, $bOn = true, $sInputId = null, $sJSOnChangeCallback = null, $sOnLabel = null, $sOffLabel = null)
+	{
+		// Prepare parameters
+		// - Make unique ID for input if necessary
+		$sInputId = (empty($sInputId)) ? 'mhf-tb-' . time() . '-' . static::GetNextId() : $sInputId;
+		// - Convert default value
+		$sInputChecked = (((bool) $bOn) === true) ? 'checked' : '';
+		// - Optional labels, depend on the theme
+		$sOffTagAtt = (!empty($sOffLabel)) ? 'data-off-label="' . $sOffLabel . '"' : '';
+		$sOnTagAtt = (!empty($sOnLabel)) ? 'data-on-label="' . $sOnLabel . '"' : '';
+		// - Optional JS callback
+		// Note: escaping html chars to avoid breaking the quotes around the attribute's value
+		$sOnChangeAtt = (!empty($sJSOnChangeCallback)) ? 'onchange="javascript: ' . htmlspecialchars($sJSOnChangeCallback) . '"' : '';
 
-    	$sOffTagAttribute = (!empty($sOffLabel)) ? 'data-off-label="'.$sOffLabel.'"' : '';
-    	$sOnTagAttribute = (!empty($sOnLabel)) ? 'data-on-label="'.$sOnLabel.'"' : '';
-
-    	$sHtml =
-<<<EOF
+		$sHtml =
+			<<<EOF
 <span class="mhf-toggle-button">
-	<input class="mhf-tb-input mhf-tb-flat" id="{$sId}" type="checkbox"/>
-	<label class="mhf-tb-button" {$sOffTagAttribute} {$sOnTagAttribute} for="{$sId}">
+	<input class="mhf-tb-input mhf-tb-flat" id="{$sInputId}" name="{$sInputName}" type="checkbox" {$sOnChangeAtt} {$sInputChecked} />
+	<label class="mhf-tb-button" {$sOffTagAtt} {$sOnTagAtt} for="{$sInputId}">
 </span>
 EOF;
 
-        return $sHtml;
-    }
+		return $sHtml;
+	}
 
-    protected static function GetNextId()
-    {
-    	return ++static::$iIdCounter;
-    }
+	protected static function GetNextId()
+	{
+		return ++static::$iIdCounter;
+	}
 }
