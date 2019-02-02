@@ -73,10 +73,10 @@ $(function()
 			// - Device. Overloaded to put in enclosure slot
 			_initializeDevice: function(oDevice, oHostElem)
 			{
-				if((oHostElem === false) || (oHostElem === undefined) || (oHostElem === null))
+				if((oHostElem === undefined) || (oHostElem === null))
 				{
 					oHostElem = this._getEnclosureSlotElement(oDevice.position_v, this._getObjectDatum('id'));
-					if(oHostElem === false)
+					if(oHostElem === null)
 					{
 						oHostElem = this.element.find('.mdv-unmounted-type[data-type="device"] .mhf-p-body')
 					}

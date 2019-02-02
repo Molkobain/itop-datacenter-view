@@ -201,7 +201,7 @@ $(function()
 			// - Device. Overload for specific host search
 			_initializeDevice: function(oDevice, oHostElem)
 			{
-				if((oHostElem === false) || (oHostElem === undefined) || (oHostElem === null))
+				if((oHostElem === undefined) || (oHostElem === null))
 				{
 					oHostElem = this.element.find('.mdv-unmounted-type[data-type="device"] .mhf-p-body');
 				}
@@ -297,14 +297,14 @@ $(function()
 			{
 				return (this.options.dict[sCode] !== undefined) ? this.options.dict[sCode] : sCode;
 			},
-			// - Return the jQuery object for the iSlotNumber slot of the iEnclosureId enclosure if found, false otherwise
+			// - Return the jQuery object for the iSlotNumber slot of the iEnclosureId enclosure if found, null otherwise
 			_getEnclosureSlotElement: function(iSlotNumber, iEnclosureId)
 			{
 				var oSlotElem = this.element.find('.mdv-enclosure[data-id="' + iEnclosureId + '"] .mdv-enclosure-unit[data-unit-number="' + iSlotNumber + '"] .mdv-eu-slot');
 				if(oSlotElem.length === 0)
 				{
 					this._trace('Could not find enclosure slot "' + iSlotNumber + 'U" for "' + iEnclosureId + '".');
-					return false;
+					return null;
 				}
 
 				return oSlotElem;
