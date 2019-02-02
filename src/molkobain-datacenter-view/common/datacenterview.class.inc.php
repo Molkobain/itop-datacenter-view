@@ -33,7 +33,7 @@ class DatacenterView
 	const ENUM_ELEMENT_TYPE_RACK = 'rack';
 	const ENUM_ELEMENT_TYPE_ENCLOSURE = 'enclosure';
 	const ENUM_ELEMENT_TYPE_DEVICE = 'device';
-	
+
 	const ENUM_ENDPOINT_OPERATION_RENDERTAB = 'render_tab';
 
 	/** @var \DBObject $oObject */

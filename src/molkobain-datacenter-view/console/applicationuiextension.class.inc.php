@@ -58,7 +58,7 @@ class ApplicationUIExtension implements iApplicationUIExtension
 		// - CSS files
 		$oPage->add_saas('env-' . utils::GetCurrentEnvironment() . '/' . ConfigHelper::GetModuleCode() . '/common/css/datacenter-view.scss');
 
-		// Add AJAX tab
+		// Add content in an async tab
 		$sPreviousTab = $oPage->GetCurrentTab();
 		$oPage->AddAjaxTab(
 			Dict::S('Molkobain:DatacenterView:Tabs:View:Title'),
