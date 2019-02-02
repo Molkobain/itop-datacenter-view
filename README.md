@@ -12,6 +12,7 @@
 Easily manage & visualize your racks, enclosures and datacenter devices.
 * See at a glace where your devices are.
 * Check which attached devices have no position set.
+* Toggle obsolete devices easily.
 * Full support of english, french & dutch languages.
 
 ![Overview](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-overview-01.png)
