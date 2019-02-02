@@ -25,9 +25,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	// - Legend
 	'Molkobain:DatacenterView:Legend:Title' => 'Legende',
 	// - Options
-	'Molkobain:DatacenterView:Options:Title' => 'Options~~',
-	'Molkobain:DatacenterView:Options:Option:ShowObsolete' => 'Show obsolete elements~~',
-	'Molkobain:DatacenterView:Options:Option:ShowObsolete+' => 'Changing value will override the global user preference for this element only~~',
+	'Molkobain:DatacenterView:Options:Option:ShowObsolete' => 'Toon objecten die buiten dienst zijn',
+	'Molkobain:DatacenterView:Options:Option:ShowObsolete+' => 'Deze waarde is enkel van toepassing op dit object',
 	// - Tooltip
 	'Molkobain:DatacenterView:Element:Tooltip:Fieldset:base-info' => 'Basisinfo',
 	'Molkobain:DatacenterView:Element:Tooltip:Fieldset:more-info' => 'Meer info',
