@@ -48,7 +48,8 @@ $(function()
 			// - Make the markup for views (eg. rack panels, enclosure panel, ...)
 			_initializeViews: function()
 			{
-				var oEnclosurePanel = $('<div />')
+				/* var oEnclosurePanel */
+				$('<div />')
 					.addClass('mdv-enclosure-panel')
 					.append(
 						$('<div />')
@@ -72,10 +73,10 @@ $(function()
 			// - Device. Overloaded to put in enclosure slot
 			_initializeDevice: function(oDevice, oHostElem)
 			{
-				if((oHostElem === false) || (oHostElem === undefined) || (oHostElem === null))
+				if((oHostElem === undefined) || (oHostElem === null))
 				{
 					oHostElem = this._getEnclosureSlotElement(oDevice.position_v, this._getObjectDatum('id'));
-					if(oHostElem === false)
+					if(oHostElem === null)
 					{
 						oHostElem = this.element.find('.mdv-unmounted-type[data-type="device"] .mhf-p-body')
 					}

@@ -15,6 +15,7 @@ $(function()
 				debug: false,
 				object_type: 'rack',
 				object_data: null,
+				endpoint: null,
 				legend: {},
 				dict: {},
 				defaults: {
@@ -86,11 +87,29 @@ $(function()
 					return false;
 				}
 
+				if(this.options.endpoint === null)
+				{
+					this._trace('Could not initialize widget with no endpoint.');
+					return false;
+				}
+
+				this._bindEvents();
+
 				this._initializeLegend();
 				this._initializeViews();
 				this._initializeUnmounted();
 				this._initializeElements();
 				this._initializeTooltips();
+			},
+			// - Bind external events
+			_bindEvents: function()
+			{
+				var me = this;
+
+				// Refresh view
+				this.element.bind('mdv.refresh_view', function(){
+					return me._onRefreshView();
+				});
 			},
 			// - Make the markup & events binding for the legend
 			_initializeLegend: function()
@@ -101,10 +120,16 @@ $(function()
 				for(var sClass in this.options.legend.classes)
 				{
 					var oClass = this.options.legend.classes[sClass];
-					var oItemElem = this._cloneTemplate('legend-item')
+					/* var oItemElem */
+					this._cloneTemplate('legend-item')
 						.attr('data-class', sClass)
 						.attr('data-count', oClass.count)
-						.text(oClass.title + ' (' + oClass.count + ')')
+						.find('.mdv-li-title')
+						.text(oClass.title)
+						.end()
+						.find('.mdv-li-count')
+						.text(oClass.count)
+						.end()
 						.appendTo( this.element.find('.mdv-legend ul') );
 				}
 
@@ -115,7 +140,6 @@ $(function()
 						me.element.find('.mdv-device[data-class!="' + sObjClass + '"]').addClass('mdv-fade-for-highlighting');
 					},
 					function(){
-						var sObjClass = $(this).attr('data-class');
 						me.element.find('.mdv-device').removeClass('mdv-fade-for-highlighting');
 					}
 				);
@@ -177,7 +201,7 @@ $(function()
 			// - Device. Overload for specific host search
 			_initializeDevice: function(oDevice, oHostElem)
 			{
-				if((oHostElem === false) || (oHostElem === undefined) || (oHostElem === null))
+				if((oHostElem === undefined) || (oHostElem === null))
 				{
 					oHostElem = this.element.find('.mdv-unmounted-type[data-type="device"] .mhf-p-body');
 				}
@@ -205,8 +229,8 @@ $(function()
 				var oQTipOptions = $.extend(
 					true,
 					{},
-					{ content: oDevice.tooltip.content },
-					this.options.defaults.tooltip_options
+					this.options.defaults.tooltip_options,
+					{ content: oDevice.tooltip.content }
 				);
 				// Note: We don't use the .closest() yet for performance reasons. If this goes recurse, we might want to consider it though.
 				if(oHostElem.closest('.mdv-unmounted-type').length > 0)
@@ -232,6 +256,30 @@ $(function()
 				});
 			},
 
+			// Event handlers
+			// - Refresh view from server with current options
+			_onRefreshView: function()
+			{
+				var me = this;
+
+				this._showLoader();
+				$.post(
+					this.options.endpoint,
+					this.element.find('.mdv-options-form').serialize(),
+					'html'
+				)
+					.done(function(sResponse){
+						me.element.parent().html(sResponse);
+					})
+					.fail(function(){
+						// TODO: Show generic error message
+					})
+					.always(function(){
+						me._hideLoader();
+					});
+
+			},
+
 			// Getters
 			// - Return a single datum from the object_data set
 			_getObjectDatum: function(sCode)
@@ -249,14 +297,14 @@ $(function()
 			{
 				return (this.options.dict[sCode] !== undefined) ? this.options.dict[sCode] : sCode;
 			},
-			// - Return the jQuery object for the iSlotNumber slot of the iEnclosureId enclosure if found, false otherwise
+			// - Return the jQuery object for the iSlotNumber slot of the iEnclosureId enclosure if found, null otherwise
 			_getEnclosureSlotElement: function(iSlotNumber, iEnclosureId)
 			{
 				var oSlotElem = this.element.find('.mdv-enclosure[data-id="' + iEnclosureId + '"] .mdv-enclosure-unit[data-unit-number="' + iSlotNumber + '"] .mdv-eu-slot');
 				if(oSlotElem.length === 0)
 				{
 					this._trace('Could not find enclosure slot "' + iSlotNumber + 'U" for "' + iEnclosureId + '".');
-					return false;
+					return null;
 				}
 
 				return oSlotElem;
@@ -300,6 +348,14 @@ $(function()
 					.attr('title', this._getDictEntry('Molkobain:DatacenterView:Unmounted:' + sTypeForDictEntry + ':Title+'))
 					.attr('data-toggle', 'tooltip')
 					.text(this._getDictEntry('Molkobain:DatacenterView:Unmounted:' + sTypeForDictEntry + ':Title'));
+			},
+			_showLoader: function()
+			{
+				this.element.find('.mhf-loader').removeClass('mhf-hide');
+			},
+			_hideLoader: function()
+			{
+				this.element.find('.mhf-loader').addClass('mhf-hide');
 			},
 			// Display trace in js console
 			_trace: function(sMessage)

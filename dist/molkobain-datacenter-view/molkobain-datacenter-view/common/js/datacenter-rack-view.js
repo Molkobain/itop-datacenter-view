@@ -111,12 +111,8 @@ $(function()
 							.html(oEnclosure.url)
 							.appendTo(oEnclosureElem);
 
-						var oHostElem;
-						if( (sAssemblyType === this.enums.assembly_type.mounted) && (oEnclosure.position_v !== 0) )
-						{
-							oHostElem = this._getRackSlotElement(oEnclosure.position_v, oEnclosure.position_p);
-						}
-						else
+						var oHostElem = this._getRackSlotElement(oEnclosure.position_v, oEnclosure.position_p);
+						if( (sAssemblyType !== this.enums.assembly_type.mounted) || (oEnclosure.position_v === 0) || (oHostElem === null) )
 						{
 							oHostElem = this.element.find('.mdv-unmounted-type[data-type="enclosure"] .mhf-p-body');
 						}
@@ -128,10 +124,16 @@ $(function()
 							for(var iDeviceIdx in oEnclosure.devices[sEnclosureDevicesAssemblyType])
 							{
 								var oDevice = oEnclosure.devices[sEnclosureDevicesAssemblyType][iDeviceIdx];
-								var oDeviceHostElem = (sEnclosureDevicesAssemblyType === this.enums.assembly_type.mounted) ? this._getEnclosureSlotElement(oDevice.position_v, oEnclosure.id) : null;
+								var oDeviceHostElem = this._getEnclosureSlotElement(oDevice.position_v, oEnclosure.id);
+								var bAddNoteToDevice = false;
+								if( (sEnclosureDevicesAssemblyType !== this.enums.assembly_type.mounted) || (oDeviceHostElem === null) )
+								{
+									oDeviceHostElem = this.element.find('.mdv-unmounted-type[data-type="device"] .mhf-p-body');
+									bAddNoteToDevice = true;
+								}
 
 								var oDeviceElem = this._initializeDevice(oDevice, oDeviceHostElem);
-								if(oDeviceHostElem === null)
+								if(bAddNoteToDevice === true)
 								{
 									// Note: Url actually contains the hyperlink markup
 									$('<div />')
@@ -147,8 +149,8 @@ $(function()
 						var oQTipOptions = $.extend(
 							true,
 							{},
-							{ content: oEnclosure.tooltip.content },
-							this.options.defaults.tooltip_options
+							this.options.defaults.tooltip_options,
+							{ content: oEnclosure.tooltip.content }
 						);
 						oQTipOptions.position.adjust.x = -15;
 						oEnclosureElem.find('.mdv-element-note').qtip(oQTipOptions);
@@ -160,10 +162,10 @@ $(function()
 			// - Device. Overloaded to put in rack slot
 			_initializeDevice: function(oDevice, oHostElem)
 			{
-				if((oHostElem === false) || (oHostElem === undefined) || (oHostElem === null))
+				if((oHostElem === undefined) || (oHostElem === null))
 				{
 					oHostElem = this._getRackSlotElement(oDevice.position_v, oDevice.position_p);
-					if(oHostElem === false)
+					if(oHostElem === null)
 					{
 						oHostElem = this.element.find('.mdv-unmounted-type[data-type="device"] .mhf-p-body')
 					}
@@ -173,6 +175,7 @@ $(function()
 			},
 
 			// Getters
+			// - Return the jQuery object for the iSlotNumber slot of the sPanelCode rack if found, null otherwise
 			_getRackSlotElement: function(iSlotNumber, sPanelCode)
 			{
 				if(sPanelCode === undefined)
@@ -184,7 +187,7 @@ $(function()
 				if(oSlotElem.length === 0)
 				{
 					this._trace('Could not find rack slot "' + iSlotNumber + 'U" for panel "' + sPanelCode + '".');
-					return false;
+					return null;
 				}
 
 				return oSlotElem;

@@ -11,9 +11,10 @@
 // iTop module definition file
 //
 
+/** @noinspection PhpUnhandledExceptionInspection */
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'molkobain-handy-framework/1.0.0',
+	'molkobain-handy-framework/1.1.0',
 	array(
 		// Identification
 		//
@@ -32,6 +33,7 @@ SetupWebPage::AddModule(
 		'datamodel' => array(
 			'core/attributerackunit.class.inc.php',
 		    'common/confighelper.class.inc.php',
+		    'common/uihelper.class.inc.php',
 		    'console/pageuiextension.class.inc.php',
             'portal/apis/extensions/portaluiextension.class.inc.php',
 		),

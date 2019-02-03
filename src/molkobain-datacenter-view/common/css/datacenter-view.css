@@ -24,6 +24,7 @@
   background-color: #eee;
   /* Not in /css/css-variables.scss */
   /* Proper properties */
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -32,27 +33,27 @@
 .molkobain-datacenter-view * {
   box-sizing: border-box;
 }
-.molkobain-datacenter-view *:before, .molkobain-datacenter-view *:after {
+.molkobain-datacenter-view *::before, .molkobain-datacenter-view *::after {
   box-sizing: border-box;
 }
-.molkobain-datacenter-view .mdv-legend {
+.molkobain-datacenter-view .mdv-controls .mhf-panel {
   width: 200px;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body {
+.molkobain-datacenter-view .mdv-controls .mhf-panel .mhf-p-body {
   padding: 0.6rem;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul {
+.molkobain-datacenter-view .mdv-controls .mhf-panel .mhf-p-body ul {
   margin: 0;
   padding: 0;
   list-style: none;
   font-size: 0.8rem;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li {
   padding-bottom: 0.3rem;
   /* Padding instead of margin for a smoother transition between elements while fading */
   cursor: pointer;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li::before {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li::before {
   content: "";
   display: inline-block;
   margin-right: 0.5rem;
@@ -61,28 +62,28 @@
   border-radius: 100%;
   background-color: #8db46e;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="Enclosure"]::before {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="Enclosure"]::before {
   background-color: #eaeaea;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="Server"]::before {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="Server"]::before {
   background-color: #3f627e;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="NetworkDevice"]::before {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="NetworkDevice"]::before {
   background-color: #c85454;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="SANSwitch"]::before {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="SANSwitch"]::before {
   background-color: lightsalmon;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="NAS"]::before {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="NAS"]::before {
   background-color: #80b469;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="StorageSystem"]::before {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="StorageSystem"]::before {
   background-color: #eb913b;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li[data-class="TapeLibrary"]::before {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="TapeLibrary"]::before {
   background-color: #7da9bc;
 }
-.molkobain-datacenter-view .mdv-legend .mhf-p-body ul li:last-of-type {
+.molkobain-datacenter-view .mdv-controls .mdv-legend ul li:last-of-type {
   padding-bottom: 0;
 }
 .molkobain-datacenter-view .mdv-views {
@@ -100,17 +101,6 @@
 }
 .molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-header {
   margin-bottom: 0.2rem;
-}
-.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-header .mhf-ph-title {
-  position: relative;
-}
-.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-header .mhf-ph-title::after {
-  content: "?";
-  position: absolute;
-  right: -0.4rem;
-  font-size: 0.6rem;
-  color: #434343;
-  cursor: pointer;
 }
 .molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body {
   min-height: 140px;
@@ -180,7 +170,9 @@
   text-align: center;
   font-size: 0.7rem;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-  transition: all 0.2s ease-in-out;
+  transition-property: box-shadow, opacity;
+  transition-duration: 0.2s, 0.3s;
+  transition-timing-function: ease-in-out;
 }
 .molkobain-datacenter-view .mdv-device > *, .molkobain-datacenter-view .mdv-enclosure > * {
   flex-grow: 1;
@@ -188,6 +180,11 @@
 .molkobain-datacenter-view .mdv-device a, .molkobain-datacenter-view .mdv-enclosure a, .molkobain-datacenter-view .mdv-device a:hover, .molkobain-datacenter-view .mdv-enclosure a:hover, .molkobain-datacenter-view .mdv-device a:active, .molkobain-datacenter-view .mdv-enclosure a:active, .molkobain-datacenter-view .mdv-device a:visited, .molkobain-datacenter-view .mdv-enclosure a:visited {
   color: inherit;
   text-decoration: none;
+}
+.molkobain-datacenter-view .mdv-device .object-ref-icon, .molkobain-datacenter-view .mdv-enclosure .object-ref-icon {
+  margin-right: 0.3rem;
+  vertical-align: initial;
+  /* Overload the 1px from console CSS */
 }
 .molkobain-datacenter-view .mdv-device:hover, .molkobain-datacenter-view .mdv-enclosure:hover {
   box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.23);
@@ -198,33 +195,6 @@
   justify-content: space-around;
   padding: 0 0.3rem;
   color: #fff;
-  /*color: #444;
-   &::before{
-   content: "";
-   display: inline-block;
-   margin-right: 0.3rem;
-   width: 8px;
-   height: 8px;
-   border-radius: 100%;
-   }
-   &[data-class="Server"]::before{
-   background-color: #3f627e;
-   }
-   &[data-class="NetworkDevice"]::before{
-   background-color: #c85454;
-   }
-   &[data-class="SANSwitch"]::before{
-   background-color: lightsalmon;
-   }
-   &[data-class="NAS"]::before{
-   background-color: #80b469;
-   }
-   &[data-class="StorageSystem"]::before{
-   background-color: #eb913b;
-   }
-   &[data-class="TapeLibrary"]::before{
-   background-color: #7da9bc;
-   }*/
 }
 .molkobain-datacenter-view .mdv-device > * {
   overflow-x: hidden;
@@ -322,6 +292,20 @@
 .molkobain-datacenter-view .mdv-fade-for-highlighting {
   opacity: 0.1;
 }
+/* Tooltips */
+/* - Tooltip indicator */
+[data-toggle="tooltip"] {
+  position: relative;
+}
+[data-toggle="tooltip"]::after {
+  content: "?";
+  position: absolute;
+  right: -0.4rem;
+  font-size: 0.6rem;
+  color: #434343;
+  cursor: pointer;
+}
+/* - Tooltip itself */
 .mhf-tooltip .mdv-dt-header {
   margin-bottom: 1.2rem;
   font-weight: bold;
