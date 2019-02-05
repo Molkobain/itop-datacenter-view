@@ -36,6 +36,8 @@ class ConfigHelper extends BaseConfigHelper
     }
 
     /**
+     * Returns true is $sClass is allowed for graphical view
+     *
      * @param string $sClass
      *
      * @return bool
