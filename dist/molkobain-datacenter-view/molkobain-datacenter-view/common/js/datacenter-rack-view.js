@@ -47,6 +47,12 @@ $(function()
 
 			// Initialize the widget
 			// Inherited methods
+			initialize: function()
+			{
+				this.enums.element_type.rack = 'rack';
+
+				this._super();
+			},
 			// - Make the markup for views (eg. rack panels, enclosure panel, ...)
 			_initializeViews: function()
 			{
@@ -114,7 +120,7 @@ $(function()
 						var oHostElem = this._getRackSlotElement(oEnclosure.position_v, oEnclosure.position_p);
 						if( (sAssemblyType !== this.enums.assembly_type.mounted) || (oEnclosure.position_v === 0) || (oHostElem === null) )
 						{
-							oHostElem = this.element.find('.mdv-unmounted-type[data-type="enclosure"] .mhf-p-body');
+							oHostElem = this.element.find('.mdv-unmounted-type[data-type="' + this.enums.element_type.enclosure + '"] .mdv-ut-body');
 						}
 						oEnclosureElem.appendTo(oHostElem);
 
@@ -128,7 +134,7 @@ $(function()
 								var bAddNoteToDevice = false;
 								if( (sEnclosureDevicesAssemblyType !== this.enums.assembly_type.mounted) || (oDeviceHostElem === null) )
 								{
-									oDeviceHostElem = this.element.find('.mdv-unmounted-type[data-type="device"] .mhf-p-body');
+									oDeviceHostElem = this.element.find('.mdv-unmounted-type[data-type="' + this.enums.element_type.device + '"] .mdv-ut-body');
 									bAddNoteToDevice = true;
 								}
 
@@ -167,7 +173,7 @@ $(function()
 					oHostElem = this._getRackSlotElement(oDevice.position_v, oDevice.position_p);
 					if(oHostElem === null)
 					{
-						oHostElem = this.element.find('.mdv-unmounted-type[data-type="device"] .mhf-p-body')
+						oHostElem = this.element.find('.mdv-unmounted-type[data-type="' + this.enums.element_type.device + '"] .mdv-ut-body')
 					}
 				}
 
