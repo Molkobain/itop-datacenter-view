@@ -6,7 +6,6 @@
  *
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
-
 Dict::Add('FR FR', 'French', 'Français', array(
 	// Classes
 	// - Rack
@@ -33,6 +32,8 @@ Dict::Add('FR FR', 'French', 'Français', array(
 	'Molkobain:DatacenterView:Element:Tooltip:Fieldset:more-info' => 'Informations complémentaires',
 	// - Rack
 	'Molkobain:DatacenterView:Rack:Panel:Front:Title' => 'Avant',
+	// - Enclosure
+	'Molkobain:DatacenterView:Enclosure:Panel:Front:Title' => 'Avant',
 	// - Unmounted elements
 	'Molkobain:DatacenterView:Unmounted:Enclosures:Title' => 'Chassis non montés',
 	'Molkobain:DatacenterView:Unmounted:Enclosures:Title+' => 'Rattachés à ce rack mais aucune position renseignée (Editer le chassis pour corriger)',
