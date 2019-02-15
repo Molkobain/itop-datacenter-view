@@ -22,6 +22,7 @@ class DatacenterViewFactory
 {
 	const DEFAULT_DATACENTER_VIEW_CLASS = 'Molkobain\\iTop\\Extension\\DatacenterView\\Common\\DatacenterView';
 
+	/** @var string $sDatacenterViewClass */
 	protected static $sDatacenterViewClass;
 	/** @var array $aCachedDatacenterViews */
 	protected static $aCachedDatacenterViews = array();
