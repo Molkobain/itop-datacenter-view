@@ -36,6 +36,10 @@ try
 	{
 		case $oDatacenterView::ENUM_ENDPOINT_OPERATION_RENDERTAB:
 		case $oDatacenterView::ENUM_ENDPOINT_OPERATION_SUBMITOPTIONS:
+			// Retrieve if object in edition mode
+			$bEditMode = (bool) utils::ReadParam('edit_mode', $oDatacenterView::DEFAULT_OBJECT_IN_EDIT_MODE);
+			$oDatacenterView->SetObjectInEditMode($bEditMode);
+
 			// Retrieve options if present
 			if($sOperation === $oDatacenterView::ENUM_ENDPOINT_OPERATION_SUBMITOPTIONS)
 			{

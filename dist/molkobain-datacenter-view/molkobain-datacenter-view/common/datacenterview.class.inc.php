@@ -40,16 +40,26 @@ class DatacenterView
 
 	const ENUM_OPTION_CODE_SHOWOBSOLETE = 'show_obsolete';
 
+	const DEFAULT_OBJECT_IN_EDIT_MODE = false;
+
 	/** @var \DBObject $oObject */
 	protected $oObject;
 	/** @var string $sType */
 	protected $sType;
+	/** @var bool $bObjectInEditMode Is object in edition mode */
+	protected $bObjectInEditMode;
 
 	public function __construct(DBObject $oObject)
 	{
 		$this->oObject = $oObject;
 		$this->sType = static::FindObjectType($this->oObject);
+		$this->bObjectInEditMode = static::DEFAULT_OBJECT_IN_EDIT_MODE;
 	}
+
+
+	//--------------------
+	// Getters / Setters
+	//--------------------
 
 	/**
 	 * @return \DBObject
@@ -68,6 +78,34 @@ class DatacenterView
 	{
 		return $this->sType;
 	}
+
+	/**
+	 * Returns true if the object is in edition mode
+	 *
+	 * @return bool
+	 */
+	public function IsObjectInEditMode()
+	{
+		return (bool) $this->bObjectInEditMode;
+	}
+
+	/**
+	 * Sets if the object is in edition mode
+	 *
+	 * @param bool $bObjectInEditMode If not passed, set to true automatically
+	 *
+	 * @return $this
+	 */
+	public function SetObjectInEditMode($bObjectInEditMode = true)
+	{
+		$this->bObjectInEditMode = (bool) $bObjectInEditMode;
+		return $this;
+	}
+
+
+	//----------
+	// Helpers
+	//----------
 
 	/**
 	 * Returns the endpoint url with optional $aParams.
@@ -131,13 +169,26 @@ class DatacenterView
 		$sOptionsItemsHtml = '';
 		foreach($this->PrepareOptions() as $sOptionCode => $aOptionData)
 		{
-			// Note: Escaping tooltip to avoid breaking HTML tag and XSS attacks
-			$sEscapedOptionTooltip = htmlentities($aOptionData['tooltip'], ENT_QUOTES, 'UTF-8');
+			$sOptionItemLabelForHtml = '';
+			if(!empty($aOptionData['input_id']))
+			{
+				$sOptionItemLabelForHtml = 'for="' . $aOptionData['input_id'] . '"';
+			}
+
+			$sOptionItemTooltipHtml = '';
+			if(!empty($aOptionData['tooltip']))
+			{
+				// Note: Escaping tooltip to avoid breaking HTML tag and XSS attacks
+				$sEscapedOptionTooltip = htmlentities($aOptionData['tooltip'], ENT_QUOTES, 'UTF-8');
+				$sOptionItemTooltipHtml = 'title="' . $sEscapedOptionTooltip . '" data-toggle="tooltip"';
+			}
 
 			$sOptionsItemsHtml .= <<<EOF
 <li class="mdv-of-item">
-	<span title="{$sEscapedOptionTooltip}" data-toggle="tooltip">{$aOptionData['label']}</span>
-	<span class="mhf-pull-right">{$aOptionData['input_html']}</span>
+	<label {$sOptionItemLabelForHtml}>
+		<span {$sOptionItemTooltipHtml}>{$aOptionData['label']}</span>
+		<span class="mhf-pull-right">{$aOptionData['input_html']}</span>	
+	</label>
 </li>
 EOF;
 		}
@@ -145,93 +196,96 @@ EOF;
 		// Note: We could split this in protected methods for overloading (PrepareHtml, PrepareJs, ...)
 		$oOutput->AddHtml(<<<EOF
 <div class="molkobain-datacenter-view-container" data-portal="backoffice">
-	<div class="mdv-controls">
-		<div class="mdv-legend mhf-panel">
-			<div class="mhf-p-header">
-				<span class="mhf-ph-icon"><span class="fa fa-list"></span></span>
-				<span class="mhf-ph-title">{$sLegendTitle}</span>
-			</div>
-			<div class="mhf-p-body">
-				<ul>
-				</ul>
-			</div>
-		</div>
-		<div class="mdv-options mhf-panel">
-			<div class="mhf-p-header">				
-				<span class="mhf-ph-icon"><span class="fa fa-cog"></span></span>
-				<span class="mhf-ph-title">{$sOptionsTitle}</span>
-			</div>
-			<div class="mhf-p-body">
-				<form method="post" class="mdv-options-form">
-					<input type="hidden" name="operation" value="{$sOptionsOperation}" />
+	<div class="mdv-header"></div>
+	<div class="mdv-body">
+		<div class="mdv-controls">
+			<div class="mdv-legend mhf-panel">
+				<div class="mhf-p-header">
+					<span class="mhf-ph-icon"><span class="fa fa-list"></span></span>
+					<span class="mhf-ph-title">{$sLegendTitle}</span>
+				</div>
+				<div class="mhf-p-body">
 					<ul>
-						{$sOptionsItemsHtml}
 					</ul>
-				</form>
+				</div>
+			</div>
+			<div class="mdv-options mhf-panel">
+				<div class="mhf-p-header">				
+					<span class="mhf-ph-icon"><span class="fa fa-cog"></span></span>
+					<span class="mhf-ph-title">{$sOptionsTitle}</span>
+				</div>
+				<div class="mhf-p-body">
+					<form method="post" class="mdv-options-form">
+						<input type="hidden" name="operation" value="{$sOptionsOperation}" />
+						<ul>
+							{$sOptionsItemsHtml}
+						</ul>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
-
-	<div class="mdv-views">
+	
+		<div class="mdv-views">
+		</div>
+		
+		<div class="mdv-unmounted mhf-panel">
 	</div>
 	
-	<div class="mdv-unmounted mhf-panel">
-	</div>
+		<div class="mhf-loader mhf-hide">
+			<div class="mhf-loader-text">
+				<span class="fa fa-spin fa-refresh fa-fw"></span>
+			</div>
+		</div>
 	
-	<div class="mhf-templates">
-		<!-- Legend item template -->
-		<li class="mdv-legend-item" data-class="" data-count="">
-			<span class="mdv-li-title"></span>
-			<span class="mdv-li-count mhf-pull-right"></span>
-		</li>
-		
-		<!-- Rack panel template -->
-		<div class="mdv-rack-panel" data-class="" data-id="" data-code="" data-name="">
-			<div class="mdv-rp-title"></div>
-			<div class="mdv-rp-view">
-				<div class="mdv-rpv-top"></div>
-				<div class="mdv-rpv-middle"></div>
-				<div class="mdv-rpv-bottom"></div>
+		<div class="mhf-templates">
+			<!-- Legend item template -->
+			<li class="mdv-legend-item" data-class="" data-count="">
+				<span class="mdv-li-title"></span>
+				<span class="mdv-li-count mhf-pull-right"></span>
+			</li>
+			
+			<!-- Rack panel template -->
+			<div class="mdv-rack-panel" data-class="" data-id="" data-code="" data-name="">
+				<div class="mdv-rp-title"></div>
+				<div class="mdv-rp-view">
+					<div class="mdv-rpv-top"></div>
+					<div class="mdv-rpv-middle mdv-host-units-wrapper"></div>
+					<div class="mdv-rpv-bottom"></div>
+				</div>
 			</div>
-		</div>
-		
-		<!-- Rack unit template -->
-		<div class="mdv-rack-unit" data-unit-number="">
-			<div class="mdv-ru-left"></div>
-			<div class="mdv-ru-slot"></div>
-			<div class="mdv-ru-right"></div>
-		</div>
-		
-		<!-- Enclosure template -->
-		<div class="mdv-enclosure" data-class="" data-id="" data-name="" data-rack-id="" data-position-v="" data-position-p="">
-		</div>
-		
-		<!-- Enclosure unit template -->
-		<div class="mdv-enclosure-unit" data-unit-number="">
-			<div class="mdv-eu-left"></div>
-			<div class="mdv-eu-slot"></div>
-			<div class="mdv-eu-right"></div>
-		</div>
-		
-		<!-- Device template -->
-		<div class="mdv-device" data-class="" data-id="" data-name="" data-rack-id="" data-enclosure-id="" data-position-v="" data-position-p="">
-			<span class="mdv-d-name"></span>
-		</div>
-		
-		<!-- Unmounted type template (enclosures / devices) -->
-		<div class="mdv-unmounted-type mhf-panel" data-type="">
-			<div class="mhf-p-header">
-				<span class="mhf-ph-icon"></span>
-				<span class="mhf-ph-title"></span>
+			
+			<!-- Rack unit template -->
+			<div class="mdv-rack-unit mdv-host-unit" data-unit-number="">
+				<div class="mdv-ru-left mdv-hu-left"></div>
+				<div class="mdv-ru-slot mdv-hu-slot"></div>
+				<div class="mdv-ru-right mdv-hu-right"></div>
 			</div>
-			<div class="mhf-p-body">
+			
+			<!-- Enclosure template -->
+			<div class="mdv-enclosure mdv-host-units-wrapper" data-class="" data-id="" data-code="" data-type="" data-name="" data-rack-id="" data-position-v="" data-position-p="">
 			</div>
-		</div>
-	</div>
-	
-	<div class="mhf-loader mhf-hide">
-		<div class="mhf-loader-text">
-			<span class="fa fa-spin fa-refresh fa-fw"></span>
+			
+			<!-- Enclosure unit template -->
+			<div class="mdv-enclosure-unit mdv-host-unit" data-unit-number="">
+				<div class="mdv-eu-left mdv-hu-left"></div>
+				<div class="mdv-eu-slot mdv-hu-slot"></div>
+				<div class="mdv-eu-right mdv-hu-right"></div>
+			</div>
+			
+			<!-- Device template -->
+			<div class="mdv-device" data-class="" data-id="" data-type="" data-name="" data-rack-id="" data-enclosure-id="" data-position-v="" data-position-p="">
+				<span class="mdv-d-name"></span>
+			</div>
+			
+			<!-- Unmounted type template (enclosures / devices) -->
+			<div class="mdv-unmounted-type mhf-panel" data-type="">
+				<div class="mhf-p-header">
+					<span class="mhf-ph-icon"></span>
+					<span class="mhf-ph-title"></span>
+				</div>
+				<div class="mhf-p-body mdv-ut-body" data-hover-text="">
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -388,6 +442,9 @@ EOF
 				'rack_id' => (int) $oEnclosure->Get('rack_id'),
 				'position_v' => (int) $oEnclosure->Get('position_v'),
 				'position_p' => 'front',
+				'panels' => array(
+					'front' => Dict::S('Molkobain:DatacenterView:Enclosure:Panel:Front:Title'),
+				),
 				'devices' => array(
 					'icon' => MetaModel::GetClassIcon('DatacenterDevice', false),
 					static::ENUM_ASSEMBLY_TYPE_MOUNTED => array(),
@@ -671,11 +728,13 @@ EOF;
 		$bShowObsoleteConfigDefault = MetaModel::GetConfig()->Get('obsolescence.show_obsolete_data');
 		$bShowObsoleteUserDefault = appUserPreferences::GetPref('show_obsolete_data', $bShowObsoleteConfigDefault);
 		$bShowObsolete = $this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsoleteUserDefault);
+		$oShowObsoleteButton = UIHelper::MakeToggleButton(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsolete, null, '$(this).closest(".molkobain-datacenter-view").trigger("mdv.refresh_view")');
 		// - Add to options
 		$aOptions[static::ENUM_OPTION_CODE_SHOWOBSOLETE] = array(
 			'label' => Dict::S('Molkobain:DatacenterView:Options:Option:ShowObsolete'),
 			'tooltip' => Dict::S('Molkobain:DatacenterView:Options:Option:ShowObsolete+'),
-			'input_html' => UIHelper::MakeToggleButton(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsolete, null, '$(this).closest(".molkobain-datacenter-view").trigger("mdv.refresh_view")'),
+			'input_id' => $oShowObsoleteButton->GetInputId(),
+			'input_html' => $oShowObsoleteButton->Render(),
 		);
 
 		return $aOptions;

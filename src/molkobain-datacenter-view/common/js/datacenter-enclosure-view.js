@@ -78,7 +78,7 @@ $(function()
 					oHostElem = this._getEnclosureSlotElement(oDevice.position_v, this._getObjectDatum('id'));
 					if(oHostElem === null)
 					{
-						oHostElem = this.element.find('.mdv-unmounted-type[data-type="device"] .mhf-p-body')
+						oHostElem = this.element.find('.mdv-unmounted-type[data-type="' + this.enums.element_type.device + '"] .mdv-ut-body')
 					}
 				}
 

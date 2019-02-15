@@ -46,6 +46,10 @@ $(function()
 					mounted: 'mounted',
 					unmounted: 'unmounted',
 				},
+				element_type: {
+					device: 'device',
+					enclosure: 'enclosure',
+				},
 			},
 
 			// Constructor
@@ -165,7 +169,9 @@ $(function()
 				var oEnclosureElem = this._cloneTemplate('enclosure')
 					.attr('data-class', oEnclosure.class)
 					.attr('data-id', oEnclosure.id)
+                    .attr('data-type', this.enums.element_type.enclosure)
 					.attr('data-name', oEnclosure.name)
+					.attr('data-nb-u', oEnclosure.nb_u)
 					.attr('data-rack-id', oEnclosure.rack_id)
 					.attr('data-position-v', oEnclosure.position_v)
 					.attr('data-position-p', oEnclosure.position_p);
@@ -203,13 +209,15 @@ $(function()
 			{
 				if((oHostElem === undefined) || (oHostElem === null))
 				{
-					oHostElem = this.element.find('.mdv-unmounted-type[data-type="device"] .mhf-p-body');
+					oHostElem = this.element.find('.mdv-unmounted-type[data-type="' + this.enum.element_type.device + '"] .mdv-ut-body');
 				}
 
 				var oDeviceElem = this._cloneTemplate('device')
 				                      .attr('data-class', oDevice.class)
 				                      .attr('data-id', oDevice.id)
+				                      .attr('data-type', this.enums.element_type.device)
 				                      .attr('data-name', oDevice.name)
+				                      .attr('data-nb-u', oDevice.nb_u)
 				                      .attr('data-rack-id', oDevice.rack_id)
 				                      .attr('data-enclosure-id', oDevice.enclosure_id)
 				                      .attr('data-position-v', oDevice.position_v)
@@ -249,7 +257,7 @@ $(function()
 				this.element.find('[data-toggle="tooltip"][title!=""]').each(function(){
 					// Put tooltip
 					var sContent = $('<div />').text($(this).attr('title')).html();
-					$(this).qtip( { content: sContent, show: 'mouseover', hide: 'mouseout', style: { name: 'molkobain-dark', tip: 'bottomMiddle' }, position: { corner: { target: 'topCenter', tooltip: 'bottomMiddle' }, adjust: { y: -15}} } );
+					$(this).qtip( { content: sContent, show: 'mouseover', hide: 'mouseout', style: { name: 'molkobain-dark', tip: 'bottomMiddle' }, position: { corner: { target: 'topMiddle', tooltip: 'bottomMiddle' }, adjust: { y: -5}} } );
 
 					// Remove native title
 					$(this).attr('title', '');
