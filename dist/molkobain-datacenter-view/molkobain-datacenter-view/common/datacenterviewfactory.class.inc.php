@@ -23,9 +23,13 @@ class DatacenterViewFactory
 	const DEFAULT_DATACENTER_VIEW_CLASS = 'Molkobain\\iTop\\Extension\\DatacenterView\\Common\\DatacenterView';
 
 	protected static $sDatacenterViewClass;
+	/** @var array $aCachedDatacenterViews */
+	protected static $aCachedDatacenterViews = array();
 
 	/**
 	 * Returns a DatacenterView of $oObject based on the current registered class (static::$sDatacenterView)
+	 *
+	 * Note: DatacenterView objects are cached in static::$aCachedDatacenterView
 	 *
 	 * @param \DBObject $oObject
 	 *
@@ -47,7 +51,14 @@ class DatacenterViewFactory
 			throw new Exception('Could not make DatacenterView as "'.static::$sDatacenterViewClass.'" class does not exists.');
 		}
 
-		return new static::$sDatacenterViewClass($oObject);
+		// Cache view
+		$sCacheKey = get_class($oObject) . '::' . $oObject->GetKey();
+		if(!array_key_exists($sCacheKey, static::$aCachedDatacenterViews))
+		{
+			static::$aCachedDatacenterViews[$sCacheKey] = new static::$sDatacenterViewClass($oObject);
+		}
+
+		return static::$aCachedDatacenterViews[$sCacheKey];
 	}
 
 	/**
