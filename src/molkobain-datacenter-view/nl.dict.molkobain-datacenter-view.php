@@ -6,7 +6,6 @@
  *
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
-
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	// Classes
 	// - Rack
@@ -33,6 +32,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Molkobain:DatacenterView:Element:Tooltip:Fieldset:more-info' => 'Meer info',
 	// - Rack
 	'Molkobain:DatacenterView:Rack:Panel:Front:Title' => 'Voorkant',
+	// - Enclosure
+	'Molkobain:DatacenterView:Enclosure:Panel:Front:Title' => 'Front~~',
 	// - Unmounted elements
 	'Molkobain:DatacenterView:Unmounted:Enclosures:Title' => 'Ongemonteerde behuizingen',
 	'Molkobain:DatacenterView:Unmounted:Enclosures:Title+' => 'Horend bij dit rack, maar positie nog niet bepaald (bewerk de behuizing om dit te doen)',
