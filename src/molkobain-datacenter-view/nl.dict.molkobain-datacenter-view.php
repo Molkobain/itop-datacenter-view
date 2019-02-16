@@ -33,7 +33,7 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	// - Rack
 	'Molkobain:DatacenterView:Rack:Panel:Front:Title' => 'Voorkant',
 	// - Enclosure
-	'Molkobain:DatacenterView:Enclosure:Panel:Front:Title' => 'Front~~',
+	'Molkobain:DatacenterView:Enclosure:Panel:Front:Title' => 'Voorkant',
 	// - Unmounted elements
 	'Molkobain:DatacenterView:Unmounted:Enclosures:Title' => 'Ongemonteerde behuizingen',
 	'Molkobain:DatacenterView:Unmounted:Enclosures:Title+' => 'Horend bij dit rack, maar positie nog niet bepaald (bewerk de behuizing om dit te doen)',
