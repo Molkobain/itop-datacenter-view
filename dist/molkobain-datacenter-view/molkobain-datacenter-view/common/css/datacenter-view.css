@@ -101,10 +101,10 @@
   display: flex;
   flex-direction: row;
 }
-.molkobain-datacenter-view .mdv-body .mdv-views .mdv-rack-panel {
+.molkobain-datacenter-view .mdv-body .mdv-views .mdv-rack-panel, .molkobain-datacenter-view .mdv-body .mdv-views .mdv-enclosure-panel {
   margin-right: 120px;
 }
-.molkobain-datacenter-view .mdv-body .mdv-views .mdv-rack-panel:last-child {
+.molkobain-datacenter-view .mdv-body .mdv-views .mdv-rack-panel:last-child, .molkobain-datacenter-view .mdv-body .mdv-views .mdv-enclosure-panel:last-child {
   margin-right: 0;
 }
 .molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel {

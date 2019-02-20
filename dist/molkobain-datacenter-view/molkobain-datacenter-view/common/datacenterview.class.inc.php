@@ -236,55 +236,56 @@ EOF;
 				<span class="fa fa-spin fa-refresh fa-fw"></span>
 			</div>
 		</div>
+	</div>
 	
-		<div class="mhf-templates">
-			<!-- Legend item template -->
-			<li class="mdv-legend-item" data-class="" data-count="">
-				<span class="mdv-li-title"></span>
-				<span class="mdv-li-count mhf-pull-right"></span>
-			</li>
-			
-			<!-- Rack panel template -->
-			<div class="mdv-rack-panel" data-class="" data-id="" data-code="" data-name="">
-				<div class="mdv-rp-title"></div>
-				<div class="mdv-rp-view">
-					<div class="mdv-rpv-top"></div>
-					<div class="mdv-rpv-middle mdv-host-units-wrapper"></div>
-					<div class="mdv-rpv-bottom"></div>
-				</div>
+	<div class="mhf-templates">
+		<!-- Legend item template -->
+		<li class="mdv-legend-item" data-class="" data-count="">
+			<span class="mdv-li-title"></span>
+			<span class="mdv-li-count mhf-pull-right"></span>
+		</li>
+		
+		<!-- Rack panel template -->
+		<div class="mdv-rack-panel mdv-host-panel" data-class="" data-id="" data-panel-code="" data-name="">
+			<div class="mdv-rp-title"></div>
+			<div class="mdv-rp-view">
+				<div class="mdv-rpv-top"></div>
+				<div class="mdv-rpv-middle mdv-host-units-wrapper"></div>
+				<div class="mdv-rpv-bottom"></div>
 			</div>
-			
-			<!-- Rack unit template -->
-			<div class="mdv-rack-unit mdv-host-unit" data-unit-number="">
-				<div class="mdv-ru-left mdv-hu-left"></div>
-				<div class="mdv-ru-slot mdv-hu-slot"></div>
-				<div class="mdv-ru-right mdv-hu-right"></div>
+		</div>
+		
+		<!-- Rack unit template -->
+		<div class="mdv-rack-unit mdv-host-unit" data-unit-number="">
+			<div class="mdv-ru-left mdv-hu-left"></div>
+			<div class="mdv-ru-slot mdv-hu-slot"></div>
+			<div class="mdv-ru-right mdv-hu-right"></div>
+		</div>
+		
+		<!-- Enclosure template -->
+		<div class="mdv-enclosure mdv-host-panel" data-class="" data-id="" data-panel-code="" data-type="" data-name="" data-rack-id="" data-position-v="" data-position-p="">
+			<div class="mdv-host-units-wrapper"></div>
+		</div>
+		
+		<!-- Enclosure unit template -->
+		<div class="mdv-enclosure-unit mdv-host-unit" data-unit-number="">
+			<div class="mdv-eu-left mdv-hu-left"></div>
+			<div class="mdv-eu-slot mdv-hu-slot"></div>
+			<div class="mdv-eu-right mdv-hu-right"></div>
+		</div>
+		
+		<!-- Device template -->
+		<div class="mdv-device" data-class="" data-id="" data-type="" data-name="" data-rack-id="" data-enclosure-id="" data-position-v="" data-position-p="">
+			<span class="mdv-d-name"></span>
+		</div>
+		
+		<!-- Unmounted type template (enclosures / devices) -->
+		<div class="mdv-unmounted-type mhf-panel" data-type="">
+			<div class="mhf-p-header">
+				<span class="mhf-ph-icon"></span>
+				<span class="mhf-ph-title"></span>
 			</div>
-			
-			<!-- Enclosure template -->
-			<div class="mdv-enclosure mdv-host-units-wrapper" data-class="" data-id="" data-code="" data-type="" data-name="" data-rack-id="" data-position-v="" data-position-p="">
-			</div>
-			
-			<!-- Enclosure unit template -->
-			<div class="mdv-enclosure-unit mdv-host-unit" data-unit-number="">
-				<div class="mdv-eu-left mdv-hu-left"></div>
-				<div class="mdv-eu-slot mdv-hu-slot"></div>
-				<div class="mdv-eu-right mdv-hu-right"></div>
-			</div>
-			
-			<!-- Device template -->
-			<div class="mdv-device" data-class="" data-id="" data-type="" data-name="" data-rack-id="" data-enclosure-id="" data-position-v="" data-position-p="">
-				<span class="mdv-d-name"></span>
-			</div>
-			
-			<!-- Unmounted type template (enclosures / devices) -->
-			<div class="mdv-unmounted-type mhf-panel" data-type="">
-				<div class="mhf-p-header">
-					<span class="mhf-ph-icon"></span>
-					<span class="mhf-ph-title"></span>
-				</div>
-				<div class="mhf-p-body mdv-ut-body" data-hover-text="">
-				</div>
+			<div class="mhf-p-body mdv-ut-body" data-hover-text="">
 			</div>
 		</div>
 	</div>
@@ -754,18 +755,17 @@ EOF;
 	 */
 	public static function FindObjectType(DBObject $oObject)
 	{
-		$sObjClass = get_class($oObject);
-		switch($sObjClass)
+		if($oObject instanceof \Rack)
 		{
-			case 'Rack':
-				$sObjType = 'rack';
-				break;
-			case 'Enclosure':
-				$sObjType = 'enclosure';
-				break;
-			default:
-				$sObjType = 'device';
-				break;
+			$sObjType = static::ENUM_ELEMENT_TYPE_RACK;
+		}
+		elseif($oObject instanceof \Enclosure)
+		{
+			$sObjType = static::ENUM_ELEMENT_TYPE_ENCLOSURE;
+		}
+		else
+		{
+			$sObjType = static::ENUM_ELEMENT_TYPE_DEVICE;
 		}
 
 		return $sObjType;

@@ -19,6 +19,7 @@ $(function()
 				legend: {},
 				dict: {},
 				defaults: {
+					panel_code: 'front',
 					tooltip_options: {
 						show: 'mouseover',
 						hide: 'mouseout',
@@ -166,10 +167,16 @@ $(function()
 			},
 			_initializeEnclosure: function(oEnclosure)
 			{
+				if(oEnclosure.panel_code == undefined)
+				{
+					oEnclosure.panel_code = this.options.defaults.panel_code; // Always front panel by default. Rear panel would be displayed only in Enclosure view.
+				}
+
 				var oEnclosureElem = this._cloneTemplate('enclosure')
 					.attr('data-class', oEnclosure.class)
 					.attr('data-id', oEnclosure.id)
                     .attr('data-type', this.enums.element_type.enclosure)
+                    .attr('data-panel-code', oEnclosure.panel_code)
 					.attr('data-name', oEnclosure.name)
 					.attr('data-nb-u', oEnclosure.nb_u)
 					.attr('data-rack-id', oEnclosure.rack_id)
@@ -183,7 +190,7 @@ $(function()
 					    .find('.mdv-eu-left')
 					    .text(iUnitsIdx + 'U')
 					    .end()
-					    .prependTo(oEnclosureElem);
+					    .prependTo(oEnclosureElem.children('.mdv-host-units-wrapper'));
 				}
 
 				// Full height of n Us plus the bottom-border of n-1 Us
@@ -306,9 +313,14 @@ $(function()
 				return (this.options.dict[sCode] !== undefined) ? this.options.dict[sCode] : sCode;
 			},
 			// - Return the jQuery object for the iSlotNumber slot of the iEnclosureId enclosure if found, null otherwise
-			_getEnclosureSlotElement: function(iSlotNumber, iEnclosureId)
+			_getEnclosureSlotElement: function(iSlotNumber, sPanelCode, iEnclosureId)
 			{
-				var oSlotElem = this.element.find('.mdv-enclosure[data-id="' + iEnclosureId + '"] .mdv-enclosure-unit[data-unit-number="' + iSlotNumber + '"] .mdv-eu-slot');
+				if(sPanelCode == undefined)
+				{
+					sPanelCode = this.options.defaults.panel_code;
+				}
+
+				var oSlotElem = this.element.find('.mdv-enclosure[data-id="' + iEnclosureId + '"][data-panel-code="' + sPanelCode + '"] .mdv-enclosure-unit[data-unit-number="' + iSlotNumber + '"] .mdv-eu-slot');
 				if(oSlotElem.length === 0)
 				{
 					this._trace('Could not find enclosure slot "' + iSlotNumber + 'U" for "' + iEnclosureId + '".');
@@ -324,7 +336,7 @@ $(function()
 			{
 				var oElem = null;
 
-				var oTemplate = this.element.find('.mhf-templates > .mdv-' + sCode);
+				var oTemplate = this.element.find('> .mhf-templates > .mdv-' + sCode);
 				if(oTemplate.length === 0)
 				{
 					this._trace('Could not find template for "' + sCode + '".');
