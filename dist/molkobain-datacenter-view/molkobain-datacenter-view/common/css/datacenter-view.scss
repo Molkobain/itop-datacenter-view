@@ -147,7 +147,8 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 			display: flex;
 			flex-direction: row;
 
-			.mdv-rack-panel{
+			.mdv-rack-panel,
+			.mdv-enclosure-panel{
 				margin-right: 120px;
 
 				&:last-child{
