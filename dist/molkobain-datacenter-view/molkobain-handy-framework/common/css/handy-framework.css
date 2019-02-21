@@ -145,18 +145,24 @@
 .mhf-toggle-button .mhf-tb-input.mhf-tb-flat + .mhf-tb-button {
   padding: 2px;
   border-radius: 2em;
-  background: #eaeaea;
+  background-color: #eaeaea;
   box-shadow: inset 0 1px 1px 0px rgba(0, 0, 0, 0.15);
   transition: all 0.4s ease;
 }
 .mhf-toggle-button .mhf-tb-input.mhf-tb-flat + .mhf-tb-button::after {
   border-radius: 50%;
-  background: #fff;
+  background-color: #fff;
   box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.12);
   transition: all 0.2s ease;
 }
 .mhf-toggle-button .mhf-tb-input.mhf-tb-flat:checked + .mhf-tb-button {
-  background: #ea7d1e;
+  background-color: #ea7d1e;
+}
+.mhf-toggle-button .mhf-tb-input.mhf-tb-flat:disabled + .mhf-tb-button {
+  background-color: #d1d1d1;
+}
+.mhf-toggle-button .mhf-tb-input.mhf-tb-flat:disabled + .mhf-tb-button::after {
+  background-color: #e6e6e6;
 }
 .mhf-toggle-button.mhf-pull-left .mhf-tb-button, .mhf-toggle-button.mhf-pull-right .mhf-tb-button, .mhf-pull-left .mhf-toggle-button .mhf-tb-button, .mhf-pull-right .mhf-toggle-button .mhf-tb-button {
   vertical-align: initial;
