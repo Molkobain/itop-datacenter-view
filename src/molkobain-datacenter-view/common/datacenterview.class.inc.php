@@ -755,18 +755,17 @@ EOF;
 	 */
 	public static function FindObjectType(DBObject $oObject)
 	{
-		$sObjClass = get_class($oObject);
-		switch($sObjClass)
+		if($oObject instanceof \Rack)
 		{
-			case 'Rack':
-				$sObjType = 'rack';
-				break;
-			case 'Enclosure':
-				$sObjType = 'enclosure';
-				break;
-			default:
-				$sObjType = 'device';
-				break;
+			$sObjType = static::ENUM_ELEMENT_TYPE_RACK;
+		}
+		elseif($oObject instanceof \Enclosure)
+		{
+			$sObjType = static::ENUM_ELEMENT_TYPE_ENCLOSURE;
+		}
+		else
+		{
+			$sObjType = static::ENUM_ELEMENT_TYPE_DEVICE;
 		}
 
 		return $sObjType;

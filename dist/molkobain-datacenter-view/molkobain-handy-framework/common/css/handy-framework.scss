@@ -184,18 +184,26 @@ $toggle-button-switch-bg-color: #ffffff;
 			+ .mhf-tb-button{
 				padding: 2px;
 				border-radius: 2em;
-				background: $toggle-button-off-bg-color;
+				background-color: $toggle-button-off-bg-color;
 				box-shadow: inset 0 1px 1px 0px rgba(0, 0, 0, 0.15);
 				transition: all .4s ease;
+
 				&::after {
 					border-radius: 50%;
-					background: $toggle-button-switch-bg-color;
+					background-color: $toggle-button-switch-bg-color;
 					box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.12);
 					transition: all .2s ease;
 				}
 			}
 			&:checked + .mhf-tb-button {
-				background: $toggle-button-on-bg-color;
+				background-color: $toggle-button-on-bg-color;
+			}
+			&:disabled + .mhf-tb-button {
+				background-color: darken($toggle-button-off-bg-color, 10%);
+
+				&::after{
+					background-color: darken($toggle-button-switch-bg-color, 10%);
+				}
 			}
 		}
 	}
