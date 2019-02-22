@@ -4,6 +4,7 @@
 * [Description](#description)
 * [Advanced features](#advanced-features-in-the-paid-version-)
 * [Compatibility](#compatibility)
+* [Downloads](#downloads)
 * [Installation](#installation)
 * [Configuration](#configuration)
 * [How to](#how-to)
@@ -49,10 +50,15 @@ Audit rules:
 Compatible with iTop 2.3+
 
 ## Dependencies
-* Module `molkobain-handy-framework/1.1.0`
+* Module `molkobain-handy-framework/1.1.1`
 * Module `molkobain-console-tooltips/1.0.2`
 
 *Note: All dependencies are included in the `dist/` folder, so all you need to do is follow the installation section below.*
+
+## Downloads
+Stable releases can be found either on the [releases page](https://github.com/Molkobain/itop-datacenter-view/releases) or on [Molkobain I/O](https://www.molkobain.com/product/datacenter-view/).
+
+Downloading it directly from the *Clone or download* will get you the version under development which might be unstable.
 
 ## Installation
 * Unzip the extension
