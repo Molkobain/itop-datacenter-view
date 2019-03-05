@@ -123,6 +123,7 @@ Save the object and go back to the *rack*. The *server* will now appear in the *
 ## Contributors
 I would like to give a special thank you to the people who contributed to this:
  - Bostoen, Jeffrey
+ - Makhlouf, Hadi
 
 ## Licensing
 This extension is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
