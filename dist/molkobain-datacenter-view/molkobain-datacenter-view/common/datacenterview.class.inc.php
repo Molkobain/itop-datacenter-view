@@ -811,4 +811,19 @@ EOF;
 			static::ENUM_OPTION_CODE_SHOWOBSOLETE,
 		);
 	}
+
+	/**
+	 * Returns the callback name for the $sOperation.
+	 * Callback must be a NON static, public function and must return an array of data.
+	 *
+	 * Eg. For operation "update_position" => "OnUpdatePositionAsyncOp";
+	 *
+	 * @param string $sOperation
+	 *
+	 * @return string
+	 */
+	public static function GetCallbackNameFromAsyncOpCode($sOperation)
+	{
+		return 'On' . str_replace('_', '', ucwords($sOperation, '_')) . 'AsyncOp';
+	}
 }
