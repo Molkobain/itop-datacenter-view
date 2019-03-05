@@ -66,7 +66,31 @@ try
 			break;
 
 		default:
-			$oPage->p("Invalid query.");
+			$sCallbackName = $oDatacenterView::GetCallbackNameFromAsyncOpCode($sOperation);
+			if(method_exists($oDatacenterView, $sCallbackName))
+			{
+				$aOutput = array(
+					'status' => 'ok',
+				);
+
+				try
+				{
+					// Mind the "+" as we want to preserve the "status" to "ok". Error messages should be thrown through an exception.
+					$aOutput = $aOutput + $oDatacenterView->$sCallbackName();
+				}
+				catch(Exception $e)
+				{
+					$aOutput['status'] = 'error';
+					$aOutput['message'] = htmlentities($e->GetMessage(), ENT_QUOTES, 'utf-8');
+				}
+
+				$oPage->SetContentType('application/json');
+				echo json_encode($aOutput);
+			}
+			else
+			{
+				$oPage->p("Invalid query.");
+			}
 	}
 
 	$oPage->output();
