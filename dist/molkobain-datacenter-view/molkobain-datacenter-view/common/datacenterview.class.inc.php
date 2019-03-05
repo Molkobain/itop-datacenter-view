@@ -655,16 +655,41 @@ EOF;
 	 * Returns the $sCode option for the current object in the appUserPreferences
 	 *
 	 * @param string $sCode
-	 * @param mixed $defaultValue
 	 *
 	 * @return string
 	 */
-	public function GetOption($sCode, $defaultValue = null)
+	public function GetOption($sCode)
 	{
 		$sUserPrefCodeForObject = ConfigHelper::GetModuleCode() . '|object|' . $this->GetObjectClass() . '|' . $this->GetObjectId();
+		/** @noinspection PhpParamsInspection */
+		/** @var array $aPrefs */
 		$aPrefs = appUserPreferences::GetPref($sUserPrefCodeForObject, array());
 
-		return (array_key_exists($sCode, $aPrefs)) ? $aPrefs[$sCode] : $defaultValue;
+		return (array_key_exists($sCode, $aPrefs)) ? $aPrefs[$sCode] : $this->GetOptionDefaultValue($sCode);
+	}
+
+	/**
+	 * Returns the default value for $sCode option.
+	 *
+	 * @param string $sCode
+	 *
+	 * @return null|mixed
+	 */
+	public function GetOptionDefaultValue($sCode)
+	{
+		$defaultValue = null;
+
+		switch($sCode)
+		{
+			case static::ENUM_OPTION_CODE_SHOWOBSOLETE:
+				// Value is defined as follows: user pref on object >> user pref >> instance config parameter
+				/** @var string $bShowObsoleteConfigDefault */
+				$bShowObsoleteConfigDefault = MetaModel::GetConfig()->Get('obsolescence.show_obsolete_data');
+				$defaultValue = appUserPreferences::GetPref('show_obsolete_data', $bShowObsoleteConfigDefault);
+				break;
+		}
+
+		return $defaultValue;
 	}
 
 	/**
@@ -678,6 +703,8 @@ EOF;
 	public function SetOption($sCode, $value)
 	{
 		$sUserPrefCodeForObject = ConfigHelper::GetModuleCode() . '|object|' . $this->GetObjectClass() . '|' . $this->GetObjectId();
+		/** @noinspection PhpParamsInspection */
+		/** @var array $aPrefs */
 		$aPrefs = appUserPreferences::GetPref($sUserPrefCodeForObject, array());
 
 		if(array_key_exists($sCode, $aPrefs) && ($aPrefs[$sCode] === $value))
@@ -687,6 +714,7 @@ EOF;
 		else
 		{
 			$aPrefs[$sCode] = $value;
+			/** @noinspection PhpParamsInspection */
 			appUserPreferences::SetPref($sUserPrefCodeForObject, $aPrefs);
 		}
 
@@ -724,11 +752,8 @@ EOF;
 		$aOptions = array();
 
 		// Show obsolete
-		// - Retrieve value. Value is defined as follows: user pref on object >> user pref >> instance config parameter
-		/** @var string $bShowObsoleteConfigDefault */
-		$bShowObsoleteConfigDefault = MetaModel::GetConfig()->Get('obsolescence.show_obsolete_data');
-		$bShowObsoleteUserDefault = appUserPreferences::GetPref('show_obsolete_data', $bShowObsoleteConfigDefault);
-		$bShowObsolete = $this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsoleteUserDefault);
+		// - Retrieve value
+		$bShowObsolete = $this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE);
 		$oShowObsoleteButton = UIHelper::MakeToggleButton(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsolete, null, '$(this).closest(".molkobain-datacenter-view").trigger("mdv.refresh_view")');
 		// - Add to options
 		$aOptions[static::ENUM_OPTION_CODE_SHOWOBSOLETE] = array(
