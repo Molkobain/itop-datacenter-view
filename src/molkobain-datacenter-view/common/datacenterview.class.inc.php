@@ -48,12 +48,16 @@ class DatacenterView
 	protected $sType;
 	/** @var bool $bObjectInEditMode Is object in edition mode */
 	protected $bObjectInEditMode;
+	/** @var array $aOptions Current value of the options */
+	protected $aOptions;
 
 	public function __construct(DBObject $oObject)
 	{
 		$this->oObject = $oObject;
 		$this->sType = static::FindObjectType($this->oObject);
 		$this->bObjectInEditMode = static::DEFAULT_OBJECT_IN_EDIT_MODE;
+		// Note: There is note static default value as array is not allowed before PHP 5.6
+		$this->aOptions = array();
 	}
 
 
@@ -652,20 +656,64 @@ EOF;
 	//----------
 
 	/**
-	 * Returns the $sCode option for the current object in the appUserPreferences
+	 * Returns if the $sCode option is for the current object or global to the module
 	 *
 	 * @param string $sCode
 	 *
+	 * @return bool
+	 */
+	protected function IsGlobalOption($sCode)
+	{
+		switch($sCode)
+		{
+			// Prefs. specific to the current object
+			case static::ENUM_OPTION_CODE_SHOWOBSOLETE:
+				$bRet = false;
+				break;
+
+			// Prefs. global to the whole module
+			default:
+				$bRet = true;
+				break;
+		}
+
+		return $bRet;
+	}
+
+	/**
+	 * Returns the user preference code for the $sCode option as options can be stored either in a global user pref. or object specific user pref.
+	 *
+	 * @param string $sOptionCode
+	 *
 	 * @return string
+	 */
+	protected function GetUserPrefCodeForOption($sOptionCode)
+	{
+		$sUserPrefCode = ($this->IsGlobalOption($sOptionCode)) ? ConfigHelper::GetModuleCode() . '|global' : ConfigHelper::GetModuleCode() . '|object|' . $this->GetObjectClass() . '|' . $this->GetObjectId();
+
+		return $sUserPrefCode;
+	}
+
+	/**
+	 * Returns the current value of the $sCode option if present, otherwise retrieves it from user preferences
+	 *
+	 * @param string $sCode
+	 *
+	 * @return mixed
 	 */
 	public function GetOption($sCode)
 	{
-		$sUserPrefCodeForObject = ConfigHelper::GetModuleCode() . '|object|' . $this->GetObjectClass() . '|' . $this->GetObjectId();
-		/** @noinspection PhpParamsInspection */
-		/** @var array $aPrefs */
-		$aPrefs = appUserPreferences::GetPref($sUserPrefCodeForObject, array());
+		// Cache value if not already present
+		if(!array_key_exists($sCode, $this->aOptions))
+		{
+			/** @noinspection PhpParamsInspection */
+			/** @var array $aPref */
+			$aPref = appUserPreferences::GetPref($this->GetUserPrefCodeForOption($sCode), array());
 
-		return (array_key_exists($sCode, $aPrefs)) ? $aPrefs[$sCode] : $this->GetOptionDefaultValue($sCode);
+			$this->aOptions[$sCode] = (array_key_exists($sCode, $aPref)) ? $aPref[$sCode] : $this->GetOptionDefaultValue($sCode);
+		}
+
+		return $this->aOptions[$sCode];
 	}
 
 	/**
@@ -675,15 +723,15 @@ EOF;
 	 *
 	 * @return null|mixed
 	 */
-	public function GetOptionDefaultValue($sCode)
+	protected function GetOptionDefaultValue($sCode)
 	{
 		$defaultValue = null;
 
 		switch($sCode)
 		{
 			case static::ENUM_OPTION_CODE_SHOWOBSOLETE:
-				// Value is defined as follows: user pref on object >> user pref >> instance config parameter
-				/** @var string $bShowObsoleteConfigDefault */
+				// Value is defined as follows: user pref on object >> user pref in iTop >> instance config parameter
+				/** @var boolean $bShowObsoleteConfigDefault */
 				$bShowObsoleteConfigDefault = MetaModel::GetConfig()->Get('obsolescence.show_obsolete_data');
 				$defaultValue = appUserPreferences::GetPref('show_obsolete_data', $bShowObsoleteConfigDefault);
 				break;
@@ -693,7 +741,7 @@ EOF;
 	}
 
 	/**
-	 * Sets the $sCode option to $value for the current object in the appUserPreferences
+	 * Sets the current value of the $sCode option in the cache (but does NOT saves it in the DB, use SaveOption() for that)
 	 *
 	 * @param string $sCode
 	 * @param mixed $value
@@ -702,20 +750,35 @@ EOF;
 	 */
 	public function SetOption($sCode, $value)
 	{
-		$sUserPrefCodeForObject = ConfigHelper::GetModuleCode() . '|object|' . $this->GetObjectClass() . '|' . $this->GetObjectId();
-		/** @noinspection PhpParamsInspection */
-		/** @var array $aPrefs */
-		$aPrefs = appUserPreferences::GetPref($sUserPrefCodeForObject, array());
+		$this->aOptions[$sCode] = $value;
 
-		if(array_key_exists($sCode, $aPrefs) && ($aPrefs[$sCode] === $value))
+		return $this;
+	}
+
+	/**
+	 * Saves the $value of the $sCode option in the user preferences (DB)
+	 *
+	 * @param string $sCode
+	 * @param mixed $value
+	 *
+	 * @return $this
+	 */
+	public function SaveOption($sCode, $value)
+	{
+		$sUserPrefCode = $this->GetUserPrefCodeForOption($sCode);
+
+		/** @noinspection PhpParamsInspection */
+		/** @var array $aPref */
+		$aPref = appUserPreferences::GetPref($sUserPrefCode, array());
+		if(array_key_exists($sCode, $aPref) && ($aPref[$sCode] === $value))
 		{
 			// Do not write it again
 		}
 		else
 		{
-			$aPrefs[$sCode] = $value;
+			$aPref[$sCode] = $value;
 			/** @noinspection PhpParamsInspection */
-			appUserPreferences::SetPref($sUserPrefCodeForObject, $aPrefs);
+			appUserPreferences::SetPref($sUserPrefCode, $aPref);
 		}
 
 		return $this;
@@ -730,7 +793,8 @@ EOF;
 	{
 		// Show obsolete
 		$bShowObsolete = (utils::ReadPostedParam(static::ENUM_OPTION_CODE_SHOWOBSOLETE, '') === 'on') ? true : false;
-		$this->SetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsolete);
+		$this->SetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsolete)
+			->SaveOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsolete);
 
 		return $this;
 	}
