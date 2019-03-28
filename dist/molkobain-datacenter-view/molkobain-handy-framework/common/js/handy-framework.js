@@ -24,7 +24,7 @@ if($.isFunction($.fn.qtip))
 			corner: 'leftMiddle',
 			size: {x: 16, y: 8}, // Made for top/bottom position, overload for left/right positions
 		},
-	}
+	};
 	// - 'molkobain-light'
 	//   - For top/bottom positioning
 	$.fn.qtip.styles['molkobain-light'] = {
@@ -37,14 +37,14 @@ if($.isFunction($.fn.qtip))
 		tip: {
 			color: '#ffffff',
 		},
-	}
+	};
 	//   - For left/right positioning
 	$.fn.qtip.styles['molkobain-light-on-the-side'] = {
 		name: 'molkobain-light',
 		tip: {
 			size: { x: 8, y: 16 },
 		},
-	}
+	};
 	// - 'molkobain-dark'
 	//   - For top/bottom positioning
 	$.fn.qtip.styles['molkobain-dark'] = {
@@ -57,7 +57,7 @@ if($.isFunction($.fn.qtip))
 		tip: {
 			color: '#000000',
 		},
-	}
+	};
 	//   - For left/right positioning
 	$.fn.qtip.styles['molkobain-dark-on-the-side'] = {
 		name: 'molkobain-dark',
@@ -66,3 +66,10 @@ if($.isFunction($.fn.qtip))
 		},
 	}
 }
+
+// Panels
+// - Toggler
+$(document).on('click', '.mhf-panel .mhf-ph-toggler', function(oEvent){
+	oEvent.stopPropagation();
+	$(this).closest('.mhf-panel').toggleClass('mhf-collapsed');
+});

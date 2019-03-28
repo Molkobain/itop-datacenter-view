@@ -11,16 +11,19 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	// - Rack
 	'Class:Rack/Attribute:nb_u+' => 'Hoogte in units (U) waarover deze rack beschikt',
 	// - Enclosure
+	'Class:Enclosure/Attribute:nb_u' => 'Hoogte',
 	'Class:Enclosure/Attribute:nb_u+' => 'Hoogte van deze behuizing in units (U)',
 	'Class:Enclosure/Attribute:position_v' => 'Positie',
 	'Class:Enclosure/Attribute:position_v+' => 'Verticale positie (U) van de behuizing in de rack. Vanaf beneden.',
 	// - Datacenter device
+	'Class:DatacenterDevice/Attribute:nb_u' => 'Hoogte',
 	'Class:DatacenterDevice/Attribute:nb_u+' => 'Hoogte van dit toestel in units (U)',
 	'Class:DatacenterDevice/Attribute:position_v' => 'Positie',
 	'Class:DatacenterDevice/Attribute:position_v+' => 'Verticale positie (U) van dit toestel in de behuizing (of van de rack indien er rechtstreeks ingemonteerd). Vanaf beneden.',
 
 	// UI
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Grafische weergave',
+	'Molkobain:DatacenterView:NoElement' => 'No element~~',
 	// - Legend
 	'Molkobain:DatacenterView:Legend:Title' => 'Legende',
 	// - Options
