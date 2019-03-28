@@ -23,6 +23,7 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 
 	// UI
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Grafische weergave',
+	'Molkobain:DatacenterView:NoElement' => 'No element~~',
 	// - Legend
 	'Molkobain:DatacenterView:Legend:Title' => 'Legende',
 	// - Options
@@ -37,7 +38,6 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	// - Enclosure
 	'Molkobain:DatacenterView:Enclosure:Panel:Front:Title' => 'Voorkant',
 	// - Unmounted elements
-	'Molkobain:DatacenterView:Unmounted:Empty:Hint' => 'No element~~',
 	'Molkobain:DatacenterView:Unmounted:Enclosures:Title' => 'Ongemonteerde behuizingen',
 	'Molkobain:DatacenterView:Unmounted:Enclosures:Title+' => 'Horend bij dit rack, maar positie nog niet bepaald (bewerk de behuizing om dit te doen)',
 	'Molkobain:DatacenterView:Unmounted:Devices:Title' => 'Ongemonteerde toestellen',

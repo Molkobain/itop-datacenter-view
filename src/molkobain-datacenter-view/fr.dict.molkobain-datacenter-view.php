@@ -23,6 +23,7 @@ Dict::Add('FR FR', 'French', 'Français', array(
 
 	// UI
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Représentation graphique',
+	'Molkobain:DatacenterView:NoElement' => 'Aucun élément',
 	// - Legend
 	'Molkobain:DatacenterView:Legend:Title' => 'Légende',
 	// - Options
@@ -37,7 +38,6 @@ Dict::Add('FR FR', 'French', 'Français', array(
 	// - Enclosure
 	'Molkobain:DatacenterView:Enclosure:Panel:Front:Title' => 'Avant',
 	// - Unmounted elements
-	'Molkobain:DatacenterView:Unmounted:Empty:Hint' => 'Aucun élément',
 	'Molkobain:DatacenterView:Unmounted:Enclosures:Title' => 'Chassis non montés',
 	'Molkobain:DatacenterView:Unmounted:Enclosures:Title+' => 'Rattachés à ce rack mais aucune position renseignée (Editer le chassis pour corriger)',
 	'Molkobain:DatacenterView:Unmounted:Devices:Title' => 'Matériels non montés',
