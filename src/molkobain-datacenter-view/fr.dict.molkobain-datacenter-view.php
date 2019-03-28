@@ -11,10 +11,12 @@ Dict::Add('FR FR', 'French', 'Français', array(
 	// - Rack
 	'Class:Rack/Attribute:nb_u+' => 'Hauteur du rack en unités (U)',
 	// - Enclosure
+	'Class:Enclosure/Attribute:nb_u' => 'Hauteur',
 	'Class:Enclosure/Attribute:nb_u+' => 'Hauteur du chassis en unités (U)',
 	'Class:Enclosure/Attribute:position_v' => 'Position',
 	'Class:Enclosure/Attribute:position_v+' => 'Position verticale (U) du chassis dans le rack (Doit faire référence au bas du chassis et non au haut)',
 	// - Datacenter device
+	'Class:DatacenterDevice/Attribute:nb_u' => 'Hauteur',
 	'Class:DatacenterDevice/Attribute:nb_u+' => 'Hauteur du matériel en unités (U)',
 	'Class:DatacenterDevice/Attribute:position_v' => 'Position',
 	'Class:DatacenterDevice/Attribute:position_v+' => 'Position verticale (U) du matériel dans le chassis (ou rack si monté directement dessus). Doit faire référence au bas du matériel et non au haut.',
