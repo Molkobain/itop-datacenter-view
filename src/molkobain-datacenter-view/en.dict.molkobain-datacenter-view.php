@@ -38,6 +38,7 @@ Dict::Add('EN US', 'English', 'English', array(
 	// - Enclosure
 	'Molkobain:DatacenterView:Enclosure:Panel:Front:Title' => 'Front',
 	// - Unmounted elements
+	'Molkobain:DatacenterView:Unmounted:Empty:Hint' => 'No element',
 	'Molkobain:DatacenterView:Unmounted:Enclosures:Title' => 'Unmounted enclosures',
 	'Molkobain:DatacenterView:Unmounted:Enclosures:Title+' => 'Attached to this rack but no position set (Edit the enclosure to do so)',
 	'Molkobain:DatacenterView:Unmounted:Devices:Title' => 'Unmounted devices',
