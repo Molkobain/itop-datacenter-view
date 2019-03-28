@@ -52,10 +52,10 @@
 				</details>
 				<list>
 					<items>
-						<item id="nb_u" _delta="define">
-							<rank>150</rank>
-						</item>
 						<item id="position_v" _delta="define">
+							<rank>155</rank>
+						</item>
+						<item id="nb_u" _delta="define">
 							<rank>160</rank>
 						</item>
 					</items>
@@ -104,10 +104,10 @@
 				</details>
 				<list>
 					<items>
-						<item id="nb_u" _delta="define">
-							<rank>150</rank>
-						</item>
 						<item id="position_v" _delta="define">
+							<rank>155</rank>
+						</item>
+						<item id="nb_u" _delta="define">
 							<rank>160</rank>
 						</item>
 					</items>
@@ -125,6 +125,14 @@
 										<item id="position_v" _delta="define">
 											<rank>72</rank>
 										</item>
+										<item id="nb_u" _delta="define">
+											<rank>73</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Server:moreinfo">
+									<items>
+										<item id="nb_u" _delta="delete" />
 									</items>
 								</item>
 							</items>
@@ -133,10 +141,10 @@
 				</details>
 				<list>
 					<items>
-						<item id="nb_u" _delta="define">
-							<rank>150</rank>
-						</item>
 						<item id="position_v" _delta="define">
+							<rank>155</rank>
+						</item>
+						<item id="nb_u" _delta="define">
 							<rank>160</rank>
 						</item>
 					</items>
@@ -154,6 +162,14 @@
 										<item id="position_v" _delta="define">
 											<rank>72</rank>
 										</item>
+										<item id="nb_u" _delta="define">
+											<rank>73</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Server:moreinfo">
+									<items>
+										<item id="nb_u" _delta="delete" />
 									</items>
 								</item>
 							</items>
@@ -162,10 +178,10 @@
 				</details>
 				<list>
 					<items>
-						<item id="nb_u" _delta="define">
-							<rank>150</rank>
-						</item>
 						<item id="position_v" _delta="define">
+							<rank>155</rank>
+						</item>
+						<item id="nb_u" _delta="define">
 							<rank>160</rank>
 						</item>
 					</items>
@@ -183,6 +199,14 @@
 										<item id="position_v" _delta="define">
 											<rank>72</rank>
 										</item>
+										<item id="nb_u" _delta="define">
+											<rank>73</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Server:moreinfo">
+									<items>
+										<item id="nb_u" _delta="delete" />
 									</items>
 								</item>
 							</items>
@@ -191,10 +215,10 @@
 				</details>
 				<list>
 					<items>
-						<item id="nb_u" _delta="define">
-							<rank>150</rank>
-						</item>
 						<item id="position_v" _delta="define">
+							<rank>155</rank>
+						</item>
+						<item id="nb_u" _delta="define">
 							<rank>160</rank>
 						</item>
 					</items>
@@ -212,6 +236,14 @@
 										<item id="position_v" _delta="define">
 											<rank>72</rank>
 										</item>
+										<item id="nb_u" _delta="define">
+											<rank>73</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Server:moreinfo">
+									<items>
+										<item id="nb_u" _delta="delete" />
 									</items>
 								</item>
 							</items>
@@ -220,10 +252,10 @@
 				</details>
 				<list>
 					<items>
-						<item id="nb_u" _delta="define">
-							<rank>150</rank>
-						</item>
 						<item id="position_v" _delta="define">
+							<rank>155</rank>
+						</item>
+						<item id="nb_u" _delta="define">
 							<rank>160</rank>
 						</item>
 					</items>
@@ -241,6 +273,14 @@
 										<item id="position_v" _delta="define">
 											<rank>72</rank>
 										</item>
+										<item id="nb_u" _delta="define">
+											<rank>73</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Server:moreinfo">
+									<items>
+										<item id="nb_u" _delta="delete" />
 									</items>
 								</item>
 							</items>
@@ -249,10 +289,10 @@
 				</details>
 				<list>
 					<items>
-						<item id="nb_u" _delta="define">
-							<rank>150</rank>
-						</item>
 						<item id="position_v" _delta="define">
+							<rank>155</rank>
+						</item>
+						<item id="nb_u" _delta="define">
 							<rank>160</rank>
 						</item>
 					</items>
@@ -270,6 +310,14 @@
 										<item id="position_v" _delta="define">
 											<rank>72</rank>
 										</item>
+										<item id="nb_u" _delta="define">
+											<rank>73</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Server:moreinfo">
+									<items>
+										<item id="nb_u" _delta="delete" />
 									</items>
 								</item>
 							</items>
@@ -278,10 +326,10 @@
 				</details>
 				<list>
 					<items>
-						<item id="nb_u" _delta="define">
-							<rank>150</rank>
-						</item>
 						<item id="position_v" _delta="define">
+							<rank>155</rank>
+						</item>
+						<item id="nb_u" _delta="define">
 							<rank>160</rank>
 						</item>
 					</items>

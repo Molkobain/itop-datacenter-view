@@ -121,7 +121,16 @@ $(function()
 			{
 				var me = this;
 
+				// Return if no legend items
+				if(this.options.legend.classes.length === 0)
+				{
+					return true;
+				}
+
 				// Make markup
+				this.element.find('.mdv-legend .mhf-p-body')
+				    .append( $('<ul></ul>') );
+
 				for(var sClass in this.options.legend.classes)
 				{
 					var oClass = this.options.legend.classes[sClass];
@@ -167,7 +176,7 @@ $(function()
 			},
 			_initializeEnclosure: function(oEnclosure)
 			{
-				if(oEnclosure.panel_code == undefined)
+				if(oEnclosure.panel_code === undefined)
 				{
 					oEnclosure.panel_code = this.options.defaults.panel_code; // Always front panel by default. Rear panel would be displayed only in Enclosure view.
 				}
@@ -315,7 +324,7 @@ $(function()
 			// - Return the jQuery object for the iSlotNumber slot of the iEnclosureId enclosure if found, null otherwise
 			_getEnclosureSlotElement: function(iSlotNumber, sPanelCode, iEnclosureId)
 			{
-				if(sPanelCode == undefined)
+				if(sPanelCode === undefined)
 				{
 					sPanelCode = this.options.defaults.panel_code;
 				}

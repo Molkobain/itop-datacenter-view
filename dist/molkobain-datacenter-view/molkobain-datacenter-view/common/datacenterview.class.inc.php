@@ -163,6 +163,9 @@ class DatacenterView
 		$sJSWidgetName = 'datacenter_' . $this->sType . '_view';
 		$sJSWidgetDataJSON = $this->GetDataForJSWidget(true);
 
+		// Dict. entries
+		$sNoElementLabel = Dict::S('Molkobain:DatacenterView:NoElement');
+
 		// Add markup
 		// - Legend
 		$sLegendTitle = Dict::S('Molkobain:DatacenterView:Legend:Title');
@@ -208,10 +211,9 @@ EOF;
 					<span class="mhf-ph-icon"><span class="fa fa-list"></span></span>
 					<span class="mhf-ph-title">{$sLegendTitle}</span>
 				</div>
-				<div class="mhf-p-body">
-					<ul>
-					</ul>
-				</div>
+				<!-- Important: There must be no spaces in this div, otherwise the :empty CSS rule will not work -->
+				<!-- Note: We can't use :blank yet as it is not implemented by any browser... -->
+				<div class="mhf-p-body" data-empty-text="{$sNoElementLabel}"></div>
 			</div>
 			<div class="mdv-options mhf-panel">
 				<div class="mhf-p-header">				
@@ -288,9 +290,13 @@ EOF;
 			<div class="mhf-p-header">
 				<span class="mhf-ph-icon"></span>
 				<span class="mhf-ph-title"></span>
+				<span class="mhf-ph-actions mhf-pull-right">
+					<span class="mhf-ph-toggler fa fa-fw fa-caret-down"></span>
+				</span>
 			</div>
-			<div class="mhf-p-body mdv-ut-body" data-hover-text="">
-			</div>
+			<!-- Important: There must be no spaces in this div, otherwise the :empty CSS rule will not work -->
+			<!-- Note: We can't use :blank yet as it is not implemented by any browser... -->
+			<div class="mhf-p-body mdv-ut-body" data-hover-text="" data-empty-text="{$sNoElementLabel}"></div>
 		</div>
 	</div>
 </div>
@@ -643,6 +649,7 @@ EOF;
 	protected function GetDictEntries()
 	{
 		return array(
+			'Molkobain:DatacenterView:NoElement' => Dict::S('Molkobain:DatacenterView:NoElement'),
 			'Molkobain:DatacenterView:Unmounted:Enclosures:Title' => Dict::S('Molkobain:DatacenterView:Unmounted:Enclosures:Title'),
 			'Molkobain:DatacenterView:Unmounted:Enclosures:Title+' => Dict::S('Molkobain:DatacenterView:Unmounted:Enclosures:Title+'),
 			'Molkobain:DatacenterView:Unmounted:Devices:Title' => Dict::S('Molkobain:DatacenterView:Unmounted:Devices:Title'),
