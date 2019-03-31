@@ -126,4 +126,4 @@ I would like to give a special thank you to the people who contributed to this:
  - Makhlouf, Hadi
 
 ## Licensing
-This extension is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
+This extension is under [AGPLv3](https://en.wikipedia.org/wiki/GNU_Affero_General_Public_License).
