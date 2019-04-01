@@ -48,22 +48,27 @@ $(function()
 			// - Make the markup for views (eg. rack panels, enclosure panel, ...)
 			_initializeViews: function()
 			{
-				/* var oEnclosurePanel */
-				$('<div />')
-					.addClass('mdv-enclosure-panel')
-					.append(
-						$('<div />')
-							.addClass('mdv-ep-title')
-							.text(this._getObjectDatum('name'))
-					)
-					.append(
-						$('<div />')
-							.addClass('mdv-ep-view')
-					)
-					.appendTo(this.element.find('.mdv-views'));
+				for(var sPanelCode in this._getObjectDatum('panels'))
+				{
+					var oEnclosure = this.options.object_data;
+					oEnclosure.panel_code = sPanelCode;
 
-				var oEnclosureElem = this._initializeEnclosure(this.options.object_data);
-				oEnclosureElem.appendTo(this.element.find('.mdv-views .mdv-ep-view'));
+					var oEnclosurePanelElem = $('<div />')
+						.addClass('mdv-enclosure-panel')
+						.append(
+							$('<div />')
+								.addClass('mdv-ep-title')
+								.text(this._getObjectDatum('panels')[sPanelCode])
+						)
+						.append(
+							$('<div />')
+								.addClass('mdv-ep-view')
+						)
+						.appendTo(this.element.find('.mdv-views'));
+
+					var oEnclosureElem = this._initializeEnclosure(oEnclosure);
+					oEnclosureElem.appendTo(oEnclosurePanelElem);
+				}
 			},
 			// - Make the markup for elements (mounted or not) and display them where they belong
 			_initializeElements: function()
@@ -75,10 +80,10 @@ $(function()
 			{
 				if((oHostElem === undefined) || (oHostElem === null))
 				{
-					oHostElem = this._getEnclosureSlotElement(oDevice.position_v, this._getObjectDatum('id'));
+					oHostElem = this._getEnclosureSlotElement(oDevice.position_v, oDevice.position_p, this._getObjectDatum('id'));
 					if(oHostElem === null)
 					{
-						oHostElem = this.element.find('.mdv-unmounted-type[data-type="device"] .mhf-p-body')
+						oHostElem = this.element.find('.mdv-unmounted-type[data-type="' + this.enums.element_type.device + '"] .mdv-ut-body')
 					}
 				}
 

@@ -23,12 +23,6 @@
   min-width: 600px;
   background-color: #eee;
   /* Not in /css/css-variables.scss */
-  /* Proper properties */
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  /* Used as a comment next to the element (device / enclosure) */
 }
 .molkobain-datacenter-view * {
   box-sizing: border-box;
@@ -36,24 +30,35 @@
 .molkobain-datacenter-view *::before, .molkobain-datacenter-view *::after {
   box-sizing: border-box;
 }
-.molkobain-datacenter-view .mdv-controls .mhf-panel {
+.molkobain-datacenter-view .mdv-header {
+  margin-bottom: 20px;
+}
+.molkobain-datacenter-view .mdv-body {
+  /* Proper properties */
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /* Used as a comment next to the element (device / enclosure) */
+}
+.molkobain-datacenter-view .mdv-body .mdv-controls .mhf-panel {
   width: 200px;
 }
-.molkobain-datacenter-view .mdv-controls .mhf-panel .mhf-p-body {
+.molkobain-datacenter-view .mdv-body .mdv-controls .mhf-panel .mhf-p-body {
   padding: 0.6rem;
 }
-.molkobain-datacenter-view .mdv-controls .mhf-panel .mhf-p-body ul {
+.molkobain-datacenter-view .mdv-body .mdv-controls .mhf-panel .mhf-p-body ul {
   margin: 0;
   padding: 0;
   list-style: none;
   font-size: 0.8rem;
 }
-.molkobain-datacenter-view .mdv-controls .mdv-legend ul li {
+.molkobain-datacenter-view .mdv-body .mdv-controls .mdv-legend ul li {
   padding-bottom: 0.3rem;
   /* Padding instead of margin for a smoother transition between elements while fading */
   cursor: pointer;
 }
-.molkobain-datacenter-view .mdv-controls .mdv-legend ul li::before {
+.molkobain-datacenter-view .mdv-body .mdv-controls .mdv-legend ul li::before {
   content: "";
   display: inline-block;
   margin-right: 0.5rem;
@@ -62,60 +67,69 @@
   border-radius: 100%;
   background-color: #8db46e;
 }
-.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="Enclosure"]::before {
+.molkobain-datacenter-view .mdv-body .mdv-controls .mdv-legend ul li[data-class="Enclosure"]::before {
   background-color: #eaeaea;
 }
-.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="Server"]::before {
+.molkobain-datacenter-view .mdv-body .mdv-controls .mdv-legend ul li[data-class="Server"]::before {
   background-color: #3f627e;
 }
-.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="NetworkDevice"]::before {
+.molkobain-datacenter-view .mdv-body .mdv-controls .mdv-legend ul li[data-class="NetworkDevice"]::before {
   background-color: #c85454;
 }
-.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="SANSwitch"]::before {
+.molkobain-datacenter-view .mdv-body .mdv-controls .mdv-legend ul li[data-class="SANSwitch"]::before {
   background-color: lightsalmon;
 }
-.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="NAS"]::before {
+.molkobain-datacenter-view .mdv-body .mdv-controls .mdv-legend ul li[data-class="NAS"]::before {
   background-color: #80b469;
 }
-.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="StorageSystem"]::before {
+.molkobain-datacenter-view .mdv-body .mdv-controls .mdv-legend ul li[data-class="StorageSystem"]::before {
   background-color: #eb913b;
 }
-.molkobain-datacenter-view .mdv-controls .mdv-legend ul li[data-class="TapeLibrary"]::before {
+.molkobain-datacenter-view .mdv-body .mdv-controls .mdv-legend ul li[data-class="TapeLibrary"]::before {
   background-color: #7da9bc;
 }
-.molkobain-datacenter-view .mdv-controls .mdv-legend ul li:last-of-type {
+.molkobain-datacenter-view .mdv-body .mdv-controls .mdv-legend ul li:last-of-type {
   padding-bottom: 0;
 }
-.molkobain-datacenter-view .mdv-views {
+.molkobain-datacenter-view .mdv-body .mdv-controls .mdv-options ul li.mdv-of-item {
+  margin-bottom: 0.6rem;
+}
+.molkobain-datacenter-view .mdv-body .mdv-controls .mdv-options ul li.mdv-of-item:last-child {
+  margin-bottom: 0;
+}
+.molkobain-datacenter-view .mdv-body .mdv-views {
   display: flex;
   flex-direction: row;
 }
-.molkobain-datacenter-view .mdv-views .mdv-rack-panel {
+.molkobain-datacenter-view .mdv-body .mdv-views .mdv-rack-panel, .molkobain-datacenter-view .mdv-body .mdv-views .mdv-enclosure-panel {
   margin-right: 120px;
 }
-.molkobain-datacenter-view .mdv-views .mdv-rack-panel:last-child {
+.molkobain-datacenter-view .mdv-body .mdv-views .mdv-rack-panel:last-child, .molkobain-datacenter-view .mdv-body .mdv-views .mdv-enclosure-panel:last-child {
   margin-right: 0;
 }
-.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel {
+.molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel {
+  position: relative;
   width: 260px;
 }
-.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-header {
+.molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-header {
   margin-bottom: 0.2rem;
 }
-.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body {
-  min-height: 140px;
-  max-height: 250px;
+.molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body {
+  position: relative;
+  min-height: 160px;
+  /*max-height: 250px;*/
+  /* Removed because overflow was messing with drag&drop */
 }
-.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body > .mdv-device, .molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body .mdv-enclosure {
+.molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body > .mdv-device, .molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body .mdv-enclosure {
   margin-bottom: 0.3rem;
 }
-.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body > .mdv-device:last-of-type, .molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body .mdv-enclosure:last-of-type {
+.molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body > .mdv-device:last-of-type, .molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body .mdv-enclosure:last-of-type {
   margin-bottom: 0;
 }
-.molkobain-datacenter-view .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body > .mdv-enclosure::after {
+.molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body > .mdv-enclosure::after {
   background-color: #da5757;
 }
-.molkobain-datacenter-view .mdv-element-note {
+.molkobain-datacenter-view .mdv-body .mdv-element-note {
   position: absolute;
   top: 40%;
   right: calc(-100% - 10px);
@@ -124,121 +138,123 @@
   color: #444;
   font-style: italic;
 }
-.molkobain-datacenter-view .mdv-element-note > i {
+.molkobain-datacenter-view .mdv-body .mdv-element-note > i {
   margin-right: 0.3rem;
   font-size: 0.6rem;
 }
-.molkobain-datacenter-view .mdv-rack-panel, .molkobain-datacenter-view .mdv-enclosure-panel {
+.molkobain-datacenter-view .mdv-body .mdv-rack-panel, .molkobain-datacenter-view .mdv-body .mdv-enclosure-panel {
   text-align: center;
-  /* Specificities for enclosures in main view */
+  /* Specificities for enclosures in the main view when on an Enclosure object */
 }
-.molkobain-datacenter-view .mdv-rack-panel .mdv-rp-title, .molkobain-datacenter-view .mdv-enclosure-panel .mdv-rp-title, .molkobain-datacenter-view .mdv-rack-panel .mdv-ep-title, .molkobain-datacenter-view .mdv-enclosure-panel .mdv-ep-title {
+.molkobain-datacenter-view .mdv-body .mdv-rack-panel .mdv-rp-title, .molkobain-datacenter-view .mdv-body .mdv-enclosure-panel .mdv-rp-title, .molkobain-datacenter-view .mdv-body .mdv-rack-panel .mdv-ep-title, .molkobain-datacenter-view .mdv-body .mdv-enclosure-panel .mdv-ep-title {
   margin-left: 1.8rem;
   /* Must equals to .mdv-ru-left width */
   margin-bottom: 0.3rem;
   font-size: 0.85rem;
 }
-.molkobain-datacenter-view .mdv-rack-panel .mdv-ep-view .mdv-enclosure, .molkobain-datacenter-view .mdv-enclosure-panel .mdv-ep-view .mdv-enclosure {
+.molkobain-datacenter-view .mdv-body .mdv-rack-panel .mdv-ep-view .mdv-enclosure, .molkobain-datacenter-view .mdv-body .mdv-enclosure-panel .mdv-ep-view .mdv-enclosure {
   width: initial;
   box-shadow: none;
 }
-.molkobain-datacenter-view .mdv-rack-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit, .molkobain-datacenter-view .mdv-enclosure-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit {
+.molkobain-datacenter-view .mdv-body .mdv-rack-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit, .molkobain-datacenter-view .mdv-body .mdv-enclosure-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit {
   /* Enclosure & units border */
 }
-.molkobain-datacenter-view .mdv-rack-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit .mdv-eu-left, .molkobain-datacenter-view .mdv-enclosure-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit .mdv-eu-left {
+.molkobain-datacenter-view .mdv-body .mdv-rack-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit .mdv-eu-left, .molkobain-datacenter-view .mdv-body .mdv-enclosure-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit .mdv-eu-left {
   display: flex;
 }
-.molkobain-datacenter-view .mdv-rack-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit .mdv-eu-slot, .molkobain-datacenter-view .mdv-enclosure-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit .mdv-eu-slot {
+.molkobain-datacenter-view .mdv-body .mdv-rack-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit .mdv-eu-slot, .molkobain-datacenter-view .mdv-body .mdv-enclosure-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit .mdv-eu-slot {
   /*background-color: $rack-unit-slot-bg-color;*/
   border-left: 1px solid #c5c5c5;
   border-right: 1px solid #c5c5c5;
   border-bottom: 1px solid #eaeaea;
 }
-.molkobain-datacenter-view .mdv-rack-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit:first-child .mdv-eu-slot, .molkobain-datacenter-view .mdv-enclosure-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit:first-child .mdv-eu-slot {
+.molkobain-datacenter-view .mdv-body .mdv-rack-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit:first-child .mdv-eu-slot, .molkobain-datacenter-view .mdv-body .mdv-enclosure-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit:first-child .mdv-eu-slot {
   border-top: 1px solid #c5c5c5;
 }
-.molkobain-datacenter-view .mdv-rack-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit:last-child .mdv-eu-slot, .molkobain-datacenter-view .mdv-enclosure-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit:last-child .mdv-eu-slot {
+.molkobain-datacenter-view .mdv-body .mdv-rack-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit:last-child .mdv-eu-slot, .molkobain-datacenter-view .mdv-body .mdv-enclosure-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit:last-child .mdv-eu-slot {
   border-bottom: 1px solid #c5c5c5;
 }
-.molkobain-datacenter-view .mdv-rack-panel .mdv-ep-view .mdv-enclosure::after, .molkobain-datacenter-view .mdv-enclosure-panel .mdv-ep-view .mdv-enclosure::after {
+.molkobain-datacenter-view .mdv-body .mdv-rack-panel .mdv-ep-view .mdv-enclosure::after, .molkobain-datacenter-view .mdv-body .mdv-enclosure-panel .mdv-ep-view .mdv-enclosure::after {
   display: none;
 }
-.molkobain-datacenter-view .mdv-device, .molkobain-datacenter-view .mdv-enclosure {
+.molkobain-datacenter-view .mdv-body .mdv-device, .molkobain-datacenter-view .mdv-body .mdv-enclosure {
   position: relative;
   width: 120px;
   height: 20px;
   text-align: center;
   font-size: 0.7rem;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  user-select: none;
   transition-property: box-shadow, opacity;
   transition-duration: 0.2s, 0.3s;
   transition-timing-function: ease-in-out;
 }
-.molkobain-datacenter-view .mdv-device > *, .molkobain-datacenter-view .mdv-enclosure > * {
+.molkobain-datacenter-view .mdv-body .mdv-device > *, .molkobain-datacenter-view .mdv-body .mdv-enclosure > * {
   flex-grow: 1;
 }
-.molkobain-datacenter-view .mdv-device a, .molkobain-datacenter-view .mdv-enclosure a, .molkobain-datacenter-view .mdv-device a:hover, .molkobain-datacenter-view .mdv-enclosure a:hover, .molkobain-datacenter-view .mdv-device a:active, .molkobain-datacenter-view .mdv-enclosure a:active, .molkobain-datacenter-view .mdv-device a:visited, .molkobain-datacenter-view .mdv-enclosure a:visited {
+.molkobain-datacenter-view .mdv-body .mdv-device a, .molkobain-datacenter-view .mdv-body .mdv-enclosure a, .molkobain-datacenter-view .mdv-body .mdv-device a:hover, .molkobain-datacenter-view .mdv-body .mdv-enclosure a:hover, .molkobain-datacenter-view .mdv-body .mdv-device a:active, .molkobain-datacenter-view .mdv-body .mdv-enclosure a:active, .molkobain-datacenter-view .mdv-body .mdv-device a:visited, .molkobain-datacenter-view .mdv-body .mdv-enclosure a:visited {
   color: inherit;
   text-decoration: none;
 }
-.molkobain-datacenter-view .mdv-device .object-ref-icon, .molkobain-datacenter-view .mdv-enclosure .object-ref-icon {
+.molkobain-datacenter-view .mdv-body .mdv-device .object-ref-icon, .molkobain-datacenter-view .mdv-body .mdv-enclosure .object-ref-icon {
   margin-right: 0.3rem;
   vertical-align: initial;
   /* Overload the 1px from console CSS */
 }
-.molkobain-datacenter-view .mdv-device:hover, .molkobain-datacenter-view .mdv-enclosure:hover {
+.molkobain-datacenter-view .mdv-body .mdv-device:hover, .molkobain-datacenter-view .mdv-body .mdv-enclosure:hover {
   box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.23);
 }
-.molkobain-datacenter-view .mdv-device {
+.molkobain-datacenter-view .mdv-body .mdv-device {
   display: flex;
   align-items: center;
   justify-content: space-around;
   padding: 0 0.3rem;
   color: #fff;
 }
-.molkobain-datacenter-view .mdv-device > * {
+.molkobain-datacenter-view .mdv-body .mdv-device > * {
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.molkobain-datacenter-view .mdv-device .mdv-element-note {
+.molkobain-datacenter-view .mdv-body .mdv-device .mdv-element-note {
   top: 20%;
 }
-.molkobain-datacenter-view .mdv-device[data-class="Server"] {
+.molkobain-datacenter-view .mdv-body .mdv-device[data-class="Server"] {
   background-color: #3f627e;
 }
-.molkobain-datacenter-view .mdv-device[data-class="NetworkDevice"] {
+.molkobain-datacenter-view .mdv-body .mdv-device[data-class="NetworkDevice"] {
   background-color: #c85454;
 }
-.molkobain-datacenter-view .mdv-device[data-class="SANSwitch"] {
+.molkobain-datacenter-view .mdv-body .mdv-device[data-class="SANSwitch"] {
   background-color: lightsalmon;
 }
-.molkobain-datacenter-view .mdv-device[data-class="NAS"] {
+.molkobain-datacenter-view .mdv-body .mdv-device[data-class="NAS"] {
   background-color: #80b469;
 }
-.molkobain-datacenter-view .mdv-device[data-class="StorageSystem"] {
+.molkobain-datacenter-view .mdv-body .mdv-device[data-class="StorageSystem"] {
   background-color: #eb913b;
 }
-.molkobain-datacenter-view .mdv-device[data-class="TapeLibrary"] {
+.molkobain-datacenter-view .mdv-body .mdv-device[data-class="TapeLibrary"] {
   background-color: #7da9bc;
 }
-.molkobain-datacenter-view .mdv-enclosure .mdv-enclosure-unit .mdv-eu-left {
+.molkobain-datacenter-view .mdv-body .mdv-enclosure .mdv-enclosure-unit .mdv-eu-left {
   display: none;
   /* Will be displayed ONLY on enclosure page, when displayed as a panel */
 }
-.molkobain-datacenter-view .mdv-enclosure .mdv-enclosure-unit .mdv-eu-slot {
+.molkobain-datacenter-view .mdv-body .mdv-enclosure .mdv-enclosure-unit .mdv-eu-slot {
   color: #939393;
   background-color: #eaeaea;
   border-top: 1px solid #d9d9d9;
 }
-.molkobain-datacenter-view .mdv-enclosure .mdv-enclosure-unit:first-of-type .mdv-eu-slot {
-  border-top: none;
+.molkobain-datacenter-view .mdv-body .mdv-enclosure .mdv-enclosure-unit:first-of-type .mdv-eu-slot {
+  border-top-color: transparent;
 }
-.molkobain-datacenter-view .mdv-enclosure::after {
+.molkobain-datacenter-view .mdv-body .mdv-enclosure::after {
   content: "";
   position: absolute;
-  right: -4px;
+  top: 1px;
   bottom: 0px;
+  right: -4px;
   width: 4px;
   height: 100%;
   background-color: #83a967;
@@ -246,10 +262,10 @@
   border-bottom-right-radius: 3px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 }
-.molkobain-datacenter-view .mdv-rack-unit, .molkobain-datacenter-view .mdv-enclosure-unit {
+.molkobain-datacenter-view .mdv-body .mdv-host-unit {
   font-size: 0.7rem;
 }
-.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot, .molkobain-datacenter-view .mdv-enclosure-unit .mdv-ru-slot, .molkobain-datacenter-view .mdv-rack-unit .mdv-eu-slot, .molkobain-datacenter-view .mdv-enclosure-unit .mdv-eu-slot {
+.molkobain-datacenter-view .mdv-body .mdv-host-unit .mdv-hu-slot {
   display: flex;
   position: relative;
   /* In order to make devices absolute and higher than the slot */
@@ -258,38 +274,42 @@
   box-sizing: content-box;
   /* Cause content has a fixed size */
 }
-.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot > .mdv-device, .molkobain-datacenter-view .mdv-enclosure-unit .mdv-ru-slot > .mdv-device, .molkobain-datacenter-view .mdv-rack-unit .mdv-eu-slot > .mdv-device, .molkobain-datacenter-view .mdv-enclosure-unit .mdv-eu-slot > .mdv-device, .molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot .mdv-enclosure, .molkobain-datacenter-view .mdv-enclosure-unit .mdv-ru-slot .mdv-enclosure, .molkobain-datacenter-view .mdv-rack-unit .mdv-eu-slot .mdv-enclosure, .molkobain-datacenter-view .mdv-enclosure-unit .mdv-eu-slot .mdv-enclosure {
+.molkobain-datacenter-view .mdv-body .mdv-host-unit .mdv-hu-slot > .mdv-device, .molkobain-datacenter-view .mdv-body .mdv-host-unit .mdv-hu-slot .mdv-enclosure {
   flex-grow: 1;
-  position: absolute;
+  position: absolute !important;
+  /* important in order to override "relative" put by jQuery draggable/sortable plugins */
   bottom: 0;
   left: 0;
   z-index: 1;
 }
-.molkobain-datacenter-view .mdv-rack-unit, .molkobain-datacenter-view .mdv-enclosure-unit {
+.molkobain-datacenter-view .mdv-body .mdv-host-unit .mdv-hu-slot > .mdv-device .mdv-element-note {
+  display: none;
+}
+.molkobain-datacenter-view .mdv-body .mdv-rack-unit, .molkobain-datacenter-view .mdv-body .mdv-enclosure-unit {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   /* Rack & units border */
 }
-.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-left, .molkobain-datacenter-view .mdv-enclosure-unit .mdv-ru-left, .molkobain-datacenter-view .mdv-rack-unit .mdv-eu-left, .molkobain-datacenter-view .mdv-enclosure-unit .mdv-eu-left {
+.molkobain-datacenter-view .mdv-body .mdv-rack-unit .mdv-ru-left, .molkobain-datacenter-view .mdv-body .mdv-enclosure-unit .mdv-ru-left, .molkobain-datacenter-view .mdv-body .mdv-rack-unit .mdv-eu-left, .molkobain-datacenter-view .mdv-body .mdv-enclosure-unit .mdv-eu-left {
   padding: 0 0.3rem;
   width: 1.8rem;
   text-align: right;
 }
-.molkobain-datacenter-view .mdv-rack-unit .mdv-ru-slot, .molkobain-datacenter-view .mdv-enclosure-unit .mdv-ru-slot {
+.molkobain-datacenter-view .mdv-body .mdv-rack-unit .mdv-ru-slot, .molkobain-datacenter-view .mdv-body .mdv-enclosure-unit .mdv-ru-slot {
   background-color: #fff;
   border-left: 1px solid #c5c5c5;
   border-right: 1px solid #c5c5c5;
   border-bottom: 1px solid #eaeaea;
 }
-.molkobain-datacenter-view .mdv-rack-unit:first-child .mdv-ru-slot, .molkobain-datacenter-view .mdv-enclosure-unit:first-child .mdv-ru-slot {
+.molkobain-datacenter-view .mdv-body .mdv-rack-unit:first-child .mdv-ru-slot, .molkobain-datacenter-view .mdv-body .mdv-enclosure-unit:first-child .mdv-ru-slot {
   border-top: 1px solid #c5c5c5;
 }
-.molkobain-datacenter-view .mdv-rack-unit:last-child .mdv-ru-slot, .molkobain-datacenter-view .mdv-enclosure-unit:last-child .mdv-ru-slot {
+.molkobain-datacenter-view .mdv-body .mdv-rack-unit:last-child .mdv-ru-slot, .molkobain-datacenter-view .mdv-body .mdv-enclosure-unit:last-child .mdv-ru-slot {
   border-bottom: 1px solid #c5c5c5;
 }
-.molkobain-datacenter-view .mdv-fade-for-highlighting {
+.molkobain-datacenter-view .mdv-body .mdv-fade-for-highlighting {
   opacity: 0.1;
 }
 /* Tooltips */

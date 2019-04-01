@@ -67,9 +67,12 @@
 }
 /* Panels: Simple panel with an header and a body to display content nicely */
 .mhf-panel {
+  position: relative;
   margin-bottom: 3rem;
 }
 .mhf-panel .mhf-p-header {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   margin-bottom: 0.5rem;
@@ -82,13 +85,53 @@
 .mhf-panel .mhf-p-header .mhf-ph-icon img {
   max-width: 38px;
 }
+.mhf-panel .mhf-p-header .mhf-ph-actions {
+  position: absolute;
+  right: 0;
+}
+.mhf-panel .mhf-p-header .mhf-ph-actions .mhf-ph-toggler {
+  color: #ea7d1e;
+  cursor: pointer;
+  transition-property: transform;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+}
 .mhf-panel .mhf-p-body {
+  position: relative;
+  z-index: 0;
+  /* Must be below header */
+  margin-top: 0;
   padding: 0.3rem;
   background-color: #fff;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease-in-out;
+}
+.mhf-panel .mhf-p-body:empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mhf-panel .mhf-p-body:empty::after {
+  content: attr(data-empty-text);
+  color: #777;
+  font-style: italic;
 }
 .mhf-panel:last-child {
   margin-bottom: 0;
+}
+.mhf-panel.mhf-collapsed .mhf-ph-toggler {
+  transform: rotateZ(90deg);
+}
+.mhf-panel.mhf-collapsed .mhf-p-body {
+  margin-top: -48px;
+  min-height: 48px !important;
+  max-height: 48px !important;
+}
+.mhf-panel.mhf-collapsed .mhf-p-body > * {
+  display: none;
+}
+.mhf-panel.mhf-collapsed .mhf-p-body:empty::after {
+  content: "";
 }
 /* Tooltips */
 .mhf-tooltip {
@@ -145,18 +188,24 @@
 .mhf-toggle-button .mhf-tb-input.mhf-tb-flat + .mhf-tb-button {
   padding: 2px;
   border-radius: 2em;
-  background: #eaeaea;
+  background-color: #eaeaea;
   box-shadow: inset 0 1px 1px 0px rgba(0, 0, 0, 0.15);
   transition: all 0.4s ease;
 }
 .mhf-toggle-button .mhf-tb-input.mhf-tb-flat + .mhf-tb-button::after {
   border-radius: 50%;
-  background: #fff;
+  background-color: #fff;
   box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.12);
   transition: all 0.2s ease;
 }
 .mhf-toggle-button .mhf-tb-input.mhf-tb-flat:checked + .mhf-tb-button {
-  background: #ea7d1e;
+  background-color: #ea7d1e;
+}
+.mhf-toggle-button .mhf-tb-input.mhf-tb-flat:disabled + .mhf-tb-button {
+  background-color: #d1d1d1;
+}
+.mhf-toggle-button .mhf-tb-input.mhf-tb-flat:disabled + .mhf-tb-button::after {
+  background-color: #e6e6e6;
 }
 .mhf-toggle-button.mhf-pull-left .mhf-tb-button, .mhf-toggle-button.mhf-pull-right .mhf-tb-button, .mhf-pull-left .mhf-toggle-button .mhf-tb-button, .mhf-pull-right .mhf-toggle-button .mhf-tb-button {
   vertical-align: initial;

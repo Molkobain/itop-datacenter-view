@@ -47,6 +47,12 @@ $(function()
 
 			// Initialize the widget
 			// Inherited methods
+			initialize: function()
+			{
+				this.enums.element_type.rack = 'rack';
+
+				this._super();
+			},
 			// - Make the markup for views (eg. rack panels, enclosure panel, ...)
 			_initializeViews: function()
 			{
@@ -67,6 +73,20 @@ $(function()
 				this._initializeEnclosures();
 				this._initializeDevices();
 			},
+			// - Device. Overloaded to put in rack slot
+			_initializeDevice: function(oDevice, oHostElem)
+			{
+				if((oHostElem === undefined) || (oHostElem === null))
+				{
+					oHostElem = this._getRackSlotElement(oDevice.position_v, oDevice.position_p);
+					if(oHostElem === null)
+					{
+						oHostElem = this.element.find('.mdv-unmounted-type[data-type="' + this.enums.element_type.device + '"] .mdv-ut-body')
+					}
+				}
+
+				return this._super(oDevice, oHostElem);
+			},
 			// Own methods
 			// - Rack's panels, without elements
 			_initializePanels: function()
@@ -76,7 +96,7 @@ $(function()
 					var oRackPanelElem = this._cloneTemplate('rack-panel')
 						.attr('data-class', this._getObjectDatum('class'))
 						.attr('data-id', this._getObjectDatum('id'))
-						.attr('data-code', sPanelCode)
+						.attr('data-panel-code', sPanelCode)
 						.attr('data-name', this._getObjectDatum('name'))
 						.appendTo(this.element.find('.mdv-views'));
 
@@ -114,7 +134,7 @@ $(function()
 						var oHostElem = this._getRackSlotElement(oEnclosure.position_v, oEnclosure.position_p);
 						if( (sAssemblyType !== this.enums.assembly_type.mounted) || (oEnclosure.position_v === 0) || (oHostElem === null) )
 						{
-							oHostElem = this.element.find('.mdv-unmounted-type[data-type="enclosure"] .mhf-p-body');
+							oHostElem = this.element.find('.mdv-unmounted-type[data-type="' + this.enums.element_type.enclosure + '"] .mdv-ut-body');
 						}
 						oEnclosureElem.appendTo(oHostElem);
 
@@ -124,11 +144,11 @@ $(function()
 							for(var iDeviceIdx in oEnclosure.devices[sEnclosureDevicesAssemblyType])
 							{
 								var oDevice = oEnclosure.devices[sEnclosureDevicesAssemblyType][iDeviceIdx];
-								var oDeviceHostElem = this._getEnclosureSlotElement(oDevice.position_v, oEnclosure.id);
+								var oDeviceHostElem = this._getEnclosureSlotElement(oDevice.position_v, oDevice.position_p, oEnclosure.id);
 								var bAddNoteToDevice = false;
 								if( (sEnclosureDevicesAssemblyType !== this.enums.assembly_type.mounted) || (oDeviceHostElem === null) )
 								{
-									oDeviceHostElem = this.element.find('.mdv-unmounted-type[data-type="device"] .mhf-p-body');
+									oDeviceHostElem = this.element.find('.mdv-unmounted-type[data-type="' + this.enums.element_type.device + '"] .mdv-ut-body');
 									bAddNoteToDevice = true;
 								}
 
@@ -159,20 +179,6 @@ $(function()
 
 				return oEnclosureElem;
 			},
-			// - Device. Overloaded to put in rack slot
-			_initializeDevice: function(oDevice, oHostElem)
-			{
-				if((oHostElem === undefined) || (oHostElem === null))
-				{
-					oHostElem = this._getRackSlotElement(oDevice.position_v, oDevice.position_p);
-					if(oHostElem === null)
-					{
-						oHostElem = this.element.find('.mdv-unmounted-type[data-type="device"] .mhf-p-body')
-					}
-				}
-
-				return this._super(oDevice, oHostElem);
-			},
 
 			// Getters
 			// - Return the jQuery object for the iSlotNumber slot of the sPanelCode rack if found, null otherwise
@@ -183,7 +189,7 @@ $(function()
 					sPanelCode = this.options.defaults.panel;
 				}
 
-				var oSlotElem = this.element.find('.mdv-rack-panel[data-code="' + sPanelCode + '"] .mdv-rack-unit[data-unit-number="' + iSlotNumber + '"] .mdv-ru-slot');
+				var oSlotElem = this.element.find('.mdv-rack-panel[data-panel-code="' + sPanelCode + '"] .mdv-rack-unit[data-unit-number="' + iSlotNumber + '"] .mdv-ru-slot');
 				if(oSlotElem.length === 0)
 				{
 					this._trace('Could not find rack slot "' + iSlotNumber + 'U" for panel "' + sPanelCode + '".');

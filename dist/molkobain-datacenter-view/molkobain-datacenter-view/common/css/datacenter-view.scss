@@ -62,330 +62,355 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 	min-width: 600px;
 	background-color: #eeeeee; /* Not in /css/css-variables.scss */
 
-	/* Proper properties */
-	position: relative;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-
-	.mdv-controls{
-		.mhf-panel{
-			width: 200px;
-
-			.mhf-p-body{
-				padding: 0.6rem;
-
-				ul{
-					margin: 0;
-					padding: 0;
-					list-style: none;
-					font-size: 0.8rem;
-				}
-			}
-		}
-		.mdv-legend{
-			ul{
-				li{
-					padding-bottom: 0.3rem; /* Padding instead of margin for a smoother transition between elements while fading */
-					cursor: pointer;
-
-					&::before{
-						content: "";
-						display: inline-block;
-						margin-right: 0.5rem;
-						width: 8px;
-						height: 8px;
-						border-radius: 100%;
-						background-color: $obj-class-default-bg-color;
-					}
-
-					&[data-class="Enclosure"]::before{
-						background-color: $obj-class-enclosure-bg-color;
-					}
-					&[data-class="Server"]::before{
-						background-color: $obj-class-server-bg-color;
-					}
-					&[data-class="NetworkDevice"]::before{
-						background-color: $obj-class-networkdevice-bg-color;
-					}
-					&[data-class="SANSwitch"]::before{
-						background-color: $obj-class-sanswitch-bg-color;
-					}
-					&[data-class="NAS"]::before{
-						background-color: $obj-class-nas-bg-color;
-					}
-					&[data-class="StorageSystem"]::before{
-						background-color: $obj-class-storagesystem-bg-color;
-					}
-					&[data-class="TapeLibrary"]::before{
-						background-color: $obj-class-tapelibrary-bg-color;
-					}
-
-					&:last-of-type{
-						padding-bottom: 0;
-					}
-				}
-			}
-		}
+	.mdv-header{
+		margin-bottom: 20px;
 	}
-	.mdv-views{
-		display: flex;
-		flex-direction: row;
-
-		.mdv-rack-panel{
-			margin-right: 120px;
-
-			&:last-child{
-				margin-right: 0;
-			}
-		}
-	}
-	.mdv-unmounted{
-		.mdv-unmounted-type.mhf-panel{
-			width: 260px;
-
-			.mhf-p-header{
-				margin-bottom: 0.2rem;
-			}
-			.mhf-p-body{
-				min-height: 140px;
-				max-height: 250px;
-
-				> .mdv-device, .mdv-enclosure{
-					margin-bottom: 0.3rem;
-
-					&:last-of-type{
-						margin-bottom: 0;
-					}
-				}
-				> .mdv-enclosure{
-					&::after{
-						background-color: $enclosure-sidebar-bg-color-unmounted;
-					}
-				}
-			}
-		}
-	}
-
-	/* Used as a comment next to the element (device / enclosure) */
-	.mdv-element-note{
-		position: absolute;
-		top: 40%;
-		right: calc(-100% - 10px);
-		width: 100%;
-		text-align: left;
-		color: #444444;
-		font-style: italic;
-
-		> i{
-			margin-right: 0.3rem;
-			font-size: 0.6rem;
-		}
-	}
-
-	.mdv-rack-panel,
-	.mdv-enclosure-panel{
-		text-align: center;
-
-		.mdv-rp-title,
-		.mdv-ep-title{
-			margin-left: $rack-unit-number-width; /* Must equals to .mdv-ru-left width */
-			margin-bottom: 0.3rem;
-			font-size: 0.85rem;
-		}
-		.mdv-rp-view,
-		.mdv-ep-view{
-		}
-
-		/* Specificities for enclosures in main view */
-		.mdv-ep-view{
-			.mdv-enclosure{
-				width: initial;
-				box-shadow: none;
-
-				.mdv-enclosure-unit{
-					.mdv-eu-left{
-						display: flex;
-					}
-
-					/* Enclosure & units border */
-					.mdv-eu-slot{
-						/*background-color: $rack-unit-slot-bg-color;*/
-						border-left: $rack-panel-outer-border;
-						border-right: $rack-panel-outer-border;
-						border-bottom: 1px solid $rack-unit-slot-separator-color;
-					}
-					&:first-child{
-						.mdv-eu-slot{
-							border-top: $rack-panel-outer-border;
-						}
-					}
-					&:last-child{
-						.mdv-eu-slot{
-							border-bottom: $rack-panel-outer-border;
-						}
-					}
-				}
-
-				&::after{
-					display: none;
-				}
-			}
-		}
-	}
-	.mdv-device,
-	.mdv-enclosure{
+	.mdv-body{
+		/* Proper properties */
 		position: relative;
-		width: $rack-unit-slot-width;
-		height: $rack-unit-slot-height;
-		text-align: center;
-		font-size: 0.7rem;
-		box-shadow: $box-shadow-small;
-		transition-property: box-shadow, opacity;
-		transition-duration: 0.2s, 0.3s;
-		transition-timing-function: ease-in-out;
-
-		> *{
-			flex-grow: 1;
-		}
-		a, a:hover, a:active, a:visited{
-			color: inherit;
-			text-decoration: none;
-		}
-		.object-ref-icon{
-			margin-right: 0.3rem;
-			vertical-align: initial; /* Overload the 1px from console CSS */
-		}
-
-		&:hover{
-			box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.23);
-		}
-	}
-	.mdv-device{
-		display: flex;
-		align-items: center;
-		justify-content: space-around;
-		padding: 0 0.3rem;
-		color: $device-color;
-
-		> *{
-			overflow-x: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-		}
-		.mdv-element-note{
-			top: 20%;
-		}
-
-		&[data-class="Server"]{
-			background-color: $obj-class-server-bg-color;
-		}
-		&[data-class="NetworkDevice"]{
-			background-color: $obj-class-networkdevice-bg-color;
-		}
-		&[data-class="SANSwitch"]{
-			background-color: $obj-class-sanswitch-bg-color;
-		}
-		&[data-class="NAS"]{
-			background-color: $obj-class-nas-bg-color;
-		}
-		&[data-class="StorageSystem"]{
-			background-color: $obj-class-storagesystem-bg-color;
-		}
-		&[data-class="TapeLibrary"]{
-			background-color: $obj-class-tapelibrary-bg-color;
-		}
-	}
-	.mdv-enclosure{
-		.mdv-enclosure-unit{
-			.mdv-eu-left{
-				display: none; /* Will be displayed ONLY on enclosure page, when displayed as a panel */
-			}
-			.mdv-eu-slot{
-				color: $enclosure-color;
-				background-color: $enclosure-bg-color;
-				border-top: 1px solid $enclosure-unit-slot-separator-color;
-			}
-			&:first-of-type{
-				.mdv-eu-slot{
-					border-top: none;
-				}
-			}
-		}
-
-		&::after{
-			content: "";
-			position: absolute;
-			right: -4px;
-			bottom: 0px;
-			width: 4px;
-			height: 100%;
-			background-color: $enclosure-sidebar-bg-color-mounted;
-			border-top-right-radius: 3px;
-			border-bottom-right-radius: 3px;
-			box-shadow: $box-shadow-small;
-		}
-	}
-
-	.mdv-rack-unit,
-	.mdv-enclosure-unit{
-		font-size: 0.7rem;
-
-		.mdv-ru-slot,
-		.mdv-eu-slot{
-			display: flex;
-			position: relative; /* In order to make devices absolute and higher than the slot */
-			height: $rack-unit-slot-height;
-			width: $rack-unit-slot-width;
-			box-sizing: content-box; /* Cause content has a fixed size */
-
-			> .mdv-device,
-			.mdv-enclosure{
-				flex-grow: 1;
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				z-index: 1;
-			}
-		}
-	}
-	.mdv-rack-unit,
-	.mdv-enclosure-unit{
 		display: flex;
 		flex-direction: row;
-		align-items: center;
 		justify-content: space-around;
 
-		.mdv-ru-left,
-		.mdv-eu-left{
+		.mdv-controls{
+			.mhf-panel{
+				width: 200px;
+
+				.mhf-p-body{
+					padding: 0.6rem;
+
+					ul{
+						margin: 0;
+						padding: 0;
+						list-style: none;
+						font-size: 0.8rem;
+					}
+				}
+			}
+			.mdv-legend{
+				ul{
+					li{
+						padding-bottom: 0.3rem; /* Padding instead of margin for a smoother transition between elements while fading */
+						cursor: pointer;
+
+						&::before{
+							content: "";
+							display: inline-block;
+							margin-right: 0.5rem;
+							width: 8px;
+							height: 8px;
+							border-radius: 100%;
+							background-color: $obj-class-default-bg-color;
+						}
+
+						&[data-class="Enclosure"]::before{
+							background-color: $obj-class-enclosure-bg-color;
+						}
+						&[data-class="Server"]::before{
+							background-color: $obj-class-server-bg-color;
+						}
+						&[data-class="NetworkDevice"]::before{
+							background-color: $obj-class-networkdevice-bg-color;
+						}
+						&[data-class="SANSwitch"]::before{
+							background-color: $obj-class-sanswitch-bg-color;
+						}
+						&[data-class="NAS"]::before{
+							background-color: $obj-class-nas-bg-color;
+						}
+						&[data-class="StorageSystem"]::before{
+							background-color: $obj-class-storagesystem-bg-color;
+						}
+						&[data-class="TapeLibrary"]::before{
+							background-color: $obj-class-tapelibrary-bg-color;
+						}
+
+						&:last-of-type{
+							padding-bottom: 0;
+						}
+					}
+				}
+			}
+			.mdv-options{
+				ul{
+					li.mdv-of-item{
+						margin-bottom: 0.6rem;
+
+						&:last-child{
+							margin-bottom: 0;
+						}
+					}
+				}
+			}
+		}
+		.mdv-views{
+			display: flex;
+			flex-direction: row;
+
+			.mdv-rack-panel,
+			.mdv-enclosure-panel{
+				margin-right: 120px;
+
+				&:last-child{
+					margin-right: 0;
+				}
+			}
+		}
+		.mdv-unmounted{
+			.mdv-unmounted-type.mhf-panel{
+				position: relative;
+				width: 260px;
+
+				.mhf-p-header{
+					margin-bottom: 0.2rem;
+				}
+				.mhf-p-body{
+					position: relative;
+					min-height: 160px;
+					/*max-height: 250px;*/
+					/* Removed because overflow was messing with drag&drop */
+
+					> .mdv-device, .mdv-enclosure{
+						margin-bottom: 0.3rem;
+
+						&:last-of-type{
+							margin-bottom: 0;
+						}
+					}
+					> .mdv-enclosure{
+						&::after{
+							background-color: $enclosure-sidebar-bg-color-unmounted;
+						}
+					}
+				}
+			}
+		}
+
+		/* Used as a comment next to the element (device / enclosure) */
+		.mdv-element-note{
+			position: absolute;
+			top: 40%;
+			right: calc(-100% - 10px);
+			width: 100%;
+			text-align: left;
+			color: #444444;
+			font-style: italic;
+
+			> i{
+				margin-right: 0.3rem;
+				font-size: 0.6rem;
+			}
+		}
+
+		.mdv-rack-panel,
+		.mdv-enclosure-panel{
+			text-align: center;
+
+			.mdv-rp-title,
+			.mdv-ep-title{
+				margin-left: $rack-unit-number-width; /* Must equals to .mdv-ru-left width */
+				margin-bottom: 0.3rem;
+				font-size: 0.85rem;
+			}
+			.mdv-rp-view,
+			.mdv-ep-view{
+			}
+
+			/* Specificities for enclosures in the main view when on an Enclosure object */
+			.mdv-ep-view{
+				.mdv-enclosure{
+					width: initial;
+					box-shadow: none;
+
+					.mdv-enclosure-unit{
+						.mdv-eu-left{
+							display: flex;
+						}
+
+						/* Enclosure & units border */
+						.mdv-eu-slot{
+							/*background-color: $rack-unit-slot-bg-color;*/
+							border-left: $rack-panel-outer-border;
+							border-right: $rack-panel-outer-border;
+							border-bottom: 1px solid $rack-unit-slot-separator-color;
+						}
+						&:first-child{
+							.mdv-eu-slot{
+								border-top: $rack-panel-outer-border;
+							}
+						}
+						&:last-child{
+							.mdv-eu-slot{
+								border-bottom: $rack-panel-outer-border;
+							}
+						}
+					}
+
+					&::after{
+						display: none;
+					}
+				}
+			}
+		}
+		.mdv-device,
+		.mdv-enclosure{
+			position: relative;
+			width: $rack-unit-slot-width;
+			height: $rack-unit-slot-height;
+			text-align: center;
+			font-size: 0.7rem;
+			box-shadow: $box-shadow-small;
+			user-select: none;
+			transition-property: box-shadow, opacity;
+			transition-duration: 0.2s, 0.3s;
+			transition-timing-function: ease-in-out;
+
+			> *{
+				flex-grow: 1;
+			}
+			a, a:hover, a:active, a:visited{
+				color: inherit;
+				text-decoration: none;
+			}
+			.object-ref-icon{
+				margin-right: 0.3rem;
+				vertical-align: initial; /* Overload the 1px from console CSS */
+			}
+
+			&:hover{
+				box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.23);
+			}
+		}
+		.mdv-device{
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
 			padding: 0 0.3rem;
-			width: $rack-unit-number-width;
-			text-align: right;
-		}
+			color: $device-color;
 
-		/* Rack & units border */
-		&{
-			.mdv-ru-slot{
-				background-color: $rack-unit-slot-bg-color;
-				border-left: $rack-panel-outer-border;
-				border-right: $rack-panel-outer-border;
-				border-bottom: 1px solid $rack-unit-slot-separator-color;
+			> *{
+				overflow-x: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
 			}
-			&:first-child{
-				.mdv-ru-slot{
-					border-top: $rack-panel-outer-border;
+			.mdv-element-note{
+				top: 20%;
+			}
+
+			&[data-class="Server"]{
+				background-color: $obj-class-server-bg-color;
+			}
+			&[data-class="NetworkDevice"]{
+				background-color: $obj-class-networkdevice-bg-color;
+			}
+			&[data-class="SANSwitch"]{
+				background-color: $obj-class-sanswitch-bg-color;
+			}
+			&[data-class="NAS"]{
+				background-color: $obj-class-nas-bg-color;
+			}
+			&[data-class="StorageSystem"]{
+				background-color: $obj-class-storagesystem-bg-color;
+			}
+			&[data-class="TapeLibrary"]{
+				background-color: $obj-class-tapelibrary-bg-color;
+			}
+		}
+		.mdv-enclosure{
+			.mdv-enclosure-unit{
+				.mdv-eu-left{
+					display: none; /* Will be displayed ONLY on enclosure page, when displayed as a panel */
+				}
+				.mdv-eu-slot{
+					color: $enclosure-color;
+					background-color: $enclosure-bg-color;
+					border-top: 1px solid $enclosure-unit-slot-separator-color;
+				}
+				&:first-of-type{
+					.mdv-eu-slot{
+						border-top-color: transparent;
+					}
 				}
 			}
-			&:last-child{
-				.mdv-ru-slot{
-					border-bottom: $rack-panel-outer-border;
+
+			&::after{
+				content: "";
+				position: absolute;
+				top: 1px;
+				bottom: 0px;
+				right: -4px;
+				width: 4px;
+				height: 100%;
+				background-color: $enclosure-sidebar-bg-color-mounted;
+				border-top-right-radius: 3px;
+				border-bottom-right-radius: 3px;
+				box-shadow: $box-shadow-small;
+			}
+		}
+
+		.mdv-host-unit{
+			font-size: 0.7rem;
+
+			.mdv-hu-slot{
+				display: flex;
+				position: relative; /* In order to make devices absolute and higher than the slot */
+				height: $rack-unit-slot-height;
+				width: $rack-unit-slot-width;
+				box-sizing: content-box; /* Cause content has a fixed size */
+
+				> .mdv-device,
+				.mdv-enclosure{
+					flex-grow: 1;
+					position: absolute !important; /* important in order to override "relative" put by jQuery draggable/sortable plugins */
+					bottom: 0;
+					left: 0;
+					z-index: 1;
+				}
+				> .mdv-device{
+					.mdv-element-note{
+						display: none;
+					}
 				}
 			}
 		}
-	}
+		.mdv-rack-unit,
+		.mdv-enclosure-unit{
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-around;
 
-	.mdv-fade-for-highlighting{
-		opacity: 0.1;
+			.mdv-ru-left,
+			.mdv-eu-left{
+				padding: 0 0.3rem;
+				width: $rack-unit-number-width;
+				text-align: right;
+			}
+
+			/* Rack & units border */
+			&{
+				.mdv-ru-slot{
+					background-color: $rack-unit-slot-bg-color;
+					border-left: $rack-panel-outer-border;
+					border-right: $rack-panel-outer-border;
+					border-bottom: 1px solid $rack-unit-slot-separator-color;
+				}
+				&:first-child{
+					.mdv-ru-slot{
+						border-top: $rack-panel-outer-border;
+					}
+				}
+				&:last-child{
+					.mdv-ru-slot{
+						border-bottom: $rack-panel-outer-border;
+					}
+				}
+			}
+		}
+
+		.mdv-fade-for-highlighting{
+			opacity: 0.1;
+		}
 	}
 }
 

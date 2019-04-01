@@ -19,6 +19,7 @@ $(function()
 				legend: {},
 				dict: {},
 				defaults: {
+					panel_code: 'front',
 					tooltip_options: {
 						show: 'mouseover',
 						hide: 'mouseout',
@@ -45,6 +46,10 @@ $(function()
 				assembly_type: {
 					mounted: 'mounted',
 					unmounted: 'unmounted',
+				},
+				element_type: {
+					device: 'device',
+					enclosure: 'enclosure',
 				},
 			},
 
@@ -116,7 +121,16 @@ $(function()
 			{
 				var me = this;
 
+				// Return if no legend items
+				if(this.options.legend.classes.length === 0)
+				{
+					return true;
+				}
+
 				// Make markup
+				this.element.find('.mdv-legend .mhf-p-body')
+				    .append( $('<ul></ul>') );
+
 				for(var sClass in this.options.legend.classes)
 				{
 					var oClass = this.options.legend.classes[sClass];
@@ -162,10 +176,18 @@ $(function()
 			},
 			_initializeEnclosure: function(oEnclosure)
 			{
+				if(oEnclosure.panel_code === undefined)
+				{
+					oEnclosure.panel_code = this.options.defaults.panel_code; // Always front panel by default. Rear panel would be displayed only in Enclosure view.
+				}
+
 				var oEnclosureElem = this._cloneTemplate('enclosure')
 					.attr('data-class', oEnclosure.class)
 					.attr('data-id', oEnclosure.id)
+                    .attr('data-type', this.enums.element_type.enclosure)
+                    .attr('data-panel-code', oEnclosure.panel_code)
 					.attr('data-name', oEnclosure.name)
+					.attr('data-nb-u', oEnclosure.nb_u)
 					.attr('data-rack-id', oEnclosure.rack_id)
 					.attr('data-position-v', oEnclosure.position_v)
 					.attr('data-position-p', oEnclosure.position_p);
@@ -177,7 +199,7 @@ $(function()
 					    .find('.mdv-eu-left')
 					    .text(iUnitsIdx + 'U')
 					    .end()
-					    .prependTo(oEnclosureElem);
+					    .prependTo(oEnclosureElem.children('.mdv-host-units-wrapper'));
 				}
 
 				// Full height of n Us plus the bottom-border of n-1 Us
@@ -203,13 +225,15 @@ $(function()
 			{
 				if((oHostElem === undefined) || (oHostElem === null))
 				{
-					oHostElem = this.element.find('.mdv-unmounted-type[data-type="device"] .mhf-p-body');
+					oHostElem = this.element.find('.mdv-unmounted-type[data-type="' + this.enum.element_type.device + '"] .mdv-ut-body');
 				}
 
 				var oDeviceElem = this._cloneTemplate('device')
 				                      .attr('data-class', oDevice.class)
 				                      .attr('data-id', oDevice.id)
+				                      .attr('data-type', this.enums.element_type.device)
 				                      .attr('data-name', oDevice.name)
+				                      .attr('data-nb-u', oDevice.nb_u)
 				                      .attr('data-rack-id', oDevice.rack_id)
 				                      .attr('data-enclosure-id', oDevice.enclosure_id)
 				                      .attr('data-position-v', oDevice.position_v)
@@ -249,7 +273,7 @@ $(function()
 				this.element.find('[data-toggle="tooltip"][title!=""]').each(function(){
 					// Put tooltip
 					var sContent = $('<div />').text($(this).attr('title')).html();
-					$(this).qtip( { content: sContent, show: 'mouseover', hide: 'mouseout', style: { name: 'molkobain-dark', tip: 'bottomMiddle' }, position: { corner: { target: 'topCenter', tooltip: 'bottomMiddle' }, adjust: { y: -15}} } );
+					$(this).qtip( { content: sContent, show: 'mouseover', hide: 'mouseout', style: { name: 'molkobain-dark', tip: 'bottomMiddle' }, position: { corner: { target: 'topMiddle', tooltip: 'bottomMiddle' }, adjust: { y: -5}} } );
 
 					// Remove native title
 					$(this).attr('title', '');
@@ -298,9 +322,14 @@ $(function()
 				return (this.options.dict[sCode] !== undefined) ? this.options.dict[sCode] : sCode;
 			},
 			// - Return the jQuery object for the iSlotNumber slot of the iEnclosureId enclosure if found, null otherwise
-			_getEnclosureSlotElement: function(iSlotNumber, iEnclosureId)
+			_getEnclosureSlotElement: function(iSlotNumber, sPanelCode, iEnclosureId)
 			{
-				var oSlotElem = this.element.find('.mdv-enclosure[data-id="' + iEnclosureId + '"] .mdv-enclosure-unit[data-unit-number="' + iSlotNumber + '"] .mdv-eu-slot');
+				if(sPanelCode === undefined)
+				{
+					sPanelCode = this.options.defaults.panel_code;
+				}
+
+				var oSlotElem = this.element.find('.mdv-enclosure[data-id="' + iEnclosureId + '"][data-panel-code="' + sPanelCode + '"] .mdv-enclosure-unit[data-unit-number="' + iSlotNumber + '"] .mdv-eu-slot');
 				if(oSlotElem.length === 0)
 				{
 					this._trace('Could not find enclosure slot "' + iSlotNumber + 'U" for "' + iEnclosureId + '".');
@@ -316,7 +345,7 @@ $(function()
 			{
 				var oElem = null;
 
-				var oTemplate = this.element.find('.mhf-templates > .mdv-' + sCode);
+				var oTemplate = this.element.find('> .mhf-templates > .mdv-' + sCode);
 				if(oTemplate.length === 0)
 				{
 					this._trace('Could not find template for "' + sCode + '".');

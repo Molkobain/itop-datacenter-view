@@ -4,6 +4,7 @@
 * [Description](#description)
 * [Advanced features](#advanced-features-in-the-paid-version-)
 * [Compatibility](#compatibility)
+* [Downloads](#downloads)
 * [Installation](#installation)
 * [Configuration](#configuration)
 * [How to](#how-to)
@@ -15,28 +16,28 @@ Easily manage & visualize your racks, enclosures and datacenter devices.
 * Toggle obsolete devices easily.
 * Full support of english, french & dutch languages.
 
-![Overview](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-overview-01.png)
+![Overview](docs/mdv-overview-01.png)
 
 Access device's main information on hover (customizable)
-![Overview - Tooltip](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-overview-02.png)
+![Overview - Tooltip](docs/mdv-overview-02.png)
 
 Identify specific devices type by hovering the legend
-![Overview - Legend](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-overview-03.png)
+![Overview - Legend](docs/mdv-overview-03.png)
 
 
 ### Advanced features in the paid version 🚀
 Drag & drop elements in the graphical view to easily set their position instead of manually editing each elements!
-![Pro features - Rear panel](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-profeatures-drag-01.png)
+![Pro features - Rear panel](docs/mdv-profeatures-drag-01.png)
 
 Rear panel support for racks
-![Pro features - Rear panel](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-profeatures-panels-01.png)
+![Pro features - Rear panel](docs/mdv-profeatures-panels-01.png)
 
 Consistency checks (optionals) on elements creation / update:
 * Overlapping elements
 * Malpositioned elements (outside rack's / enclosure's grid)
 * Total elements' height exceeds rack's / enclosure's capacity
 
-![Pro features - Consistency checks](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-profeatures-consistency-01.png)
+![Pro features - Consistency checks](docs/mdv-profeatures-consistency-01.png)
 
 Audit rules:
 * Production elements should have position set when attached to a rack or enclosure
@@ -49,19 +50,24 @@ Audit rules:
 Compatible with iTop 2.3+
 
 ## Dependencies
-* Module `molkobain-handy-framework/1.0.0`
+* Module `molkobain-handy-framework/1.2.0`
 * Module `molkobain-console-tooltips/1.0.2`
 
 *Note: All dependencies are included in the `dist/` folder, so all you need to do is follow the installation section below.*
 
+## Downloads
+Stable releases can be found either on the [releases page](https://github.com/Molkobain/itop-datacenter-view/releases) or on [Molkobain I/O](https://www.molkobain.com/product/datacenter-view/).
+
+Downloading it directly from the *Clone or download* will get you the version under development which might be unstable.
+
 ## Installation
 * Unzip the extension
-* Copy the ``dist/molkobain-datacenter-view`` folder under ``<PATH_TO_ITOP>/extensions`` folder of your iTop
+* Copy the ``molkobain-datacenter-view`` folder under ``<PATH_TO_ITOP>/extensions`` folder of your iTop
 * Run iTop setup & select extension *Datacenter view*
 
 *Your folders should look like this*
 
-![Extensions folder](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-install.png)
+![Extensions folder](docs/mdv-install.png)
 
 ## Configuration
 No configuration needed.
@@ -106,17 +112,18 @@ Some configuration parameters are available from the Configuration editor of the
 A quick example to show how to manually position a device on a rack.
 
 In this example, the *Rack 2* has a *Server* attached but is listed among the *unmounted* devices. This is because the *server* has no *position* set.
-![How to - Unmounted device](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-howto-positionserver-01.png)
+![How to - Unmounted device](docs/mdv-howto-positionserver-01.png)
 
 To fix this, edit the *server* and make sure it has both *position* and *rack units* (its height) set.
-![How to - Edit device](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-howto-positionserver-02.png)
+![How to - Edit device](docs/mdv-howto-positionserver-02.png)
 
 Save the object and go back to the *rack*. The *server* will now appear in the *front* panel!
-![How to - Result](https://raw.githubusercontent.com/Molkobain/itop-datacenter-view/develop/docs/mdv-howto-positionserver-03.png)
+![How to - Result](docs/mdv-howto-positionserver-03.png)
 
 ## Contributors
 I would like to give a special thank you to the people who contributed to this:
  - Bostoen, Jeffrey
+ - Makhlouf, Hadi
 
 ## Licensing
-This extension is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
+This extension is under [AGPLv3](https://en.wikipedia.org/wiki/GNU_Affero_General_Public_License).

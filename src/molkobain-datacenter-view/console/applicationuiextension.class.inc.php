@@ -46,6 +46,7 @@ class ApplicationUIExtension implements iApplicationUIExtension
 
 		// Retrieve DatacenterView
 		$oDatacenterView = DatacenterViewFactory::BuildFromObject($oObject);
+		$oDatacenterView->SetObjectInEditMode($bEditMode);
 
 		// Add external files now as it might make some glitches if loaded after async call
 		// - JS files
@@ -62,7 +63,10 @@ class ApplicationUIExtension implements iApplicationUIExtension
 		$sPreviousTab = $oPage->GetCurrentTab();
 		$oPage->AddAjaxTab(
 			Dict::S('Molkobain:DatacenterView:Tabs:View:Title'),
-			$oDatacenterView->GetEndpoint( array('operation' => $oDatacenterView::ENUM_ENDPOINT_OPERATION_RENDERTAB) )
+			$oDatacenterView->GetEndpoint(array(
+				'operation' => $oDatacenterView::ENUM_ENDPOINT_OPERATION_RENDERTAB,
+				'edit_mode' => $bEditMode,
+			))
 		);
 		// Put tab cursor back to previous to make sure nothing breaks our tab (other extension for example)
 		$oPage->SetCurrentTab($sPreviousTab);

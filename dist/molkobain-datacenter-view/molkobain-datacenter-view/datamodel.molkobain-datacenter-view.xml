@@ -23,6 +23,25 @@
 					<is_null_allowed>true</is_null_allowed>
 				</field>
 			</fields>
+			<methods>
+				<method id="GetEndPositionV" _delta="define">
+					<comment><![CDATA[/**
+	 * Returns object ending U (eg. A 4U object positioned at 10U will return 13)
+	 *
+	 * @return int
+	 */]]></comment>
+					<static>false</static>
+					<access>public</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	public function GetEndPositionV()
+	{
+		$iHeight = (int) $this->Get('nb_u');
+		$iPositionV = (int) $this->Get('position_v');
+
+		return $iPositionV + $iHeight - 1;;
+	}]]></code>
+				</method>
+			</methods>
 			<presentation>
 				<details>
 					<items>
@@ -33,10 +52,10 @@
 				</details>
 				<list>
 					<items>
-						<item id="nb_u" _delta="define">
-							<rank>150</rank>
-						</item>
 						<item id="position_v" _delta="define">
+							<rank>155</rank>
+						</item>
+						<item id="nb_u" _delta="define">
 							<rank>160</rank>
 						</item>
 					</items>
@@ -56,6 +75,25 @@
 					<is_null_allowed>true</is_null_allowed>
 				</field>
 			</fields>
+			<methods>
+				<method id="GetEndPositionV" _delta="define">
+					<comment><![CDATA[/**
+	 * Returns object ending U (eg. A 4U object positioned at 10U will return 13)
+	 *
+	 * @return int
+	 */]]></comment>
+					<static>false</static>
+					<access>public</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	public function GetEndPositionV()
+	{
+		$iHeight = (int) $this->Get('nb_u');
+		$iPositionV = (int) $this->Get('position_v');
+
+		return $iPositionV + $iHeight - 1;;
+	}]]></code>
+				</method>
+			</methods>
 			<presentation>
 				<details>
 					<items>
@@ -66,10 +104,10 @@
 				</details>
 				<list>
 					<items>
-						<item id="nb_u" _delta="define">
-							<rank>150</rank>
-						</item>
 						<item id="position_v" _delta="define">
+							<rank>155</rank>
+						</item>
+						<item id="nb_u" _delta="define">
 							<rank>160</rank>
 						</item>
 					</items>
@@ -87,6 +125,14 @@
 										<item id="position_v" _delta="define">
 											<rank>72</rank>
 										</item>
+										<item id="nb_u" _delta="define">
+											<rank>73</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Server:moreinfo">
+									<items>
+										<item id="nb_u" _delta="delete" />
 									</items>
 								</item>
 							</items>
@@ -95,10 +141,10 @@
 				</details>
 				<list>
 					<items>
-						<item id="nb_u" _delta="define">
-							<rank>150</rank>
-						</item>
 						<item id="position_v" _delta="define">
+							<rank>155</rank>
+						</item>
+						<item id="nb_u" _delta="define">
 							<rank>160</rank>
 						</item>
 					</items>
@@ -116,6 +162,14 @@
 										<item id="position_v" _delta="define">
 											<rank>72</rank>
 										</item>
+										<item id="nb_u" _delta="define">
+											<rank>73</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Server:moreinfo">
+									<items>
+										<item id="nb_u" _delta="delete" />
 									</items>
 								</item>
 							</items>
@@ -124,10 +178,10 @@
 				</details>
 				<list>
 					<items>
-						<item id="nb_u" _delta="define">
-							<rank>150</rank>
-						</item>
 						<item id="position_v" _delta="define">
+							<rank>155</rank>
+						</item>
+						<item id="nb_u" _delta="define">
 							<rank>160</rank>
 						</item>
 					</items>
@@ -145,6 +199,14 @@
 										<item id="position_v" _delta="define">
 											<rank>72</rank>
 										</item>
+										<item id="nb_u" _delta="define">
+											<rank>73</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Server:moreinfo">
+									<items>
+										<item id="nb_u" _delta="delete" />
 									</items>
 								</item>
 							</items>
@@ -153,10 +215,10 @@
 				</details>
 				<list>
 					<items>
-						<item id="nb_u" _delta="define">
-							<rank>150</rank>
-						</item>
 						<item id="position_v" _delta="define">
+							<rank>155</rank>
+						</item>
+						<item id="nb_u" _delta="define">
 							<rank>160</rank>
 						</item>
 					</items>
@@ -174,6 +236,14 @@
 										<item id="position_v" _delta="define">
 											<rank>72</rank>
 										</item>
+										<item id="nb_u" _delta="define">
+											<rank>73</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Server:moreinfo">
+									<items>
+										<item id="nb_u" _delta="delete" />
 									</items>
 								</item>
 							</items>
@@ -182,10 +252,10 @@
 				</details>
 				<list>
 					<items>
-						<item id="nb_u" _delta="define">
-							<rank>150</rank>
-						</item>
 						<item id="position_v" _delta="define">
+							<rank>155</rank>
+						</item>
+						<item id="nb_u" _delta="define">
 							<rank>160</rank>
 						</item>
 					</items>
@@ -203,6 +273,14 @@
 										<item id="position_v" _delta="define">
 											<rank>72</rank>
 										</item>
+										<item id="nb_u" _delta="define">
+											<rank>73</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Server:moreinfo">
+									<items>
+										<item id="nb_u" _delta="delete" />
 									</items>
 								</item>
 							</items>
@@ -211,10 +289,10 @@
 				</details>
 				<list>
 					<items>
-						<item id="nb_u" _delta="define">
-							<rank>150</rank>
-						</item>
 						<item id="position_v" _delta="define">
+							<rank>155</rank>
+						</item>
+						<item id="nb_u" _delta="define">
 							<rank>160</rank>
 						</item>
 					</items>
@@ -232,6 +310,14 @@
 										<item id="position_v" _delta="define">
 											<rank>72</rank>
 										</item>
+										<item id="nb_u" _delta="define">
+											<rank>73</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Server:moreinfo">
+									<items>
+										<item id="nb_u" _delta="delete" />
 									</items>
 								</item>
 							</items>
@@ -240,10 +326,10 @@
 				</details>
 				<list>
 					<items>
-						<item id="nb_u" _delta="define">
-							<rank>150</rank>
-						</item>
 						<item id="position_v" _delta="define">
+							<rank>155</rank>
+						</item>
+						<item id="nb_u" _delta="define">
 							<rank>160</rank>
 						</item>
 					</items>

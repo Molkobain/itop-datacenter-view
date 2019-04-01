@@ -12,16 +12,19 @@ Dict::Add('EN US', 'English', 'English', array(
 	// - Rack
 	'Class:Rack/Attribute:nb_u+' => 'Height in units (U) of the rack',
 	// - Enclosure
+	'Class:Enclosure/Attribute:nb_u' => 'Height',
 	'Class:Enclosure/Attribute:nb_u+' => 'Height in units (U) of the enclosure',
 	'Class:Enclosure/Attribute:position_v' => 'Position',
 	'Class:Enclosure/Attribute:position_v+' => 'Vertical position (U) of the enclosure in the rack (Must be the bottom position, not top)',
 	// - Datacenter device
+	'Class:DatacenterDevice/Attribute:nb_u' => 'Height',
 	'Class:DatacenterDevice/Attribute:nb_u+' => 'Height in units (U) of the device',
 	'Class:DatacenterDevice/Attribute:position_v' => 'Position',
 	'Class:DatacenterDevice/Attribute:position_v+' => 'Vertical position (U) of the device in the enclosure (or rack if mounted directly on it). Must be the bottom position, not top.',
 
 	// UI
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Graphical view',
+	'Molkobain:DatacenterView:NoElement' => 'No element',
 	// - Legend
 	'Molkobain:DatacenterView:Legend:Title' => 'Legend',
 	// - Options
@@ -33,6 +36,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Molkobain:DatacenterView:Element:Tooltip:Fieldset:more-info' => 'More information',
 	// - Rack
 	'Molkobain:DatacenterView:Rack:Panel:Front:Title' => 'Front',
+	// - Enclosure
+	'Molkobain:DatacenterView:Enclosure:Panel:Front:Title' => 'Front',
 	// - Unmounted elements
 	'Molkobain:DatacenterView:Unmounted:Enclosures:Title' => 'Unmounted enclosures',
 	'Molkobain:DatacenterView:Unmounted:Enclosures:Title+' => 'Attached to this rack but no position set (Edit the enclosure to do so)',

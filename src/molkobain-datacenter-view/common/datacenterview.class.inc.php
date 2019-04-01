@@ -40,16 +40,30 @@ class DatacenterView
 
 	const ENUM_OPTION_CODE_SHOWOBSOLETE = 'show_obsolete';
 
+	const DEFAULT_OBJECT_IN_EDIT_MODE = false;
+
 	/** @var \DBObject $oObject */
 	protected $oObject;
 	/** @var string $sType */
 	protected $sType;
+	/** @var bool $bObjectInEditMode Is object in edition mode */
+	protected $bObjectInEditMode;
+	/** @var array $aOptions Current value of the options */
+	protected $aOptions;
 
 	public function __construct(DBObject $oObject)
 	{
 		$this->oObject = $oObject;
 		$this->sType = static::FindObjectType($this->oObject);
+		$this->bObjectInEditMode = static::DEFAULT_OBJECT_IN_EDIT_MODE;
+		// Note: There is note static default value as array is not allowed before PHP 5.6
+		$this->aOptions = array();
 	}
+
+
+	//--------------------
+	// Getters / Setters
+	//--------------------
 
 	/**
 	 * @return \DBObject
@@ -68,6 +82,34 @@ class DatacenterView
 	{
 		return $this->sType;
 	}
+
+	/**
+	 * Returns true if the object is in edition mode
+	 *
+	 * @return bool
+	 */
+	public function IsObjectInEditMode()
+	{
+		return (bool) $this->bObjectInEditMode;
+	}
+
+	/**
+	 * Sets if the object is in edition mode
+	 *
+	 * @param bool $bObjectInEditMode If not passed, set to true automatically
+	 *
+	 * @return $this
+	 */
+	public function SetObjectInEditMode($bObjectInEditMode = true)
+	{
+		$this->bObjectInEditMode = (bool) $bObjectInEditMode;
+		return $this;
+	}
+
+
+	//----------
+	// Helpers
+	//----------
 
 	/**
 	 * Returns the endpoint url with optional $aParams.
@@ -121,6 +163,9 @@ class DatacenterView
 		$sJSWidgetName = 'datacenter_' . $this->sType . '_view';
 		$sJSWidgetDataJSON = $this->GetDataForJSWidget(true);
 
+		// Dict. entries
+		$sNoElementLabel = Dict::S('Molkobain:DatacenterView:NoElement');
+
 		// Add markup
 		// - Legend
 		$sLegendTitle = Dict::S('Molkobain:DatacenterView:Legend:Title');
@@ -131,13 +176,26 @@ class DatacenterView
 		$sOptionsItemsHtml = '';
 		foreach($this->PrepareOptions() as $sOptionCode => $aOptionData)
 		{
-			// Note: Escaping tooltip to avoid breaking HTML tag and XSS attacks
-			$sEscapedOptionTooltip = htmlentities($aOptionData['tooltip'], ENT_QUOTES, 'UTF-8');
+			$sOptionItemLabelForHtml = '';
+			if(!empty($aOptionData['input_id']))
+			{
+				$sOptionItemLabelForHtml = 'for="' . $aOptionData['input_id'] . '"';
+			}
+
+			$sOptionItemTooltipHtml = '';
+			if(!empty($aOptionData['tooltip']))
+			{
+				// Note: Escaping tooltip to avoid breaking HTML tag and XSS attacks
+				$sEscapedOptionTooltip = htmlentities($aOptionData['tooltip'], ENT_QUOTES, 'UTF-8');
+				$sOptionItemTooltipHtml = 'title="' . $sEscapedOptionTooltip . '" data-toggle="tooltip"';
+			}
 
 			$sOptionsItemsHtml .= <<<EOF
 <li class="mdv-of-item">
-	<span title="{$sEscapedOptionTooltip}" data-toggle="tooltip">{$aOptionData['label']}</span>
-	<span class="mhf-pull-right">{$aOptionData['input_html']}</span>
+	<label {$sOptionItemLabelForHtml}>
+		<span {$sOptionItemTooltipHtml}>{$aOptionData['label']}</span>
+		<span class="mhf-pull-right">{$aOptionData['input_html']}</span>	
+	</label>
 </li>
 EOF;
 		}
@@ -145,37 +203,45 @@ EOF;
 		// Note: We could split this in protected methods for overloading (PrepareHtml, PrepareJs, ...)
 		$oOutput->AddHtml(<<<EOF
 <div class="molkobain-datacenter-view-container" data-portal="backoffice">
-	<div class="mdv-controls">
-		<div class="mdv-legend mhf-panel">
-			<div class="mhf-p-header">
-				<span class="mhf-ph-icon"><span class="fa fa-list"></span></span>
-				<span class="mhf-ph-title">{$sLegendTitle}</span>
+	<div class="mdv-header"></div>
+	<div class="mdv-body">
+		<div class="mdv-controls">
+			<div class="mdv-legend mhf-panel">
+				<div class="mhf-p-header">
+					<span class="mhf-ph-icon"><span class="fa fa-list"></span></span>
+					<span class="mhf-ph-title">{$sLegendTitle}</span>
+				</div>
+				<!-- Important: There must be no spaces in this div, otherwise the :empty CSS rule will not work -->
+				<!-- Note: We can't use :blank yet as it is not implemented by any browser... -->
+				<div class="mhf-p-body" data-empty-text="{$sNoElementLabel}"></div>
 			</div>
-			<div class="mhf-p-body">
-				<ul>
-				</ul>
+			<div class="mdv-options mhf-panel">
+				<div class="mhf-p-header">				
+					<span class="mhf-ph-icon"><span class="fa fa-cog"></span></span>
+					<span class="mhf-ph-title">{$sOptionsTitle}</span>
+				</div>
+				<div class="mhf-p-body">
+					<form method="post" class="mdv-options-form">
+						<input type="hidden" name="operation" value="{$sOptionsOperation}" />
+						<ul>
+							{$sOptionsItemsHtml}
+						</ul>
+					</form>
+				</div>
 			</div>
 		</div>
-		<div class="mdv-options mhf-panel">
-			<div class="mhf-p-header">				
-				<span class="mhf-ph-icon"><span class="fa fa-cog"></span></span>
-				<span class="mhf-ph-title">{$sOptionsTitle}</span>
-			</div>
-			<div class="mhf-p-body">
-				<form method="post" class="mdv-options-form">
-					<input type="hidden" name="operation" value="{$sOptionsOperation}" />
-					<ul>
-						{$sOptionsItemsHtml}
-					</ul>
-				</form>
-			</div>
+	
+		<div class="mdv-views">
 		</div>
-	</div>
-
-	<div class="mdv-views">
+		
+		<div class="mdv-unmounted mhf-panel">
 	</div>
 	
-	<div class="mdv-unmounted mhf-panel">
+		<div class="mhf-loader mhf-hide">
+			<div class="mhf-loader-text">
+				<span class="fa fa-spin fa-refresh fa-fw"></span>
+			</div>
+		</div>
 	</div>
 	
 	<div class="mhf-templates">
@@ -186,35 +252,36 @@ EOF;
 		</li>
 		
 		<!-- Rack panel template -->
-		<div class="mdv-rack-panel" data-class="" data-id="" data-code="" data-name="">
+		<div class="mdv-rack-panel mdv-host-panel" data-class="" data-id="" data-panel-code="" data-name="">
 			<div class="mdv-rp-title"></div>
 			<div class="mdv-rp-view">
 				<div class="mdv-rpv-top"></div>
-				<div class="mdv-rpv-middle"></div>
+				<div class="mdv-rpv-middle mdv-host-units-wrapper"></div>
 				<div class="mdv-rpv-bottom"></div>
 			</div>
 		</div>
 		
 		<!-- Rack unit template -->
-		<div class="mdv-rack-unit" data-unit-number="">
-			<div class="mdv-ru-left"></div>
-			<div class="mdv-ru-slot"></div>
-			<div class="mdv-ru-right"></div>
+		<div class="mdv-rack-unit mdv-host-unit" data-unit-number="">
+			<div class="mdv-ru-left mdv-hu-left"></div>
+			<div class="mdv-ru-slot mdv-hu-slot"></div>
+			<div class="mdv-ru-right mdv-hu-right"></div>
 		</div>
 		
 		<!-- Enclosure template -->
-		<div class="mdv-enclosure" data-class="" data-id="" data-name="" data-rack-id="" data-position-v="" data-position-p="">
+		<div class="mdv-enclosure mdv-host-panel" data-class="" data-id="" data-panel-code="" data-type="" data-name="" data-rack-id="" data-position-v="" data-position-p="">
+			<div class="mdv-host-units-wrapper"></div>
 		</div>
 		
 		<!-- Enclosure unit template -->
-		<div class="mdv-enclosure-unit" data-unit-number="">
-			<div class="mdv-eu-left"></div>
-			<div class="mdv-eu-slot"></div>
-			<div class="mdv-eu-right"></div>
+		<div class="mdv-enclosure-unit mdv-host-unit" data-unit-number="">
+			<div class="mdv-eu-left mdv-hu-left"></div>
+			<div class="mdv-eu-slot mdv-hu-slot"></div>
+			<div class="mdv-eu-right mdv-hu-right"></div>
 		</div>
 		
 		<!-- Device template -->
-		<div class="mdv-device" data-class="" data-id="" data-name="" data-rack-id="" data-enclosure-id="" data-position-v="" data-position-p="">
+		<div class="mdv-device" data-class="" data-id="" data-type="" data-name="" data-rack-id="" data-enclosure-id="" data-position-v="" data-position-p="">
 			<span class="mdv-d-name"></span>
 		</div>
 		
@@ -223,15 +290,13 @@ EOF;
 			<div class="mhf-p-header">
 				<span class="mhf-ph-icon"></span>
 				<span class="mhf-ph-title"></span>
+				<span class="mhf-ph-actions mhf-pull-right">
+					<span class="mhf-ph-toggler fa fa-fw fa-caret-down"></span>
+				</span>
 			</div>
-			<div class="mhf-p-body">
-			</div>
-		</div>
-	</div>
-	
-	<div class="mhf-loader mhf-hide">
-		<div class="mhf-loader-text">
-			<span class="fa fa-spin fa-refresh fa-fw"></span>
+			<!-- Important: There must be no spaces in this div, otherwise the :empty CSS rule will not work -->
+			<!-- Note: We can't use :blank yet as it is not implemented by any browser... -->
+			<div class="mhf-p-body mdv-ut-body" data-hover-text="" data-empty-text="{$sNoElementLabel}"></div>
 		</div>
 	</div>
 </div>
@@ -388,6 +453,9 @@ EOF
 				'rack_id' => (int) $oEnclosure->Get('rack_id'),
 				'position_v' => (int) $oEnclosure->Get('position_v'),
 				'position_p' => 'front',
+				'panels' => array(
+					'front' => Dict::S('Molkobain:DatacenterView:Enclosure:Panel:Front:Title'),
+				),
 				'devices' => array(
 					'icon' => MetaModel::GetClassIcon('DatacenterDevice', false),
 					static::ENUM_ASSEMBLY_TYPE_MOUNTED => array(),
@@ -581,6 +649,7 @@ EOF;
 	protected function GetDictEntries()
 	{
 		return array(
+			'Molkobain:DatacenterView:NoElement' => Dict::S('Molkobain:DatacenterView:NoElement'),
 			'Molkobain:DatacenterView:Unmounted:Enclosures:Title' => Dict::S('Molkobain:DatacenterView:Unmounted:Enclosures:Title'),
 			'Molkobain:DatacenterView:Unmounted:Enclosures:Title+' => Dict::S('Molkobain:DatacenterView:Unmounted:Enclosures:Title+'),
 			'Molkobain:DatacenterView:Unmounted:Devices:Title' => Dict::S('Molkobain:DatacenterView:Unmounted:Devices:Title'),
@@ -594,23 +663,92 @@ EOF;
 	//----------
 
 	/**
-	 * Returns the $sCode option for the current object in the appUserPreferences
+	 * Returns if the $sCode option is for the current object or global to the module
 	 *
 	 * @param string $sCode
-	 * @param mixed $defaultValue
 	 *
-	 * @return string
+	 * @return bool
 	 */
-	public function GetOption($sCode, $defaultValue = null)
+	protected function IsGlobalOption($sCode)
 	{
-		$sUserPrefCodeForObject = ConfigHelper::GetModuleCode() . '|object|' . $this->GetObjectClass() . '|' . $this->GetObjectId();
-		$aPrefs = appUserPreferences::GetPref($sUserPrefCodeForObject, array());
+		switch($sCode)
+		{
+			// Prefs. specific to the current object
+			case static::ENUM_OPTION_CODE_SHOWOBSOLETE:
+				$bRet = false;
+				break;
 
-		return (array_key_exists($sCode, $aPrefs)) ? $aPrefs[$sCode] : $defaultValue;
+			// Prefs. global to the whole module
+			default:
+				$bRet = true;
+				break;
+		}
+
+		return $bRet;
 	}
 
 	/**
-	 * Sets the $sCode option to $value for the current object in the appUserPreferences
+	 * Returns the user preference code for the $sCode option as options can be stored either in a global user pref. or object specific user pref.
+	 *
+	 * @param string $sOptionCode
+	 *
+	 * @return string
+	 */
+	protected function GetUserPrefCodeForOption($sOptionCode)
+	{
+		$sUserPrefCode = ($this->IsGlobalOption($sOptionCode)) ? ConfigHelper::GetModuleCode() . '|global' : ConfigHelper::GetModuleCode() . '|object|' . $this->GetObjectClass() . '|' . $this->GetObjectId();
+
+		return $sUserPrefCode;
+	}
+
+	/**
+	 * Returns the current value of the $sCode option if present, otherwise retrieves it from user preferences
+	 *
+	 * @param string $sCode
+	 *
+	 * @return mixed
+	 */
+	public function GetOption($sCode)
+	{
+		// Cache value if not already present
+		if(!array_key_exists($sCode, $this->aOptions))
+		{
+			/** @noinspection PhpParamsInspection */
+			/** @var array $aPref */
+			$aPref = appUserPreferences::GetPref($this->GetUserPrefCodeForOption($sCode), array());
+
+			$this->aOptions[$sCode] = (array_key_exists($sCode, $aPref)) ? $aPref[$sCode] : $this->GetOptionDefaultValue($sCode);
+		}
+
+		return $this->aOptions[$sCode];
+	}
+
+	/**
+	 * Returns the default value for $sCode option.
+	 *
+	 * @param string $sCode
+	 *
+	 * @return null|mixed
+	 */
+	protected function GetOptionDefaultValue($sCode)
+	{
+		$defaultValue = null;
+
+		switch($sCode)
+		{
+			case static::ENUM_OPTION_CODE_SHOWOBSOLETE:
+				// Value is defined as follows: user pref on object >> user pref in iTop >> instance config parameter
+				/** @var boolean $bShowObsoleteConfigDefault */
+				$bShowObsoleteConfigDefault = MetaModel::GetConfig()->Get('obsolescence.show_obsolete_data');
+				$defaultValue = appUserPreferences::GetPref('show_obsolete_data', $bShowObsoleteConfigDefault);
+				break;
+		}
+
+		return $defaultValue;
+	}
+
+	/**
+	 * Sets the current value of the $sCode option in the cache (but does NOT saves it in the DB, use SaveOption() for that)
 	 *
 	 * @param string $sCode
 	 * @param mixed $value
@@ -619,17 +757,35 @@ EOF;
 	 */
 	public function SetOption($sCode, $value)
 	{
-		$sUserPrefCodeForObject = ConfigHelper::GetModuleCode() . '|object|' . $this->GetObjectClass() . '|' . $this->GetObjectId();
-		$aPrefs = appUserPreferences::GetPref($sUserPrefCodeForObject, array());
+		$this->aOptions[$sCode] = $value;
 
-		if(array_key_exists($sCode, $aPrefs) && ($aPrefs[$sCode] === $value))
+		return $this;
+	}
+
+	/**
+	 * Saves the $value of the $sCode option in the user preferences (DB)
+	 *
+	 * @param string $sCode
+	 * @param mixed $value
+	 *
+	 * @return $this
+	 */
+	public function SaveOption($sCode, $value)
+	{
+		$sUserPrefCode = $this->GetUserPrefCodeForOption($sCode);
+
+		/** @noinspection PhpParamsInspection */
+		/** @var array $aPref */
+		$aPref = appUserPreferences::GetPref($sUserPrefCode, array());
+		if(array_key_exists($sCode, $aPref) && ($aPref[$sCode] === $value))
 		{
 			// Do not write it again
 		}
 		else
 		{
-			$aPrefs[$sCode] = $value;
-			appUserPreferences::SetPref($sUserPrefCodeForObject, $aPrefs);
+			$aPref[$sCode] = $value;
+			/** @noinspection PhpParamsInspection */
+			appUserPreferences::SetPref($sUserPrefCode, $aPref);
 		}
 
 		return $this;
@@ -644,7 +800,8 @@ EOF;
 	{
 		// Show obsolete
 		$bShowObsolete = (utils::ReadPostedParam(static::ENUM_OPTION_CODE_SHOWOBSOLETE, '') === 'on') ? true : false;
-		$this->SetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsolete);
+		$this->SetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsolete)
+			->SaveOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsolete);
 
 		return $this;
 	}
@@ -666,16 +823,15 @@ EOF;
 		$aOptions = array();
 
 		// Show obsolete
-		// - Retrieve value. Value is defined as follows: user pref on object >> user pref >> instance config parameter
-		/** @var string $bShowObsoleteConfigDefault */
-		$bShowObsoleteConfigDefault = MetaModel::GetConfig()->Get('obsolescence.show_obsolete_data');
-		$bShowObsoleteUserDefault = appUserPreferences::GetPref('show_obsolete_data', $bShowObsoleteConfigDefault);
-		$bShowObsolete = $this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsoleteUserDefault);
+		// - Retrieve value
+		$bShowObsolete = $this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE);
+		$oShowObsoleteButton = UIHelper::MakeToggleButton(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsolete, null, '$(this).closest(".molkobain-datacenter-view").trigger("mdv.refresh_view")');
 		// - Add to options
 		$aOptions[static::ENUM_OPTION_CODE_SHOWOBSOLETE] = array(
 			'label' => Dict::S('Molkobain:DatacenterView:Options:Option:ShowObsolete'),
 			'tooltip' => Dict::S('Molkobain:DatacenterView:Options:Option:ShowObsolete+'),
-			'input_html' => UIHelper::MakeToggleButton(static::ENUM_OPTION_CODE_SHOWOBSOLETE, $bShowObsolete, null, '$(this).closest(".molkobain-datacenter-view").trigger("mdv.refresh_view")'),
+			'input_id' => $oShowObsoleteButton->GetInputId(),
+			'input_html' => $oShowObsoleteButton->Render(),
 		);
 
 		return $aOptions;
@@ -695,18 +851,17 @@ EOF;
 	 */
 	public static function FindObjectType(DBObject $oObject)
 	{
-		$sObjClass = get_class($oObject);
-		switch($sObjClass)
+		if($oObject instanceof \Rack)
 		{
-			case 'Rack':
-				$sObjType = 'rack';
-				break;
-			case 'Enclosure':
-				$sObjType = 'enclosure';
-				break;
-			default:
-				$sObjType = 'device';
-				break;
+			$sObjType = static::ENUM_ELEMENT_TYPE_RACK;
+		}
+		elseif($oObject instanceof \Enclosure)
+		{
+			$sObjType = static::ENUM_ELEMENT_TYPE_ENCLOSURE;
+		}
+		else
+		{
+			$sObjType = static::ENUM_ELEMENT_TYPE_DEVICE;
 		}
 
 		return $sObjType;
@@ -751,5 +906,20 @@ EOF;
 		return array(
 			static::ENUM_OPTION_CODE_SHOWOBSOLETE,
 		);
+	}
+
+	/**
+	 * Returns the callback name for the $sOperation.
+	 * Callback must be a NON static, public function and must return an array of data.
+	 *
+	 * Eg. For operation "update_position" => "OnUpdatePositionAsyncOp";
+	 *
+	 * @param string $sOperation
+	 *
+	 * @return string
+	 */
+	public static function GetCallbackNameFromAsyncOpCode($sOperation)
+	{
+		return 'On' . str_replace('_', '', ucwords($sOperation, '_')) . 'AsyncOp';
 	}
 }
