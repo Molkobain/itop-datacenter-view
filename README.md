@@ -3,6 +3,7 @@
 # iTop extension: molkobain-datacenter-view
 * [Description](#description)
 * [Advanced features](#advanced-features-in-the-paid-version-)
+* [Online demo](#online-demo)
 * [Compatibility](#compatibility)
 * [Downloads](#downloads)
 * [Installation](#installation)
@@ -46,6 +47,10 @@ Audit rules:
 * Positioned elements should not overlap another one
 * Positioned elements should not be outside its rack's or enclosure's (exceed height or malpositioned)
 
+## Online demo
+You can try this extension on the online demo. There are already some racks, enclosures and devices mounted as an example. Just click on the links below to access it:
+* [Administration console](http://mbc.itop.molkobain.com/pages/UI.php?operation=details&class=Rack&id=15&c[menu]=SearchCIs&auth_user=admin&auth_pwd=admin#tabbedContent_0=7) (admin / admin)
+
 ## Compatibility
 Compatible with iTop 2.3+
 
@@ -70,7 +75,7 @@ Downloading it directly from the *Clone or download* will get you the version un
 ![Extensions folder](docs/mdv-install.png)
 
 ## Configuration
-No configuration needed.
+No configuration needed, the extension can be used out of the box!
 
 ### Parameters
 Some configuration parameters are available from the Configuration editor of the console:
