@@ -23,7 +23,7 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 
 	// UI
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Grafische weergave',
-	'Molkobain:DatacenterView:NoElement' => 'No element~~',
+	'Molkobain:DatacenterView:NoElement' => 'Geen object',
 	// - Legend
 	'Molkobain:DatacenterView:Legend:Title' => 'Legende',
 	// - Options
