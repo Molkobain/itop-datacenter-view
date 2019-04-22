@@ -35,10 +35,10 @@
 					<type>Overload-DBObject</type>
 					<code><![CDATA[	public function GetEndPositionV()
 	{
-		$iHeight = (int) $this->Get('nb_u');
+		$iHeight = ((int) $this->Get('nb_u') > 0) ? $this->Get('nb_u') : 1;
 		$iPositionV = (int) $this->Get('position_v');
 
-		return $iPositionV + $iHeight - 1;;
+		return $iPositionV + $iHeight - 1;
 	}]]></code>
 				</method>
 			</methods>
@@ -87,10 +87,10 @@
 					<type>Overload-DBObject</type>
 					<code><![CDATA[	public function GetEndPositionV()
 	{
-		$iHeight = (int) $this->Get('nb_u');
+		$iHeight = ((int) $this->Get('nb_u') > 0) ? $this->Get('nb_u') : 1;
 		$iPositionV = (int) $this->Get('position_v');
 
-		return $iPositionV + $iHeight - 1;;
+		return $iPositionV + $iHeight - 1;
 	}]]></code>
 				</method>
 			</methods>
