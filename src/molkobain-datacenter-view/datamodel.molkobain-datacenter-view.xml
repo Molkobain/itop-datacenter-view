@@ -41,6 +41,22 @@
 		return $iPositionV + $iHeight - 1;
 	}]]></code>
 				</method>
+				<method id="IsMounted" _delta="define">
+					<comment><![CDATA[/**
+	 * Returns true if object is mounted in its host (position_v > 0)
+	 *
+	 * @return bool
+	 */]]></comment>
+					<static>false</static>
+					<access>public</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	public function IsMounted()
+	{
+		$iPositionV = (int) $this->Get('position_v');
+
+		return $iPositionV > 0;
+	}]]></code>
+				</method>
 			</methods>
 			<presentation>
 				<details>
@@ -91,6 +107,22 @@
 		$iPositionV = (int) $this->Get('position_v');
 
 		return $iPositionV + $iHeight - 1;
+	}]]></code>
+				</method>
+				<method id="IsMounted" _delta="define">
+					<comment><![CDATA[/**
+	 * Returns true if object is mounted in its host (position_v > 0)
+	 *
+	 * @return bool
+	 */]]></comment>
+					<static>false</static>
+					<access>public</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	public function IsMounted()
+	{
+		$iPositionV = (int) $this->Get('position_v');
+
+		return $iPositionV > 0;
 	}]]></code>
 				</method>
 			</methods>
