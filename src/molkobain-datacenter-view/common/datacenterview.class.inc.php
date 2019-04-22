@@ -200,6 +200,9 @@ class DatacenterView
 EOF;
 		}
 
+		// - Unmounted panels
+		$sTogglerTooltip = Dict::S('Molkobain:DatacenterView:Unmounted:Toggler:Tooltip');
+
 		// Note: We could split this in protected methods for overloading (PrepareHtml, PrepareJs, ...)
 		$oOutput->AddHtml(<<<EOF
 <div class="molkobain-datacenter-view-container" data-portal="backoffice">
@@ -291,7 +294,7 @@ EOF;
 				<span class="mhf-ph-icon"></span>
 				<span class="mhf-ph-title"></span>
 				<span class="mhf-ph-actions mhf-pull-right">
-					<span class="mhf-ph-toggler fa fa-fw fa-caret-down"></span>
+					<span class="mhf-ph-toggler fa fa-fw fa-caret-down" title="{$sTogglerTooltip}"></span>
 				</span>
 			</div>
 			<!-- Important: There must be no spaces in this div, otherwise the :empty CSS rule will not work -->
