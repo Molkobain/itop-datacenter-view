@@ -7,19 +7,20 @@
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
 
-@include_once('../approot.inc.php');
-@include_once('../../approot.inc.php');
-@include_once('../../../approot.inc.php');
-require_once(APPROOT.'application/application.inc.php');
-require_once(APPROOT.'application/webpage.class.inc.php');
-require_once(APPROOT.'application/ajaxwebpage.class.inc.php');
+/** @noinspection UsingInclusionOnceReturnValueInspection */
+@include_once '../approot.inc.php';
+@include_once '../../approot.inc.php';
+@include_once '../../../approot.inc.php';
+require_once APPROOT.'application/application.inc.php';
+require_once APPROOT.'application/webpage.class.inc.php';
+require_once APPROOT.'application/ajaxwebpage.class.inc.php';
 
 try
 {
-	require_once(APPROOT.'/application/startup.inc.php');
-	require_once(APPROOT.'/application/user.preferences.class.inc.php');
+	require_once APPROOT.'/application/startup.inc.php';
+	require_once APPROOT.'/application/user.preferences.class.inc.php';
 
-	require_once(APPROOT.'/application/loginwebpage.class.inc.php');
+	require_once APPROOT.'/application/loginwebpage.class.inc.php';
 	LoginWebPage::DoLoginEx('backoffice', false);
 
 	$oPage = new ajax_page("");
