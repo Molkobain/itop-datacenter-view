@@ -190,28 +190,28 @@ class DatacenterView
 				$sOptionItemTooltipHtml = 'title="' . $sEscapedOptionTooltip . '" data-toggle="tooltip"';
 			}
 
-			$sOptionsItemsHtml .= <<<EOF
+			$sOptionsItemsHtml .= <<<HTML
 <li class="mdv-of-item">
 	<label {$sOptionItemLabelForHtml}>
 		<span {$sOptionItemTooltipHtml}>{$aOptionData['label']}</span>
 		<span class="mhf-pull-right">{$aOptionData['input_html']}</span>	
 	</label>
 </li>
-EOF;
+HTML;
 		}
 
 		// - Unmounted panels
 		$sTogglerTooltip = Dict::S('Molkobain:DatacenterView:Unmounted:Toggler:Tooltip');
 
 		// Note: We could split this in protected methods for overloading (PrepareHtml, PrepareJs, ...)
-		$oOutput->AddHtml(<<<EOF
+		$oOutput->AddHtml(<<<HTML
 <div class="molkobain-datacenter-view-container" data-portal="backoffice">
 	<div class="mdv-header"></div>
 	<div class="mdv-body">
 		<div class="mdv-controls">
 			<div class="mdv-legend mhf-panel">
 				<div class="mhf-p-header">
-					<span class="mhf-ph-icon"><span class="fa fa-list"></span></span>
+					<span class="mhf-ph-icon"><span class="fa fa-fw fa-list"></span></span>
 					<span class="mhf-ph-title">{$sLegendTitle}</span>
 				</div>
 				<!-- Important: There must be no spaces in this div, otherwise the :empty CSS rule will not work -->
@@ -220,7 +220,7 @@ EOF;
 			</div>
 			<div class="mdv-options mhf-panel">
 				<div class="mhf-p-header">				
-					<span class="mhf-ph-icon"><span class="fa fa-cog"></span></span>
+					<span class="mhf-ph-icon"><span class="fa fa-fw fa-cog"></span></span>
 					<span class="mhf-ph-title">{$sOptionsTitle}</span>
 				</div>
 				<div class="mhf-p-body">
@@ -303,7 +303,7 @@ EOF;
 		</div>
 	</div>
 </div>
-EOF
+HTML
 		);
 
 		// Init JS widget
@@ -632,13 +632,13 @@ EOF
 			}
 		}
 
-		$sHTML = <<<EOF
+		$sHTML = <<<HTML
 	<div class="mdv-dt-header">
 		<span class="mdv-dth-icon">{$sClassImage}</span>
 		<span class="mdv-dth-name">{$sObjName}</span>
 	</div>
 	{$sAttributesHTML}
-EOF;
+HTML;
 
 		return $sHTML;
 	}
