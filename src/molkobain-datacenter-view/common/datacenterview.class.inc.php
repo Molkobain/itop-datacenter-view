@@ -28,6 +28,8 @@ use Molkobain\iTop\Extension\DatacenterView\Common\Helper\ConfigHelper;
  */
 class DatacenterView
 {
+	const ENUM_PANEL_FRONT = 'front';
+
 	const ENUM_ASSEMBLY_TYPE_MOUNTED = 'mounted';
 	const ENUM_ASSEMBLY_TYPE_UNMOUNTED = 'unmounted';
 
@@ -40,6 +42,7 @@ class DatacenterView
 
 	const ENUM_OPTION_CODE_SHOWOBSOLETE = 'show_obsolete';
 
+	const DEFAULT_PANEL = self::ENUM_PANEL_FRONT;
 	const DEFAULT_OBJECT_IN_EDIT_MODE = false;
 
 	/** @var \DBObject $oObject */
@@ -400,7 +403,7 @@ EOF
 	{
 		$aData = $this->GetObjectBaseData($oRack) + array(
 				'panels' => array(
-					'front' => Dict::S('Molkobain:DatacenterView:Rack:Panel:Front:Title'),
+					static::ENUM_PANEL_FRONT => Dict::S('Molkobain:DatacenterView:Rack:Panel:Front:Title'),
 				),
 				'enclosures' => array(
 					'icon' => MetaModel::GetClassIcon('Enclosure', false),
@@ -455,9 +458,9 @@ EOF
 		$aData = $this->GetObjectBaseData($oEnclosure) + array(
 				'rack_id' => (int) $oEnclosure->Get('rack_id'),
 				'position_v' => (int) $oEnclosure->Get('position_v'),
-				'position_p' => 'front',
+				'position_p' => static::ENUM_PANEL_FRONT,
 				'panels' => array(
-					'front' => Dict::S('Molkobain:DatacenterView:Enclosure:Panel:Front:Title'),
+					static::ENUM_PANEL_FRONT => Dict::S('Molkobain:DatacenterView:Enclosure:Panel:Front:Title'),
 				),
 				'devices' => array(
 					'icon' => MetaModel::GetClassIcon('DatacenterDevice', false),
@@ -497,7 +500,7 @@ EOF
 				'rack_id' => (int) $oDevice->Get('rack_id'),
 				'enclosure_id' => (int) $oDevice->Get('enclosure_id'),
 				'position_v' => (int) $oDevice->Get('position_v'),
-				'position_p' => 'front',
+				'position_p' => static::ENUM_PANEL_FRONT,
 			);
 
 		return $aData;
@@ -844,6 +847,18 @@ HTML;
 	//-----------------
 	// Static methods
 	//-----------------
+
+	/**
+	 * Note: Using a static method instead of a static array as it is not possible in PHP 5.6
+	 *
+	 * @return array
+	 */
+	public static function EnumPanels()
+	{
+		return array(
+			static::ENUM_PANEL_FRONT,
+		);
+	}
 
 	/**
 	 * Returns if the $oObject is a rack|enclosure|device (see ENUM_ELEMENT_TYPE_XXX constants)
