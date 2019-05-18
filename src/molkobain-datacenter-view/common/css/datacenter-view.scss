@@ -170,7 +170,7 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 					/*max-height: 250px;*/
 					/* Removed because overflow was messing with drag&drop */
 
-					> .mdv-device, .mdv-enclosure{
+					> .mdv-element{
 						margin-bottom: 0.3rem;
 
 						&:last-of-type{
@@ -252,8 +252,7 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 				}
 			}
 		}
-		.mdv-device,
-		.mdv-enclosure{
+		.mdv-element{
 			position: relative;
 			width: $rack-unit-slot-width;
 			height: $rack-unit-slot-height;

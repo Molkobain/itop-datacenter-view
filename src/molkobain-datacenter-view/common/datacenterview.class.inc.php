@@ -275,7 +275,7 @@ HTML;
 		</div>
 		
 		<!-- Enclosure template -->
-		<div class="mdv-enclosure mdv-host-panel" data-class="" data-id="" data-panel-code="" data-type="" data-name="" data-rack-id="" data-position-v="" data-position-p="">
+		<div class="mdv-enclosure mdv-element mdv-host-panel" data-class="" data-id="" data-panel-code="" data-type="" data-name="" data-rack-id="" data-position-v="" data-position-p="">
 			<div class="mdv-host-units-wrapper"></div>
 		</div>
 		
@@ -287,7 +287,7 @@ HTML;
 		</div>
 		
 		<!-- Device template -->
-		<div class="mdv-device" data-class="" data-id="" data-type="" data-name="" data-rack-id="" data-enclosure-id="" data-position-v="" data-position-p="">
+		<div class="mdv-device mdv-element" data-class="" data-id="" data-type="" data-name="" data-rack-id="" data-enclosure-id="" data-position-v="" data-position-p="">
 			<span class="mdv-d-name"></span>
 		</div>
 		
