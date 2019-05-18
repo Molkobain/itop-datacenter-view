@@ -20,6 +20,7 @@ $(function()
 				dict: {},
 				defaults: {
 					panel_code: 'front',
+					units_order: 'regular',
 					tooltip_options: {
 						show: 'mouseover',
 						hide: 'mouseout',
@@ -51,6 +52,10 @@ $(function()
 					device: 'device',
 					enclosure: 'enclosure',
 				},
+				units_order: {
+					reverse: 'reverse',
+					regular: 'regular',
+				}
 			},
 
 			// Constructor
@@ -180,6 +185,10 @@ $(function()
 				{
 					oEnclosure.panel_code = this.options.defaults.panel_code; // Always front panel by default. Rear panel would be displayed only in Enclosure view.
 				}
+				if(oEnclosure.units_order === undefined)
+				{
+					oEnclosure.units_order = this.options.defaults.units_order;
+				}
 
 				var oEnclosureElem = this._cloneTemplate('enclosure')
 					.attr('data-class', oEnclosure.class)
@@ -188,18 +197,23 @@ $(function()
                     .attr('data-panel-code', oEnclosure.panel_code)
 					.attr('data-name', oEnclosure.name)
 					.attr('data-nb-u', oEnclosure.nb_u)
+					.attr('data-units-order', oEnclosure.units_order)
 					.attr('data-rack-id', oEnclosure.rack_id)
 					.attr('data-position-v', oEnclosure.position_v)
 					.attr('data-position-p', oEnclosure.position_p);
 
-				for(var iUnitsIdx = 1; iUnitsIdx <= oEnclosure.nb_u; iUnitsIdx++)
+				// Build slots
+				var iTopIdx = (oEnclosure.units_order === this.enums.units_order.regular) ? oEnclosure.nb_u : 1 * -1 ;
+				var iBottomIdx = (oEnclosure.units_order === this.enums.units_order.regular) ? 1 : oEnclosure.nb_u * -1 ;
+				for(var iIdx = iTopIdx; iIdx >= iBottomIdx; iIdx--)
 				{
+					var iUnitIdx = Math.abs(iIdx);
 					this._cloneTemplate('enclosure-unit')
-					    .attr('data-unit-number', iUnitsIdx)
+					    .attr('data-unit-number', iUnitIdx)
 					    .find('.mdv-eu-left')
-					    .text(iUnitsIdx + 'U')
+					    .text(iUnitIdx + 'U')
 					    .end()
-					    .prependTo(oEnclosureElem.children('.mdv-host-units-wrapper'));
+					    .appendTo(oEnclosureElem.children('.mdv-host-units-wrapper'));
 				}
 
 				// Full height of n Us plus the bottom-border of n-1 Us
@@ -370,7 +384,7 @@ $(function()
 
 				oContainer
 					.find('.mhf-ph-icon')
-					.html('<img src="' + this._getObjectDatum(sTypeForElementCategory).icon + '" />');
+					.html('<img src="' + this._getObjectDatum(sTypeForElementCategory).icon + '" alt="' + sTypeForDictEntry + '" />');
 
 				oContainer
 					.find('.mhf-ph-title')
