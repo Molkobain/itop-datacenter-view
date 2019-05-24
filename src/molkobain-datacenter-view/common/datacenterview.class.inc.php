@@ -15,10 +15,13 @@ use DBObjectSet;
 use Dict;
 use AttributeExternalKey;
 use MetaModel;
+use Rack;
+use Enclosure;
 use utils;
 use appUserPreferences;
 use Combodo\iTop\Renderer\RenderingOutput;
 use Molkobain\iTop\Extension\HandyFramework\Common\Helper\UIHelper;
+use Molkobain\iTop\Extension\HandyFramework\Common\Helper\StringHelper;
 use Molkobain\iTop\Extension\DatacenterView\Common\Helper\ConfigHelper;
 
 /**
@@ -361,8 +364,9 @@ EOF
 	 */
 	protected function GetObjectData()
 	{
-		$sMethodName = 'Get' . ucfirst($this->sType) . 'Data';
+		$sMethodName = 'Get' . StringHelper::ToCamelCase($this->sType) . 'Data';
 
+		// Note: Here we could check if the method is callable and return static::GetObjectBaseData() as a fallback.
 		return static::$sMethodName($this->oObject);
 	}
 
@@ -869,11 +873,11 @@ HTML;
 	 */
 	public static function FindObjectType(DBObject $oObject)
 	{
-		if($oObject instanceof \Rack)
+		if($oObject instanceof Rack)
 		{
 			$sObjType = static::ENUM_ELEMENT_TYPE_RACK;
 		}
-		elseif($oObject instanceof \Enclosure)
+		elseif($oObject instanceof Enclosure)
 		{
 			$sObjType = static::ENUM_ELEMENT_TYPE_ENCLOSURE;
 		}
