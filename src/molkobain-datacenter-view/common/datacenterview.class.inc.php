@@ -14,6 +14,7 @@ use DBObjectSearch;
 use DBObjectSet;
 use Dict;
 use AttributeExternalKey;
+use AttributeHTML;
 use MetaModel;
 use Rack;
 use Enclosure;
@@ -637,6 +638,11 @@ EOF
 					if($oAttDef instanceof AttributeExternalKey)
 					{
 						$sAttValue = htmlentities($oObject->Get($sAttCode . '_friendlyname'), ENT_QUOTES, 'UTF-8');
+					}
+					elseif($oAttDef instanceof AttributeHTML)
+					{
+						// Already sanitized on object insert/update
+						$sAttValue = $oObject->GetAsHTML($sAttCode);
 					}
 					else
 					{
