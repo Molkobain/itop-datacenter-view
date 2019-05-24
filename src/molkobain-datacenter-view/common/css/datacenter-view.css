@@ -209,6 +209,7 @@
   align-items: center;
   justify-content: space-around;
   padding: 0 0.3rem;
+  background-color: #8db46e;
   color: #fff;
 }
 .molkobain-datacenter-view .mdv-body .mdv-device > * {
