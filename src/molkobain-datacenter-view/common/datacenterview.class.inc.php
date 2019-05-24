@@ -566,6 +566,17 @@ EOF
 			}
 		}
 
+		// Sort classes
+		uasort($aLegendData['classes'], function($aClass1, $aClass2){
+			$sValue1 = $aClass1['title'];
+			$sValue2 = $aClass2['title'];
+
+			if ($sValue1 == $sValue2) {
+				return 0;
+			}
+			return ($sValue1 < $sValue2) ? -1 : 1;
+		});
+
 		return $aLegendData;
 	}
 
