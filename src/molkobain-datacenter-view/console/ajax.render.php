@@ -7,6 +7,8 @@
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
 
+use Molkobain\iTop\Extension\DatacenterView\Common\DatacenterViewFactory;
+
 /** @noinspection UsingInclusionOnceReturnValueInspection */
 @include_once '../approot.inc.php';
 @include_once '../../approot.inc.php';
@@ -31,7 +33,7 @@ try
 	$iId = (int) utils::ReadParam('id', 0);
 
 	$oObject = MetaModel::GetObject($sClass, $iId);
-	$oDatacenterView = \Molkobain\iTop\Extension\DatacenterView\Common\DatacenterViewFactory::BuildFromObject($oObject);
+	$oDatacenterView = DatacenterViewFactory::BuildFromObject($oObject);
 
 	switch ($sOperation)
 	{
