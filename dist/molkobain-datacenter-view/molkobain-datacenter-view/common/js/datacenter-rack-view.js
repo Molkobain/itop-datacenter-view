@@ -93,25 +93,35 @@ $(function()
 			{
 				for(var sPanelCode in this._getObjectDatum('panels'))
 				{
+					if(this.options.object_data.units_order === undefined)
+					{
+						this.options.object_data.units_order = this.options.defaults.units_order;
+					}
+
 					var oRackPanelElem = this._cloneTemplate('rack-panel')
 						.attr('data-class', this._getObjectDatum('class'))
 						.attr('data-id', this._getObjectDatum('id'))
 						.attr('data-panel-code', sPanelCode)
 						.attr('data-name', this._getObjectDatum('name'))
+						.attr('data-units-order', this._getObjectDatum('units_order'))
 						.appendTo(this.element.find('.mdv-views'));
 
 					oRackPanelElem
 						.find('.mdv-rp-title')
 						.text(this._getObjectDatum('panels')[sPanelCode]);
 
-					for(var iUnitsIdx = 1; iUnitsIdx <= this._getObjectDatum('nb_u'); iUnitsIdx++)
+					// Build slots
+					var iTopIdx = (this._getObjectDatum('units_order') === this.enums.units_order.regular) ? this._getObjectDatum('nb_u') : 1 * -1 ;
+					var iBottomIdx = (this._getObjectDatum('units_order') === this.enums.units_order.regular) ? 1 : this._getObjectDatum('nb_u') * -1 ;
+					for(var iIdx = iTopIdx; iIdx >= iBottomIdx; iIdx--)
 					{
+						var iUnitIdx = Math.abs(iIdx);
 						this._cloneTemplate('rack-unit')
-	                        .attr('data-unit-number', iUnitsIdx)
+	                        .attr('data-unit-number', iUnitIdx)
 	                        .find('.mdv-ru-left')
-	                        .text(iUnitsIdx + 'U')
+	                        .text(iUnitIdx + 'U')
 	                        .end()
-	                        .prependTo( oRackPanelElem.find('.mdv-rpv-middle') );
+	                        .appendTo( oRackPanelElem.find('.mdv-rpv-middle') );
 					}
 				}
 			},

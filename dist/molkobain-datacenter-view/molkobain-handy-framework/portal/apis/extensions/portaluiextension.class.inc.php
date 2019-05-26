@@ -71,9 +71,7 @@ if(class_exists('AbstractPortalUIExtension'))
 		 */
 		public function GetJSInline(Application $oApp)
 		{
-			$sJSInline = '';
-
-			return $sJSInline;
+			return '';
 		}
 	}
 }

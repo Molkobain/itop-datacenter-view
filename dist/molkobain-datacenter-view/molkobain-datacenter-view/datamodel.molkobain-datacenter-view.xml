@@ -35,10 +35,26 @@
 					<type>Overload-DBObject</type>
 					<code><![CDATA[	public function GetEndPositionV()
 	{
-		$iHeight = (int) $this->Get('nb_u');
+		$iHeight = ((int) $this->Get('nb_u') > 0) ? $this->Get('nb_u') : 1;
 		$iPositionV = (int) $this->Get('position_v');
 
-		return $iPositionV + $iHeight - 1;;
+		return $iPositionV + $iHeight - 1;
+	}]]></code>
+				</method>
+				<method id="IsMounted" _delta="define">
+					<comment><![CDATA[/**
+	 * Returns true if object is mounted in its host (position_v > 0)
+	 *
+	 * @return bool
+	 */]]></comment>
+					<static>false</static>
+					<access>public</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	public function IsMounted()
+	{
+		$iPositionV = (int) $this->Get('position_v');
+
+		return $iPositionV > 0;
 	}]]></code>
 				</method>
 			</methods>
@@ -87,10 +103,26 @@
 					<type>Overload-DBObject</type>
 					<code><![CDATA[	public function GetEndPositionV()
 	{
-		$iHeight = (int) $this->Get('nb_u');
+		$iHeight = ((int) $this->Get('nb_u') > 0) ? $this->Get('nb_u') : 1;
 		$iPositionV = (int) $this->Get('position_v');
 
-		return $iPositionV + $iHeight - 1;;
+		return $iPositionV + $iHeight - 1;
+	}]]></code>
+				</method>
+				<method id="IsMounted" _delta="define">
+					<comment><![CDATA[/**
+	 * Returns true if object is mounted in its host (position_v > 0)
+	 *
+	 * @return bool
+	 */]]></comment>
+					<static>false</static>
+					<access>public</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	public function IsMounted()
+	{
+		$iPositionV = (int) $this->Get('position_v');
+
+		return $iPositionV > 0;
 	}]]></code>
 				</method>
 			</methods>
