@@ -55,7 +55,7 @@ You can try this extension on the online demo. There are already some racks, enc
 Compatible with iTop 2.3+
 
 ## Dependencies
-* Module `molkobain-handy-framework/1.2.0`
+* Module `molkobain-handy-framework/1.2.1`
 * Module `molkobain-console-tooltips/1.0.2`
 
 *Note: All dependencies are included in the `dist/` folder, so all you need to do is follow the installation section below.*
