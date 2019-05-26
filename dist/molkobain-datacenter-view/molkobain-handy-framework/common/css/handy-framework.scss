@@ -16,7 +16,7 @@ $panel-bg-color: #ffffff;
 $panel-empty-hint-color: #777;
 //noinspection SassScssResolvedByNameOnly
 $panel-collapse-icon-color: $brand-primary;
-$panel-collapsed-height: 48px;
+$panel-collapsed-height: 50px;
 
 /* Toggle buttons */
 $toggle-button-off-bg-color: #eaeaea;
@@ -233,10 +233,12 @@ $toggle-button-switch-bg-color: #ffffff;
 		&:checked + .mhf-tb-button::after {
 			left: 50%;
 		}
+	}
 
-		/* Themes */
-		/* - Flat */
-		&.mhf-tb-flat{
+	/* Themes */
+	/* - Flat */
+	&.mhf-tb-flat{
+		.mhf-tb-input{
 			+ .mhf-tb-button{
 				padding: 2px;
 				border-radius: 2em;
@@ -259,6 +261,28 @@ $toggle-button-switch-bg-color: #ffffff;
 
 				&::after{
 					background-color: darken($toggle-button-switch-bg-color, 10%);
+				}
+			}
+		}
+
+		&:hover,
+		&:focus{
+			.mhf-tb-input{
+				+ .mhf-tb-button{
+					background-color: darken($toggle-button-off-bg-color, 8%);
+				}
+				&:checked + .mhf-tb-button{
+					background-color: darken($toggle-button-on-bg-color, 8%);
+				}
+			}
+		}
+		&:active{
+			.mhf-tb-input{
+				+ .mhf-tb-button{
+					background-color: darken($toggle-button-off-bg-color, 15%);
+				}
+				&:checked + .mhf-tb-button{
+					background-color: darken($toggle-button-on-bg-color, 15%);
 				}
 			}
 		}

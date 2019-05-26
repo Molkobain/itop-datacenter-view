@@ -18,7 +18,7 @@ class AttributeMHFRackUnit extends AttributeInteger
 	public function GetValueLabel($sValue)
 	{
 		$sValueLabel = parent::GetValueLabel($sValue);
-		if(!empty($sValueLabel))
+		if(($sValueLabel !== null) && ($sValueLabel !== ''))
 		{
 			$sValueLabel .= 'U';
 		}
@@ -36,7 +36,7 @@ class AttributeMHFRackUnit extends AttributeInteger
 	public function GetAsHTML($sValue, $oHostObject = null, $bLocalize = true)
 	{
 		$sHTMLValue = parent::GetAsHTML($sValue, $oHostObject, $bLocalize);
-		if(!empty($sHTMLValue))
+		if(($sHTMLValue !== null) && ($sHTMLValue !== ''))
 		{
 			$sHTMLValue .= 'U';
 		}

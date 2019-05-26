@@ -14,11 +14,15 @@ use DBObjectSearch;
 use DBObjectSet;
 use Dict;
 use AttributeExternalKey;
+use AttributeHTML;
 use MetaModel;
+use Rack;
+use Enclosure;
 use utils;
 use appUserPreferences;
 use Combodo\iTop\Renderer\RenderingOutput;
 use Molkobain\iTop\Extension\HandyFramework\Common\Helper\UIHelper;
+use Molkobain\iTop\Extension\HandyFramework\Common\Helper\StringHelper;
 use Molkobain\iTop\Extension\DatacenterView\Common\Helper\ConfigHelper;
 
 /**
@@ -28,6 +32,8 @@ use Molkobain\iTop\Extension\DatacenterView\Common\Helper\ConfigHelper;
  */
 class DatacenterView
 {
+	const ENUM_PANEL_FRONT = 'front';
+
 	const ENUM_ASSEMBLY_TYPE_MOUNTED = 'mounted';
 	const ENUM_ASSEMBLY_TYPE_UNMOUNTED = 'unmounted';
 
@@ -40,6 +46,7 @@ class DatacenterView
 
 	const ENUM_OPTION_CODE_SHOWOBSOLETE = 'show_obsolete';
 
+	const DEFAULT_PANEL = self::ENUM_PANEL_FRONT;
 	const DEFAULT_OBJECT_IN_EDIT_MODE = false;
 
 	/** @var \DBObject $oObject */
@@ -190,25 +197,28 @@ class DatacenterView
 				$sOptionItemTooltipHtml = 'title="' . $sEscapedOptionTooltip . '" data-toggle="tooltip"';
 			}
 
-			$sOptionsItemsHtml .= <<<EOF
+			$sOptionsItemsHtml .= <<<HTML
 <li class="mdv-of-item">
 	<label {$sOptionItemLabelForHtml}>
 		<span {$sOptionItemTooltipHtml}>{$aOptionData['label']}</span>
 		<span class="mhf-pull-right">{$aOptionData['input_html']}</span>	
 	</label>
 </li>
-EOF;
+HTML;
 		}
 
+		// - Unmounted panels
+		$sTogglerTooltip = Dict::S('Molkobain:DatacenterView:Unmounted:Toggler:Tooltip');
+
 		// Note: We could split this in protected methods for overloading (PrepareHtml, PrepareJs, ...)
-		$oOutput->AddHtml(<<<EOF
+		$oOutput->AddHtml(<<<HTML
 <div class="molkobain-datacenter-view-container" data-portal="backoffice">
 	<div class="mdv-header"></div>
 	<div class="mdv-body">
 		<div class="mdv-controls">
 			<div class="mdv-legend mhf-panel">
 				<div class="mhf-p-header">
-					<span class="mhf-ph-icon"><span class="fa fa-list"></span></span>
+					<span class="mhf-ph-icon"><span class="fa fa-fw fa-list"></span></span>
 					<span class="mhf-ph-title">{$sLegendTitle}</span>
 				</div>
 				<!-- Important: There must be no spaces in this div, otherwise the :empty CSS rule will not work -->
@@ -217,7 +227,7 @@ EOF;
 			</div>
 			<div class="mdv-options mhf-panel">
 				<div class="mhf-p-header">				
-					<span class="mhf-ph-icon"><span class="fa fa-cog"></span></span>
+					<span class="mhf-ph-icon"><span class="fa fa-fw fa-cog"></span></span>
 					<span class="mhf-ph-title">{$sOptionsTitle}</span>
 				</div>
 				<div class="mhf-p-body">
@@ -269,7 +279,7 @@ EOF;
 		</div>
 		
 		<!-- Enclosure template -->
-		<div class="mdv-enclosure mdv-host-panel" data-class="" data-id="" data-panel-code="" data-type="" data-name="" data-rack-id="" data-position-v="" data-position-p="">
+		<div class="mdv-enclosure mdv-element mdv-host-panel" data-class="" data-id="" data-panel-code="" data-type="" data-name="" data-rack-id="" data-position-v="" data-position-p="">
 			<div class="mdv-host-units-wrapper"></div>
 		</div>
 		
@@ -281,7 +291,7 @@ EOF;
 		</div>
 		
 		<!-- Device template -->
-		<div class="mdv-device" data-class="" data-id="" data-type="" data-name="" data-rack-id="" data-enclosure-id="" data-position-v="" data-position-p="">
+		<div class="mdv-device mdv-element" data-class="" data-id="" data-type="" data-name="" data-rack-id="" data-enclosure-id="" data-position-v="" data-position-p="">
 			<span class="mdv-d-name"></span>
 		</div>
 		
@@ -291,7 +301,7 @@ EOF;
 				<span class="mhf-ph-icon"></span>
 				<span class="mhf-ph-title"></span>
 				<span class="mhf-ph-actions mhf-pull-right">
-					<span class="mhf-ph-toggler fa fa-fw fa-caret-down"></span>
+					<span class="mhf-ph-toggler fa fa-fw fa-caret-down" title="{$sTogglerTooltip}"></span>
 				</span>
 			</div>
 			<!-- Important: There must be no spaces in this div, otherwise the :empty CSS rule will not work -->
@@ -300,7 +310,7 @@ EOF;
 		</div>
 	</div>
 </div>
-EOF
+HTML
 		);
 
 		// Init JS widget
@@ -355,8 +365,9 @@ EOF
 	 */
 	protected function GetObjectData()
 	{
-		$sMethodName = 'Get' . ucfirst($this->sType) . 'Data';
+		$sMethodName = 'Get' . StringHelper::ToCamelCase($this->sType) . 'Data';
 
+		// Note: Here we could check if the method is callable and return static::GetObjectBaseData() as a fallback.
 		return static::$sMethodName($this->oObject);
 	}
 
@@ -397,7 +408,7 @@ EOF
 	{
 		$aData = $this->GetObjectBaseData($oRack) + array(
 				'panels' => array(
-					'front' => Dict::S('Molkobain:DatacenterView:Rack:Panel:Front:Title'),
+					static::ENUM_PANEL_FRONT => Dict::S('Molkobain:DatacenterView:Rack:Panel:Front:Title'),
 				),
 				'enclosures' => array(
 					'icon' => MetaModel::GetClassIcon('Enclosure', false),
@@ -452,9 +463,9 @@ EOF
 		$aData = $this->GetObjectBaseData($oEnclosure) + array(
 				'rack_id' => (int) $oEnclosure->Get('rack_id'),
 				'position_v' => (int) $oEnclosure->Get('position_v'),
-				'position_p' => 'front',
+				'position_p' => static::ENUM_PANEL_FRONT,
 				'panels' => array(
-					'front' => Dict::S('Molkobain:DatacenterView:Enclosure:Panel:Front:Title'),
+					static::ENUM_PANEL_FRONT => Dict::S('Molkobain:DatacenterView:Enclosure:Panel:Front:Title'),
 				),
 				'devices' => array(
 					'icon' => MetaModel::GetClassIcon('DatacenterDevice', false),
@@ -494,7 +505,7 @@ EOF
 				'rack_id' => (int) $oDevice->Get('rack_id'),
 				'enclosure_id' => (int) $oDevice->Get('enclosure_id'),
 				'position_v' => (int) $oDevice->Get('position_v'),
-				'position_p' => 'front',
+				'position_p' => static::ENUM_PANEL_FRONT,
 			);
 
 		return $aData;
@@ -555,6 +566,17 @@ EOF
 				}
 			}
 		}
+
+		// Sort classes
+		uasort($aLegendData['classes'], function($aClass1, $aClass2){
+			$sValue1 = $aClass1['title'];
+			$sValue2 = $aClass2['title'];
+
+			if ($sValue1 == $sValue2) {
+				return 0;
+			}
+			return ($sValue1 < $sValue2) ? -1 : 1;
+		});
 
 		return $aLegendData;
 	}
@@ -617,6 +639,11 @@ EOF
 					{
 						$sAttValue = htmlentities($oObject->Get($sAttCode . '_friendlyname'), ENT_QUOTES, 'UTF-8');
 					}
+					elseif($oAttDef instanceof AttributeHTML)
+					{
+						// Already sanitized on object insert/update
+						$sAttValue = $oObject->GetAsHTML($sAttCode);
+					}
 					else
 					{
 						$sAttValue = htmlentities($oAttDef->GetValueLabel($oObject->Get($sAttCode)), ENT_QUOTES, 'UTF-8');
@@ -629,13 +656,13 @@ EOF
 			}
 		}
 
-		$sHTML = <<<EOF
+		$sHTML = <<<HTML
 	<div class="mdv-dt-header">
 		<span class="mdv-dth-icon">{$sClassImage}</span>
 		<span class="mdv-dth-name">{$sObjName}</span>
 	</div>
 	{$sAttributesHTML}
-EOF;
+HTML;
 
 		return $sHTML;
 	}
@@ -843,6 +870,18 @@ EOF;
 	//-----------------
 
 	/**
+	 * Note: Using a static method instead of a static array as it is not possible in PHP 5.6
+	 *
+	 * @return array
+	 */
+	public static function EnumPanels()
+	{
+		return array(
+			static::ENUM_PANEL_FRONT,
+		);
+	}
+
+	/**
 	 * Returns if the $oObject is a rack|enclosure|device (see ENUM_ELEMENT_TYPE_XXX constants)
 	 *
 	 * @param \DBObject $oObject
@@ -851,11 +890,11 @@ EOF;
 	 */
 	public static function FindObjectType(DBObject $oObject)
 	{
-		if($oObject instanceof \Rack)
+		if($oObject instanceof Rack)
 		{
 			$sObjType = static::ENUM_ELEMENT_TYPE_RACK;
 		}
-		elseif($oObject instanceof \Enclosure)
+		elseif($oObject instanceof Enclosure)
 		{
 			$sObjType = static::ENUM_ELEMENT_TYPE_ENCLOSURE;
 		}
