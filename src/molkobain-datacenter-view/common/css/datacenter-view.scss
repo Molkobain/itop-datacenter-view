@@ -431,15 +431,18 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 /* - Tooltip itself */
 .mhf-tooltip{
 	.mdv-dt-header{
+		display: flex;
+		justify-content: left;
+		align-items: center;
 		margin-bottom: 1.2rem;
 		font-weight: bold;
 		font-size: 0.9rem;
 
 		.mdv-dth-icon{
-			margin-right: 0.2rem;
+			margin-right: 0.5rem;
 
 			img{
-				max-width: 32px;
+				max-width: 32px !important; /* To override the global tooltip content max-width on images */
 			}
 		}
 	}

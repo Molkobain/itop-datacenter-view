@@ -328,15 +328,19 @@
 }
 /* - Tooltip itself */
 .mhf-tooltip .mdv-dt-header {
+  display: flex;
+  justify-content: left;
+  align-items: center;
   margin-bottom: 1.2rem;
   font-weight: bold;
   font-size: 0.9rem;
 }
 .mhf-tooltip .mdv-dt-header .mdv-dth-icon {
-  margin-right: 0.2rem;
+  margin-right: 0.5rem;
 }
 .mhf-tooltip .mdv-dt-header .mdv-dth-icon img {
-  max-width: 32px;
+  max-width: 32px !important;
+  /* To override the global tooltip content max-width on images */
 }
 .mhf-tooltip .mdv-dt-list-wrapper {
   margin-bottom: 1.5rem;
