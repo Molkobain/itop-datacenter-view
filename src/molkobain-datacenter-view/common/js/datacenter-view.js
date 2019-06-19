@@ -190,17 +190,8 @@ $(function()
 					oEnclosure.units_order = this.options.defaults.units_order;
 				}
 
-				var oEnclosureElem = this._cloneTemplate('enclosure')
-					.attr('data-class', oEnclosure.class)
-					.attr('data-id', oEnclosure.id)
-                    .attr('data-type', this.enums.element_type.enclosure)
-                    .attr('data-panel-code', oEnclosure.panel_code)
-					.attr('data-name', oEnclosure.name)
-					.attr('data-nb-u', oEnclosure.nb_u)
-					.attr('data-units-order', oEnclosure.units_order)
-					.attr('data-rack-id', oEnclosure.rack_id)
-					.attr('data-position-v', oEnclosure.position_v)
-					.attr('data-position-p', oEnclosure.position_p);
+				var oEnclosureElem = this._cloneTemplate('enclosure', oEnclosure)
+				                         .attr('data-type', this.enums.element_type.enclosure);
 
 				// Build slots
 				var iTopIdx = (oEnclosure.units_order === this.enums.units_order.regular) ? oEnclosure.nb_u : 1 * -1 ;
@@ -242,16 +233,8 @@ $(function()
 					oHostElem = this.element.find('.mdv-unmounted-type[data-type="' + this.enum.element_type.device + '"] .mdv-ut-body');
 				}
 
-				var oDeviceElem = this._cloneTemplate('device')
-				                      .attr('data-class', oDevice.class)
-				                      .attr('data-id', oDevice.id)
-				                      .attr('data-type', this.enums.element_type.device)
-				                      .attr('data-name', oDevice.name)
-				                      .attr('data-nb-u', oDevice.nb_u)
-				                      .attr('data-rack-id', oDevice.rack_id)
-				                      .attr('data-enclosure-id', oDevice.enclosure_id)
-				                      .attr('data-position-v', oDevice.position_v)
-				                      .attr('data-position-p', oDevice.position_p);
+				var oDeviceElem = this._cloneTemplate('device', oDevice)
+				                      .attr('data-type', this.enums.element_type.device);
 
 				// Note: Url actually contains the hyperlink markup
 				oDeviceElem
@@ -355,9 +338,14 @@ $(function()
 
 			// Helpers
 			// - Return a clone jQuery object from the template identified by .mdv-<sCode>
-			_cloneTemplate: function(sCode)
+			_cloneTemplate: function(sCode, oData)
 			{
+				// Default values
 				var oElem = null;
+				if(oData === undefined)
+				{
+					oData = {};
+				}
 
 				var oTemplate = this.element.find('> .mhf-templates > .mdv-' + sCode);
 				if(oTemplate.length === 0)
@@ -365,9 +353,16 @@ $(function()
 					this._trace('Could not find template for "' + sCode + '".');
 					return false;
 				}
-				else
+				oElem = oTemplate.clone();
+
+				// Set data
+				for(var sProperty in oData)
 				{
-					oElem = oTemplate.clone();
+					var value = oData[sProperty];
+					if((typeof value === 'string') || (typeof value === 'number'))
+					{
+						oElem.attr('data-'+sProperty.replace('_', '-'), value);
+					}
 				}
 
 				return oElem;
