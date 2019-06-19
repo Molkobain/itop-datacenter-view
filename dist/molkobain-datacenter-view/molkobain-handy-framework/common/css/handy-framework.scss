@@ -188,6 +188,11 @@ $toggle-button-switch-bg-color: #ffffff;
 
 				.qtip-content{
 					padding: 9px 9px !important;
+
+					img{
+						max-width: 100%;
+						height: initial !important; /* !important to overload the height in the style attribute of the image, otherwise image ratio is wicked */
+					}
 				}
 			}
 		}

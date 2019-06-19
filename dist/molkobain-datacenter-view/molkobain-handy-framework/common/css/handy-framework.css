@@ -150,6 +150,11 @@
 .mhf-tooltip.qtip .qtip-wrapper .qtip-contentWrapper .qtip-content {
   padding: 9px 9px !important;
 }
+.mhf-tooltip.qtip .qtip-wrapper .qtip-contentWrapper .qtip-content img {
+  max-width: 100%;
+  height: initial !important;
+  /* !important to overload the height in the style attribute of the image, otherwise image ratio is wicked */
+}
 /* Toggle buttons: Inspired by Mauricio Allende @ https://codepen.io/mallendeo/pen/eLIiG */
 .mhf-toggle-button {
   font-size: 12pt;

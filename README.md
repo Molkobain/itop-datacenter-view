@@ -52,10 +52,10 @@ You can try this extension on the online demo. There are already some racks, enc
 * [Administration console](http://mbc.itop.molkobain.com/pages/UI.php?operation=details&class=Rack&id=15&c[menu]=SearchCIs&auth_user=admin&auth_pwd=admin#tabbedContent_0=7) (admin / admin)
 
 ## Compatibility
-Compatible with iTop 2.3+
+Compatible with iTop 2.4+
 
 ## Dependencies
-* Module `molkobain-handy-framework/1.2.1`
+* Module `molkobain-handy-framework/1.2.3`
 * Module `molkobain-console-tooltips/1.0.2`
 
 *Note: All dependencies are included in the `dist/` folder, so all you need to do is follow the installation section below.*

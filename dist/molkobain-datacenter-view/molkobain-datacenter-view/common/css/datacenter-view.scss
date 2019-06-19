@@ -69,7 +69,6 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 		/* Proper properties */
 		position: relative;
 		display: flex;
-		flex-direction: row;
 		justify-content: space-around;
 
 		.mdv-controls{
@@ -145,7 +144,6 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 		}
 		.mdv-views{
 			display: flex;
-			flex-direction: row;
 
 			.mdv-rack-panel,
 			.mdv-enclosure-panel{
@@ -190,8 +188,11 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 		.mdv-element-note{
 			position: absolute;
 			top: 40%;
-			right: calc(-100% - 10px);
-			width: 100%;
+			left: calc(100% + 1em);
+			max-width: 10em;
+			overflow-x: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
 			text-align: left;
 			color: #444444;
 			font-style: italic;
@@ -376,7 +377,6 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 		.mdv-rack-unit,
 		.mdv-enclosure-unit{
 			display: flex;
-			flex-direction: row;
 			align-items: center;
 			justify-content: space-around;
 
@@ -431,15 +431,18 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 /* - Tooltip itself */
 .mhf-tooltip{
 	.mdv-dt-header{
+		display: flex;
+		justify-content: left;
+		align-items: center;
 		margin-bottom: 1.2rem;
 		font-weight: bold;
 		font-size: 0.9rem;
 
 		.mdv-dth-icon{
-			margin-right: 0.2rem;
+			margin-right: 0.5rem;
 
 			img{
-				max-width: 32px;
+				max-width: 32px !important; /* To override the global tooltip content max-width on images */
 			}
 		}
 	}

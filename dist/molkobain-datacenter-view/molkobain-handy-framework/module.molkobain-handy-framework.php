@@ -14,7 +14,7 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'molkobain-handy-framework/1.2.1',
+	'molkobain-handy-framework/1.2.3',
 	array(
 		// Identification
 		//
@@ -24,6 +24,7 @@ SetupWebPage::AddModule(
 		// Setup
 		//
 		'dependencies' => array(
+			'itop-welcome-itil/2.4.0'
 		),
 		'mandatory' => true,
 		'visible' => false,
@@ -33,6 +34,7 @@ SetupWebPage::AddModule(
 		'datamodel' => array(
 			'core/attributerackunit.class.inc.php',
 		    'common/confighelper.class.inc.php',
+		    'common/stringhelper.class.inc.php',
 		    'common/uihelper.class.inc.php',
 		    'common/ui/togglebutton.class.inc.php',
 		    'console/pageuiextension.class.inc.php',
