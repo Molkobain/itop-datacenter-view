@@ -5,10 +5,10 @@
 	<author><![CDATA[Guillaume Lajarige]]></author>
 	<label><![CDATA[Datacenter view]]></label>
 	<description><![CDATA[Visual representation of racks, enclosures & devices]]></description>
-	<version>1.3.0</version>
-	<release_date>2019-05-26</release_date>
-	<version_description><![CDATA[Add collapse / expand togglers on unmounted element panels.]]></version_description>
-	<itop_version_min>2.3.0</itop_version_min>
+	<version>1.3.1</version>
+	<release_date>2019-06-19</release_date>
+	<version_description><![CDATA[Minor UI fixes and change min iTop version to 2.4]]></version_description>
+	<itop_version_min>2.4.0</itop_version_min>
 	<status>stable</status>
 	<mandatory>false</mandatory>
 	<more_info_url>https://github.com/Molkobain/itop-datacenter-view</more_info_url>
