@@ -37,7 +37,6 @@
   /* Proper properties */
   position: relative;
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
   /* Used as a comment next to the element (device / enclosure) */
 }
@@ -99,7 +98,6 @@
 }
 .molkobain-datacenter-view .mdv-body .mdv-views {
   display: flex;
-  flex-direction: row;
 }
 .molkobain-datacenter-view .mdv-body .mdv-views .mdv-rack-panel, .molkobain-datacenter-view .mdv-body .mdv-views .mdv-enclosure-panel {
   margin-right: 120px;
@@ -132,8 +130,11 @@
 .molkobain-datacenter-view .mdv-body .mdv-element-note {
   position: absolute;
   top: 40%;
-  right: calc(-100% - 10px);
-  width: 100%;
+  left: calc(100% + 1em);
+  max-width: 10em;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   text-align: left;
   color: #444;
   font-style: italic;
@@ -288,7 +289,6 @@
 }
 .molkobain-datacenter-view .mdv-body .mdv-rack-unit, .molkobain-datacenter-view .mdv-body .mdv-enclosure-unit {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-around;
   /* Rack & units border */
