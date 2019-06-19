@@ -129,9 +129,13 @@
 }
 .molkobain-datacenter-view .mdv-body .mdv-element-note {
   position: absolute;
-  top: 40%;
+  top: 0;
   left: calc(100% + 1em);
   max-width: 10em;
+  height: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
   overflow-x: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -217,9 +221,6 @@
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-.molkobain-datacenter-view .mdv-body .mdv-device .mdv-element-note {
-  top: 20%;
 }
 .molkobain-datacenter-view .mdv-body .mdv-device[data-class="Server"] {
   background-color: #3f627e;

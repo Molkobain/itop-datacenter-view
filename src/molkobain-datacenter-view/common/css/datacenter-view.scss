@@ -187,9 +187,13 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 		/* Used as a comment next to the element (device / enclosure) */
 		.mdv-element-note{
 			position: absolute;
-			top: 40%;
+			top: 0;
 			left: calc(100% + 1em);
 			max-width: 10em;
+			height: 100%;
+			display: flex;
+			justify-content: left;
+			align-items: center;
 			overflow-x: hidden;
 			white-space: nowrap;
 			text-overflow: ellipsis;
@@ -293,9 +297,6 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 				overflow-x: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
-			}
-			.mdv-element-note{
-				top: 20%;
 			}
 
 			&[data-class="Server"]{
