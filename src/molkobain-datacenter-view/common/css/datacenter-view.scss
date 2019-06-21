@@ -63,7 +63,9 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 	background-color: #eeeeee; /* Not in /css/css-variables.scss */
 
 	.mdv-header{
-		margin-bottom: 20px;
+		&:not(:empty){
+			margin-bottom: 20px;
+		}
 	}
 	.mdv-body{
 		/* Proper properties */

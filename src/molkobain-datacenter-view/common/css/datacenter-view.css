@@ -30,7 +30,7 @@
 .molkobain-datacenter-view *::before, .molkobain-datacenter-view *::after {
   box-sizing: border-box;
 }
-.molkobain-datacenter-view .mdv-header {
+.molkobain-datacenter-view .mdv-header:not(:empty) {
   margin-bottom: 20px;
 }
 .molkobain-datacenter-view .mdv-body {
