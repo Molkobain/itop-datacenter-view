@@ -244,8 +244,8 @@ HTML;
 		<div class="mdv-views">
 		</div>
 		
-		<div class="mdv-unmounted mhf-panel">
-	</div>
+		<div class="mdv-unmounted">
+		</div>
 	
 		<div class="mhf-loader mhf-hide">
 			<div class="mhf-loader-text">
