@@ -277,13 +277,13 @@
   box-sizing: content-box;
   /* Cause content has a fixed size */
 }
-.molkobain-datacenter-view .mdv-body .mdv-host-unit .mdv-hu-slot > .mdv-device, .molkobain-datacenter-view .mdv-body .mdv-host-unit .mdv-hu-slot .mdv-enclosure {
+.molkobain-datacenter-view .mdv-body .mdv-host-unit .mdv-hu-slot > .mdv-device, .molkobain-datacenter-view .mdv-body .mdv-host-unit .mdv-hu-slot > .mdv-enclosure {
   flex-grow: 1;
   position: absolute !important;
   /* important in order to override "relative" put by jQuery draggable/sortable plugins */
   bottom: 0;
   left: 0;
-  z-index: 1;
+  /*z-index: 1; Disabled for now as it is making devices going below enclosures during drag & drop */
 }
 .molkobain-datacenter-view .mdv-body .mdv-host-unit .mdv-hu-slot > .mdv-device .mdv-element-note {
   display: none;
