@@ -19,6 +19,7 @@ $(function()
 				legend: {},
 				dict: {},
 				defaults: {
+					rack_unit_slot_height: 18,
 					panel_code: 'front',
 					units_order: 'regular',
 					tooltip_options: {
@@ -209,7 +210,7 @@ $(function()
 
 				// Full height of n Us plus the bottom-border of n-1 Us
 				oEnclosureElem
-					.css('height', 'calc(' + (oEnclosure.nb_u * 20) + 'px + ' + (oEnclosure.nb_u - 1) + 'px)');
+					.css('height', 'calc(' + (oEnclosure.nb_u * this.options.defaults.rack_unit_slot_height) + 'px + ' + (oEnclosure.nb_u - 1) + 'px)');
 
 				return oEnclosureElem;
 			},
@@ -243,7 +244,7 @@ $(function()
 
 				// Dynamic height to occupy desired Us
 				oDeviceElem
-					.css('height', 'calc(' + (oDevice.nb_u * 20) + 'px + ' + (oDevice.nb_u - 1) + 'px)');
+					.css('height', 'calc(' + (oDevice.nb_u * this.options.defaults.rack_unit_slot_height) + 'px + ' + (oDevice.nb_u - 1) + 'px)');
 
 				// Tooltip
 				// Note: We need to do a deep copy

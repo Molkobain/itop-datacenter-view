@@ -18,10 +18,12 @@ $rack-panel-outer-border: 1px solid $rack-panel-outer-border-color;
 /* - Rack unit */
 $rack-unit-number-width: 1.8rem;
 /* - Rack unit slot */
-$rack-unit-slot-width: 120px;
-$rack-unit-slot-height: 20px;
+$rack-unit-slot-width: 217px;
+$rack-unit-slot-height: 18px;
 $rack-unit-slot-bg-color: #ffffff;
 $rack-unit-slot-separator-color: #eaeaea;
+/* - Element */
+$element-note-max-width: 6.5rem;
 /* - Enclosure */
 $enclosure-color: #939393;
 $enclosure-bg-color: #eaeaea;
@@ -71,7 +73,7 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 		/* Proper properties */
 		position: relative;
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 
 		.mdv-controls{
 			.mhf-panel{
@@ -149,7 +151,7 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 
 			.mdv-rack-panel,
 			.mdv-enclosure-panel{
-				margin-right: 120px;
+				margin-right: 9rem;
 
 				&:last-child{
 					margin-right: 0;
@@ -159,7 +161,7 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 		.mdv-unmounted{
 			.mdv-unmounted-type.mhf-panel{
 				position: relative;
-				width: 260px;
+				width: calc(#{$rack-unit-slot-width} + #{$element-note-max-width} + 1.5rem);
 
 				.mhf-p-header{
 					margin-bottom: 0.2rem;
@@ -190,8 +192,8 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 		.mdv-element-note{
 			position: absolute;
 			top: 0;
-			left: calc(100% + 1em);
-			max-width: 10em;
+			left: calc(100% + 0.6rem);
+			max-width: $element-note-max-width;
 			height: 100%;
 			display: flex;
 			justify-content: left;
