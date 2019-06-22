@@ -262,7 +262,7 @@ HTML;
 		</li>
 		
 		<!-- Rack panel template -->
-		<div class="mdv-rack-panel mdv-host-panel" data-class="" data-id="" data-panel-code="" data-name="">
+		<div class="mdv-rack-panel mdv-host-panel" data-type="" data-class="" data-id="" data-panel-code="" data-name="">
 			<div class="mdv-rp-title"></div>
 			<div class="mdv-rp-view">
 				<div class="mdv-rpv-top"></div>
@@ -279,7 +279,7 @@ HTML;
 		</div>
 		
 		<!-- Enclosure template -->
-		<div class="mdv-enclosure mdv-element mdv-host-panel" data-class="" data-id="" data-panel-code="" data-type="" data-name="" data-rack-id="" data-position-v="" data-position-p="">
+		<div class="mdv-enclosure mdv-element mdv-host-panel" data-type="" data-class="" data-id="" data-panel-code="" data-name="" data-rack-id="" data-position-v="" data-position-p="">
 			<div class="mdv-host-units-wrapper"></div>
 		</div>
 		
@@ -291,7 +291,7 @@ HTML;
 		</div>
 		
 		<!-- Device template -->
-		<div class="mdv-device mdv-element" data-class="" data-id="" data-type="" data-name="" data-rack-id="" data-enclosure-id="" data-position-v="" data-position-p="">
+		<div class="mdv-device mdv-element" data-type="" data-class="" data-id="" data-name="" data-rack-id="" data-enclosure-id="" data-position-v="" data-position-p="">
 			<span class="mdv-d-name"></span>
 		</div>
 		
@@ -384,6 +384,7 @@ EOF
 		$iNbU = (empty($oObject->Get('nb_u'))) ? 1 : (int) $oObject->Get('nb_u');
 
 		$aData = array(
+			'type' => static::FindObjectType($oObject),
 			'class' => get_class($oObject),
 			'id' => $oObject->GetKey(),
 			'name' => $oObject->GetName(),

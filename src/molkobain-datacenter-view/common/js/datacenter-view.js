@@ -191,8 +191,7 @@ $(function()
 					oEnclosure.units_order = this.options.defaults.units_order;
 				}
 
-				var oEnclosureElem = this._cloneTemplate('enclosure', oEnclosure)
-				                         .attr('data-type', this.enums.element_type.enclosure);
+				var oEnclosureElem = this._cloneTemplate('enclosure', oEnclosure);
 
 				// Build slots
 				var iTopIdx = (oEnclosure.units_order === this.enums.units_order.regular) ? oEnclosure.nb_u : 1 * -1 ;
@@ -234,8 +233,7 @@ $(function()
 					oHostElem = this.element.find('.mdv-unmounted-type[data-type="' + this.enum.element_type.device + '"] .mdv-ut-body');
 				}
 
-				var oDeviceElem = this._cloneTemplate('device', oDevice)
-				                      .attr('data-type', this.enums.element_type.device);
+				var oDeviceElem = this._cloneTemplate('device', oDevice);
 
 				// Note: Url actually contains the hyperlink markup
 				oDeviceElem
@@ -342,7 +340,6 @@ $(function()
 			_cloneTemplate: function(sCode, oData)
 			{
 				// Default values
-				var oElem = null;
 				if(oData === undefined)
 				{
 					oData = {};
@@ -354,7 +351,7 @@ $(function()
 					this._trace('Could not find template for "' + sCode + '".');
 					return false;
 				}
-				oElem = oTemplate.clone();
+				var oElem = oTemplate.clone();
 
 				// Set data
 				for(var sProperty in oData)
