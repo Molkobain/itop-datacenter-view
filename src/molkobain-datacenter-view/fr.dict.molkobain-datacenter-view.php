@@ -8,6 +8,11 @@
  */
 Dict::Add('FR FR', 'French', 'Français', array(
 	// Classes
+	// - PhysicalDevice (default entries for custom classes)
+	'Class:PhysicalDevice/Attribute:nb_u' => 'Hauteur',
+	'Class:PhysicalDevice/Attribute:nb_u+' => 'Hauteur du matériel en unités (U)',
+	'Class:PhysicalDevice/Attribute:position_v' => 'Position',
+	'Class:PhysicalDevice/Attribute:position_v+' => 'Position verticale (U) du matériel dans le chassis (ou rack si monté directement dessus). Doit faire référence au bas du matériel et non au haut.',
 	// - Rack
 	'Class:Rack/Attribute:nb_u+' => 'Hauteur du rack en unités (U)',
 	// - Enclosure
@@ -20,6 +25,11 @@ Dict::Add('FR FR', 'French', 'Français', array(
 	'Class:DatacenterDevice/Attribute:nb_u+' => 'Hauteur du matériel en unités (U)',
 	'Class:DatacenterDevice/Attribute:position_v' => 'Position',
 	'Class:DatacenterDevice/Attribute:position_v+' => 'Position verticale (U) du matériel dans le chassis (ou rack si monté directement dessus). Doit faire référence au bas du matériel et non au haut.',
+	// - PDU
+	'Class:PDU/Attribute:nb_u' => 'Hauteur',
+	'Class:PDU/Attribute:nb_u+' => 'Hauteur du PDU en unités (U)',
+	'Class:PDU/Attribute:position_v' => 'Position',
+	'Class:PDU/Attribute:position_v+' => 'Position verticale (U) du PDU dans le chassis (ou rack si monté directement dessus). Doit faire référence au bas du PDU et non au haut.',
 
 	// UI
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Représentation graphique',
