@@ -60,4 +60,15 @@ class ConfigHelper extends BaseConfigHelper
 
         return $bIsAllowedClass;
     }
+
+	/**
+	 * Returns an array of custom classes that can be displayed in a rack or enclosure
+	 *
+	 * @return array
+	 * @since v1.3.2
+	 */
+    public static function GetOtherDeviceClasses()
+    {
+    	return array('PDU');
+    }
 }

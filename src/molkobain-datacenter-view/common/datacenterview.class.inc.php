@@ -50,6 +50,8 @@ class DatacenterView
 	const DEFAULT_PANEL = self::ENUM_PANEL_FRONT;
 	const DEFAULT_OBJECT_IN_EDIT_MODE = false;
 
+	/** @var string $sStaticConfigHelperClass */
+	protected $sStaticConfigHelperClass;
 	/** @var \DBObject $oObject */
 	protected $oObject;
 	/** @var string $sType */
@@ -61,6 +63,7 @@ class DatacenterView
 
 	public function __construct(DBObject $oObject)
 	{
+		$this->sStaticConfigHelperClass = static::GetStaticConfigHelperClass();
 		$this->oObject = $oObject;
 		$this->sType = static::FindObjectType($this->oObject);
 		$this->bObjectInEditMode = static::DEFAULT_OBJECT_IN_EDIT_MODE;
@@ -455,6 +458,22 @@ EOF
 			$aData['devices'][$sDeviceAssemblyType][] = $aDeviceData;
 		}
 
+		// Calling registered (static) ConfigHelper in order to call the right method
+		foreach(call_user_func(array($this->sStaticConfigHelperClass, 'GetOtherDeviceClasses')) as $sDeviceClass)
+		{
+			$oDeviceSearch = DBObjectSearch::FromOQL('SELECT ' . $sDeviceClass . ' WHERE rack_id = :rack_id AND enclosure_id = 0');
+			$oDeviceSearch->SetShowObsoleteData($this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE));
+			$oDeviceSet = new DBObjectSet($oDeviceSearch, array(), array('rack_id' => $oRack->GetKey()));
+			/** @var \DBObject $oDevice */
+			while($oDevice = $oDeviceSet->Fetch())
+			{
+				$aDeviceData = $this->GetOtherDeviceData($oDevice);
+				$sDeviceAssemblyType = ($oDevice->Get('position_v') > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
+
+				$aData['devices'][$sDeviceAssemblyType][] = $aDeviceData;
+			}
+		}
+
 		return $aData;
 	}
 
@@ -499,6 +518,22 @@ EOF
 			$aData['devices'][$sDeviceAssemblyType][] = $aDeviceData;
 		}
 
+		// Calling registered (static) ConfigHelper in order to call the right method
+		foreach(call_user_func(array($this->sStaticConfigHelperClass, 'GetOtherDeviceClasses')) as $sDeviceClass)
+		{
+			$oDeviceSearch = DBObjectSearch::FromOQL('SELECT ' . $sDeviceClass . ' WHERE rack_id = :rack_id AND enclosure_id = :enclosure_id');
+			$oDeviceSearch->SetShowObsoleteData($this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE));
+			$oDeviceSet = new DBObjectSet($oDeviceSearch, array(), array('rack_id' => $oEnclosure->Get('rack_id'), 'enclosure_id' => $oEnclosure->GetKey()));
+			/** @var \DBObject $oDevice */
+			while($oDevice = $oDeviceSet->Fetch())
+			{
+				$aDeviceData = $this->GetOtherDeviceData($oDevice);
+				$sDeviceAssemblyType = ($oDevice->Get('position_v') > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
+
+				$aData['devices'][$sDeviceAssemblyType][] = $aDeviceData;
+			}
+		}
+
 		return $aData;
 	}
 
@@ -515,6 +550,27 @@ EOF
 		$aData = $this->GetObjectBaseData($oDevice) + array(
 				'rack_id' => (int) $oDevice->Get('rack_id'),
 				'enclosure_id' => (int) $oDevice->Get('enclosure_id'),
+				'position_v' => (int) $oDevice->Get('position_v'),
+				'position_p' => static::ENUM_PANEL_FRONT,
+			);
+
+		return $aData;
+	}
+
+	/**
+	 * Returns data for a custom class device object
+	 *
+	 * @param \DBObject $oDevice
+	 *
+	 * @return array
+	 * @throws \CoreException
+	 * @throws \Exception
+	 */
+	protected function GetOtherDeviceData(DBObject $oDevice)
+	{
+		$aData = $this->GetObjectBaseData($oDevice) + array(
+				'rack_id' => (int) $oDevice->Get('rack_id'),
+				'enclosure_id' => MetaModel::IsValidAttCode(get_class($oDevice), 'enclosure_id') ? (int) $oDevice->Get('enclosure_id') : 0,
 				'position_v' => (int) $oDevice->Get('position_v'),
 				'position_p' => static::ENUM_PANEL_FRONT,
 			);
@@ -971,5 +1027,15 @@ HTML;
 	public static function GetCallbackNameFromAsyncOpCode($sOperation)
 	{
 		return 'On' . str_replace('_', '', ucwords($sOperation, '_')) . 'AsyncOp';
+	}
+
+	/**
+	 * Returns the FQCN of the ConfigHelper used by the current (static) class
+	 *
+	 * @return string
+	 */
+	public static function GetStaticConfigHelperClass()
+	{
+		return '\\Molkobain\\iTop\\Extension\\DatacenterView\\Common\\Helper\\ConfigHelper';
 	}
 }
