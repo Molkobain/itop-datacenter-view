@@ -9,6 +9,11 @@
 
 Dict::Add('EN US', 'English', 'English', array(
 	// Classes
+	// - PhysicalDevice (default entries for custom classes)
+	'Class:PhysicalDevice/Attribute:nb_u' => 'Height',
+	'Class:PhysicalDevice/Attribute:nb_u+' => 'Height in units (U) of the element',
+	'Class:PhysicalDevice/Attribute:position_v' => 'Position',
+	'Class:PhysicalDevice/Attribute:position_v+' => 'Vertical position (U) of the element in its host (Must be the bottom position, not top)',
 	// - Rack
 	'Class:Rack/Attribute:nb_u+' => 'Height in units (U) of the rack',
 	// - Enclosure

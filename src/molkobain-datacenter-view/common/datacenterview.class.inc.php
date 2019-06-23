@@ -18,6 +18,7 @@ use AttributeHTML;
 use MetaModel;
 use Rack;
 use Enclosure;
+use DatacenterDevice;
 use utils;
 use appUserPreferences;
 use Combodo\iTop\Renderer\RenderingOutput;
@@ -400,12 +401,14 @@ EOF
 	}
 
 	/**
-	 * @param \DBObject $oRack
+	 * Returns data for a rack object
+	 *
+	 * @param \Rack $oRack
 	 *
 	 * @return array
 	 * @throws \CoreException
 	 */
-	protected function GetRackData(DBObject $oRack)
+	protected function GetRackData(Rack $oRack)
 	{
 		$aData = $this->GetObjectBaseData($oRack) + array(
 				'panels' => array(
@@ -425,6 +428,7 @@ EOF
 
 		/** @var \DBObjectSet $oEnclosureSet */
 		$oEnclosureSet = $oRack->Get('enclosure_list');
+		/** @var \Enclosure $oEnclosure */
 		while($oEnclosure = $oEnclosureSet->Fetch())
 		{
 			// Note: Here we can't filter set on none obsolete data (SetShowObsoleteData()) only because since iTop 2.4 it returns an ormLinkSet instead of a DBObjectSet
@@ -434,7 +438,7 @@ EOF
 			}
 
 			$aEnclosureData = $this->GetEnclosureData($oEnclosure);
-			$sEnclosureAssemblyType = ($aEnclosureData['position_v'] > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
+			$sEnclosureAssemblyType = $oEnclosure->IsMounted() ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
 
 			$aData['enclosures'][$sEnclosureAssemblyType][] = $aEnclosureData;
 		}
@@ -442,10 +446,11 @@ EOF
 		$oDeviceSearch = DBObjectSearch::FromOQL('SELECT DatacenterDevice WHERE rack_id = :rack_id AND enclosure_id = 0');
 		$oDeviceSearch->SetShowObsoleteData($this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE));
 		$oDeviceSet = new DBObjectSet($oDeviceSearch, array(), array('rack_id' => $oRack->GetKey()));
+		/** @var \DatacenterDevice $oDevice */
 		while($oDevice = $oDeviceSet->Fetch())
 		{
 			$aDeviceData = $this->GetDeviceData($oDevice);
-			$sDeviceAssemblyType = ($aDeviceData['position_v'] > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
+			$sDeviceAssemblyType = $oDevice->IsMounted() ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
 
 			$aData['devices'][$sDeviceAssemblyType][] = $aDeviceData;
 		}
@@ -454,12 +459,14 @@ EOF
 	}
 
 	/**
-	 * @param \DBObject $oEnclosure
+	 * Returns data for an eclosure object
+	 *
+	 * @param \Enclosure $oEnclosure
 	 *
 	 * @return array
 	 * @throws \CoreException
 	 */
-	protected function GetEnclosureData(DBObject $oEnclosure)
+	protected function GetEnclosureData(Enclosure $oEnclosure)
 	{
 		$aData = $this->GetObjectBaseData($oEnclosure) + array(
 				'rack_id' => (int) $oEnclosure->Get('rack_id'),
@@ -477,6 +484,7 @@ EOF
 
 		/** @var \DBObjectSet $oDeviceSet */
 		$oDeviceSet = $oEnclosure->Get('device_list');
+		/** @var \DatacenterDevice $oDevice */
 		while($oDevice = $oDeviceSet->Fetch())
 		{
 			// Note: Here we can't filter set on none obsolete data (SetShowObsoleteData()) only because since iTop 2.4 it returns an ormLinkSet instead of a DBObjectSet
@@ -486,7 +494,7 @@ EOF
 			}
 
 			$aDeviceData = $this->GetDeviceData($oDevice);
-			$sDeviceAssemblyType = ($aDeviceData['position_v'] > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
+			$sDeviceAssemblyType = $oDevice->IsMounted() ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
 
 			$aData['devices'][$sDeviceAssemblyType][] = $aDeviceData;
 		}
@@ -495,12 +503,14 @@ EOF
 	}
 
 	/**
-	 * @param \DBObject $oDevice
+	 * Returns data for a datacenter device object
+	 *
+	 * @param \DatacenterDevice $oDevice
 	 *
 	 * @return array
 	 * @throws \CoreException
 	 */
-	protected function GetDeviceData(DBObject $oDevice)
+	protected function GetDeviceData(DatacenterDevice $oDevice)
 	{
 		$aData = $this->GetObjectBaseData($oDevice) + array(
 				'rack_id' => (int) $oDevice->Get('rack_id'),

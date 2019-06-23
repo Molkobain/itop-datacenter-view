@@ -29,6 +29,7 @@ class ConfigHelper extends BaseConfigHelper
 	 * Returns true if the debug option is enabled
 	 *
 	 * @return boolean
+     * @since v1.0.0
 	 */
     public static function IsDebugEnabled()
     {
@@ -41,6 +42,7 @@ class ConfigHelper extends BaseConfigHelper
      * @param string $sClass
      *
      * @return bool
+     * @since v1.0.0
      */
     public static function IsAllowedClass($sClass)
     {
