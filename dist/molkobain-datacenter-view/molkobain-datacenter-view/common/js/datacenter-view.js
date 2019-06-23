@@ -19,6 +19,7 @@ $(function()
 				legend: {},
 				dict: {},
 				defaults: {
+					rack_unit_slot_height: 18,
 					panel_code: 'front',
 					units_order: 'regular',
 					tooltip_options: {
@@ -190,17 +191,7 @@ $(function()
 					oEnclosure.units_order = this.options.defaults.units_order;
 				}
 
-				var oEnclosureElem = this._cloneTemplate('enclosure')
-					.attr('data-class', oEnclosure.class)
-					.attr('data-id', oEnclosure.id)
-                    .attr('data-type', this.enums.element_type.enclosure)
-                    .attr('data-panel-code', oEnclosure.panel_code)
-					.attr('data-name', oEnclosure.name)
-					.attr('data-nb-u', oEnclosure.nb_u)
-					.attr('data-units-order', oEnclosure.units_order)
-					.attr('data-rack-id', oEnclosure.rack_id)
-					.attr('data-position-v', oEnclosure.position_v)
-					.attr('data-position-p', oEnclosure.position_p);
+				var oEnclosureElem = this._cloneTemplate('enclosure', oEnclosure);
 
 				// Build slots
 				var iTopIdx = (oEnclosure.units_order === this.enums.units_order.regular) ? oEnclosure.nb_u : 1 * -1 ;
@@ -218,7 +209,7 @@ $(function()
 
 				// Full height of n Us plus the bottom-border of n-1 Us
 				oEnclosureElem
-					.css('height', 'calc(' + (oEnclosure.nb_u * 20) + 'px + ' + (oEnclosure.nb_u - 1) + 'px)');
+					.css('height', 'calc(' + (oEnclosure.nb_u * this.options.defaults.rack_unit_slot_height) + 'px + ' + (oEnclosure.nb_u - 1) + 'px)');
 
 				return oEnclosureElem;
 			},
@@ -242,16 +233,7 @@ $(function()
 					oHostElem = this.element.find('.mdv-unmounted-type[data-type="' + this.enum.element_type.device + '"] .mdv-ut-body');
 				}
 
-				var oDeviceElem = this._cloneTemplate('device')
-				                      .attr('data-class', oDevice.class)
-				                      .attr('data-id', oDevice.id)
-				                      .attr('data-type', this.enums.element_type.device)
-				                      .attr('data-name', oDevice.name)
-				                      .attr('data-nb-u', oDevice.nb_u)
-				                      .attr('data-rack-id', oDevice.rack_id)
-				                      .attr('data-enclosure-id', oDevice.enclosure_id)
-				                      .attr('data-position-v', oDevice.position_v)
-				                      .attr('data-position-p', oDevice.position_p);
+				var oDeviceElem = this._cloneTemplate('device', oDevice);
 
 				// Note: Url actually contains the hyperlink markup
 				oDeviceElem
@@ -260,7 +242,7 @@ $(function()
 
 				// Dynamic height to occupy desired Us
 				oDeviceElem
-					.css('height', 'calc(' + (oDevice.nb_u * 20) + 'px + ' + (oDevice.nb_u - 1) + 'px)');
+					.css('height', 'calc(' + (oDevice.nb_u * this.options.defaults.rack_unit_slot_height) + 'px + ' + (oDevice.nb_u - 1) + 'px)');
 
 				// Tooltip
 				// Note: We need to do a deep copy
@@ -355,9 +337,13 @@ $(function()
 
 			// Helpers
 			// - Return a clone jQuery object from the template identified by .mdv-<sCode>
-			_cloneTemplate: function(sCode)
+			_cloneTemplate: function(sCode, oData)
 			{
-				var oElem = null;
+				// Default values
+				if(oData === undefined)
+				{
+					oData = {};
+				}
 
 				var oTemplate = this.element.find('> .mhf-templates > .mdv-' + sCode);
 				if(oTemplate.length === 0)
@@ -365,9 +351,16 @@ $(function()
 					this._trace('Could not find template for "' + sCode + '".');
 					return false;
 				}
-				else
+				var oElem = oTemplate.clone();
+
+				// Set data
+				for(var sProperty in oData)
 				{
-					oElem = oTemplate.clone();
+					var value = oData[sProperty];
+					if((typeof value === 'string') || (typeof value === 'number'))
+					{
+						oElem.attr('data-'+sProperty.replace('_', '-'), value);
+					}
 				}
 
 				return oElem;

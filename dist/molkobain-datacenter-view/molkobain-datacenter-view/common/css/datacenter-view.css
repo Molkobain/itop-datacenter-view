@@ -11,6 +11,7 @@
 /* - Rack panel */
 /* - Rack unit */
 /* - Rack unit slot */
+/* - Element */
 /* - Enclosure */
 /* - Enclosure unit slot */
 /* - Device */
@@ -30,14 +31,14 @@
 .molkobain-datacenter-view *::before, .molkobain-datacenter-view *::after {
   box-sizing: border-box;
 }
-.molkobain-datacenter-view .mdv-header {
+.molkobain-datacenter-view .mdv-header:not(:empty) {
   margin-bottom: 20px;
 }
 .molkobain-datacenter-view .mdv-body {
   /* Proper properties */
   position: relative;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   /* Used as a comment next to the element (device / enclosure) */
 }
 .molkobain-datacenter-view .mdv-body .mdv-controls .mhf-panel {
@@ -100,14 +101,14 @@
   display: flex;
 }
 .molkobain-datacenter-view .mdv-body .mdv-views .mdv-rack-panel, .molkobain-datacenter-view .mdv-body .mdv-views .mdv-enclosure-panel {
-  margin-right: 120px;
+  margin-right: 9rem;
 }
 .molkobain-datacenter-view .mdv-body .mdv-views .mdv-rack-panel:last-child, .molkobain-datacenter-view .mdv-body .mdv-views .mdv-enclosure-panel:last-child {
   margin-right: 0;
 }
 .molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel {
   position: relative;
-  width: 260px;
+  width: calc(217px + 6.5rem + 1.5rem);
 }
 .molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-header {
   margin-bottom: 0.2rem;
@@ -129,9 +130,13 @@
 }
 .molkobain-datacenter-view .mdv-body .mdv-element-note {
   position: absolute;
-  top: 40%;
-  left: calc(100% + 1em);
-  max-width: 10em;
+  top: 0;
+  left: calc(100% + 0.6rem);
+  max-width: 6.5rem;
+  height: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
   overflow-x: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -180,8 +185,8 @@
 }
 .molkobain-datacenter-view .mdv-body .mdv-element {
   position: relative;
-  width: 120px;
-  height: 20px;
+  width: 217px;
+  height: 18px;
   text-align: center;
   font-size: 0.7rem;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
@@ -217,9 +222,6 @@
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-.molkobain-datacenter-view .mdv-body .mdv-device .mdv-element-note {
-  top: 20%;
 }
 .molkobain-datacenter-view .mdv-body .mdv-device[data-class="Server"] {
   background-color: #3f627e;
@@ -271,18 +273,18 @@
   display: flex;
   position: relative;
   /* In order to make devices absolute and higher than the slot */
-  height: 20px;
-  width: 120px;
+  height: 18px;
+  width: 217px;
   box-sizing: content-box;
   /* Cause content has a fixed size */
 }
-.molkobain-datacenter-view .mdv-body .mdv-host-unit .mdv-hu-slot > .mdv-device, .molkobain-datacenter-view .mdv-body .mdv-host-unit .mdv-hu-slot .mdv-enclosure {
+.molkobain-datacenter-view .mdv-body .mdv-host-unit .mdv-hu-slot > .mdv-device, .molkobain-datacenter-view .mdv-body .mdv-host-unit .mdv-hu-slot > .mdv-enclosure {
   flex-grow: 1;
   position: absolute !important;
   /* important in order to override "relative" put by jQuery draggable/sortable plugins */
   bottom: 0;
   left: 0;
-  z-index: 1;
+  /*z-index: 1; Disabled for now as it is making devices going below enclosures during drag & drop */
 }
 .molkobain-datacenter-view .mdv-body .mdv-host-unit .mdv-hu-slot > .mdv-device .mdv-element-note {
   display: none;
