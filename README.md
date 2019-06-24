@@ -27,13 +27,15 @@ Identify specific devices type by hovering the legend
 
 
 ### Advanced features in the paid version 🚀
-* [Drag & Drop](drag--drop)
-* [Rear panel support](rear-panel-support)
-* [Consistency checks](consistency-checks)
-* [Audit rules](audit-rules)
-* [Reserved slots](reserved-slots)
-* [Custom classes]()
-* [Misc. options](misc-options)
+* [Drag & Drop](#drag--drop)
+* [Rear panel support](#rear-panel-support)
+* [Consistency checks](#consistency-checks)
+* [Audit rules](#audit-rules)
+* [Reserved slots](#reserved-slots)
+* [Custom classes](#custom-classes)
+* [Misc. options](#misc-options)
+
+_Paid version will be available end of June '19 on [Molkobain I/O](https://www.molkobain.com/product-category/itop-extensions/)._
 
 #### Drag & Drop
 Drag & drop elements in the graphical view to easily set their position instead of manually editing each elements!
@@ -69,6 +71,9 @@ Two new object classes to better describe your racks and enclosures:
 * MiscEquipmentSlot: Mark space as used for patch panel or cable management for example.
 
 ![Pro features - Reserved slots](docs/mdv-profeatures-reservedslots-01.png)
+
+####Custom classes
+You have some custom classes _(not derivating from DatacenterDevice)_ that you would like to use in racks and enclosures? No problem! Just register them in the `custom_device_classes` config. parameter, make sure they have the required attributes _(see documentation)_ and they will automatically appear. 👌
 
 ####Misc. options
 * Us order: Reserve Us order per rack / enclosure to fit your set-up
@@ -140,6 +145,7 @@ Some configuration parameters are available from the Configuration editor of the
 ```
 
 ## How to
+### Free version (molkobain-datacenter-view)
 ### Position a device on a rack
 A quick example to show how to manually position a device on a rack.
 
@@ -152,10 +158,14 @@ To fix this, edit the *server* and make sure it has both *position* and *rack un
 Save the object and go back to the *rack*. The *server* will now appear in the *front* panel!
 ![How to - Result](docs/mdv-howto-positionserver-03.png)
 
+### Paid version (molkobain-datacenter-view-extended)
+_Under construction_
+
 ## Contributors
 I would like to give a special thank you to the people who contributed to this:
- - Bostoen, Jeffrey
+ - Bostoen, Jeffrey a.k.a @jbostoen
  - Makhlouf, Hadi
+ - @danama
 
 ## Licensing
 This extension is under [AGPLv3](https://en.wikipedia.org/wiki/GNU_Affero_General_Public_License).
