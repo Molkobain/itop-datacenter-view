@@ -47,7 +47,7 @@ Drag & drop elements in the graphical view to easily set their position instead 
 
 ![Pro features - Rear panel](docs/mdv-profeatures-panels-01.png)
 
-####Consistency checks
+#### Consistency checks
 Optional consistency checks are made on elements during creation / update:
 * Overlapping elements
 * Malpositioned elements (outside rack's / enclosure's grid)
@@ -55,7 +55,7 @@ Optional consistency checks are made on elements during creation / update:
 
 ![Pro features - Consistency checks](docs/mdv-profeatures-consistency-01.png)
 
-####Audit rules
+#### Audit rules
 Comes with a bunch of audit rules to keep your datacenter vision clear:
 * Production elements should have position set when attached to a rack or enclosure
 * Positioned elements should be attached to a rack or enclosure
@@ -65,17 +65,17 @@ Comes with a bunch of audit rules to keep your datacenter vision clear:
 
 ![Pro features - Audit rules](docs/mdv-profeatures-audit-01.png)
 
-####Reserved slots
+#### Reserved slots
 Two new object classes to better describe your racks and enclosures:
 * ReservedSlot: Reserve space in a rack / enclosure for any future usage or element.
 * MiscEquipmentSlot: Mark space as used for patch panel or cable management for example.
 
 ![Pro features - Reserved slots](docs/mdv-profeatures-reservedslots-01.png)
 
-####Custom classes
+#### Custom classes
 You have some custom classes _(not derivating from DatacenterDevice)_ that you would like to use in racks and enclosures? No problem! Just register them in the `custom_device_classes` config. parameter, make sure they have the required attributes _(see documentation)_ and they will automatically appear. 👌
 
-####Misc. options
+#### Misc. options
 * Us order: Reserve Us order per rack / enclosure to fit your set-up
 * Enclosure layout: Either display enclosure's elements or just the number of elements in it
 
