@@ -27,25 +27,52 @@ Identify specific devices type by hovering the legend
 
 
 ### Advanced features in the paid version 🚀
+* [Drag & Drop](drag--drop)
+* [Rear panel support](rear-panel-support)
+* [Consistency checks](consistency-checks)
+* [Audit rules](audit-rules)
+* [Reserved slots](reserved-slots)
+* [Custom classes]()
+* [Misc. options](misc-options)
+
+#### Drag & Drop
 Drag & drop elements in the graphical view to easily set their position instead of manually editing each elements!
 ![Pro features - Rear panel](docs/mdv-profeatures-drag-01.png)
 
-Rear panel support for racks
+#### Rear panel support
+* Available in both racks and enclosures
+* Automatically shows occupancy on the opposite panel
+
 ![Pro features - Rear panel](docs/mdv-profeatures-panels-01.png)
 
-Consistency checks (optionals) on elements creation / update:
+####Consistency checks
+Optional consistency checks are made on elements during creation / update:
 * Overlapping elements
 * Malpositioned elements (outside rack's / enclosure's grid)
 * Total elements' height exceeds rack's / enclosure's capacity
 
 ![Pro features - Consistency checks](docs/mdv-profeatures-consistency-01.png)
 
-Audit rules:
+####Audit rules
+Comes with a bunch of audit rules to keep your datacenter vision clear:
 * Production elements should have position set when attached to a rack or enclosure
 * Positioned elements should be attached to a rack or enclosure
 * Positioned elements should have *Rack units* attribute set
 * Positioned elements should not overlap another one
 * Positioned elements should not be outside its rack's or enclosure's (exceed height or malpositioned)
+
+![Pro features - Audit rules](docs/mdv-profeatures-audit-01.png)
+
+####Reserved slots
+Two new object classes to better describe your racks and enclosures:
+* ReservedSlot: Reserve space in a rack / enclosure for any future usage or element.
+* MiscEquipmentSlot: Mark space as used for patch panel or cable management for example.
+
+![Pro features - Reserved slots](docs/mdv-profeatures-reservedslots-01.png)
+
+####Misc. options
+* Us order: Reserve Us order per rack / enclosure to fit your set-up
+* Enclosure layout: Either display enclosure's elements or just the number of elements in it
 
 ## Online demo
 You can try this extension on the online demo. There are already some racks, enclosures and devices mounted as an example. Just click on the links below to access it:
