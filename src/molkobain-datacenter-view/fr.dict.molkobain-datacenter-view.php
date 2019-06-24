@@ -39,7 +39,7 @@ Dict::Add('FR FR', 'French', 'Français', array(
 	'Molkobain:DatacenterView:Legend:Title' => 'Légende',
 	// - Options
 	'Molkobain:DatacenterView:Options:Title' => 'Options',
-	'Molkobain:DatacenterView:Options:Option:ShowObsolete' => 'Afficher éléments obsolètes',
+	'Molkobain:DatacenterView:Options:Option:ShowObsolete' => 'Afficher élém. obsolètes',
 	'Molkobain:DatacenterView:Options:Option:ShowObsolete+' => 'Modifier l\'option ne prendra le pas sur les préférences utilisateurs que pour cet élément',
 	// - Tooltip
 	'Molkobain:DatacenterView:Element:Tooltip:Fieldset:base-info' => 'Informations générales',
