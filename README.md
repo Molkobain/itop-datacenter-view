@@ -76,7 +76,7 @@ Two new object classes to better describe your racks and enclosures:
 You have some custom classes _(not derivating from DatacenterDevice)_ that you would like to use in racks and enclosures? No problem! Just register them in the `custom_device_classes` config. parameter, make sure they have the required attributes _(see documentation)_ and they will automatically appear. 👌
 
 #### Misc. options
-* Us order: Reserve Us order per rack / enclosure to fit your set-up
+* Us order: Reverse Us order per rack / enclosure to fit your set-up
 * Enclosure layout: Either display enclosure's elements or just the number of elements in it
 
 ## Online demo
