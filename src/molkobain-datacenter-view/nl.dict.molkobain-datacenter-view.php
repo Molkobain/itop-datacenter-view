@@ -14,6 +14,7 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:PhysicalDevice/Attribute:position_v' => 'Positie',
 	'Class:PhysicalDevice/Attribute:position_v+' => 'Verticale positie (U) van dit toestel in de behuizing (of van de rack indien er rechtstreeks ingemonteerd). Vanaf beneden.',
 	// - Rack
+	'Class:Rack/Attribute:nb_u' => 'Hoogte',
 	'Class:Rack/Attribute:nb_u+' => 'Hoogte in units (U) waarover deze rack beschikt',
 	// - Enclosure
 	'Class:Enclosure/Attribute:nb_u' => 'Hoogte',
@@ -27,7 +28,7 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:DatacenterDevice/Attribute:position_v+' => 'Verticale positie (U) van dit toestel in de behuizing (of van de rack indien er rechtstreeks ingemonteerd). Vanaf beneden.',
 	// - PDU
 	'Class:PDU/Attribute:nb_u' => 'Hoogte',
-	'Class:PDU/Attribute:nb_u+' => 'Hoogte van dit PDU in units (U)',
+	'Class:PDU/Attribute:nb_u+' => 'Hoogte van deze PDU in units (U)',
 	'Class:PDU/Attribute:position_v' => 'Positie',
 	'Class:PDU/Attribute:position_v+' => 'Verticale positie (U) van dit PDU in de behuizing (of van de rack indien er rechtstreeks ingemonteerd). Vanaf beneden.',
 

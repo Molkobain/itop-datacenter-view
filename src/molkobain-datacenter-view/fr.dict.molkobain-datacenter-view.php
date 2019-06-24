@@ -12,24 +12,25 @@ Dict::Add('FR FR', 'French', 'Français', array(
 	'Class:PhysicalDevice/Attribute:nb_u' => 'Hauteur',
 	'Class:PhysicalDevice/Attribute:nb_u+' => 'Hauteur du matériel en unités (U)',
 	'Class:PhysicalDevice/Attribute:position_v' => 'Position',
-	'Class:PhysicalDevice/Attribute:position_v+' => 'Position verticale (U) du matériel dans le chassis (ou rack si monté directement dessus). Doit faire référence au bas du matériel et non au haut.',
+	'Class:PhysicalDevice/Attribute:position_v+' => 'Position verticale (U) du matériel dans le châssis (ou rack si monté directement dessus). Doit faire référence au bas du matériel et non au haut.',
 	// - Rack
+	'Class:Rack/Attribute:nb_u' => 'Hauteur',
 	'Class:Rack/Attribute:nb_u+' => 'Hauteur du rack en unités (U)',
 	// - Enclosure
 	'Class:Enclosure/Attribute:nb_u' => 'Hauteur',
-	'Class:Enclosure/Attribute:nb_u+' => 'Hauteur du chassis en unités (U)',
+	'Class:Enclosure/Attribute:nb_u+' => 'Hauteur du châssis en unités (U)',
 	'Class:Enclosure/Attribute:position_v' => 'Position',
-	'Class:Enclosure/Attribute:position_v+' => 'Position verticale (U) du chassis dans le rack (Doit faire référence au bas du chassis et non au haut)',
+	'Class:Enclosure/Attribute:position_v+' => 'Position verticale (U) du châssis dans le rack (Doit faire référence au bas du châssis et non au haut)',
 	// - Datacenter device
 	'Class:DatacenterDevice/Attribute:nb_u' => 'Hauteur',
 	'Class:DatacenterDevice/Attribute:nb_u+' => 'Hauteur du matériel en unités (U)',
 	'Class:DatacenterDevice/Attribute:position_v' => 'Position',
-	'Class:DatacenterDevice/Attribute:position_v+' => 'Position verticale (U) du matériel dans le chassis (ou rack si monté directement dessus). Doit faire référence au bas du matériel et non au haut.',
+	'Class:DatacenterDevice/Attribute:position_v+' => 'Position verticale (U) du matériel dans le châssis (ou rack si monté directement dessus). Doit faire référence au bas du matériel et non au haut.',
 	// - PDU
 	'Class:PDU/Attribute:nb_u' => 'Hauteur',
 	'Class:PDU/Attribute:nb_u+' => 'Hauteur du PDU en unités (U)',
 	'Class:PDU/Attribute:position_v' => 'Position',
-	'Class:PDU/Attribute:position_v+' => 'Position verticale (U) du PDU dans le chassis (ou rack si monté directement dessus). Doit faire référence au bas du PDU et non au haut.',
+	'Class:PDU/Attribute:position_v+' => 'Position verticale (U) du PDU dans le châssis (ou rack si monté directement dessus). Doit faire référence au bas du PDU et non au haut.',
 
 	// UI
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Représentation graphique',
@@ -50,7 +51,7 @@ Dict::Add('FR FR', 'French', 'Français', array(
 	// - Unmounted elements
 	'Molkobain:DatacenterView:Unmounted:Toggler:Tooltip' => 'Ouvrir / Fermer',
 	'Molkobain:DatacenterView:Unmounted:Enclosures:Title' => 'Chassis non montés',
-	'Molkobain:DatacenterView:Unmounted:Enclosures:Title+' => 'Rattachés à ce rack mais aucune position renseignée (Editer le chassis pour corriger)',
+	'Molkobain:DatacenterView:Unmounted:Enclosures:Title+' => 'Rattachés à ce rack mais aucune position renseignée (Editer le châssis pour corriger)',
 	'Molkobain:DatacenterView:Unmounted:Devices:Title' => 'Matériels non montés',
-	'Molkobain:DatacenterView:Unmounted:Devices:Title+' => 'Rattachés à ce rack / chassis mais aucune position renseignée (Editer le matériel pour corriger)',
+	'Molkobain:DatacenterView:Unmounted:Devices:Title+' => 'Rattachés à ce rack / châssis mais aucune position renseignée (Editer le matériel pour corriger)',
 ));
