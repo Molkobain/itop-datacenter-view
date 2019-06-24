@@ -15,6 +15,7 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:PhysicalDevice/Attribute:position_v' => 'Position',
 	'Class:PhysicalDevice/Attribute:position_v+' => 'Vertical position (U) of the element in its host (Must be the bottom position, not top)',
 	// - Rack
+	'Class:Rack/Attribute:nb_u' => 'Height',
 	'Class:Rack/Attribute:nb_u+' => 'Height in units (U) of the rack',
 	// - Enclosure
 	'Class:Enclosure/Attribute:nb_u' => 'Height',

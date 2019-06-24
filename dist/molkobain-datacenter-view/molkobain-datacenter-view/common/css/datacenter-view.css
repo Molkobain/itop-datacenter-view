@@ -88,6 +88,9 @@
 .molkobain-datacenter-view .mdv-body .mdv-controls .mdv-legend ul li[data-class="TapeLibrary"]::before {
   background-color: #7da9bc;
 }
+.molkobain-datacenter-view .mdv-body .mdv-controls .mdv-legend ul li[data-class="PDU"]::before {
+  background-color: #c85454;
+}
 .molkobain-datacenter-view .mdv-body .mdv-controls .mdv-legend ul li:last-of-type {
   padding-bottom: 0;
 }
@@ -240,6 +243,9 @@
 }
 .molkobain-datacenter-view .mdv-body .mdv-device[data-class="TapeLibrary"] {
   background-color: #7da9bc;
+}
+.molkobain-datacenter-view .mdv-body .mdv-device[data-class="PDU"] {
+  background-color: #c85454;
 }
 .molkobain-datacenter-view .mdv-body .mdv-enclosure .mdv-enclosure-unit .mdv-eu-left {
   display: none;
