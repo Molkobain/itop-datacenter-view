@@ -104,7 +104,7 @@
   display: flex;
 }
 .molkobain-datacenter-view .mdv-body .mdv-views .mdv-rack-panel, .molkobain-datacenter-view .mdv-body .mdv-views .mdv-enclosure-panel {
-  margin-right: 9rem;
+  margin-right: 8rem;
 }
 .molkobain-datacenter-view .mdv-body .mdv-views .mdv-rack-panel:last-child, .molkobain-datacenter-view .mdv-body .mdv-views .mdv-enclosure-panel:last-child {
   margin-right: 0;
