@@ -47,6 +47,7 @@ $obj-class-sanswitch-bg-color: lightsalmon;
 $obj-class-nas-bg-color: #80b469;
 $obj-class-storagesystem-bg-color: #eb913b;
 $obj-class-tapelibrary-bg-color: #7da9bc;
+$obj-class-pdu-bg-color: #c85454;
 
 .molkobain-datacenter-view{
 	/* Reset for admin console mostly */
@@ -126,6 +127,9 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 						}
 						&[data-class="TapeLibrary"]::before{
 							background-color: $obj-class-tapelibrary-bg-color;
+						}
+						&[data-class="PDU"]::before{
+							background-color: $obj-class-pdu-bg-color;
 						}
 
 						&:last-of-type{
@@ -320,6 +324,9 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 			}
 			&[data-class="TapeLibrary"]{
 				background-color: $obj-class-tapelibrary-bg-color;
+			}
+			&[data-class="PDU"]{
+				background-color: $obj-class-pdu-bg-color;
 			}
 		}
 		.mdv-enclosure{
