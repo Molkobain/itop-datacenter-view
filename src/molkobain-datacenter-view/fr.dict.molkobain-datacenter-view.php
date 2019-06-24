@@ -50,7 +50,7 @@ Dict::Add('FR FR', 'French', 'Français', array(
 	'Molkobain:DatacenterView:Enclosure:Panel:Front:Title' => 'Avant',
 	// - Unmounted elements
 	'Molkobain:DatacenterView:Unmounted:Toggler:Tooltip' => 'Ouvrir / Fermer',
-	'Molkobain:DatacenterView:Unmounted:Enclosures:Title' => 'Chassis non montés',
+	'Molkobain:DatacenterView:Unmounted:Enclosures:Title' => 'Châssis non montés',
 	'Molkobain:DatacenterView:Unmounted:Enclosures:Title+' => 'Rattachés à ce rack mais aucune position renseignée (Editer le châssis pour corriger)',
 	'Molkobain:DatacenterView:Unmounted:Devices:Title' => 'Matériels non montés',
 	'Molkobain:DatacenterView:Unmounted:Devices:Title+' => 'Rattachés à ce rack / châssis mais aucune position renseignée (Editer le matériel pour corriger)',
