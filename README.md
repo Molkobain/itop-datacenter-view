@@ -146,7 +146,7 @@ Some configuration parameters are available from the Configuration editor of the
 
 ## How to
 ### Free version (molkobain-datacenter-view)
-### Position a device on a rack
+#### Position a device on a rack
 A quick example to show how to manually position a device on a rack.
 
 In this example, the *Rack 2* has a *Server* attached but is listed among the *unmounted* devices. This is because the *server* has no *position* set.
@@ -158,7 +158,7 @@ To fix this, edit the *server* and make sure it has both *position* and *rack un
 Save the object and go back to the *rack*. The *server* will now appear in the *front* panel!
 ![How to - Result](docs/mdv-howto-positionserver-03.png)
 
-### Paid version (molkobain-datacenter-view-extended)
+#### Paid version (molkobain-datacenter-view-extended)
 _Under construction_
 
 ## Contributors
