@@ -98,12 +98,8 @@ $(function()
 						this.options.object_data.units_order = this.options.defaults.units_order;
 					}
 
-					var oRackPanelElem = this._cloneTemplate('rack-panel')
-						.attr('data-class', this._getObjectDatum('class'))
-						.attr('data-id', this._getObjectDatum('id'))
+					var oRackPanelElem = this._cloneTemplate('rack-panel', this.options.object_data)
 						.attr('data-panel-code', sPanelCode)
-						.attr('data-name', this._getObjectDatum('name'))
-						.attr('data-units-order', this._getObjectDatum('units_order'))
 						.appendTo(this.element.find('.mdv-views'));
 
 					oRackPanelElem

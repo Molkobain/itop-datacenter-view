@@ -8,7 +8,13 @@
  */
 Dict::Add('JA JP', 'Japanese', '日本語', array(
 	// Classes
+	// - PhysicalDevice (default entries for custom classes)
+	'Class:PhysicalDevice/Attribute:nb_u' => 'Height~~',
+	'Class:PhysicalDevice/Attribute:nb_u+' => 'Height in units (U) of the element~~',
+	'Class:PhysicalDevice/Attribute:position_v' => 'Position~~',
+	'Class:PhysicalDevice/Attribute:position_v+' => 'Vertical position (U) of the element in its host (Must be the bottom position, not top)~~',
 	// - Rack
+	'Class:Rack/Attribute:nb_u' => 'Height~~',
 	'Class:Rack/Attribute:nb_u+' => 'Height in units (U) of the rack~~',
 	// - Enclosure
 	'Class:Enclosure/Attribute:nb_u' => 'Height~~',
@@ -20,6 +26,11 @@ Dict::Add('JA JP', 'Japanese', '日本語', array(
 	'Class:DatacenterDevice/Attribute:nb_u+' => 'Height in units (U) of the device~~',
 	'Class:DatacenterDevice/Attribute:position_v' => 'Position~~',
 	'Class:DatacenterDevice/Attribute:position_v+' => 'Vertical position (U) of the device in the enclosure (or rack if mounted directly on it). Must be the bottom position, not top.~~',
+	// - PDU
+	'Class:PDU/Attribute:nb_u' => 'Height~~',
+	'Class:PDU/Attribute:nb_u+' => 'Height in units (U) of the device~~',
+	'Class:PDU/Attribute:position_v' => 'Position~~',
+	'Class:PDU/Attribute:position_v+' => 'Vertical position (U) of the device in the enclosure (or rack if mounted directly on it). Must be the bottom position, not top.~~',
 
 	// UI
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Graphical view~~',

@@ -27,25 +27,57 @@ Identify specific devices type by hovering the legend
 
 
 ### Advanced features in the paid version 🚀
+* [Drag & Drop](#drag--drop)
+* [Rear panel support](#rear-panel-support)
+* [Consistency checks](#consistency-checks)
+* [Audit rules](#audit-rules)
+* [Reserved slots](#reserved-slots)
+* [Custom classes](#custom-classes)
+* [Misc. options](#misc-options)
+
+_Paid version will be available end of June '19 on [Molkobain I/O](https://www.molkobain.com/product-category/itop-extensions/)._
+
+#### Drag & Drop
 Drag & drop elements in the graphical view to easily set their position instead of manually editing each elements!
 ![Pro features - Rear panel](docs/mdv-profeatures-drag-01.png)
 
-Rear panel support for racks
+#### Rear panel support
+* Available in both racks and enclosures
+* Automatically shows occupancy on the opposite panel
+
 ![Pro features - Rear panel](docs/mdv-profeatures-panels-01.png)
 
-Consistency checks (optionals) on elements creation / update:
+#### Consistency checks
+Optional consistency checks are made on elements during creation / update:
 * Overlapping elements
 * Malpositioned elements (outside rack's / enclosure's grid)
 * Total elements' height exceeds rack's / enclosure's capacity
 
 ![Pro features - Consistency checks](docs/mdv-profeatures-consistency-01.png)
 
-Audit rules:
+#### Audit rules
+Comes with a bunch of audit rules to keep your datacenter vision clear:
 * Production elements should have position set when attached to a rack or enclosure
 * Positioned elements should be attached to a rack or enclosure
 * Positioned elements should have *Rack units* attribute set
 * Positioned elements should not overlap another one
 * Positioned elements should not be outside its rack's or enclosure's (exceed height or malpositioned)
+
+![Pro features - Audit rules](docs/mdv-profeatures-audit-01.png)
+
+#### Reserved slots
+Two new object classes to better describe your racks and enclosures:
+* ReservedSlot: Reserve space in a rack / enclosure for any future usage or element.
+* MiscEquipmentSlot: Mark space as used for patch panel or cable management for example.
+
+![Pro features - Reserved slots](docs/mdv-profeatures-reservedslots-01.png)
+
+#### Custom classes
+You have some custom classes _(not derivating from DatacenterDevice)_ that you would like to use in racks and enclosures? No problem! Just register them in the `custom_device_classes` config. parameter, make sure they have the required attributes _(see documentation)_ and they will automatically appear. 👌
+
+#### Misc. options
+* Us order: Reserve Us order per rack / enclosure to fit your set-up
+* Enclosure layout: Either display enclosure's elements or just the number of elements in it
 
 ## Online demo
 You can try this extension on the online demo. There are already some racks, enclosures and devices mounted as an example. Just click on the links below to access it:
@@ -113,7 +145,8 @@ Some configuration parameters are available from the Configuration editor of the
 ```
 
 ## How to
-### Position a device on a rack
+### Free version (molkobain-datacenter-view)
+#### Position a device on a rack
 A quick example to show how to manually position a device on a rack.
 
 In this example, the *Rack 2* has a *Server* attached but is listed among the *unmounted* devices. This is because the *server* has no *position* set.
@@ -125,10 +158,14 @@ To fix this, edit the *server* and make sure it has both *position* and *rack un
 Save the object and go back to the *rack*. The *server* will now appear in the *front* panel!
 ![How to - Result](docs/mdv-howto-positionserver-03.png)
 
+#### Paid version (molkobain-datacenter-view-extended)
+_Under construction_
+
 ## Contributors
 I would like to give a special thank you to the people who contributed to this:
- - Bostoen, Jeffrey
+ - Bostoen, Jeffrey a.k.a @jbostoen
  - Makhlouf, Hadi
+ - @danama
 
 ## Licensing
 This extension is under [AGPLv3](https://en.wikipedia.org/wiki/GNU_Affero_General_Public_License).

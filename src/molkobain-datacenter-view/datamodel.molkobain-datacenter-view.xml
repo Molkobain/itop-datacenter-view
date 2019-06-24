@@ -368,5 +368,80 @@
 				</list>
 			</presentation>
 		</class>
+		<class id="PDU" _delta="must_exist">
+			<fields>
+				<field id="enclosure_id" xsi:type="AttributeExternalKey" _delta="define">
+					<filter><![CDATA[SELECT Enclosure WHERE rack_id = :this->rack_id]]></filter>
+					<dependencies>
+						<attribute id="rack_id"/>
+					</dependencies>
+					<sql>enclosure_id</sql>
+					<target_class>Enclosure</target_class>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+					<allow_target_creation>false</allow_target_creation>
+				</field>
+				<field id="position_v" xsi:type="AttributeMHFRackUnit" _delta="define">
+					<sql>position_v</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="nb_u" xsi:type="AttributeMHFRackUnit" _delta="define">
+					<sql>nb_u</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods>
+				<method id="GetEndPositionV" _delta="define">
+					<comment><![CDATA[/**
+	 * Returns object ending U (eg. A 4U object positioned at 10U will return 13)
+	 *
+	 * @return int
+	 */]]></comment>
+					<static>false</static>
+					<access>public</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	public function GetEndPositionV()
+	{
+		$iHeight = ((int) $this->Get('nb_u') > 0) ? $this->Get('nb_u') : 1;
+		$iPositionV = (int) $this->Get('position_v');
+
+		return $iPositionV + $iHeight - 1;
+	}]]></code>
+				</method>
+				<method id="IsMounted" _delta="define">
+					<comment><![CDATA[/**
+	 * Returns true if object is mounted in its host (position_v > 0)
+	 *
+	 * @return bool
+	 */]]></comment>
+					<static>false</static>
+					<access>public</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	public function IsMounted()
+	{
+		$iPositionV = (int) $this->Get('position_v');
+
+		return $iPositionV > 0;
+	}]]></code>
+				</method>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="enclosure_id" _delta="define">
+							<rank>62</rank>
+						</item>
+						<item id="position_v" _delta="define">
+							<rank>65</rank>
+						</item>
+						<item id="nb_u" _delta="define">
+							<rank>68</rank>
+						</item>
+					</items>
+				</details>
+			</presentation>
+		</class>
 	</classes>
 </itop_design>

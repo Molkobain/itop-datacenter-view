@@ -18,10 +18,12 @@ $rack-panel-outer-border: 1px solid $rack-panel-outer-border-color;
 /* - Rack unit */
 $rack-unit-number-width: 1.8rem;
 /* - Rack unit slot */
-$rack-unit-slot-width: 120px;
-$rack-unit-slot-height: 20px;
+$rack-unit-slot-width: 217px;
+$rack-unit-slot-height: 18px;
 $rack-unit-slot-bg-color: #ffffff;
 $rack-unit-slot-separator-color: #eaeaea;
+/* - Element */
+$element-note-max-width: 6.5rem;
 /* - Enclosure */
 $enclosure-color: #939393;
 $enclosure-bg-color: #eaeaea;
@@ -45,6 +47,7 @@ $obj-class-sanswitch-bg-color: lightsalmon;
 $obj-class-nas-bg-color: #80b469;
 $obj-class-storagesystem-bg-color: #eb913b;
 $obj-class-tapelibrary-bg-color: #7da9bc;
+$obj-class-pdu-bg-color: #c85454;
 
 .molkobain-datacenter-view{
 	/* Reset for admin console mostly */
@@ -63,13 +66,15 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 	background-color: #eeeeee; /* Not in /css/css-variables.scss */
 
 	.mdv-header{
-		margin-bottom: 20px;
+		&:not(:empty){
+			margin-bottom: 20px;
+		}
 	}
 	.mdv-body{
 		/* Proper properties */
 		position: relative;
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 
 		.mdv-controls{
 			.mhf-panel{
@@ -123,6 +128,9 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 						&[data-class="TapeLibrary"]::before{
 							background-color: $obj-class-tapelibrary-bg-color;
 						}
+						&[data-class="PDU"]::before{
+							background-color: $obj-class-pdu-bg-color;
+						}
 
 						&:last-of-type{
 							padding-bottom: 0;
@@ -147,7 +155,7 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 
 			.mdv-rack-panel,
 			.mdv-enclosure-panel{
-				margin-right: 120px;
+				margin-right: 8rem;
 
 				&:last-child{
 					margin-right: 0;
@@ -157,7 +165,7 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 		.mdv-unmounted{
 			.mdv-unmounted-type.mhf-panel{
 				position: relative;
-				width: 260px;
+				width: calc(#{$rack-unit-slot-width} + #{$element-note-max-width} + 1.5rem);
 
 				.mhf-p-header{
 					margin-bottom: 0.2rem;
@@ -187,9 +195,13 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 		/* Used as a comment next to the element (device / enclosure) */
 		.mdv-element-note{
 			position: absolute;
-			top: 40%;
-			left: calc(100% + 1em);
-			max-width: 10em;
+			top: 0;
+			left: calc(100% + 0.6rem);
+			max-width: $element-note-max-width;
+			height: 100%;
+			display: flex;
+			justify-content: left;
+			align-items: center;
 			overflow-x: hidden;
 			white-space: nowrap;
 			text-overflow: ellipsis;
@@ -294,9 +306,6 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 				text-overflow: ellipsis;
 				white-space: nowrap;
 			}
-			.mdv-element-note{
-				top: 20%;
-			}
 
 			&[data-class="Server"]{
 				background-color: $obj-class-server-bg-color;
@@ -315,6 +324,9 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 			}
 			&[data-class="TapeLibrary"]{
 				background-color: $obj-class-tapelibrary-bg-color;
+			}
+			&[data-class="PDU"]{
+				background-color: $obj-class-pdu-bg-color;
 			}
 		}
 		.mdv-enclosure{
@@ -360,12 +372,12 @@ $obj-class-tapelibrary-bg-color: #7da9bc;
 				box-sizing: content-box; /* Cause content has a fixed size */
 
 				> .mdv-device,
-				.mdv-enclosure{
+				> .mdv-enclosure{
 					flex-grow: 1;
 					position: absolute !important; /* important in order to override "relative" put by jQuery draggable/sortable plugins */
 					bottom: 0;
 					left: 0;
-					z-index: 1;
+					/*z-index: 1; Disabled for now as it is making devices going below enclosures during drag & drop */
 				}
 				> .mdv-device{
 					.mdv-element-note{
