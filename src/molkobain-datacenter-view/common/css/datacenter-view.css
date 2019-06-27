@@ -290,7 +290,8 @@
   /* important in order to override "relative" put by jQuery draggable/sortable plugins */
   bottom: 0;
   left: 0;
-  /*z-index: 1; Disabled for now as it is making devices going below enclosures during drag & drop */
+  z-index: 1;
+  /* Keep this for reverse ordering! */
 }
 .molkobain-datacenter-view .mdv-body .mdv-host-unit .mdv-hu-slot > .mdv-device .mdv-element-note {
   display: none;
