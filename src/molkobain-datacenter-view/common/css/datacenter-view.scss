@@ -12,6 +12,9 @@ $box-shadow-small: 0 1px 1px rgba(0, 0, 0, 0.15);
 
 /* - Unmounted container */
 $unmounted-container-bg-color: #ffffff;
+$unmounted-spot-bg-color: #d85656;
+$unmounted-spot-color: #ffffff;
+$unmounted-spot-width: 15px;
 /* - Rack panel */
 $rack-panel-outer-border-color: #c5c5c5;
 $rack-panel-outer-border: 1px solid $rack-panel-outer-border-color;
@@ -169,6 +172,34 @@ $obj-class-pdu-bg-color: #c85454;
 
 				.mhf-p-header{
 					margin-bottom: 0.2rem;
+
+					.mhf-ph-icon{
+						position: relative;
+
+						.mdv-uth-spot{
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							position: absolute;
+							bottom: calc(100% - 16px);
+							right: -2px;
+							min-width: $unmounted-spot-width;
+							height: $unmounted-spot-width;
+							border-radius: 4px;
+							text-align: center;
+							font-size: 0.6rem;
+							background: $unmounted-spot-bg-color;
+							color: $unmounted-spot-color;
+							transition: all 0.15s ease-in-out;
+
+							&.mdv-hidden{
+								min-width: 0;
+								width: 0;
+								height: 0;
+								font-size: 0;
+							}
+						}
+					}
 				}
 				.mhf-p-body{
 					position: relative;

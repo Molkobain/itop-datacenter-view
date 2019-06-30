@@ -116,6 +116,31 @@
 .molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-header {
   margin-bottom: 0.2rem;
 }
+.molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-header .mhf-ph-icon {
+  position: relative;
+}
+.molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-header .mhf-ph-icon .mdv-uth-spot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: calc(100% - 16px);
+  right: -2px;
+  min-width: 15px;
+  height: 15px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.6rem;
+  background: #d85656;
+  color: #fff;
+  transition: all 0.15s ease-in-out;
+}
+.molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-header .mhf-ph-icon .mdv-uth-spot.mdv-hidden {
+  min-width: 0;
+  width: 0;
+  height: 0;
+  font-size: 0;
+}
 .molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body {
   position: relative;
   min-height: 160px;
