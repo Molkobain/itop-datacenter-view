@@ -302,7 +302,9 @@ HTML;
 		<!-- Unmounted type template (enclosures / devices) -->
 		<div class="mdv-unmounted-type mhf-panel" data-type="">
 			<div class="mhf-p-header">
-				<span class="mhf-ph-icon"></span>
+				<span class="mhf-ph-icon">
+					<span class="mdv-uth-spot"></span>
+				</span>
 				<span class="mhf-ph-title"></span>
 				<span class="mhf-ph-actions mhf-pull-right">
 					<span class="mhf-ph-toggler fa fa-fw fa-caret-down" title="{$sTogglerTooltip}"></span>

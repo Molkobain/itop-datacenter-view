@@ -33,9 +33,10 @@ Identify specific devices type by hovering the legend
 * [Audit rules](#audit-rules)
 * [Reserved slots](#reserved-slots)
 * [Custom classes](#custom-classes)
+* [Zero-U devices](#zero-u-devices)
 * [Misc. options](#misc-options)
 
-_Paid version will be available end of June '19 on [Molkobain I/O](https://www.molkobain.com/product-category/itop-extensions/)._
+👋 _Paid version is now available on [Molkobain I/O](https://www.molkobain.com/product/datacenter-view-extended/)!_
 
 #### Drag & Drop
 Drag & drop elements in the graphical view to easily set their position instead of manually editing each elements!
@@ -75,8 +76,13 @@ Two new object classes to better describe your racks and enclosures:
 #### Custom classes
 You have some custom classes _(not derivating from DatacenterDevice)_ that you would like to use in racks and enclosures? No problem! Just register them in the `custom_device_classes` config. parameter, make sure they have the required attributes _(see documentation)_ and they will automatically appear. 👌
 
+#### Zero-U devices
+Manage devices with non standard size / positioning such as USB drives, vertical PDUs, non rackable devices, ... Just mark them as such to make them appaer in the bottom-right panel of their host, easy as pie!
+
+![Pro features - Zero-U devices](docs/mdv-profeatures-zerou-01.png)
+
 #### Misc. options
-* Us order: Reserve Us order per rack / enclosure to fit your set-up
+* Us order: Reverse Us order per rack / enclosure to fit your set-up
 * Enclosure layout: Either display enclosure's elements or just the number of elements in it
 
 ## Online demo

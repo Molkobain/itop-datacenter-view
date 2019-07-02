@@ -59,10 +59,10 @@ $(function()
 				this._initializePanels();
 			},
 			// - Make the markup for unmounted elements to be displayed in
-			_initializeUnmounted: function()
+			_initializeUnmountedPanels: function()
 			{
 				// Enclosures
-				this._buildUnmountedContainer('enclosure');
+				this._buildUnmountedPanelContainer('enclosure');
 
 				// Devices
 				this._super();

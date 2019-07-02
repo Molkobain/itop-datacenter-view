@@ -108,9 +108,10 @@ $(function()
 
 				this._initializeLegend();
 				this._initializeViews();
-				this._initializeUnmounted();
+				this._initializeUnmountedPanels();
 				this._initializeElements();
 				this._initializeTooltips();
+				this._updateUnmountedPanels();
 			},
 			// - Bind external events
 			_bindEvents: function()
@@ -120,6 +121,15 @@ $(function()
 				// Refresh view
 				this.element.bind('mdv.refresh_view', function(){
 					return me._onRefreshView();
+				});
+				// Update unmounted panels
+				// - A specific one
+				this.element.bind('mdv.update_unmouted_panel', function(oData){
+					return me._onUpdateUnmountedPanel(oData);
+				});
+				// - All
+				this.element.bind('mdv.update_unmouted_panels', function(){
+					return me._onUpdateAllUnmountedPanels();
 				});
 			},
 			// - Make the markup & events binding for the legend
@@ -164,18 +174,18 @@ $(function()
 					}
 				);
 			},
-			// - Make the markup & events binding  for views (eg. rack panels, enclosure panel, ...)
+			// - Make the markup & events binding for views (eg. rack panels, enclosure panel, ...)
 			_initializeViews: function()
 			{
 				// Meant for overloading.
 			},
-			// - Make the markup & events binding  for unmounted elements to be displayed in
-			_initializeUnmounted: function()
+			// - Make the markup & events binding for unmounted elements to be displayed in
+			_initializeUnmountedPanels: function()
 			{
 				// Devices
-				this._buildUnmountedContainer('device');
+				this._buildUnmountedPanelContainer('device');
 			},
-			// - Make the markup & events binding  for elements (mounted or not) and display them where they belong
+			// - Make the markup & events binding for elements (mounted or not) and display them where they belong
 			_initializeElements: function()
 			{
 				// Meant for overloading.
@@ -266,14 +276,28 @@ $(function()
 			// - Instanciate tooltips on elements
 			_initializeTooltips: function()
 			{
-				this.element.find('[data-toggle="tooltip"][title!=""]').each(function(){
-					// Put tooltip
-					var sContent = $('<div />').text($(this).attr('title')).html();
-					$(this).qtip( { content: sContent, show: 'mouseover', hide: 'mouseout', style: { name: 'molkobain-dark', tip: 'bottomMiddle' }, position: { corner: { target: 'topMiddle', tooltip: 'bottomMiddle' }, adjust: { y: -5}} } );
+				var me = this;
 
-					// Remove native title
-					$(this).attr('title', '');
-				});
+				// Set a timeout a give extensibility a chance to put tooltip as well (not the best of doing it I know)
+				setTimeout(
+					function(){
+						me.element.find('[data-toggle="tooltip"][title!=""]').each(function(){
+							// Put tooltip
+							var sContent = $('<div />').text($(this).attr('title')).html();
+							$(this).qtip( { content: sContent, show: 'mouseover', hide: 'mouseout', style: { name: 'molkobain-dark', tip: 'bottomMiddle' }, position: { corner: { target: 'topMiddle', tooltip: 'bottomMiddle' }, adjust: { y: -5}} } );
+
+							// Remove native title
+							$(this).attr('title', '');
+						});
+					},
+					300
+				);
+
+			},
+			// - Update unmounted panels after they have been initialized and filled with elements
+			_updateUnmountedPanels: function()
+			{
+				this._onUpdateAllUnmountedPanels();
 			},
 
 			// Event handlers
@@ -298,6 +322,33 @@ $(function()
 						me._hideLoader();
 					});
 
+			},
+			// - Called when all unmounted panels are updated (element added / removed)
+			_onUpdateAllUnmountedPanels: function()
+			{
+				var me = this;
+				this.element.find('.mdv-unmounted-type').each(function(){
+					me._onUpdateUnmountedPanel($(this).attr('data-type'));
+				});
+			},
+			// - Called when an unmounted panel is updated (element added / removed)
+			_onUpdateUnmountedPanel: function(sPanelType)
+			{
+				var oPanelElem = this.element.find('.mdv-unmounted-type[data-type="' + sPanelType + '"]');
+
+				// Update element count
+				var oSpotElem = oPanelElem.find('.mdv-uth-spot');
+				var iElementCount = oPanelElem.find('.mdv-ut-body > .mdv-element').length;
+
+				oSpotElem.text(iElementCount);
+				if(iElementCount === 0)
+				{
+					oSpotElem.addClass('mdv-hidden');
+				}
+				else
+				{
+					oSpotElem.removeClass('mdv-hidden');
+				}
 			},
 
 			// Getters
@@ -357,7 +408,7 @@ $(function()
 				for(var sProperty in oData)
 				{
 					var value = oData[sProperty];
-					if((typeof value === 'string') || (typeof value === 'number'))
+					if((typeof value === 'string') || (typeof value === 'number') || (typeof value === 'boolean'))
 					{
 						oElem.attr('data-'+sProperty.replace('_', '-'), value);
 					}
@@ -366,7 +417,7 @@ $(function()
 				return oElem;
 			},
 			// - Add markup for unmounted container for elements of type sType
-			_buildUnmountedContainer: function(sType)
+			_buildUnmountedPanelContainer: function(sType)
 			{
 				var sTypeForElementCategory = sType + 's';
 				var sTypeForDictEntry = sType.charAt(0).toUpperCase() + sType.slice(1) + 's';
@@ -377,7 +428,7 @@ $(function()
 
 				oContainer
 					.find('.mhf-ph-icon')
-					.html('<img src="' + this._getObjectDatum(sTypeForElementCategory).icon + '" alt="' + sTypeForDictEntry + '" />');
+					.prepend('<img src="' + this._getObjectDatum(sTypeForElementCategory).icon + '" alt="' + sTypeForDictEntry + '" />');
 
 				oContainer
 					.find('.mhf-ph-title')
