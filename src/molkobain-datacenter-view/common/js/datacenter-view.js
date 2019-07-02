@@ -276,14 +276,23 @@ $(function()
 			// - Instanciate tooltips on elements
 			_initializeTooltips: function()
 			{
-				this.element.find('[data-toggle="tooltip"][title!=""]').each(function(){
-					// Put tooltip
-					var sContent = $('<div />').text($(this).attr('title')).html();
-					$(this).qtip( { content: sContent, show: 'mouseover', hide: 'mouseout', style: { name: 'molkobain-dark', tip: 'bottomMiddle' }, position: { corner: { target: 'topMiddle', tooltip: 'bottomMiddle' }, adjust: { y: -5}} } );
+				var me = this;
 
-					// Remove native title
-					$(this).attr('title', '');
-				});
+				// Set a timeout a give extensibility a chance to put tooltip as well (not the best of doing it I know)
+				setTimeout(
+					function(){
+						me.element.find('[data-toggle="tooltip"][title!=""]').each(function(){
+							// Put tooltip
+							var sContent = $('<div />').text($(this).attr('title')).html();
+							$(this).qtip( { content: sContent, show: 'mouseover', hide: 'mouseout', style: { name: 'molkobain-dark', tip: 'bottomMiddle' }, position: { corner: { target: 'topMiddle', tooltip: 'bottomMiddle' }, adjust: { y: -5}} } );
+
+							// Remove native title
+							$(this).attr('title', '');
+						});
+					},
+					300
+				);
+
 			},
 			// - Update unmounted panels after they have been initialized and filled with elements
 			_updateUnmountedPanels: function()
