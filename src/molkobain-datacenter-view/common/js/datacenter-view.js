@@ -399,7 +399,7 @@ $(function()
 				for(var sProperty in oData)
 				{
 					var value = oData[sProperty];
-					if((typeof value === 'string') || (typeof value === 'number'))
+					if((typeof value === 'string') || (typeof value === 'number') || (typeof value === 'boolean'))
 					{
 						oElem.attr('data-'+sProperty.replace('_', '-'), value);
 					}
