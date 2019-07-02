@@ -461,6 +461,7 @@ $obj-class-pdu-bg-color: #c85454;
 /* - Tooltip indicator */
 [data-toggle="tooltip"]{
 	position: relative;
+	cursor: help;
 
 	&::after{
 		content: "?";
@@ -468,7 +469,6 @@ $obj-class-pdu-bg-color: #c85454;
 		right: -0.4rem;
 		font-size: 0.6rem;
 		color: $tooltip-indicator-color;
-		cursor: pointer;
 	}
 }
 /* - Tooltip itself */

@@ -351,6 +351,7 @@
 /* - Tooltip indicator */
 [data-toggle="tooltip"] {
   position: relative;
+  cursor: help;
 }
 [data-toggle="tooltip"]::after {
   content: "?";
@@ -358,7 +359,6 @@
   right: -0.4rem;
   font-size: 0.6rem;
   color: #434343;
-  cursor: pointer;
 }
 /* - Tooltip itself */
 .mhf-tooltip .mdv-dt-header {
