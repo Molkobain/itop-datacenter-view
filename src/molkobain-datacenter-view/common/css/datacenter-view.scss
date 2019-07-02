@@ -178,6 +178,7 @@ $obj-class-pdu-bg-color: #c85454;
 
 						.mdv-uth-spot{
 							display: flex;
+							display: none !important; /* Temporary disable as it's buggy */
 							justify-content: center;
 							align-items: center;
 							position: absolute;

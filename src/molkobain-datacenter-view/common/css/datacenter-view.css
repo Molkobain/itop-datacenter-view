@@ -121,6 +121,8 @@
 }
 .molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-header .mhf-ph-icon .mdv-uth-spot {
   display: flex;
+  display: none !important;
+  /* Temporary disable as it's buggy */
   justify-content: center;
   align-items: center;
   position: absolute;
