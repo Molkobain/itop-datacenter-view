@@ -126,7 +126,7 @@ $toggle-button-switch-bg-color: #ffffff;
 	}
 	.mhf-p-body{
 		position: relative;
-		z-index: 0; /* Must be below header */
+		/*z-index: 0;*/ /* Must be below header */
 		margin-top: 0;
 		padding: 0.3rem;
 		background-color: $panel-bg-color;
