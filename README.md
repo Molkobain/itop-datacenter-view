@@ -9,6 +9,7 @@
 * [Installation](#installation)
 * [Configuration](#configuration)
 * [How to](#how-to)
+* [Change log](CHANGELOG.md)
 
 ## Description
 Easily manage & visualize your racks, enclosures and datacenter devices.
