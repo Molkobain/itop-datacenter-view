@@ -10,7 +10,7 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'molkobain-datacenter-view/1.4.1', array(
+	'molkobain-datacenter-view/1.5.0', array(
         // Identification
         'label' => 'Datacenter view (racks visual representation)',
         'category' => 'business',
@@ -18,8 +18,9 @@ SetupWebPage::AddModule(
         // Setup
         'dependencies' => array(
             'itop-datacenter-mgmt/2.2.0||itop-config-mgmt/2.2.0||itop-storage-mgmt/2.2.0',
-	        'molkobain-handy-framework/1.2.3',
+	        'molkobain-handy-framework/1.2.4',
 	        'molkobain-console-tooltips/1.0.2',
+	        'molkobain-newsroom-provider/1.0.0',
         ),
         'mandatory' => false,
         'visible' => true,
