@@ -14,7 +14,7 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'molkobain-newsroom-provider/1.0.0',
+	'molkobain-newsroom-provider/1.0.1',
 	array(
 		// Identification
 		//
@@ -35,6 +35,7 @@ SetupWebPage::AddModule(
 		'datamodel' => array(
 			'common/confighelper.class.inc.php',
 			'core/newsroomprovider.class.inc.php',
+			'console/applicationuiextension.class.inc.php',
 		),
 		'webservice' => array(),
 		'data.struct' => array(// add your 'structure' definition XML files here,

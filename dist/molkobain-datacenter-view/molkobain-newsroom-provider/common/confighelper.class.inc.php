@@ -20,7 +20,7 @@ use UserRights;
  */
 class ConfigHelper extends BaseConfigHelper
 {
-	const MODULE_NAME = 'molkobain-datacenter-view';
+	const MODULE_NAME = 'molkobain-newsroom-provider';
 	const API_VERSION = '1.0';
 
 	const SETTING_CONST_FQCN = 'Molkobain\\iTop\\Extension\\NewsroomProvider\\Common\\Helper\\ConfigHelper';
