@@ -17,6 +17,7 @@ Easily manage & visualize your racks, enclosures and datacenter devices.
 * Check which attached devices have no position set.
 * Toggle obsolete devices easily.
 * Full support of english, french & dutch languages.
+* External applications like racktables or rackmonkey are no longer necessary to visualize your data.
 
 ![Overview](docs/mdv-overview-01.png)
 
