@@ -11,6 +11,11 @@
 * [How to](#how-to)
 * [Change log](CHANGELOG.md)
 
+## Support
+If you like this project, you can buy me beer, always appreciated! 🍻😁
+
+[![Donate](https://img.shields.io/static/v1?label=Donate&message=Molkobain%20I/O&color=green&style=flat&logo=paypal)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BZR88J33D4RG6&source=url)
+
 ## Description
 Easily manage & visualize your racks, enclosures and datacenter devices.
 * See at a glace where your devices are.
