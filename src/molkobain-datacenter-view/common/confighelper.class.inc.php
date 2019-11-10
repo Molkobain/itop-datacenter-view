@@ -18,11 +18,15 @@ use Molkobain\iTop\Extension\HandyFramework\Common\Helper\ConfigHelper as BaseCo
  */
 class ConfigHelper extends BaseConfigHelper
 {
+	/** @var string */
     const MODULE_NAME = 'molkobain-datacenter-view';
+    /** @var string */
     const SETTING_CONST_FQCN = 'Molkobain\\iTop\\Extension\\DatacenterView\\Common\\Helper\\ConfigHelper';
 
     // Note: Mind to update defaults values in the module file when changing those default values.
+	/** @var bool Default debug value */
     const DEFAULT_SETTING_DEBUG = false;
+    /** @var array|null Default attributes to be displayed in the device tooltip */
     const DEFAULT_SETTING_DEVICE_TOOLTIP_ATTRIBUTES = null;
 
     /**
