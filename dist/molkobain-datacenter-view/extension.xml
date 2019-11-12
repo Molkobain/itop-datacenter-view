@@ -5,9 +5,9 @@
 	<author><![CDATA[Guillaume Lajarige]]></author>
 	<label><![CDATA[Datacenter view]]></label>
 	<description><![CDATA[Visual representation of racks, enclosures & devices]]></description>
-	<version>1.5.1</version>
-	<release_date>2019-07-24</release_date>
-	<version_description><![CDATA[Update dependencies to include their fixes]]></version_description>
+	<version>1.5.2</version>
+	<release_date>2019-11-12</release_date>
+	<version_description><![CDATA[Improve extensibility]]></version_description>
 	<itop_version_min>2.4.0</itop_version_min>
 	<status>stable</status>
 	<mandatory>false</mandatory>
