@@ -18,11 +18,15 @@ use Molkobain\iTop\Extension\HandyFramework\Common\Helper\ConfigHelper as BaseCo
  */
 class ConfigHelper extends BaseConfigHelper
 {
+	/** @var string */
     const MODULE_NAME = 'molkobain-datacenter-view';
+    /** @var string */
     const SETTING_CONST_FQCN = 'Molkobain\\iTop\\Extension\\DatacenterView\\Common\\Helper\\ConfigHelper';
 
     // Note: Mind to update defaults values in the module file when changing those default values.
+	/** @var bool Default debug value */
     const DEFAULT_SETTING_DEBUG = false;
+    /** @var array|null Default attributes to be displayed in the device tooltip */
     const DEFAULT_SETTING_DEVICE_TOOLTIP_ATTRIBUTES = null;
 
     /**
@@ -36,6 +40,53 @@ class ConfigHelper extends BaseConfigHelper
     	return static::GetSetting('debug');
     }
 
+	/**
+	 * Returns an array of classes that can host devices (eg. rack or enclosure).
+	 *
+	 * @return array
+	 * @since v1.5.2
+	 */
+	public static function GetHostClasses()
+	{
+		return array('Rack', 'Enclosure');
+	}
+
+	/**
+	 * Returns an array of classes that can be displayed in an host (both standards and customs)
+	 *
+	 * @return array
+	 * @since v1.5.2
+	 */
+	public static function GetAllDeviceClasses()
+	{
+		return array_merge(
+			static::GetStandardDeviceClasses(),
+			static::GetOtherDeviceClasses()
+		);
+	}
+
+	/**
+	 * Returns an array of standard classes that can be displayed in an host (eg. rack or enclosure).
+	 *
+	 * @return array
+	 * @since v1.5.2
+	 */
+	public static function GetStandardDeviceClasses()
+	{
+		return array('DatacenterDevice');
+	}
+
+	/**
+	 * Returns an array of custom classes that can be displayed in an host.
+	 *
+	 * @return array
+	 * @since v1.3.2
+	 */
+	public static function GetOtherDeviceClasses()
+	{
+		return array('PDU');
+	}
+
     /**
      * Returns true if $sClass is allowed for graphical view
      *
@@ -48,7 +99,7 @@ class ConfigHelper extends BaseConfigHelper
     {
         $bIsAllowedClass = false;
 
-        $aAllowedClasses = array('Rack', 'Enclosure');
+        $aAllowedClasses = static::GetHostClasses();
         foreach($aAllowedClasses as $sAllowedClass)
         {
             if(is_a($sClass, $sAllowedClass, true))
@@ -59,16 +110,5 @@ class ConfigHelper extends BaseConfigHelper
         }
 
         return $bIsAllowedClass;
-    }
-
-	/**
-	 * Returns an array of custom classes that can be displayed in a rack or enclosure
-	 *
-	 * @return array
-	 * @since v1.3.2
-	 */
-    public static function GetOtherDeviceClasses()
-    {
-    	return array('PDU');
     }
 }
