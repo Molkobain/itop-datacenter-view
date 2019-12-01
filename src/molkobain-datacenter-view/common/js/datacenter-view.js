@@ -278,7 +278,7 @@ $(function()
 			{
 				var me = this;
 
-				// Set a timeout a give extensibility a chance to put tooltip as well (not the best of doing it I know)
+				// Set a timeout a give extensibility a chance to put tooltip as well (not the best way of doing it I know)
 				setTimeout(
 					function(){
 						me.element.find('[data-toggle="tooltip"][title!=""]').each(function(){
