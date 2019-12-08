@@ -122,6 +122,10 @@ $(function()
 				this.element.bind('mdv.refresh_view', function(){
 					return me._onRefreshView();
 				});
+				// Save options
+				this.element.bind('mdv.save_options', function(){
+					return me._onSaveOptions();
+				});
 				// Update unmounted panels
 				// - A specific one
 				this.element.bind('mdv.update_unmouted_panel', function(oData){
@@ -204,17 +208,27 @@ $(function()
 				var oEnclosureElem = this._cloneTemplate('enclosure', oEnclosure);
 
 				// Build slots
-				var iTopIdx = (oEnclosure.units_order === this.enums.units_order.regular) ? oEnclosure.nb_u : 1 * -1 ;
-				var iBottomIdx = (oEnclosure.units_order === this.enums.units_order.regular) ? 1 : oEnclosure.nb_u * -1 ;
-				for(var iIdx = iTopIdx; iIdx >= iBottomIdx; iIdx--)
+				var iTopIdx = (oEnclosure.units_order === this.enums.units_order.regular) ? oEnclosure.nb_u : 1 * -1;
+				var iBottomIdx = (oEnclosure.units_order === this.enums.units_order.regular) ? 1 : oEnclosure.nb_u * -1;
+				for(var iVIdx = iTopIdx; iVIdx >= iBottomIdx; iVIdx--)
 				{
-					var iUnitIdx = Math.abs(iIdx);
-					this._cloneTemplate('enclosure-unit')
-					    .attr('data-unit-number', iUnitIdx)
-					    .find('.mdv-eu-left')
-					    .text(iUnitIdx + 'U')
-					    .end()
-					    .appendTo(oEnclosureElem.children('.mdv-host-units-wrapper'));
+					var iUnitIdx = Math.abs(iVIdx);
+					var oEnclosureUnitElem = this._cloneTemplate('enclosure-unit')
+						.attr('data-unit-number', iUnitIdx)
+						.find('.mdv-eu-left')
+						.text(iUnitIdx + 'U')
+						.end();
+
+					var oEnclosureUnitInitialSlot = oEnclosureUnitElem.find('.mdv-eu-slot')
+						.attr('data-column-number', 1);
+					for(var iHIdx = 2; iHIdx <= oEnclosure.nb_cols; iHIdx++)
+					{
+						oEnclosureUnitInitialSlot.clone()
+							.attr('data-column-number', iHIdx)
+							.insertBefore(oEnclosureUnitElem.find('.mdv-eu-right'));
+					}
+
+					oEnclosureUnitElem.appendTo(oEnclosureElem.children('.mdv-host-units-wrapper'));
 				}
 
 				// Full height of n Us plus the bottom-border of n-1 Us
@@ -251,8 +265,7 @@ $(function()
 					.html(oDevice.url);
 
 				// Dynamic height to occupy desired Us
-				oDeviceElem
-					.css('height', 'calc(' + (oDevice.nb_u * this.options.defaults.rack_unit_slot_height) + 'px + ' + (oDevice.nb_u - 1) + 'px)');
+				oDeviceElem.css('height', 'calc(' + (oDevice.nb_u * this.options.defaults.rack_unit_slot_height) + 'px + ' + (oDevice.nb_u - 1) + 'px)');
 
 				// Tooltip
 				// Note: We need to do a deep copy
@@ -270,6 +283,10 @@ $(function()
 				oDeviceElem.qtip(oQTipOptions);
 
 				oDeviceElem.appendTo(oHostElem);
+
+				// Dynamic width to occupy desired cols
+				// Note: We do this after the element is append, otherwise we can access the device's dimensions through JS
+				this._updateDeviceWidth(oDeviceElem, oHostElem);
 
 				return oDeviceElem;
 			},
@@ -323,6 +340,15 @@ $(function()
 					});
 
 			},
+			// - Save current options without refreshing the view
+			_onSaveOptions: function()
+			{
+				$.post(
+					this.options.endpoint,
+					this.element.find('.mdv-options-form').serialize(),
+					'html'
+				);
+			},
 			// - Called when all unmounted panels are updated (element added / removed)
 			_onUpdateAllUnmountedPanels: function()
 			{
@@ -369,17 +395,17 @@ $(function()
 				return (this.options.dict[sCode] !== undefined) ? this.options.dict[sCode] : sCode;
 			},
 			// - Return the jQuery object for the iSlotNumber slot of the iEnclosureId enclosure if found, null otherwise
-			_getEnclosureSlotElement: function(iSlotNumber, sPanelCode, iEnclosureId)
+			_getEnclosureSlotElement: function(iUnitNumber, iColumnNumber, sPanelCode, iEnclosureId)
 			{
 				if(sPanelCode === undefined)
 				{
 					sPanelCode = this.options.defaults.panel_code;
 				}
 
-				var oSlotElem = this.element.find('.mdv-enclosure[data-id="' + iEnclosureId + '"][data-panel-code="' + sPanelCode + '"] .mdv-enclosure-unit[data-unit-number="' + iSlotNumber + '"] .mdv-eu-slot');
+				var oSlotElem = this.element.find('.mdv-enclosure[data-id="' + iEnclosureId + '"][data-panel-code="' + sPanelCode + '"] .mdv-enclosure-unit[data-unit-number="' + iUnitNumber + '"] .mdv-eu-slot[data-column-number="' + iColumnNumber + '"]');
 				if(oSlotElem.length === 0)
 				{
-					this._trace('Could not find enclosure slot "' + iSlotNumber + 'U" for "' + iEnclosureId + '".');
+					this._trace('Could not find enclosure slot "' + iUnitNumber + 'U / Col ' + iColumnNumber + '" for "' + iEnclosureId + '".');
 					return null;
 				}
 
@@ -435,6 +461,24 @@ $(function()
 					.attr('title', this._getDictEntry('Molkobain:DatacenterView:Unmounted:' + sTypeForDictEntry + ':Title+'))
 					.attr('data-toggle', 'tooltip')
 					.text(this._getDictEntry('Molkobain:DatacenterView:Unmounted:' + sTypeForDictEntry + ':Title'));
+			},
+			// - Update device width regarding its host
+			_updateDeviceWidth: function(oDeviceElem, oHostElem)
+			{
+				if(oHostElem.hasClass('mdv-hu-slot'))
+				{
+					var iHostColWidth = Math.ceil(oHostElem.outerWidth());
+					var iHostNbCols = parseInt(oHostElem.closest('.mdv-host-panel').attr('data-nb-cols'));
+					var iDeviceNbCols = parseInt(oDeviceElem.attr('data-nb-cols'));
+
+					// Correct device nb cols in case it is in an host with less columns
+					if(iDeviceNbCols > iHostNbCols)
+					{
+						iDeviceNbCols = iHostNbCols
+					}
+					oDeviceElem.css('width', 'calc( (' + iHostColWidth + 'px - 1px) * ' + iDeviceNbCols + ' - 1px)');
+				}
+				oDeviceElem.attr('data-original-width', oDeviceElem.css('width'));
 			},
 			_showLoader: function()
 			{
