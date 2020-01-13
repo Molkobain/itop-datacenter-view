@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [1.5.3] - 2020-01-13
 ### Changed
+- Fix regression: Enclosure's mounted devices displayed as unmounted
 - Update dependencies to include their fixes
 
 ## [1.5.1] - 2019-07-24
