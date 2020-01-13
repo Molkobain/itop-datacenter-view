@@ -112,12 +112,22 @@ $(function()
 					for(var iIdx = iTopIdx; iIdx >= iBottomIdx; iIdx--)
 					{
 						var iUnitIdx = Math.abs(iIdx);
-						this._cloneTemplate('rack-unit')
+						var oRackUnitElem = this._cloneTemplate('rack-unit')
 	                        .attr('data-unit-number', iUnitIdx)
 	                        .find('.mdv-ru-left')
 	                        .text(iUnitIdx + 'U')
-	                        .end()
-	                        .appendTo( oRackPanelElem.find('.mdv-rpv-middle') );
+	                        .end();
+
+						var oRackUnitInitialSlot = oRackUnitElem.find('.mdv-ru-slot')
+							.attr('data-column-number', 1);
+						for(var iHIdx = 2; iHIdx <= this._getObjectDatum('nb_cols'); iHIdx++)
+						{
+							oRackUnitInitialSlot.clone()
+								.attr('data-column-number', iHIdx)
+								.insertBefore(oRackUnitElem.find('.mdv-ru-right'));
+						}
+
+						oRackUnitElem.appendTo( oRackPanelElem.find('.mdv-rpv-middle') );
 					}
 				}
 			},
@@ -150,7 +160,7 @@ $(function()
 							for(var iDeviceIdx in oEnclosure.devices[sEnclosureDevicesAssemblyType])
 							{
 								var oDevice = oEnclosure.devices[sEnclosureDevicesAssemblyType][iDeviceIdx];
-								var oDeviceHostElem = this._getEnclosureSlotElement(oDevice.position_v, oDevice.position_p, oEnclosure.id);
+								var oDeviceHostElem = this._getEnclosureSlotElement(oDevice.position_v, oDevice.position_h, oDevice.position_p, oEnclosure.id);
 								var bAddNoteToDevice = false;
 								if( (sEnclosureDevicesAssemblyType !== this.enums.assembly_type.mounted) || (oDeviceHostElem === null) )
 								{

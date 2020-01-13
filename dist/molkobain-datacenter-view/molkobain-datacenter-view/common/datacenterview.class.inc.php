@@ -48,6 +48,7 @@ class DatacenterView
 	const ENUM_OPTION_CODE_SHOWOBSOLETE = 'show_obsolete';
 
 	const DEFAULT_PANEL = self::ENUM_PANEL_FRONT;
+	const DEFAULT_NB_COLS = 1;
 	const DEFAULT_OBJECT_IN_EDIT_MODE = false;
 
 	/** @var string $sStaticConfigHelperClass */
@@ -397,6 +398,7 @@ EOF
 			'icon' => $oObject->GetIcon(false),
 			'url' => $oObject->GetHyperlink(), // Note: GetHyperlink() actually return the HTML markup
 			'nb_u' => $iNbU,
+			'nb_cols' => static::DEFAULT_NB_COLS,
 			'tooltip' => array(
 				'content' => $this->MakeDeviceTooltipContent($oObject),
 			),
