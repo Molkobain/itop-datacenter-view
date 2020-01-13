@@ -555,6 +555,7 @@ EOF
 				'rack_id' => (int) $oDevice->Get('rack_id'),
 				'enclosure_id' => (int) $oDevice->Get('enclosure_id'),
 				'position_v' => (int) $oDevice->Get('position_v'),
+				'position_h' => 1,
 				'position_p' => static::ENUM_PANEL_FRONT,
 			);
 
@@ -576,6 +577,7 @@ EOF
 				'rack_id' => (int) $oDevice->Get('rack_id'),
 				'enclosure_id' => MetaModel::IsValidAttCode(get_class($oDevice), 'enclosure_id') ? (int) $oDevice->Get('enclosure_id') : 0,
 				'position_v' => (int) $oDevice->Get('position_v'),
+				'position_h' => 1,
 				'position_p' => static::ENUM_PANEL_FRONT,
 			);
 
