@@ -35,6 +35,7 @@ Identify specific devices type by hovering the legend
 
 ### Advanced features in the paid version 🚀
 * [Drag & Drop](#drag--drop)
+* [Grid layout for enclosures](#grid-layout-for-enclosures)
 * [Rear panel support](#rear-panel-support)
 * [Consistency checks](#consistency-checks)
 * [Audit rules](#audit-rules)
@@ -48,6 +49,19 @@ Identify specific devices type by hovering the legend
 #### Drag & Drop
 Drag & drop elements in the graphical view to easily set their position instead of manually editing each elements!
 ![Pro features - Rear panel](docs/mdv-profeatures-drag-01.png)
+
+#### Grid layout for enclosures
+Support any enclosure form factor with the grid layout. From vertical server-blades to devices with heterogeneous widths / heights. 🤩
+
+Follow the wizard to design the layout...
+![Pro features - Rear panel](docs/mdv-profeatures-gridlayoutwizard-01.png)
+
+... then easily position your devices.
+![Pro features - Rear panel](docs/mdv-profeatures-gridlayout-02.png)
+
+![Pro features - Rear panel](docs/mdv-profeatures-gridlayout-05.png)
+
+![Pro features - Rear panel](docs/mdv-profeatures-gridlayout-06.png)
 
 #### Rear panel support
 * Available in both racks and enclosures
@@ -100,9 +114,9 @@ You can try this extension on the online demo. There are already some racks, enc
 Compatible with iTop 2.4+
 
 ## Dependencies
-* Module `molkobain-handy-framework/1.2.3`
-* Module `molkobain-console-tooltips/1.0.2`
-* Module `molkobain-newsroom-provider/1.0.0`
+* Module `molkobain-handy-framework/1.4.0`
+* Module `molkobain-console-tooltips/1.1.1`
+* Module `molkobain-newsroom-provider/1.0.2`
 
 *Note: All dependencies are included in the `dist/` folder, so all you need to do is follow the installation section below.*
 
