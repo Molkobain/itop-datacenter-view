@@ -128,12 +128,17 @@ $(function()
 				});
 				// Update unmounted panels
 				// - A specific one
-				this.element.bind('mdv.update_unmouted_panel', function(oData){
+				this.element.bind('mdv.update_unmouted_panel', function(oEvent, oData){
 					return me._onUpdateUnmountedPanel(oData);
 				});
 				// - All
 				this.element.bind('mdv.update_unmouted_panels', function(){
 					return me._onUpdateAllUnmountedPanels();
+				});
+				// Update device size
+				this.element.bind('mdv.update_device_size', function(oEvent, oData){
+					me._updateDeviceWidth(oData.device_elem, oData.host_elem, false);
+					me._updateDeviceHeight(oData.device_elem);
 				});
 			},
 			// - Make the markup & events binding for the legend
@@ -265,7 +270,7 @@ $(function()
 					.html(oDevice.url);
 
 				// Dynamic height to occupy desired Us
-				oDeviceElem.css('height', 'calc(' + (oDevice.nb_u * this.options.defaults.rack_unit_slot_height) + 'px + ' + (oDevice.nb_u - 1) + 'px)');
+				this._updateDeviceHeight(oDeviceElem);
 
 				// Tooltip
 				// Note: We need to do a deep copy
@@ -463,8 +468,14 @@ $(function()
 					.text(this._getDictEntry('Molkobain:DatacenterView:Unmounted:' + sTypeForDictEntry + ':Title'));
 			},
 			// - Update device width regarding its host
-			_updateDeviceWidth: function(oDeviceElem, oHostElem)
+			_updateDeviceWidth: function(oDeviceElem, oHostElem, bStoreOriginalWidth)
 			{
+				// Default values
+				if(bStoreOriginalWidth === undefined)
+				{
+					bStoreOriginalWidth = true;
+				}
+
 				if(oHostElem.hasClass('mdv-hu-slot'))
 				{
 					var iHostColWidth = Math.ceil(oHostElem.outerWidth());
@@ -478,7 +489,16 @@ $(function()
 					}
 					oDeviceElem.css('width', 'calc( (' + iHostColWidth + 'px - 1px) * ' + iDeviceNbCols + ' - 1px)');
 				}
-				oDeviceElem.attr('data-original-width', oDeviceElem.css('width'));
+
+				if(bStoreOriginalWidth)
+				{
+					oDeviceElem.attr('data-original-width', oDeviceElem.css('width'));
+				}
+			},
+			// - Update device height regarding its metadata
+			_updateDeviceHeight: function(oDeviceElem)
+			{
+				oDeviceElem.css('height', 'calc(' + (oDeviceElem.attr('data-nb-u') * this.options.defaults.rack_unit_slot_height) + 'px + ' + (oDeviceElem.attr('data-nb-u') - 1) + 'px)');
 			},
 			_showLoader: function()
 			{
