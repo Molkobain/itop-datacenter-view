@@ -1,0 +1,56 @@
+/*!
+ * Copyright (c) 2015 - 2019 Molkobain.
+ *
+ * This file is part of licensed extension.
+ *
+ * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
+ */
+
+@import '../datamodels/2.x/itop-portal-base/portal/web/css/variables.scss';
+
+/* Variables */
+/* |- Helpers */
+/* |-- Box shadows */
+$box-shadow-lightest: 0 1px 1px rgba(0, 0, 0, 0.15) !default;
+$box-shadow-lighter: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24) !default;
+$box-shadow-light: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23) !default;
+$box-shadow-regular: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23) !default;
+$box-shadow-strong: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22) !default;
+$box-shadow-stronger: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22) !default;
+$box-shadow-transition: all 0.3s cubic-bezier(.25,.8,.25,1) !default;
+
+/* Panel */
+$panel-color: #444 !default;
+$panel-bg-color: #ffffff !default;
+$panel-empty-hint-color: #777 !default;
+//noinspection SassScssResolvedByNameOnly
+$panel-collapse-icon-color: $brand-primary !default;
+$panel-collapsed-height: 50px !default;
+
+/* Toggle buttons */
+$toggle-button-off-bg-color: #eaeaea !default;
+//noinspection SassScssResolvedByNameOnly
+$toggle-button-on-bg-color: $brand-primary !default;
+$toggle-button-switch-bg-color: #ffffff !default;
+
+/* Buttons */
+$button-default-main-color: #2D3748 !default;
+$button-default-comp-color: white !default;
+$button-primary-main-color: $brand-primary !default;
+$button-primary-comp-color: white !default;
+$button-hyperlink-main-color: #1C94C4 !default;
+$button-hyperlink-comp-color: white !default;
+
+/* Can't put a global CSS class to reset stuff as classes will be used here and there by extensions, so we use this injection */
+%mhf-global-settings{
+	/* Reset for admin console mostly */
+	box-sizing: border-box;
+	*{
+		box-sizing: border-box;
+
+		&::before,
+		&::after{
+			box-sizing: border-box;
+		}
+	}
+}

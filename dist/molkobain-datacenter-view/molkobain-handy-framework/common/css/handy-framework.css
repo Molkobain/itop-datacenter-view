@@ -5,10 +5,19 @@
  *
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
+/*!
+ * Copyright (c) 2015 - 2019 Molkobain.
+ *
+ * This file is part of licensed extension.
+ *
+ * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
+ */
 /* Variables */
-/* - Helpers */
+/* |- Helpers */
+/* |-- Box shadows */
 /* Panel */
 /* Toggle buttons */
+/* Buttons */
 /* Can't put a global CSS class to reset stuff as classes will be used here and there by extensions, so we use this injection */
 .mhf-templates, .mhf-panel, .mhf-tooltip, .mhf-toggle-button {
   /* Reset for admin console mostly */
@@ -227,4 +236,102 @@
 .mhf-toggle-button.mhf-pull-left .mhf-tb-button, .mhf-toggle-button.mhf-pull-right .mhf-tb-button, .mhf-pull-left .mhf-toggle-button .mhf-tb-button, .mhf-pull-right .mhf-toggle-button .mhf-tb-button {
   vertical-align: initial;
   /* Reset vertical alignment if floated */
+}
+/* Buttons */
+.mhf-button {
+  padding: 0.35rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  cursor: pointer;
+  transition-property: background-color;
+  transition-duration: 0.1s;
+  transition-timing-function: linear;
+}
+.mhf-button.mhf-button-simple {
+  min-width: 2.5rem;
+  font-weight: bold;
+  background-color: #2d3748;
+  color: white;
+  border-color: #2d3748;
+}
+.mhf-button.mhf-button-simple.mhf-button-primary {
+  background-color: #ea7d1e;
+  color: white;
+  border-color: #ea7d1e;
+}
+.mhf-button.mhf-button-simple.mhf-button-primary:hover {
+  background-color: #da7014;
+}
+.mhf-button.mhf-button-simple.mhf-button-primary:active {
+  background-color: #c36412;
+}
+.mhf-button.mhf-button-simple:hover {
+  background-color: #232b38;
+}
+.mhf-button.mhf-button-simple:active {
+  background-color: #191f29;
+}
+.mhf-button.mhf-button-outline {
+  font-weight: bold;
+  background-color: white;
+  color: #2d3748;
+  border-color: #2d3748;
+}
+.mhf-button.mhf-button-outline.mhf-button-primary {
+  background-color: white;
+  color: #ea7d1e;
+  border-color: #ea7d1e;
+}
+.mhf-button.mhf-button-outline.mhf-button-primary:hover {
+  background-color: #f2f2f2;
+}
+.mhf-button.mhf-button-outline.mhf-button-primary:active {
+  background-color: #e6e6e6;
+}
+.mhf-button.mhf-button-outline.mhf-button-hyperlink {
+  background-color: white;
+  color: #1c94c4;
+  border-color: #1c94c4;
+}
+.mhf-button.mhf-button-outline.mhf-button-hyperlink:hover {
+  background-color: #f2f2f2;
+}
+.mhf-button.mhf-button-outline.mhf-button-hyperlink:active {
+  background-color: #e6e6e6;
+}
+.mhf-button.mhf-button-outline:hover {
+  background-color: #f2f2f2;
+}
+.mhf-button.mhf-button-outline:active {
+  background-color: #e6e6e6;
+}
+.mhf-button.mhf-button-text {
+  font-weight: bold;
+  background-color: transparent;
+  color: #2d3748;
+  border-color: transparent;
+}
+.mhf-button.mhf-button-text.mhf-button-primary {
+  color: #ea7d1e;
+}
+.mhf-button.mhf-button-text.mhf-button-primary:hover {
+  color: #da7014;
+}
+.mhf-button.mhf-button-text.mhf-button-primary:active {
+  color: #c36412;
+}
+.mhf-button.mhf-button-text.mhf-button-hyperlink {
+  color: #1c94c4;
+}
+.mhf-button.mhf-button-text.mhf-button-hyperlink:hover {
+  color: #1983ae;
+}
+.mhf-button.mhf-button-text.mhf-button-hyperlink:active {
+  color: #167297;
+}
+.mhf-button.mhf-button-text:hover {
+  color: #232b38;
+}
+.mhf-button.mhf-button-text:active {
+  color: #191f29;
 }

@@ -18,9 +18,9 @@ SetupWebPage::AddModule(
         // Setup
         'dependencies' => array(
             'itop-datacenter-mgmt/2.2.0||itop-config-mgmt/2.2.0||itop-storage-mgmt/2.2.0',
-	        'molkobain-handy-framework/1.2.4',
-	        'molkobain-console-tooltips/1.0.2',
-	        'molkobain-newsroom-provider/1.0.1',
+	        'molkobain-handy-framework/1.4.0',
+	        'molkobain-console-tooltips/1.1.1',
+	        'molkobain-newsroom-provider/1.0.2',
         ),
         'mandatory' => false,
         'visible' => true,
