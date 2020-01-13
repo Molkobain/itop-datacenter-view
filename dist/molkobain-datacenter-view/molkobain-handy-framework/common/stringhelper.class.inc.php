@@ -26,6 +26,6 @@ class StringHelper
 	 */
     public static function ToCamelCase($sInput)
     {
-        return str_replace(' ', '', ucwords(strtr($sInput, '_-', ' ')));
+        return str_replace(' ', '', ucwords(strtr($sInput, '_-', '  ')));
     }
 }

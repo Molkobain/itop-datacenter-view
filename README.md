@@ -11,12 +11,18 @@
 * [How to](#how-to)
 * [Change log](CHANGELOG.md)
 
+## Support
+If you like this project, you can buy me beer, always appreciated! 🍻😁
+
+[![Donate](https://img.shields.io/static/v1?label=Donate&message=Molkobain%20I/O&color=green&style=flat&logo=paypal)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BZR88J33D4RG6&source=url)
+
 ## Description
 Easily manage & visualize your racks, enclosures and datacenter devices.
 * See at a glace where your devices are.
 * Check which attached devices have no position set.
 * Toggle obsolete devices easily.
 * Full support of english, french & dutch languages.
+* External applications like racktables or rackmonkey are no longer necessary to visualize your data.
 
 ![Overview](docs/mdv-overview-01.png)
 
@@ -29,6 +35,7 @@ Identify specific devices type by hovering the legend
 
 ### Advanced features in the paid version 🚀
 * [Drag & Drop](#drag--drop)
+* [Grid layout for enclosures](#grid-layout-for-enclosures)
 * [Rear panel support](#rear-panel-support)
 * [Consistency checks](#consistency-checks)
 * [Audit rules](#audit-rules)
@@ -42,6 +49,19 @@ Identify specific devices type by hovering the legend
 #### Drag & Drop
 Drag & drop elements in the graphical view to easily set their position instead of manually editing each elements!
 ![Pro features - Rear panel](docs/mdv-profeatures-drag-01.png)
+
+#### Grid layout for enclosures
+Support any enclosure form factor with the grid layout. From vertical server-blades to devices with heterogeneous widths / heights. 🤩
+
+Follow the wizard to design the layout...
+![Pro features - Rear panel](docs/mdv-profeatures-gridlayoutwizard-01.png)
+
+... then easily position your devices.
+![Pro features - Rear panel](docs/mdv-profeatures-gridlayout-02.png)
+
+![Pro features - Rear panel](docs/mdv-profeatures-gridlayout-05.png)
+
+![Pro features - Rear panel](docs/mdv-profeatures-gridlayout-06.png)
 
 #### Rear panel support
 * Available in both racks and enclosures
@@ -94,9 +114,9 @@ You can try this extension on the online demo. There are already some racks, enc
 Compatible with iTop 2.4+
 
 ## Dependencies
-* Module `molkobain-handy-framework/1.2.3`
-* Module `molkobain-console-tooltips/1.0.2`
-* Module `molkobain-newsroom-provider/1.0.0`
+* Module `molkobain-handy-framework/1.4.0`
+* Module `molkobain-console-tooltips/1.1.1`
+* Module `molkobain-newsroom-provider/1.0.2`
 
 *Note: All dependencies are included in the `dist/` folder, so all you need to do is follow the installation section below.*
 

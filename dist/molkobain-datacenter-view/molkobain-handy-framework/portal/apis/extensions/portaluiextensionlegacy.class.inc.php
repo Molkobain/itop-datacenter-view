@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2015 - 2019 Molkobain.
+ * Copyright (c) 2015 - 2020 Molkobain.
  *
  * This file is part of licensed extension.
  *
@@ -11,23 +11,23 @@ namespace Molkobain\iTop\Extension\HandyFramework\Portal\Extension;
 
 use AbstractPortalUIExtension;
 use Molkobain\iTop\Extension\HandyFramework\Common\Helper\ConfigHelper;
-use Symfony\Component\DependencyInjection\Container;
+use Silex\Application;
 
-// Protection for iTop 2.6 and older
-if(!class_exists('Molkobain\\iTop\\Extension\\HandyFramework\\Portal\\Extension\\PortalUIExtensionLegacy'))
+// Protection, only for iTop 2.4-2.6
+if(version_compare(ITOP_VERSION, '2.3', '>') && version_compare(ITOP_VERSION, '2.7', '<') && (ITOP_VERSION !== 'develop'))
 {
 	/**
-	 * Class PortalUIExtension
+	 * Class PortalUIExtensionLegacy
 	 *
 	 * @package Molkobain\iTop\Extension\HandyFramework\Portal\Extension
 	 * @since v1.3.0
 	 */
-	class PortalUIExtension extends AbstractPortalUIExtension
+	class PortalUIExtensionLegacy extends AbstractPortalUIExtension
 	{
 		/**
 		 * @inheritdoc
 		 */
-		public function GetCSSFiles(Container $oContainer)
+		public function GetCSSFiles(Application $oApp)
 		{
 			// Check if enabled
 			if(ConfigHelper::IsEnabled() === false)
@@ -49,7 +49,7 @@ if(!class_exists('Molkobain\\iTop\\Extension\\HandyFramework\\Portal\\Extension\
 		/**
 		 * @inheritdoc
 		 */
-		public function GetJSFiles(Container $oContainer)
+		public function GetJSFiles(Application $oApp)
 		{
 			// Check if enabled
 			if(ConfigHelper::IsEnabled() === false)

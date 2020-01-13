@@ -7,6 +7,16 @@
  */
 
 /* Overload the default newsroom style to fix markdown rendering */
-#newsroom_menu li li p{
-	margin-bottom: 0.8em;
+#newsroom_menu ul li.newsroom_menu_item[data-url*="molkobain"]
+{
+	padding-top: 5px;
+	padding-bottom: 5px;
+
+	p{
+		margin-bottom: 0.8em;
+
+		&:last-of-type{
+			margin-bottom: 0;
+		}
+	}
 }

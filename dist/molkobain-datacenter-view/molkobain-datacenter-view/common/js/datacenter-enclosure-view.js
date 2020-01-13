@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2019 Molkobain.
+ * Copyright (c) 2015 - 2020 Molkobain.
  *
  * This file is part of licensed extension.
  *
@@ -80,7 +80,7 @@ $(function()
 			{
 				if((oHostElem === undefined) || (oHostElem === null))
 				{
-					oHostElem = this._getEnclosureSlotElement(oDevice.position_v, oDevice.position_p, this._getObjectDatum('id'));
+					oHostElem = this._getEnclosureSlotElement(oDevice.position_v, oDevice.position_h , oDevice.position_p, this._getObjectDatum('id'));
 					if(oHostElem === null)
 					{
 						oHostElem = this.element.find('.mdv-unmounted-type[data-type="' + this.enums.element_type.device + '"] .mdv-ut-body')

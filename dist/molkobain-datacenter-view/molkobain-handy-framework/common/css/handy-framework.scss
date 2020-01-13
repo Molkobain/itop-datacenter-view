@@ -5,38 +5,9 @@
  *
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
+
 @import '../datamodels/2.x/itop-portal-base/portal/web/css/variables.scss';
-
-/* Variables */
-/* - Helpers */
-$box-shadow-small: 0 1px 1px rgba(0, 0, 0, 0.15);
-
-/* Panel */
-$panel-bg-color: #ffffff;
-$panel-empty-hint-color: #777;
-//noinspection SassScssResolvedByNameOnly
-$panel-collapse-icon-color: $brand-primary;
-$panel-collapsed-height: 50px;
-
-/* Toggle buttons */
-$toggle-button-off-bg-color: #eaeaea;
-//noinspection SassScssResolvedByNameOnly
-$toggle-button-on-bg-color: $brand-primary;
-$toggle-button-switch-bg-color: #ffffff;
-
-/* Can't put a global CSS class to reset stuff as classes will be used here and there by extensions, so we use this injection */
-%mhf-global-settings{
-	/* Reset for admin console mostly */
-	box-sizing: border-box;
-	*{
-		box-sizing: border-box;
-
-		&::before,
-		&::after{
-			box-sizing: border-box;
-		}
-	}
-}
+@import '../env-production/molkobain-handy-framework/common/css/variables.scss';
 
 /* Helpers */
 .mhf-pull-left{
@@ -130,7 +101,7 @@ $toggle-button-switch-bg-color: #ffffff;
 		margin-top: 0;
 		padding: 0.3rem;
 		background-color: $panel-bg-color;
-		box-shadow: $box-shadow-small;
+		box-shadow: $box-shadow-lightest;
 		transition: all 0.2s ease-in-out;
 
 		&:empty{
@@ -302,3 +273,113 @@ $toggle-button-switch-bg-color: #ffffff;
 	}
 }
 
+/* Buttons */
+.mhf-button{
+	padding: 0.35rem 0.5rem;
+	border: 1px solid transparent;
+	border-radius: 2px;
+	cursor: pointer;
+	transition-property: background-color;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+
+	&.mhf-button-simple{
+		min-width: 2.5rem;
+		font-weight: bold;
+		background-color: $button-default-main-color;
+		color: $button-default-comp-color;
+		border-color: $button-default-main-color;
+
+		&.mhf-button-primary{
+			background-color: $button-primary-main-color;
+			color: $button-primary-comp-color;
+			border-color: $button-primary-main-color;
+
+			&:hover{
+				background-color: darken($button-primary-main-color, 5%);
+			}
+			&:active{
+				background-color: darken($button-primary-main-color, 10%);
+			}
+		}
+
+		&:hover{
+			background-color: darken($button-default-main-color, 5%);
+		}
+		&:active{
+			background-color: darken($button-default-main-color, 10%);
+		}
+	}
+	&.mhf-button-outline{
+		font-weight: bold;
+		background-color: $button-default-comp-color;
+		color: $button-default-main-color;
+		border-color: $button-default-main-color;
+
+		&.mhf-button-primary{
+			background-color: $button-primary-comp-color;
+			color: $button-primary-main-color;
+			border-color: $button-primary-main-color;
+
+			&:hover{
+				background-color: darken($button-primary-comp-color, 5%);
+			}
+			&:active{
+				background-color: darken($button-primary-comp-color, 10%);
+			}
+		}
+		&.mhf-button-hyperlink{
+			background-color: $button-hyperlink-comp-color;
+			color: $button-hyperlink-main-color;
+			border-color: $button-hyperlink-main-color;
+
+			&:hover{
+				background-color: darken($button-hyperlink-comp-color, 5%);
+			}
+			&:active{
+				background-color: darken($button-hyperlink-comp-color, 10%);
+			}
+		}
+
+		&:hover{
+			background-color: darken($button-default-comp-color, 5%);
+		}
+		&:active{
+			background-color: darken($button-default-comp-color, 10%);
+		}
+	}
+	&.mhf-button-text{
+		font-weight: bold;
+		background-color: transparent;
+		color: $button-default-main-color;
+		border-color: transparent;
+
+		&.mhf-button-primary{
+			color: $button-primary-main-color;
+
+			&:hover{
+				color: darken($button-primary-main-color, 5%);
+			}
+			&:active{
+				color: darken($button-primary-main-color, 10%);
+			}
+		}
+		&.mhf-button-hyperlink{
+			color: $button-hyperlink-main-color;
+
+			&:hover{
+				color: darken($button-hyperlink-main-color, 5%);
+			}
+			&:active{
+				color: darken($button-hyperlink-main-color, 10%);
+			}
+		}
+
+		&:hover{
+			color: darken($button-default-main-color, 5%);
+		}
+		&:active{
+			color: darken($button-default-main-color, 10%);
+		}
+	}
+}

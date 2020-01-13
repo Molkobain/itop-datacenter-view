@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.5.3] - 2020-01-13
+### Changed
+- Fix regression: Enclosure's mounted devices displayed as unmounted
+- Update dependencies to include their fixes
+
 ## [1.5.1] - 2019-07-24
 ### Changed
 - Update dependencies to include their fixes
@@ -63,7 +68,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.5.3...HEAD
+[1.5.3]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.5.1
+[1.5.1]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.5.1
 [1.5.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.5.0
 [1.4.1]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.4.1
 [1.4.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.4.0

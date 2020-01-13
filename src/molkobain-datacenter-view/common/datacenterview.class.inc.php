@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2015 - 2019 Molkobain.
+ * Copyright (c) 2015 - 2020 Molkobain.
  *
  * This file is part of licensed extension.
  *
@@ -48,6 +48,7 @@ class DatacenterView
 	const ENUM_OPTION_CODE_SHOWOBSOLETE = 'show_obsolete';
 
 	const DEFAULT_PANEL = self::ENUM_PANEL_FRONT;
+	const DEFAULT_NB_COLS = 1;
 	const DEFAULT_OBJECT_IN_EDIT_MODE = false;
 
 	/** @var string $sStaticConfigHelperClass */
@@ -397,6 +398,7 @@ EOF
 			'icon' => $oObject->GetIcon(false),
 			'url' => $oObject->GetHyperlink(), // Note: GetHyperlink() actually return the HTML markup
 			'nb_u' => $iNbU,
+			'nb_cols' => static::DEFAULT_NB_COLS,
 			'tooltip' => array(
 				'content' => $this->MakeDeviceTooltipContent($oObject),
 			),
@@ -553,6 +555,7 @@ EOF
 				'rack_id' => (int) $oDevice->Get('rack_id'),
 				'enclosure_id' => (int) $oDevice->Get('enclosure_id'),
 				'position_v' => (int) $oDevice->Get('position_v'),
+				'position_h' => 1,
 				'position_p' => static::ENUM_PANEL_FRONT,
 			);
 
@@ -574,6 +577,7 @@ EOF
 				'rack_id' => (int) $oDevice->Get('rack_id'),
 				'enclosure_id' => MetaModel::IsValidAttCode(get_class($oDevice), 'enclosure_id') ? (int) $oDevice->Get('enclosure_id') : 0,
 				'position_v' => (int) $oDevice->Get('position_v'),
+				'position_h' => 1,
 				'position_p' => static::ENUM_PANEL_FRONT,
 			);
 

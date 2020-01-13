@@ -1,56 +1,12 @@
 /*!
- * Copyright (c) 2015 - 2019 Molkobain.
+ * Copyright (c) 2015 - 2020 Molkobain.
  *
  * This file is part of licensed extension.
  *
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
 
-/* Variables */
-/* - Helpers */
-$box-shadow-small: 0 1px 1px rgba(0, 0, 0, 0.15);
-
-/* - Unmounted container */
-$unmounted-container-bg-color: #ffffff;
-$unmounted-spot-bg-color: #d85656;
-$unmounted-spot-color: #ffffff;
-$unmounted-spot-width: 15px;
-/* - Rack panel */
-$rack-panel-outer-border-color: #c5c5c5;
-$rack-panel-outer-border: 1px solid $rack-panel-outer-border-color;
-/* - Rack unit */
-$rack-unit-number-width: 1.8rem;
-/* - Rack unit slot */
-$rack-unit-slot-width: 217px;
-$rack-unit-slot-height: 18px;
-$rack-unit-slot-bg-color: #ffffff;
-$rack-unit-slot-separator-color: #eaeaea;
-/* - Element */
-$element-note-max-width: 6.5rem;
-/* - Enclosure */
-$enclosure-color: #939393;
-$enclosure-bg-color: #eaeaea;
-$enclosure-sidebar-bg-color-mounted: #83a967;
-$enclosure-sidebar-bg-color-unmounted: #da5757;
-/* - Enclosure unit slot */
-$enclosure-unit-slot-separator-color: #d9d9d9;
-/* - Device */
-$device-color: #ffffff;
-
-/* - Tooltip */
-$tooltip-indicator-color: #434343;
-$tooltip-list-label-width: 7.5rem;
-
-/* - Object classes */
-$obj-class-default-bg-color: #8db46e;
-$obj-class-enclosure-bg-color: #eaeaea;
-$obj-class-server-bg-color: #3f627e;
-$obj-class-networkdevice-bg-color: #c85454;
-$obj-class-sanswitch-bg-color: lightsalmon;
-$obj-class-nas-bg-color: #80b469;
-$obj-class-storagesystem-bg-color: #eb913b;
-$obj-class-tapelibrary-bg-color: #7da9bc;
-$obj-class-pdu-bg-color: #c85454;
+@import '../env-production/molkobain-datacenter-view/common/css/variables.scss';
 
 .molkobain-datacenter-view{
 	/* Reset for admin console mostly */
