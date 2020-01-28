@@ -494,6 +494,7 @@ EOF
 		$aData = $this->GetObjectBaseData($oEnclosure) + array(
 				'rack_id' => (int) $oEnclosure->Get('rack_id'),
 				'position_v' => (int) $oEnclosure->Get('position_v'),
+				'position_h' => 1,
 				'position_p' => static::ENUM_PANEL_FRONT,
 				'panels' => array(
 					static::ENUM_PANEL_FRONT => Dict::S('Molkobain:DatacenterView:Enclosure:Panel:Front:Title'),
