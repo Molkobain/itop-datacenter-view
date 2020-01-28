@@ -35,7 +35,7 @@ Identify specific devices type by hovering the legend
 
 ### Advanced features in the paid version 🚀
 * [Drag & Drop](#drag--drop)
-* [Grid layout for enclosures](#grid-layout-for-enclosures)
+* [Complex enclosures support (grid system)](#grid-layout-for-enclosures)
 * [Rear panel support](#rear-panel-support)
 * [Consistency checks](#consistency-checks)
 * [Audit rules](#audit-rules)
@@ -50,7 +50,7 @@ Identify specific devices type by hovering the legend
 Drag & drop elements in the graphical view to easily set their position instead of manually editing each elements!
 ![Pro features - Rear panel](docs/mdv-profeatures-drag-01.png)
 
-#### Grid layout for enclosures
+#### Complex enclosures support
 Support any enclosure form factor with the grid layout. From vertical server-blades to devices with heterogeneous widths / heights. 🤩
 
 Follow the wizard to design the layout...
