@@ -35,7 +35,7 @@ Identify specific devices type by hovering the legend
 
 ### Advanced features in the paid version 🚀
 * [Drag & Drop](#drag--drop)
-* [Complex enclosures support (grid system)](#grid-layout-for-enclosures)
+* [Complex enclosures support (grid system)](#complex-enclosures-support)
 * [Rear panel support](#rear-panel-support)
 * [Occupancy rates](#occupancy-rates)
 * [Rack power](#rack-power)
