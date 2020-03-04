@@ -35,8 +35,9 @@ Identify specific devices type by hovering the legend
 
 ### Advanced features in the paid version 🚀
 * [Drag & Drop](#drag--drop)
-* [Grid layout for enclosures](#grid-layout-for-enclosures)
+* [Complex enclosures support (grid system)](#grid-layout-for-enclosures)
 * [Rear panel support](#rear-panel-support)
+* [Occupancy rates](#occupancy-rates)
 * [Consistency checks](#consistency-checks)
 * [Audit rules](#audit-rules)
 * [Reserved slots](#reserved-slots)
@@ -50,7 +51,7 @@ Identify specific devices type by hovering the legend
 Drag & drop elements in the graphical view to easily set their position instead of manually editing each elements!
 ![Pro features - Rear panel](docs/mdv-profeatures-drag-01.png)
 
-#### Grid layout for enclosures
+#### Complex enclosures support
 Support any enclosure form factor with the grid layout. From vertical server-blades to devices with heterogeneous widths / heights. 🤩
 
 Follow the wizard to design the layout...
@@ -68,6 +69,14 @@ Follow the wizard to design the layout...
 * Automatically shows occupancy on the opposite panel
 
 ![Pro features - Rear panel](docs/mdv-profeatures-panels-01.png)
+
+#### Occupancy rates
+* Keep an eye on your racks and enclosures occupancy rate in real time
+* Distinct indicators for front and rear panels
+
+![Pro features - Occupancy rates](docs/mdv-profeatures-occuprates-02.png)
+
+![Pro features - Occupancy rates](docs/mdv-profeatures-occuprates-01.png)
 
 #### Consistency checks
 Optional consistency checks are made on elements during creation / update:
@@ -114,9 +123,9 @@ You can try this extension on the online demo. There are already some racks, enc
 Compatible with iTop 2.4+
 
 ## Dependencies
-* Module `molkobain-handy-framework/1.4.0`
-* Module `molkobain-console-tooltips/1.1.1`
-* Module `molkobain-newsroom-provider/1.0.2`
+* Module `molkobain-handy-framework`
+* Module `molkobain-console-tooltips`
+* Module `molkobain-newsroom-provider`
 
 *Note: All dependencies are included in the `dist/` folder, so all you need to do is follow the installation section below.*
 

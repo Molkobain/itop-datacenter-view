@@ -21,7 +21,7 @@ use UserRights;
 class ConfigHelper extends BaseConfigHelper
 {
 	const MODULE_NAME = 'molkobain-newsroom-provider';
-	const API_VERSION = '1.0';
+	const API_VERSION = '1.1';
 
 	const SETTING_CONST_FQCN = 'Molkobain\\iTop\\Extension\\NewsroomProvider\\Common\\Helper\\ConfigHelper';
 
@@ -77,5 +77,27 @@ class ConfigHelper extends BaseConfigHelper
 
 		// Note: We don't retrieve DB UUID for now as it is not of any use for now.
 		return hash('fnv1a64', $sITopUUID);
+	}
+
+	/**
+	 * Returns the application name (usually "iTop") or 'unknown' if the information is not available.
+	 *
+	 * @return string
+	 * @since v1.1.0
+	 */
+	public static function GetApplicationName()
+	{
+		return defined('ITOP_APPLICATION') ? ITOP_APPLICATION : 'unknown';
+	}
+
+	/**
+	 * Returns the application version or 'unknown' if the information is not available.
+	 *
+	 * @return string
+	 * @since v1.1.0
+	 */
+	public static function GetApplicationVersion()
+	{
+		return defined('ITOP_VERSION') ? ITOP_VERSION : 'unknown';
 	}
 }

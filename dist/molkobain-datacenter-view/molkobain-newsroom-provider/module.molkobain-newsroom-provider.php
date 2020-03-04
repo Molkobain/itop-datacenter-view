@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2015 - 2019 Molkobain.
+ * Copyright (c) 2015 - 2020 Molkobain.
  *
  * This file is part of licensed extension.
  *
@@ -14,7 +14,7 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'molkobain-newsroom-provider/1.0.2',
+	'molkobain-newsroom-provider/1.1.0',
 	array(
 		// Identification
 		//
