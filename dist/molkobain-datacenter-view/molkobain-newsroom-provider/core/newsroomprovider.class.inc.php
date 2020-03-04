@@ -146,7 +146,9 @@ if(class_exists('NewsroomProviderBase'))
 				. '&operation=' . $sOperation
 				. '&version=' . ConfigHelper::GetVersion()
 				. '&user=' . urlencode(ConfigHelper::GetUserHash())
-				. '&instance=' . urlencode(ConfigHelper::GetInstanceHash());
+				. '&instance=' . urlencode(ConfigHelper::GetInstanceHash())
+				. '&app-name=' . urlencode(ConfigHelper::GetApplicationName())
+				. '&app-version=' . urlencode(ConfigHelper::GetApplicationVersion());
 		}
 	}
 }
