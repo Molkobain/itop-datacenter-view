@@ -35,9 +35,10 @@ Identify specific devices type by hovering the legend
 
 ### Advanced features in the paid version 🚀
 * [Drag & Drop](#drag--drop)
-* [Complex enclosures support (grid system)](#grid-layout-for-enclosures)
+* [Complex enclosures support (grid system)](#complex-enclosures-support)
 * [Rear panel support](#rear-panel-support)
 * [Occupancy rates](#occupancy-rates)
+* [Rack power](#rack-power)
 * [Consistency checks](#consistency-checks)
 * [Audit rules](#audit-rules)
 * [Reserved slots](#reserved-slots)
@@ -77,6 +78,11 @@ Follow the wizard to design the layout...
 ![Pro features - Occupancy rates](docs/mdv-profeatures-occuprates-02.png)
 
 ![Pro features - Occupancy rates](docs/mdv-profeatures-occuprates-01.png)
+
+#### Rack power
+Keep an eye on your racks power consumption by tracking contracted power versus actual power reading.
+
+![Pro features - Rack power](docs/mdv-profeatures-rackpower-01.png)
 
 #### Consistency checks
 Optional consistency checks are made on elements during creation / update:
