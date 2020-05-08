@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.5.6] - 2020-05-08
+### Changed
+- Update dependencies to include their fixes
+
 ## [1.5.5] - 2020-03-04
 ### Changed
 - Update dependencies to include their fixes
@@ -72,7 +76,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.5.5...HEAD
+[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.5.6...HEAD
+[1.5.6]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.5.6
 [1.5.5]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.5.5
 [1.5.3]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.5.3
 [1.5.1]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.5.1

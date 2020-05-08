@@ -13,7 +13,7 @@ use AbstractPortalUIExtension;
 use Molkobain\iTop\Extension\HandyFramework\Common\Helper\ConfigHelper;
 use Symfony\Component\DependencyInjection\Container;
 
-// Protection for iTop 2.6 and older
+// Protection, for iTop 2.7 and newer
 if(!class_exists('Molkobain\\iTop\\Extension\\HandyFramework\\Portal\\Extension\\PortalUIExtensionLegacy'))
 {
 	/**
