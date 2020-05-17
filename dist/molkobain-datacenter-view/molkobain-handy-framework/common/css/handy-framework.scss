@@ -183,8 +183,8 @@
 			outline: 0;
 			display: inline-block;
 			vertical-align: middle;
-			width: 1.8em;
-			height: 1.0em;
+			width: 1.8rem;
+			height: 1.0rem;
 			position: relative;
 			cursor: pointer;
 			user-select: none;
@@ -217,7 +217,7 @@
 		.mhf-tb-input{
 			+ .mhf-tb-button{
 				padding: 2px;
-				border-radius: 2em;
+				border-radius: 2rem;
 				background-color: $toggle-button-off-bg-color;
 				box-shadow: inset 0 1px 1px 0px rgba(0, 0, 0, 0.15);
 				transition: all .4s ease;

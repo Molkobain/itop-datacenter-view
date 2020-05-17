@@ -14,7 +14,7 @@ use Molkobain\iTop\Extension\HandyFramework\Common\Helper\ConfigHelper;
 use Silex\Application;
 
 // Protection, only for iTop 2.4-2.6
-if(version_compare(ITOP_VERSION, '2.3', '>') && version_compare(ITOP_VERSION, '2.7', '<') && (ITOP_VERSION !== 'develop'))
+if(file_exists(APPROOT.'lib/silex'))
 {
 	/**
 	 * Class PortalUIExtensionLegacy
