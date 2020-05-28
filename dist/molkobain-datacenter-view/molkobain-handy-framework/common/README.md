@@ -1,0 +1,1 @@
+*🚨 DISCLAIMER: This is a legacy folder to keep compatibility with earlier versions of extensions using this extension in versions v1.5.1 and earlier. DO NOT use /common/css/variables.scss, use /asset/css/toolbox.scss instead.*

@@ -7,14 +7,14 @@
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
 
-namespace Molkobain\iTop\Extension\HandyFramework\Common\Helper;
+namespace Molkobain\iTop\Extension\HandyFramework\Helper;
 
-use Molkobain\iTop\Extension\HandyFramework\Common\UI\ToggleButton;
+use Molkobain\iTop\Extension\HandyFramework\UI\ToggleButton;
 
 /**
  * Class UIHelper
  *
- * @package Molkobain\iTop\Extension\HandyFramework\Common\Helper
+ * @package Molkobain\iTop\Extension\HandyFramework\Helper
  * @since 1.1.0
  */
 class UIHelper
@@ -30,7 +30,7 @@ class UIHelper
 	 * @param string|null $sOnLabel Label to display when toggle is "On", display depends on the theme
 	 * @param string|null $sOffLabel Label to display when toggle is "Off", display depends on the theme
 	 *
-	 * @return \Molkobain\iTop\Extension\HandyFramework\Common\UI\ToggleButton
+	 * @return \Molkobain\iTop\Extension\HandyFramework\UI\ToggleButton
 	 */
 	public static function MakeToggleButton($sInputName, $bOn = true, $sInputId = null, $sJSOnChangeCallback = null, $bEnabled = true, $sOnLabel = null, $sOffLabel = null)
 	{

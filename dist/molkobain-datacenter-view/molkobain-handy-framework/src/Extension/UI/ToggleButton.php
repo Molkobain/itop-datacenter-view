@@ -7,12 +7,12 @@
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
 
-namespace Molkobain\iTop\Extension\HandyFramework\Common\UI;
+namespace Molkobain\iTop\Extension\HandyFramework\UI;
 
 /**
  * Class ToggleButton
  *
- * @package Molkobain\iTop\Extension\HandyFramework\Common\Helper\UI
+ * @package Molkobain\iTop\Extension\HandyFramework\Helper\UI
  * @since 1.2.0
  */
 class ToggleButton

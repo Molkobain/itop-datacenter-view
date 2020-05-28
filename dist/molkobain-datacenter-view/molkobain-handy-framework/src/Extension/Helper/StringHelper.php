@@ -7,12 +7,12 @@
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
 
-namespace Molkobain\iTop\Extension\HandyFramework\Common\Helper;
+namespace Molkobain\iTop\Extension\HandyFramework\Helper;
 
 /**
  * Class StringHelper
  *
- * @package Molkobain\iTop\Extension\HandyFramework\Common\Helper
+ * @package Molkobain\iTop\Extension\HandyFramework\Helper
  * @since 1.3.0
  */
 class StringHelper

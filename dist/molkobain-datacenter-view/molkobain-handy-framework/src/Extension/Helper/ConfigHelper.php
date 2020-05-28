@@ -7,7 +7,7 @@
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
 
-namespace Molkobain\iTop\Extension\HandyFramework\Common\Helper;
+namespace Molkobain\iTop\Extension\HandyFramework\Helper;
 
 use Exception;
 use MetaModel;
@@ -16,12 +16,12 @@ use utils;
 /**
  * Class ConfigHelper
  *
- * @package Molkobain\iTop\Extension\HandyFramework\Common\Helper
+ * @package Molkobain\iTop\Extension\HandyFramework\Helper
  */
 class ConfigHelper
 {
     const MODULE_NAME = 'molkobain-handy-framework';
-    const SETTING_CONST_FQCN = 'Molkobain\\iTop\\Extension\\HandyFramework\\Common\\Helper\\ConfigHelper';
+    const SETTING_CONST_FQCN = 'Molkobain\\iTop\\Extension\\HandyFramework\\Helper\\ConfigHelper';
 
     const DEFAULT_SETTING_ENABLED = true;
 
@@ -43,6 +43,7 @@ class ConfigHelper
 
 	/**
 	 * @return string
+	 * @throws \Exception
 	 */
     public static function GetAbsoluteModuleUrl()
     {

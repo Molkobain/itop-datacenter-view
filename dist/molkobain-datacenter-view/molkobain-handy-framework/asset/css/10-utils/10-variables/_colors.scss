@@ -1,0 +1,106 @@
+/*!
+ * Copyright (c) 2015 - 2020 Molkobain.
+ *
+ * This file is part of licensed extension.
+ *
+ * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
+ */
+
+/**************************************************************************/
+/* Colors come from the great TailWind website                            */
+/* https://tailwindcss.com/docs/customizing-colors/#default-color-palette */
+/**************************************************************************/
+
+/* White */
+$color-transparent: rgba(255,255,255,0.000) !default;
+$color-white-100: rgba(255,255,255,1) !default;
+$color-white-200: rgba(242,242,242,1) !default;
+
+/* Grey */
+$color-grey-50: rgba(252,252,253,1) !default;
+$color-grey-100: rgba(248,249,250,1) !default;
+$color-grey-200: rgba(225,231,236,1) !default;
+$color-grey-300: rgba(213,221,229,1) !default;
+$color-grey-400: rgba(204,212,219,1) !default;
+$color-grey-500: rgba(174,190,205,1) !default;
+$color-grey-600: rgba(146,159,177,1) !default;
+$color-grey-700: rgba(110,122,138,1) !default;
+$color-grey-800: rgba(64,75,90,1) !default;
+$color-grey-900: rgba(33,41,52,1) !default;
+
+/* Red */
+$color-red-100: rgba(252,232,232,1) !default;
+$color-red-200: rgba(254,215,215,1) !default;
+$color-red-300: rgba(254,178,178,1) !default;
+$color-red-400: rgba(252,129,129,1) !default;
+$color-red-500: rgba(245,101,101,1) !default;
+$color-red-600: rgba(229,62,62,1) !default;
+$color-red-700: rgba(197,48,48,1) !default;
+$color-red-800: rgba(155,44,44,1) !default;
+$color-red-900: rgba(116,42,42,1) !default;
+
+/* Orange */
+$color-orange-100: rgba(255,250,240,1) !default;
+$color-orange-200: rgba(254,235,200,1) !default;
+$color-orange-300: rgba(251,211,141,1) !default;
+$color-orange-400: rgba(246,173,85,1) !default;
+$color-orange-500: rgba(234,125,30,1) !default;
+$color-orange-600: rgba(221,107,32,1) !default;
+$color-orange-700: rgba(192,86,33,1) !default;
+$color-orange-800: rgba(156,66,33,1) !default;
+$color-orange-900: rgba(123,52,30,1) !default;
+
+/* Green */
+$color-green-100: rgba(220,237,200,1) !default;
+$color-green-200: rgba(197,225,165,1) !default;
+$color-green-300: rgba(174,213,129,1) !default;
+$color-green-400: rgba(156,204,101,1) !default;
+$color-green-500: rgba(139,195,74,1) !default;
+$color-green-600: rgba(124,179,66,1) !default;
+$color-green-700: rgba(104,159,56,1) !default;
+$color-green-800: rgba(85,139,47,1) !default;
+$color-green-900: rgba(51,105,30,1) !default;
+
+/* Blue grey */
+$color-blue-grey-100: rgba(207,216,220,1) !default;
+$color-blue-grey-200: rgba(176,190,197,1) !default;
+$color-blue-grey-300: rgba(144,164,174,1) !default;
+$color-blue-grey-400: rgba(120,144,156,1) !default;
+$color-blue-grey-500: rgba(96,125,139,1) !default;
+$color-blue-grey-600: rgba(84,110,122,1) !default;
+$color-blue-grey-700: rgba(69,90,100,1) !default;
+$color-blue-grey-800: rgba(55,71,79,1) !default;
+$color-blue-grey-900: rgba(38,50,56,1) !default;
+
+/* Blue */
+$color-blue-100: rgba(235,248,255,1) !default;
+$color-blue-200: rgba(190,227,248,1) !default;
+$color-blue-300: rgba(144,205,244,1) !default;
+$color-blue-400: rgba(99,179,237,1) !default;
+$color-blue-500: rgba(66,153,225,1) !default;
+$color-blue-600: rgba(49,130,206,1) !default;
+$color-blue-700: rgba(43,108,176,1) !default;
+$color-blue-800: rgba(44,82,130,1) !default;
+$color-blue-900: rgba(42,67,101,1) !default;
+
+/* Cyan */
+$color-cyan-100: rgba(201,238,242,1) !default;
+$color-cyan-200: rgba(128,222,234,1) !default;
+$color-cyan-300: rgba(77,208,225,1) !default;
+$color-cyan-400: rgba(38,198,218,1) !default;
+$color-cyan-500: rgba(0,188,212,1) !default;
+$color-cyan-600: rgba(0,172,193,1) !default;
+$color-cyan-700: rgba(0,151,167,1) !default;
+$color-cyan-800: rgba(0,131,143,1) !default;
+$color-cyan-900: rgba(0,96,100,1) !default;
+
+/* Purple */
+$color-purple-100: #FAF5FF !default;
+$color-purple-200: #E9D8FD !default;
+$color-purple-300: #D6BCFA !default;
+$color-purple-400: #B794F4 !default;
+$color-purple-500: #9F7AEA !default;
+$color-purple-600: #805AD5 !default;
+$color-purple-700: #6B46C1 !default;
+$color-purple-800: #553C9A !default;
+$color-purple-900: #44337A !default;

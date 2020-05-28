@@ -1,0 +1,98 @@
+/*!
+ * Copyright (c) 2015 - 2020 Molkobain.
+ *
+ * This file is part of licensed extension.
+ *
+ * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
+ */
+
+/* Panels: Simple panel with an header and a body to display content nicely */
+
+/* Variables */
+$panel-color: #444 !default;
+$panel-bg-color: #ffffff !default;
+$panel-empty-hint-color: #777 !default;
+$panel-collapse-icon-color: $brand-primary !default;
+$panel-collapsed-height: 50px !default;
+
+/* Classes */
+.mhf-panel{
+	@extend %mhf-reset-box-sizing;
+	position: relative;
+	margin-bottom: 3rem;
+
+	.mhf-p-header{
+		position: relative;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		margin-bottom: 0.5rem;
+		padding: 0 0.2rem;
+		font-size: 0.9rem;
+
+		.mhf-ph-icon{
+			margin-right: 0.5rem;
+
+			img{
+				max-width: 38px;
+			}
+		}
+		.mhf-ph-actions{
+			position: absolute;
+			right: 0;
+
+			.mhf-ph-toggler{
+				color: $panel-collapse-icon-color;
+				cursor: pointer;
+				transition-property: transform;
+				transition-duration: 0.2s;
+				transition-timing-function: linear;
+			}
+		}
+	}
+	.mhf-p-body{
+		position: relative;
+		/*z-index: 0;*/ /* Must be below header */
+		margin-top: 0;
+		padding: 0.3rem;
+		background-color: $panel-bg-color;
+		box-shadow: $box-shadow-lightest;
+		transition: all 0.2s ease-in-out;
+
+		&:empty{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			&::after{
+				content: attr(data-empty-text);
+				color: $panel-empty-hint-color;
+				font-style: italic;
+			}
+		}
+	}
+
+	&:last-child{
+		margin-bottom: 0;
+	}
+	&.mhf-collapsed{
+		.mhf-ph-toggler{
+			transform: rotateZ(90deg);
+		}
+		.mhf-p-body{
+			margin-top: -$panel-collapsed-height;
+			min-height: $panel-collapsed-height !important;
+			max-height: $panel-collapsed-height !important;
+
+			> *{
+				display: none;
+			}
+
+			&:empty{
+				&::after{
+					content: "";
+				}
+			}
+		}
+	}
+}

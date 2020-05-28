@@ -14,7 +14,7 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'molkobain-handy-framework/1.4.1',
+	'molkobain-handy-framework/1.6.0',
 	array(
 		// Identification
 		//
@@ -32,15 +32,16 @@ SetupWebPage::AddModule(
 		// Components
 		//
 		'datamodel' => array(
-			'core/attributerackunit.class.inc.php',
-		    'common/confighelper.class.inc.php',
-		    'common/stringhelper.class.inc.php',
-		    'common/uihelper.class.inc.php',
-		    'common/ui/togglebutton.class.inc.php',
-		    'console/pageuiextension.class.inc.php',
-            // Important: Legacy class MUST be loaded before the standard.
-            'portal/apis/extensions/portaluiextensionlegacy.class.inc.php',
-            'portal/apis/extensions/portaluiextension.class.inc.php',
+			// Load compatibility bridge
+			'compatibilitybridge.php',
+			// Load extension autoloader
+			'vendor/autoload.php',
+			// Classes aliases
+			'src/Compatibility/ClassesAliases.php',
+			// Explicitly load attribute types
+			'src/Core/AttributeMHFRackUnit.php',
+		    // Explicitly load APIs
+			'src/Extension/Hook/Console/PageUIExtension.php',
 		),
 		'webservice' => array(
 

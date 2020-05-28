@@ -7,12 +7,12 @@
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
 
-namespace Molkobain\iTop\Extension\HandyFramework\Console\Extension;
+namespace Molkobain\iTop\Extension\HandyFramework\Hook\Console;
 
 use iPageUIExtension;
 use iTopWebPage;
 use utils;
-use Molkobain\iTop\Extension\HandyFramework\Common\Helper\ConfigHelper;
+use Molkobain\iTop\Extension\HandyFramework\Helper\ConfigHelper;
 
 /**
  * Class PageUIExtension
@@ -21,8 +21,9 @@ use Molkobain\iTop\Extension\HandyFramework\Common\Helper\ConfigHelper;
  */
 class PageUIExtension implements iPageUIExtension
 {
-    /**
+	/**
 	 * @inheritdoc
+	 * @throws \Exception
 	 */
 	public function GetNorthPaneHtml(iTopWebPage $oPage)
 	{
@@ -32,8 +33,8 @@ class PageUIExtension implements iPageUIExtension
 			return;
 		}
 
-		$oPage->add_saas('env-' . utils::GetCurrentEnvironment() . '/' . ConfigHelper::GetModuleCode() . '/common/css/handy-framework.scss');
-		$oPage->add_linked_script(ConfigHelper::GetAbsoluteModuleUrl() . 'common/js/handy-framework.js');
+		$oPage->add_saas('env-' . utils::GetCurrentEnvironment() . '/' . ConfigHelper::GetModuleCode() . '/asset/css/handy-framework.scss');
+		$oPage->add_linked_script(ConfigHelper::GetAbsoluteModuleUrl() . 'asset/js/handy-framework.js');
 	}
 
 	/**
@@ -50,4 +51,5 @@ class PageUIExtension implements iPageUIExtension
 	public function GetBannerHtml(iTopWebPage $oPage)
 	{
 		// Nothing to do
-}}
+	}
+}
