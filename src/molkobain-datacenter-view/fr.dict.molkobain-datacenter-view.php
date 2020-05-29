@@ -8,6 +8,19 @@
  */
 Dict::Add('FR FR', 'French', 'Français', array(
 	// Classes
+	// - LocationType
+	'Class:LocationType' => 'Type de lieu',
+	'Class:LocationType/Attribute:name' => 'Nom',
+	'Class:LocationType/Attribute:name+' => 'Par exemple : Pays, Région, Ville, Bâtiment, Etage, Salle ...',
+	'Class:LocationType/Attribute:locations_list' => 'Lieux',
+	'Class:LocationType/Attribute:locations_list+' => 'Liste des lieux de ce type',
+	// - Location
+	'Class:Location/Attribute:locationtype_id' => 'Type',
+	'Class:Location/Attribute:locationtype_id+' => 'Le type de lieu dont il s\'agit ou son utilité',
+	'Class:Location/Attribute:parent_id' => 'Parent',
+	'Class:Location/Attribute:parent_id+' => 'Lieu auquel celui est rattaché (ex : Pour une \'salle\', devrait être un \'étage\' ou un \'bâtiment\')',
+	'Class:Location/Attribute:locations_list' => 'Lieux sous-jacents',
+	'Class:Location/Attribute:locations_list+' => 'Liste des lieux inclus dans celui-ci',
 	// - PhysicalDevice (default entries for custom classes)
 	'Class:PhysicalDevice/Attribute:nb_u' => 'Hauteur',
 	'Class:PhysicalDevice/Attribute:nb_u+' => 'Hauteur du matériel en unités (U)',

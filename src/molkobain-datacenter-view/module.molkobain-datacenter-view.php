@@ -10,7 +10,7 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'molkobain-datacenter-view/1.5.6', array(
+	'molkobain-datacenter-view/1.6.0', array(
         // Identification
         'label' => 'Datacenter view (racks visual representation)',
         'category' => 'business',
@@ -24,9 +24,11 @@ SetupWebPage::AddModule(
         ),
         'mandatory' => false,
         'visible' => true,
+        'installer' => 'DatacenterViewInstaller',
 
         // Components
         'datamodel' => array(
+        	'model.molkobain-datacenter-view.php',
             'common/confighelper.class.inc.php',
             'common/datacenterviewfactory.class.inc.php',
             'common/datacenterview.class.inc.php',
@@ -78,3 +80,38 @@ SetupWebPage::AddModule(
         ),
 	)
 );
+
+if (!class_exists('DatacenterViewInstaller'))
+{
+	/**
+	 * Class DatacenterViewInstaller
+	 *
+	 * @since v1.6.0
+	 */
+	class DatacenterViewInstaller extends ModuleInstallerAPI
+	{
+		/**
+		 * @inheritDoc
+		 */
+		public static function AfterDatabaseCreation(Config $oConfiguration, $sPreviousVersion, $sCurrentVersion)
+		{
+			if (version_compare($sPreviousVersion, '1.6.0', '<'))
+			{
+				SetupPage::log_info("|- Upgrading molkobain-datacenter-view from '$sPreviousVersion' to '$sCurrentVersion'. From v1.6.0, the extension bring the LocationType typology to better document Location objects. This adds some basic LocationTypes to bootstrap the user.");
+
+				$aLTNames = array(
+					'Building',
+					'Floor',
+					'Room',
+				);
+				foreach($aLTNames as $sLTName)
+				{
+					$oLT = MetaModel::NewObject('LocationType');
+					$oLT->Set('name', $sLTName);
+					$oLT->DBWrite();
+					SetupPage::log_info("|  |- LocationType '$sLTName' created.");
+				}
+			}
+		}
+	}
+}
