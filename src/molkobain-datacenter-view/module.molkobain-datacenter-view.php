@@ -97,7 +97,7 @@ if (!class_exists('DatacenterViewInstaller'))
 		{
 			if (version_compare($sPreviousVersion, '1.6.0', '<'))
 			{
-				SetupPage::log_info("|- Upgrading molkobain-datacenter-view from '$sPreviousVersion' to '$sCurrentVersion'. From v1.6.0, the extension bring the LocationType typology to better document Location objects. This adds some basic LocationTypes to bootstrap the user.");
+				SetupPage::log_info("|- Upgrading molkobain-datacenter-view from '$sPreviousVersion' to '$sCurrentVersion'. From v1.6.0, the extension brings the LocationType typology to better document Location objects. This adds some basic LocationTypes to bootstrap the user.");
 
 				$aLTNames = array(
 					'Building',
