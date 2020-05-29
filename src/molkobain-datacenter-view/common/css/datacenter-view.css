@@ -1,11 +1,17 @@
-/*
+/*!
  * Copyright (c) 2015 - 2020 Molkobain.
  *
  * This file is part of licensed extension.
  *
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
-
+/*!
+ * Copyright (c) 2015 - 2020 Molkobain.
+ *
+ * This file is part of licensed extension.
+ *
+ * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
+ */
 /* Variables */
 /* - Helpers */
 /* - Unmounted container */
@@ -21,16 +27,16 @@
 .molkobain-datacenter-view {
   /* Reset for admin console mostly */
   box-sizing: border-box;
-  /* Fail-safe against very narrow pages */
   min-width: 600px;
-  background-color: #eee;
-  /* Not in /css/css-variables.scss */
+  background-color: #eeeeee;
 }
 .molkobain-datacenter-view * {
   box-sizing: border-box;
 }
 .molkobain-datacenter-view *::before, .molkobain-datacenter-view *::after {
   box-sizing: border-box;
+  /* Fail-safe against very narrow pages */
+  /* Not in /css/css-variables.scss */
 }
 .molkobain-datacenter-view .mdv-header:not(:empty) {
   margin-bottom: 20px;
@@ -40,7 +46,6 @@
   position: relative;
   display: flex;
   justify-content: space-between;
-  /* Used as a comment next to the element (device / enclosure) */
 }
 .molkobain-datacenter-view .mdv-body .mdv-controls .mhf-panel {
   width: 200px;
@@ -135,7 +140,7 @@
   text-align: center;
   font-size: 0.6rem;
   background: #d85656;
-  color: #fff;
+  color: #ffffff;
   transition: all 0.15s ease-in-out;
 }
 .molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-header .mhf-ph-icon .mdv-uth-spot.mdv-hidden {
@@ -158,6 +163,7 @@
 }
 .molkobain-datacenter-view .mdv-body .mdv-unmounted .mdv-unmounted-type.mhf-panel .mhf-p-body > .mdv-enclosure::after {
   background-color: #da5757;
+  /* Used as a comment next to the element (device / enclosure) */
 }
 .molkobain-datacenter-view .mdv-body .mdv-element-note {
   position: absolute;
@@ -172,7 +178,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   text-align: left;
-  color: #444;
+  color: #444444;
   font-style: italic;
 }
 .molkobain-datacenter-view .mdv-body .mdv-element-note > i {
@@ -181,7 +187,6 @@
 }
 .molkobain-datacenter-view .mdv-body .mdv-rack-panel, .molkobain-datacenter-view .mdv-body .mdv-enclosure-panel {
   text-align: center;
-  /* Specificities for enclosures in the main view when on an Enclosure object */
 }
 .molkobain-datacenter-view .mdv-body .mdv-rack-panel .mdv-rp-title, .molkobain-datacenter-view .mdv-body .mdv-enclosure-panel .mdv-rp-title, .molkobain-datacenter-view .mdv-body .mdv-rack-panel .mdv-ep-title, .molkobain-datacenter-view .mdv-body .mdv-enclosure-panel .mdv-ep-title {
   margin-left: 1.8rem;
@@ -189,15 +194,14 @@
   margin-bottom: 0.3rem;
   font-size: 0.85rem;
 }
+/* Specificities for enclosures in the main view when on an Enclosure object */
 .molkobain-datacenter-view .mdv-body .mdv-rack-panel .mdv-ep-view .mdv-enclosure, .molkobain-datacenter-view .mdv-body .mdv-enclosure-panel .mdv-ep-view .mdv-enclosure {
   width: initial;
   box-shadow: none;
 }
-.molkobain-datacenter-view .mdv-body .mdv-rack-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit, .molkobain-datacenter-view .mdv-body .mdv-enclosure-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit {
-  /* Enclosure & units border */
-}
 .molkobain-datacenter-view .mdv-body .mdv-rack-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit .mdv-eu-left, .molkobain-datacenter-view .mdv-body .mdv-enclosure-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit .mdv-eu-left {
   display: flex;
+  /* Enclosure & units border */
 }
 .molkobain-datacenter-view .mdv-body .mdv-rack-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit .mdv-eu-slot, .molkobain-datacenter-view .mdv-body .mdv-enclosure-panel .mdv-ep-view .mdv-enclosure .mdv-enclosure-unit .mdv-eu-slot {
   /*background-color: $rack-unit-slot-bg-color;*/
@@ -245,12 +249,13 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 0 0.3rem;
+  padding: 0.3rem 0.3rem;
   background-color: #8db46e;
-  color: #fff;
+  color: #ffffff;
 }
 .molkobain-datacenter-view .mdv-body .mdv-device > * {
   overflow-x: hidden;
+  overflow-y: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -328,15 +333,15 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  /* Rack & units border */
 }
 .molkobain-datacenter-view .mdv-body .mdv-rack-unit .mdv-ru-left, .molkobain-datacenter-view .mdv-body .mdv-enclosure-unit .mdv-ru-left, .molkobain-datacenter-view .mdv-body .mdv-rack-unit .mdv-eu-left, .molkobain-datacenter-view .mdv-body .mdv-enclosure-unit .mdv-eu-left {
   padding: 0 0.3rem;
   width: 1.8rem;
   text-align: right;
+  /* Rack & units border */
 }
 .molkobain-datacenter-view .mdv-body .mdv-rack-unit .mdv-ru-slot, .molkobain-datacenter-view .mdv-body .mdv-enclosure-unit .mdv-ru-slot {
-  background-color: #fff;
+  background-color: #ffffff;
   border-left: 1px solid #c5c5c5;
   border-right: 1px solid #c5c5c5;
   border-bottom: 1px solid #eaeaea;
@@ -393,7 +398,7 @@
   padding: 0 0 0.1rem 0;
   width: 100%;
   text-align: left;
-  color: #444;
+  color: #444444;
   background-color: transparent;
   border-bottom: 1px solid #dedede;
   border-radius: 0;
