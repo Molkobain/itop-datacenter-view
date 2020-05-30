@@ -35,6 +35,10 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:Enclosure/Attribute:nb_u+' => 'Height in units (U) of the enclosure',
 	'Class:Enclosure/Attribute:position_v' => 'Position',
 	'Class:Enclosure/Attribute:position_v+' => 'Vertical position (U) of the enclosure in the rack (Must be the bottom position, not top)',
+	'Enclosure:baseinfo' => 'General information',
+	'Enclosure:moreinfo' => 'More information',
+	'Enclosure:dates' => 'Dates',
+	'Enclosure:otherinfo' => 'Other information',
 	// - Datacenter device
 	'Class:DatacenterDevice/Attribute:nb_u' => 'Height',
 	'Class:DatacenterDevice/Attribute:nb_u+' => 'Height in units (U) of the device',

@@ -34,6 +34,10 @@ Dict::Add('FR FR', 'French', 'Français', array(
 	'Class:Enclosure/Attribute:nb_u+' => 'Hauteur du châssis en unités (U)',
 	'Class:Enclosure/Attribute:position_v' => 'Position',
 	'Class:Enclosure/Attribute:position_v+' => 'Position verticale (U) du châssis dans le rack (Doit faire référence au bas du châssis et non au haut)',
+	'Enclosure:baseinfo' => 'Informations générales',
+	'Enclosure:moreinfo' => 'Informations complémentaires',
+	'Enclosure:dates' => 'Dates',
+	'Enclosure:otherinfo' => 'Autres informations',
 	// - Datacenter device
 	'Class:DatacenterDevice/Attribute:nb_u' => 'Hauteur',
 	'Class:DatacenterDevice/Attribute:nb_u+' => 'Hauteur du matériel en unités (U)',

@@ -171,10 +171,100 @@
 				</method>
 			</methods>
 			<presentation>
-				<details>
+				<details _delta="redefine">
 					<items>
-						<item id="position_v" _delta="define">
-							<rank>65</rank>
+						<item id="col:col0">
+							<items>
+								<item id="fieldset:Enclosure:baseinfo">
+									<items>
+										<item id="name">
+											<rank>10</rank>
+										</item>
+										<item id="org_id">
+											<rank>20</rank>
+										</item>
+										<item id="status">
+											<rank>30</rank>
+										</item>
+										<item id="business_criticity">
+											<rank>40</rank>
+										</item>
+										<item id="location_id">
+											<rank>50</rank>
+										</item>
+										<item id="rack_id">
+											<rank>60</rank>
+										</item>
+										<item id="position_v">
+											<rank>65</rank>
+										</item>
+									</items>
+									<rank>10</rank>
+								</item>
+								<item id="fieldset:Enclosure:moreinfo">
+									<items>
+										<item id="brand_id">
+											<rank>10</rank>
+										</item>
+										<item id="model_id">
+											<rank>20</rank>
+										</item>
+										<item id="nb_u">
+											<rank>30</rank>
+										</item>
+										<item id="serialnumber">
+											<rank>40</rank>
+										</item>
+										<item id="asset_number">
+											<rank>50</rank>
+										</item>
+									</items>
+									<rank>20</rank>
+								</item>
+							</items>
+							<rank>10</rank>
+						</item>
+						<item id="col:col1">
+							<items>
+								<item id="fieldset:Enclosure:dates">
+									<items>
+										<item id="move2production">
+											<rank>10</rank>
+										</item>
+										<item id="purchase_date">
+											<rank>20</rank>
+										</item>
+										<item id="end_of_warranty">
+											<rank>30</rank>
+										</item>
+									</items>
+									<rank>10</rank>
+								</item>
+								<item id="fieldset:Enclosure:otherinfo">
+									<items>
+										<item id="description">
+											<rank>10</rank>
+										</item>
+									</items>
+									<rank>20</rank>
+								</item>
+							</items>
+							<rank>20</rank>
+						</item>
+						<item id="contacts_list">
+							<rank>150</rank>
+						</item>
+						<item id="documents_list">
+							<rank>160</rank>
+						</item>
+						<item id="device_list">
+							<rank>190</rank>
+						</item>
+						<item id="providercontracts_list">
+							<rank>200</rank>
+						</item>
+						<item id="services_list">
+							<rank>210</rank>
 						</item>
 					</items>
 				</details>
