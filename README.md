@@ -128,6 +128,8 @@ You can try this extension on the online demo. There are already some racks, enc
 ## Compatibility
 Compatible with iTop 2.4+
 
+_Note: For people using both **Datacenter View Extended** and the great [TeemIP](https://www.teemip.net/) extension, you should consider using the [Datacenter view extended ❤ IPAM for iTop](https://github.com/Molkobain/itop-datacenter-view-extended-bridge-for-teemip) bridge for optimal integration._
+
 ## Dependencies
 * Module `molkobain-handy-framework`
 * Module `molkobain-console-tooltips`
