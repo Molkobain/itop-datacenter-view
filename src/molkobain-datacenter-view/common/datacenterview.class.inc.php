@@ -345,9 +345,9 @@ EOF
 	}
 
 
-	//---------
-	// Data
-	//---------
+	//-------------------------------------------
+	// Data, used for the visual representation
+	//-------------------------------------------
 
 	/**
 	 * Returns the object data for the JS widget either as a PHP array or JSON string
@@ -777,7 +777,7 @@ HTML;
 	 *
 	 * @return string
 	 */
-	protected function GetUserPrefCodeForOption($sOptionCode)
+	public function GetUserPrefCodeForOption($sOptionCode)
 	{
 		$sUserPrefCode = ($this->IsGlobalOption($sOptionCode)) ? ConfigHelper::GetModuleCode() . '|global' : ConfigHelper::GetModuleCode() . '|object|' . $this->GetObjectClass() . '|' . $this->GetObjectId();
 
