@@ -51,6 +51,16 @@ class DatacenterView
 	const DEFAULT_NB_COLS = 1;
 	const DEFAULT_OBJECT_IN_EDIT_MODE = false;
 
+	/** @var array $aDeviceCategories Parameters (callbacks) for each category of devices */
+	protected static $aDeviceCategories = array(
+		'standard' => array(
+			'enum_classes_callback_name' => 'GetStandardDeviceClasses',
+		),
+		'other' => array(
+			'enum_classes_callback_name' => 'GetOtherDeviceClasses',
+		),
+	);
+
 	/** @var string $sStaticConfigHelperClass */
 	protected $sStaticConfigHelperClass;
 	/** @var \DBObject $oObject */
@@ -450,31 +460,30 @@ EOF
 			$aData['enclosures'][$sEnclosureAssemblyType][] = $aEnclosureData;
 		}
 
-		$oDeviceSearch = DBObjectSearch::FromOQL('SELECT DatacenterDevice WHERE rack_id = :rack_id AND enclosure_id = 0');
-		$oDeviceSearch->SetShowObsoleteData($this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE));
-		$oDeviceSet = new DBObjectSet($oDeviceSearch, array(), array('rack_id' => $oRack->GetKey()));
-		/** @var \DatacenterDevice $oDevice */
-		while($oDevice = $oDeviceSet->Fetch())
+		foreach(static::$aDeviceCategories as $sCategoryName => $aCategoryParams)
 		{
-			$aDeviceData = $this->GetDeviceData($oDevice);
-			$sDeviceAssemblyType = $oDevice->IsMounted() ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
-
-			$aData['devices'][$sDeviceAssemblyType][] = $aDeviceData;
-		}
-
-		// Calling registered (static) ConfigHelper in order to call the right method
-		foreach(call_user_func(array($this->sStaticConfigHelperClass, 'GetOtherDeviceClasses')) as $sDeviceClass)
-		{
-			$oDeviceSearch = DBObjectSearch::FromOQL('SELECT ' . $sDeviceClass . ' WHERE rack_id = :rack_id AND enclosure_id = 0');
-			$oDeviceSearch->SetShowObsoleteData($this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE));
-			$oDeviceSet = new DBObjectSet($oDeviceSearch, array(), array('rack_id' => $oRack->GetKey()));
-			/** @var \DBObject $oDevice */
-			while($oDevice = $oDeviceSet->Fetch())
+			// Calling registered (static) ConfigHelper in order to call the right method
+			foreach(call_user_func(array($this->sStaticConfigHelperClass, $aCategoryParams['enum_classes_callback_name'])) as $sDeviceClass)
 			{
-				$aDeviceData = $this->GetOtherDeviceData($oDevice);
-				$sDeviceAssemblyType = ($oDevice->Get('position_v') > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
+				$oDeviceSearch = DBObjectSearch::FromOQL('SELECT '.$sDeviceClass.' WHERE rack_id = :rack_id AND enclosure_id = 0');
+				$oDeviceSearch->SetShowObsoleteData($this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE));
+				$oDeviceSet = new DBObjectSet($oDeviceSearch, array(), array('rack_id' => $oRack->GetKey()));
+				/** @var \DatacenterDevice $oDevice */
+				while($oDevice = $oDeviceSet->Fetch())
+				{
+					$aDeviceData = $this->GetDeviceData($oDevice);
+					if(is_callable(array($oDevice, 'IsMounted'), true))
+					{
+						$sDeviceAssemblyType = $oDevice->IsMounted() ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
+					}
+					else
+					{
+						// Note: We might want to force custom classes to have a "IsMounted()" method.
+						$sDeviceAssemblyType = ($oDevice->Get('position_v') > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
+					}
 
-				$aData['devices'][$sDeviceAssemblyType][] = $aDeviceData;
+					$aData['devices'][$sDeviceAssemblyType][] = $aDeviceData;
+				}
 			}
 		}
 
@@ -506,36 +515,30 @@ EOF
 				),
 			);
 
-		/** @var \DBObjectSet $oDeviceSet */
-		$oDeviceSet = $oEnclosure->Get('device_list');
-		/** @var \DatacenterDevice $oDevice */
-		while($oDevice = $oDeviceSet->Fetch())
+		foreach(static::$aDeviceCategories as $sCategoryName => $aCategoryParams)
 		{
-			// Note: Here we can't filter set on none obsolete data (SetShowObsoleteData()) only because since iTop 2.4 it returns an ormLinkSet instead of a DBObjectSet
-			if($oDevice->IsObsolete() && ($this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE) === false))
+			// Calling registered (static) ConfigHelper in order to call the right method
+			foreach(call_user_func(array($this->sStaticConfigHelperClass, $aCategoryParams['enum_classes_callback_name'])) as $sDeviceClass)
 			{
-				continue;
-			}
+				$oDeviceSearch = DBObjectSearch::FromOQL('SELECT '.$sDeviceClass.' WHERE rack_id = :rack_id AND enclosure_id = :enclosure_id');
+				$oDeviceSearch->SetShowObsoleteData($this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE));
+				$oDeviceSet = new DBObjectSet($oDeviceSearch, array(), array('rack_id' => $oEnclosure->Get('rack_id'), 'enclosure_id' => $oEnclosure->GetKey()));
+				/** @var \DatacenterDevice $oDevice */
+				while($oDevice = $oDeviceSet->Fetch())
+				{
+					$aDeviceData = $this->GetDeviceData($oDevice);
+					if(is_callable(array($oDevice, 'IsMounted'), true))
+					{
+						$sDeviceAssemblyType = $oDevice->IsMounted() ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
+					}
+					else
+					{
+						// Note: We might want to force custom classes to have a "IsMounted()" method.
+						$sDeviceAssemblyType = ($oDevice->Get('position_v') > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
+					}
 
-			$aDeviceData = $this->GetDeviceData($oDevice);
-			$sDeviceAssemblyType = $oDevice->IsMounted() ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
-
-			$aData['devices'][$sDeviceAssemblyType][] = $aDeviceData;
-		}
-
-		// Calling registered (static) ConfigHelper in order to call the right method
-		foreach(call_user_func(array($this->sStaticConfigHelperClass, 'GetOtherDeviceClasses')) as $sDeviceClass)
-		{
-			$oDeviceSearch = DBObjectSearch::FromOQL('SELECT ' . $sDeviceClass . ' WHERE rack_id = :rack_id AND enclosure_id = :enclosure_id');
-			$oDeviceSearch->SetShowObsoleteData($this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE));
-			$oDeviceSet = new DBObjectSet($oDeviceSearch, array(), array('rack_id' => $oEnclosure->Get('rack_id'), 'enclosure_id' => $oEnclosure->GetKey()));
-			/** @var \DBObject $oDevice */
-			while($oDevice = $oDeviceSet->Fetch())
-			{
-				$aDeviceData = $this->GetOtherDeviceData($oDevice);
-				$sDeviceAssemblyType = ($oDevice->Get('position_v') > 0) ? static::ENUM_ASSEMBLY_TYPE_MOUNTED : static::ENUM_ASSEMBLY_TYPE_UNMOUNTED;
-
-				$aData['devices'][$sDeviceAssemblyType][] = $aDeviceData;
+					$aData['devices'][$sDeviceAssemblyType][] = $aDeviceData;
+				}
 			}
 		}
 
@@ -543,28 +546,7 @@ EOF
 	}
 
 	/**
-	 * Returns data for a datacenter device object
-	 *
-	 * @param \DatacenterDevice $oDevice
-	 *
-	 * @return array
-	 * @throws \CoreException
-	 */
-	protected function GetDeviceData(DatacenterDevice $oDevice)
-	{
-		$aData = $this->GetObjectBaseData($oDevice) + array(
-				'rack_id' => (int) $oDevice->Get('rack_id'),
-				'enclosure_id' => (int) $oDevice->Get('enclosure_id'),
-				'position_v' => (int) $oDevice->Get('position_v'),
-				'position_h' => 1,
-				'position_p' => static::ENUM_PANEL_FRONT,
-			);
-
-		return $aData;
-	}
-
-	/**
-	 * Returns data for a custom class device object
+	 * Returns data for a device object
 	 *
 	 * @param \DBObject $oDevice
 	 *
@@ -572,7 +554,7 @@ EOF
 	 * @throws \CoreException
 	 * @throws \Exception
 	 */
-	protected function GetOtherDeviceData(DBObject $oDevice)
+	protected function GetDeviceData(DBObject $oDevice)
 	{
 		$aData = $this->GetObjectBaseData($oDevice) + array(
 				'rack_id' => (int) $oDevice->Get('rack_id'),
