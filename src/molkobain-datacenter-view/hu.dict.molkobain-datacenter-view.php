@@ -8,6 +8,19 @@
  */
 Dict::Add('HU HU', 'Hungarian', 'Magyar', array(
 	// Classes
+	// - LocationType
+	'Class:LocationType' => 'Location type~~',
+	'Class:LocationType/Attribute:name' => 'Name~~',
+	'Class:LocationType/Attribute:name+' => 'For example: Country, State, City, Building, Floor, Room, ...~~',
+	'Class:LocationType/Attribute:locations_list' => 'Locations~~',
+	'Class:LocationType/Attribute:locations_list+' => 'List of all locations of this type~~',
+	// - Location
+	'Class:Location/Attribute:locationtype_id' => 'Type~~',
+	'Class:Location/Attribute:locationtype_id+' => 'What kind of location is it or what purpose does it have?~~',
+	'Class:Location/Attribute:parent_id' => 'Parent~~',
+	'Class:Location/Attribute:parent_id+' => 'Location hosting this one (eg. For a \'room\', should be a \'floor\' or a \'building\')~~',
+	'Class:Location/Attribute:locations_list' => 'Child locations~~',
+	'Class:Location/Attribute:locations_list+' => 'List of all locations included in this one~~',
 	// - PhysicalDevice (default entries for custom classes)
 	'Class:PhysicalDevice/Attribute:nb_u' => 'Height~~',
 	'Class:PhysicalDevice/Attribute:nb_u+' => 'Height in units (U) of the element~~',
@@ -21,6 +34,10 @@ Dict::Add('HU HU', 'Hungarian', 'Magyar', array(
 	'Class:Enclosure/Attribute:nb_u+' => 'Height in units (U) of the enclosure~~',
 	'Class:Enclosure/Attribute:position_v' => 'Position~~',
 	'Class:Enclosure/Attribute:position_v+' => 'Vertical position (U) of the enclosure in the rack (Must be the bottom position, not top)~~',
+	'Enclosure:baseinfo' => 'General information~~',
+	'Enclosure:moreinfo' => 'More information~~',
+	'Enclosure:dates' => 'Dates~~',
+	'Enclosure:otherinfo' => 'Other information~~',
 	// - Datacenter device
 	'Class:DatacenterDevice/Attribute:nb_u' => 'Height~~',
 	'Class:DatacenterDevice/Attribute:nb_u+' => 'Height in units (U) of the device~~',
