@@ -69,13 +69,13 @@
 					<is_null_allowed>true</is_null_allowed>
 					<on_target_delete>DEL_MANUAL</on_target_delete>
 				</field>
-				<field id="parent_id" xsi:type="AttributeHierarchicalKey" _delta="force">
+				<field id="parent_id" xsi:type="AttributeHierarchicalKey" _delta="define_if_not_exists">
 					<sql>parent_id</sql>
 					<filter><![CDATA[SELECT Location]]></filter>
 					<is_null_allowed>true</is_null_allowed>
 					<on_target_delete>DEL_AUTO</on_target_delete>
 				</field>
-				<field id="locations_list" xsi:type="AttributeLinkedSet" _delta="force">
+				<field id="locations_list" xsi:type="AttributeLinkedSet" _delta="define_if_not_exists">
 					<linked_class>Location</linked_class>
 					<ext_key_to_me>parent_id</ext_key_to_me>
 				</field>
@@ -86,10 +86,10 @@
 						<item id="locationtype_id" _delta="force">
 							<rank>25</rank>
 						</item>
-						<item id="parent_id" _delta="force">
+						<item id="parent_id" _delta="define_if_not_exists">
 							<rank>35</rank>
 						</item>
-						<item id="locations_list" _delta="force">
+						<item id="locations_list" _delta="define_if_not_exists">
 							<rank>100</rank>
 						</item>
 					</items>
@@ -106,7 +106,7 @@
 						<item id="locationtype_id" _delta="force">
 							<rank>15</rank>
 						</item>
-						<item id="parent_id" _delta="force">
+						<item id="parent_id" _delta="define_if_not_exists">
 							<rank>25</rank>
 						</item>
 					</items>
