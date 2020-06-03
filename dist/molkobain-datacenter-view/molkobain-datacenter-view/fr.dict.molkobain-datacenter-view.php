@@ -8,6 +8,19 @@
  */
 Dict::Add('FR FR', 'French', 'Français', array(
 	// Classes
+	// - LocationType
+	'Class:LocationType' => 'Type de lieu',
+	'Class:LocationType/Attribute:name' => 'Nom',
+	'Class:LocationType/Attribute:name+' => 'Par exemple : Pays, Région, Ville, Bâtiment, Etage, Salle ...',
+	'Class:LocationType/Attribute:locations_list' => 'Lieux',
+	'Class:LocationType/Attribute:locations_list+' => 'Liste des lieux de ce type',
+	// - Location
+	'Class:Location/Attribute:locationtype_id' => 'Type',
+	'Class:Location/Attribute:locationtype_id+' => 'Le type de lieu dont il s\'agit ou son utilité',
+	'Class:Location/Attribute:parent_id' => 'Parent',
+	'Class:Location/Attribute:parent_id+' => 'Lieu auquel celui est rattaché (ex : Pour une \'salle\', devrait être un \'étage\' ou un \'bâtiment\')',
+	'Class:Location/Attribute:locations_list' => 'Lieux sous-jacents',
+	'Class:Location/Attribute:locations_list+' => 'Liste des lieux inclus dans celui-ci',
 	// - PhysicalDevice (default entries for custom classes)
 	'Class:PhysicalDevice/Attribute:nb_u' => 'Hauteur',
 	'Class:PhysicalDevice/Attribute:nb_u+' => 'Hauteur du matériel en unités (U)',
@@ -21,6 +34,10 @@ Dict::Add('FR FR', 'French', 'Français', array(
 	'Class:Enclosure/Attribute:nb_u+' => 'Hauteur du châssis en unités (U)',
 	'Class:Enclosure/Attribute:position_v' => 'Position',
 	'Class:Enclosure/Attribute:position_v+' => 'Position verticale (U) du châssis dans le rack (Doit faire référence au bas du châssis et non au haut)',
+	'Enclosure:baseinfo' => 'Informations générales',
+	'Enclosure:moreinfo' => 'Informations complémentaires',
+	'Enclosure:dates' => 'Dates',
+	'Enclosure:otherinfo' => 'Autres informations',
 	// - Datacenter device
 	'Class:DatacenterDevice/Attribute:nb_u' => 'Hauteur',
 	'Class:DatacenterDevice/Attribute:nb_u+' => 'Hauteur du matériel en unités (U)',

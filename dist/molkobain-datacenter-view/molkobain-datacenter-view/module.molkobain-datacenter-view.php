@@ -10,23 +10,25 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'molkobain-datacenter-view/1.5.5', array(
+	'molkobain-datacenter-view/1.6.0', array(
         // Identification
         'label' => 'Datacenter view (racks visual representation)',
         'category' => 'business',
 
         // Setup
         'dependencies' => array(
-            'itop-datacenter-mgmt/2.2.0||itop-config-mgmt/2.2.0||itop-storage-mgmt/2.2.0',
-	        'molkobain-handy-framework/1.4.1',
+            'itop-datacenter-mgmt/2.4.0||itop-config-mgmt/2.4.0||itop-storage-mgmt/2.4.0',
+	        'molkobain-handy-framework/1.6.0',
 	        'molkobain-console-tooltips/1.1.1',
 	        'molkobain-newsroom-provider/1.1.0',
         ),
         'mandatory' => false,
         'visible' => true,
+        'installer' => 'DatacenterViewInstaller',
 
         // Components
         'datamodel' => array(
+        	'model.molkobain-datacenter-view.php',
             'common/confighelper.class.inc.php',
             'common/datacenterviewfactory.class.inc.php',
             'common/datacenterview.class.inc.php',
@@ -78,3 +80,38 @@ SetupWebPage::AddModule(
         ),
 	)
 );
+
+if (!class_exists('DatacenterViewInstaller'))
+{
+	/**
+	 * Class DatacenterViewInstaller
+	 *
+	 * @since v1.6.0
+	 */
+	class DatacenterViewInstaller extends ModuleInstallerAPI
+	{
+		/**
+		 * @inheritDoc
+		 */
+		public static function AfterDatabaseCreation(Config $oConfiguration, $sPreviousVersion, $sCurrentVersion)
+		{
+			if (version_compare($sPreviousVersion, '1.6.0', '<'))
+			{
+				SetupPage::log_info("|- Upgrading molkobain-datacenter-view from '$sPreviousVersion' to '$sCurrentVersion'. From v1.6.0, the extension brings the LocationType typology to better document Location objects. This adds some basic LocationTypes to bootstrap the user.");
+
+				$aLTNames = array(
+					'Building',
+					'Floor',
+					'Room',
+				);
+				foreach($aLTNames as $sLTName)
+				{
+					$oLT = MetaModel::NewObject('LocationType');
+					$oLT->Set('name', $sLTName);
+					$oLT->DBWrite();
+					SetupPage::log_info("|  |- LocationType '$sLTName' created.");
+				}
+			}
+		}
+	}
+}

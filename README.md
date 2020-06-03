@@ -39,6 +39,7 @@ Identify specific devices type by hovering the legend
 * [Rear panel support](#rear-panel-support)
 * [Occupancy rates](#occupancy-rates)
 * [Rack power](#rack-power)
+* [Rack weight](#rack-weight)
 * [Consistency checks](#consistency-checks)
 * [Audit rules](#audit-rules)
 * [Reserved slots](#reserved-slots)
@@ -80,9 +81,15 @@ Follow the wizard to design the layout...
 ![Pro features - Occupancy rates](docs/mdv-profeatures-occuprates-01.png)
 
 #### Rack power
-Keep an eye on your racks power consumption by tracking contracted power versus actual power reading.
+Keep an eye on your racks power consumption by tracking estimated power, contracted power and actual power reading.
 
 ![Pro features - Rack power](docs/mdv-profeatures-rackpower-01.png)
+
+#### Rack weight
+
+Keep an eye on your racks weight capacity by tracking their cumulated weight versus the maximum allowed by the rack itself or the server room specs.
+
+![Pro features - Rack weight](docs/mdv-profeatures-rackweight-01.png)
 
 #### Consistency checks
 Optional consistency checks are made on elements during creation / update:

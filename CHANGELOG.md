@@ -5,6 +5,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.6.0] - 2020-06-03
+### Added
+- Add "Location Type" typology and basic hierarchy to the "Location" class
+
+### Changed
+- Update dependencies to include their fixes
+- Rework the "Enclosure" presentation
+- Fix elements' plate overflow in some corner cases
+- Update translations
+
 ## [1.5.6] - 2020-05-08
 ### Changed
 - Update dependencies to include their fixes
@@ -76,7 +86,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.5.6...HEAD
+[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.6.0
 [1.5.6]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.5.6
 [1.5.5]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.5.5
 [1.5.3]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.5.3

@@ -285,12 +285,13 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-around;
-			padding: 0 0.3rem;
+			padding: 0.3rem 0.3rem;
 			background-color: $obj-class-default-bg-color;
 			color: $device-color;
 
 			> *{
 				overflow-x: hidden;
+				overflow-y: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
 			}
