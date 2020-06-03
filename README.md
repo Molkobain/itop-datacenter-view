@@ -38,8 +38,8 @@ Identify specific devices type by hovering the legend
 * [Complex enclosures support (grid system)](#complex-enclosures-support)
 * [Rear panel support](#rear-panel-support)
 * [Occupancy rates](#occupancy-rates)
-* [Rack power](#rack-power)
-* [Rack weight](#rack-weight)
+* [Power capacity](#power-capacity)
+* [Weight capacity](#weight-capacity)
 * [Consistency checks](#consistency-checks)
 * [Audit rules](#audit-rules)
 * [Reserved slots](#reserved-slots)
@@ -80,14 +80,14 @@ Follow the wizard to design the layout...
 
 ![Pro features - Occupancy rates](docs/mdv-profeatures-occuprates-01.png)
 
-#### Rack power
+#### Power capacity
 Keep an eye on your racks power consumption by tracking estimated power, contracted power and actual power reading.
 
 ![Pro features - Rack power](docs/mdv-profeatures-rackpower-01.png)
 
-#### Rack weight
+#### Weight capacity
 
-Keep an eye on your racks weight capacity by tracking their cumulated weight versus the maximum allowed by the rack itself or the server room specs.
+Keep an eye on your racks & enclosures weight capacity by tracking their cumulated weight versus the maximum allowed by the element itself or the server room specs.
 
 ![Pro features - Rack weight](docs/mdv-profeatures-rackweight-01.png)
 
