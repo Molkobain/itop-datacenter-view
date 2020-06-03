@@ -81,13 +81,18 @@ Follow the wizard to design the layout...
 ![Pro features - Occupancy rates](docs/mdv-profeatures-occuprates-01.png)
 
 #### Power capacity
-Keep an eye on your racks power consumption by tracking estimated power, contracted power and actual power reading.
+Keep an eye on your racks power consumption:
+* Fill devices expected consumption
+* Get max. expected consumption on each rack & enclosure
+* Compare it with contracted power and actual power reading.
 
 ![Pro features - Rack power](docs/mdv-profeatures-rackpower-01.png)
 
 #### Weight capacity
-
-Keep an eye on your racks & enclosures weight capacity by tracking their cumulated weight versus the maximum allowed by the element itself or the server room specs.
+Keep an eye on your racks & enclosures weight capacity:
+* Fill devices weight
+* Get cumulated weight on each rack & enclosure
+* Compare it with the maximum weight allowed by the element itself or the server room specs.
 
 ![Pro features - Rack weight](docs/mdv-profeatures-rackweight-01.png)
 
