@@ -6,8 +6,25 @@
  *
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
+
+if(!isset($aMolkobainThesaurus)) $aMolkobainThesaurus = [];
+/** @var array $aMolkobainThesaurus Used to centralize from strings and use them in the dict. entries */
+$aMolkobainThesaurus = array_merge($aMolkobainThesaurus, [
+	// Datamodel
+	'Class/Attribute:nb_u' => 'Hoogte',
+	'Class/Attribute:nb_u+' => 'Hoogte van %1$s in units (U)',
+	'Class/Attribute:position_v' => 'Positie',
+	'Class/Attribute:position_v+/Variant:host' => 'Verticale positie (U) van %1$s in %2$s. Vanaf beneden.',
+	'Class/Attribute:position_v+/Variant:device' => 'Verticale positie (U) van %1$s in de behuizing (of van de rack indien er rechtstreeks ingemonteerd). Vanaf beneden.',
+	// Fieldsets
+	'Fieldset:baseinfo' => 'Basisinfo',
+	'Fieldset:moreinfo' => 'Meer info',
+	'Fieldset:otherinfo' => 'Andere informatie',
+	'Fieldset:dates' => 'Datum',
+]);
+
+// Classes
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
-	// Classes
 	// - LocationType
 	'Class:LocationType' => 'Location type~~',
 	'Class:LocationType/Attribute:name' => 'Name~~',
@@ -22,34 +39,37 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:Location/Attribute:locations_list' => 'Child locations~~',
 	'Class:Location/Attribute:locations_list+' => 'List of all locations included in this one~~',
 	// - PhysicalDevice (default entries for custom classes)
-	'Class:PhysicalDevice/Attribute:nb_u' => 'Hoogte',
-	'Class:PhysicalDevice/Attribute:nb_u+' => 'Hoogte van dit toestel in units (U)',
-	'Class:PhysicalDevice/Attribute:position_v' => 'Positie',
-	'Class:PhysicalDevice/Attribute:position_v+' => 'Verticale positie (U) van dit toestel in de behuizing (of van de rack indien er rechtstreeks ingemonteerd). Vanaf beneden.',
+	'Class:PhysicalDevice/Attribute:nb_u' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u']),
+	'Class:PhysicalDevice/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'dit toestel'),
+	'Class:PhysicalDevice/Attribute:position_v' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v']),
+	// Note: Physical device can be either an host (eg. enclosure) or a device (eg. server), so we use a generic sentence
+	'Class:PhysicalDevice/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:host'], 'dit toestel', 'its host'),
 	// - Rack
-	'Class:Rack/Attribute:nb_u' => 'Hoogte',
-	'Class:Rack/Attribute:nb_u+' => 'Hoogte in units (U) waarover deze rack beschikt',
+	'Class:Rack/Attribute:nb_u' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u']),
+	'Class:Rack/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'deze rack'),
 	// - Enclosure
-	'Class:Enclosure/Attribute:nb_u' => 'Hoogte',
-	'Class:Enclosure/Attribute:nb_u+' => 'Hoogte van deze behuizing in units (U)',
-	'Class:Enclosure/Attribute:position_v' => 'Positie',
-	'Class:Enclosure/Attribute:position_v+' => 'Verticale positie (U) van de behuizing in de rack. Vanaf beneden.',
-	'Enclosure:baseinfo' => 'General information~~',
-	'Enclosure:moreinfo' => 'More information~~',
-	'Enclosure:dates' => 'Dates~~',
-	'Enclosure:otherinfo' => 'Other information~~',
+	'Class:Enclosure/Attribute:nb_u' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u']),
+	'Class:Enclosure/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'deze behuizing'),
+	'Class:Enclosure/Attribute:position_v' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v']),
+	'Class:Enclosure/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:host'], 'de behuizing', 'de rack'),
+	'Enclosure:baseinfo' => sprintf($aMolkobainThesaurus['Fieldset:baseinfo']),
+	'Enclosure:moreinfo' => sprintf($aMolkobainThesaurus['Fieldset:moreinfo']),
+	'Enclosure:otherinfo' => sprintf($aMolkobainThesaurus['Fieldset:otherinfo']),
+	'Enclosure:dates' => sprintf($aMolkobainThesaurus['Fieldset:dates']),
 	// - Datacenter device
-	'Class:DatacenterDevice/Attribute:nb_u' => 'Hoogte',
-	'Class:DatacenterDevice/Attribute:nb_u+' => 'Hoogte van dit toestel in units (U)',
-	'Class:DatacenterDevice/Attribute:position_v' => 'Positie',
-	'Class:DatacenterDevice/Attribute:position_v+' => 'Verticale positie (U) van dit toestel in de behuizing (of van de rack indien er rechtstreeks ingemonteerd). Vanaf beneden.',
+	'Class:DatacenterDevice/Attribute:nb_u' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u']),
+	'Class:DatacenterDevice/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'dit toestel'),
+	'Class:DatacenterDevice/Attribute:position_v' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v']),
+	'Class:DatacenterDevice/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:device'], 'dit toestel'),
 	// - PDU
-	'Class:PDU/Attribute:nb_u' => 'Hoogte',
-	'Class:PDU/Attribute:nb_u+' => 'Hoogte van deze PDU in units (U)',
-	'Class:PDU/Attribute:position_v' => 'Positie',
-	'Class:PDU/Attribute:position_v+' => 'Verticale positie (U) van dit PDU in de behuizing (of van de rack indien er rechtstreeks ingemonteerd). Vanaf beneden.',
+	'Class:PDU/Attribute:nb_u' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u']),
+	'Class:PDU/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'dit toestel'),
+	'Class:PDU/Attribute:position_v' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v']),
+	'Class:PDU/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:device'], 'dit PDU'),
+));
 
-	// UI
+// UI
+Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Grafische weergave',
 	'Molkobain:DatacenterView:NoElement' => 'Geen object',
 	// - Legend
@@ -59,8 +79,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Molkobain:DatacenterView:Options:Option:ShowObsolete' => 'Toon objecten die buiten dienst zijn',
 	'Molkobain:DatacenterView:Options:Option:ShowObsolete+' => 'Deze waarde is enkel van toepassing op dit object',
 	// - Tooltip
-	'Molkobain:DatacenterView:Element:Tooltip:Fieldset:base-info' => 'Basisinfo',
-	'Molkobain:DatacenterView:Element:Tooltip:Fieldset:more-info' => 'Meer info',
+	'Molkobain:DatacenterView:Element:Tooltip:Fieldset:base-info' => sprintf($aMolkobainThesaurus['Fieldset:baseinfo']),
+	'Molkobain:DatacenterView:Element:Tooltip:Fieldset:more-info' => sprintf($aMolkobainThesaurus['Fieldset:moreinfo']),
 	// - Rack
 	'Molkobain:DatacenterView:Rack:Panel:Front:Title' => 'Voorkant',
 	// - Enclosure
