@@ -15,7 +15,7 @@ $aMolkobainThesaurus = array_merge($aMolkobainThesaurus, [
 	'Class/Attribute:nb_u+' => 'Hoogte van %1$s in units (U)',
 	'Class/Attribute:position_v' => 'Positie',
 	'Class/Attribute:position_v+/Variant:host' => 'Verticale positie (U) van %1$s in %2$s. Vanaf beneden.',
-	'Class/Attribute:position_v+/Variant:device' => 'Verticale positie (U) van %1$s in de behuizing (of van de rack indien er rechtstreeks ingemonteerd). Vanaf beneden.',
+	'Class/Attribute:position_v+/Variant:device' => 'Verticale positie (U) van %1$s in de enclosure (of van de rack indien er rechtstreeks ingemonteerd). Vanaf beneden.',
 	// Fieldsets
 	'Fieldset:baseinfo' => 'Basisinfo',
 	'Fieldset:moreinfo' => 'Meer info',
@@ -26,18 +26,18 @@ $aMolkobainThesaurus = array_merge($aMolkobainThesaurus, [
 // Classes
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	// - LocationType
-	'Class:LocationType' => 'Location type~~',
-	'Class:LocationType/Attribute:name' => 'Name~~',
-	'Class:LocationType/Attribute:name+' => 'For example: Country, State, City, Building, Floor, Room, ...~~',
-	'Class:LocationType/Attribute:locations_list' => 'Locations~~',
-	'Class:LocationType/Attribute:locations_list+' => 'List of all locations of this type~~',
+	'Class:LocationType' => 'Soort locatie',
+	'Class:LocationType/Attribute:name' => 'Naam',
+	'Class:LocationType/Attribute:name+' => 'Bijvoorbeeld: Land, Provincie, Gemeente, Gebouw, Verdieping, Ruimte, ...',
+	'Class:LocationType/Attribute:locations_list' => 'Locaties',
+	'Class:LocationType/Attribute:locations_list+' => 'Overzicht van alle locaties van dit type',
 	// - Location
-	'Class:Location/Attribute:locationtype_id' => 'Type~~',
-	'Class:Location/Attribute:locationtype_id+' => 'What kind of location is it or what purpose does it have?~~',
-	'Class:Location/Attribute:parent_id' => 'Parent~~',
-	'Class:Location/Attribute:parent_id+' => 'Location hosting this one (eg. For a \'room\', should be a \'floor\' or a \'building\')~~',
-	'Class:Location/Attribute:locations_list' => 'Child locations~~',
-	'Class:Location/Attribute:locations_list+' => 'List of all locations included in this one~~',
+	'Class:Location/Attribute:locationtype_id' => 'Soort',
+	'Class:Location/Attribute:locationtype_id+' => 'Welk soort locatie is dit of wat is het doel ervan?',
+	'Class:Location/Attribute:parent_id' => 'Hoofdlocatie',
+	'Class:Location/Attribute:parent_id+' => 'De overkoepelende locatie. Bv. een "ruimte" is een onderverdeling van een "verdieping" of "gebouw".',
+	'Class:Location/Attribute:locations_list' => 'Sublocaties',
+	'Class:Location/Attribute:locations_list+' => 'Overzicht van alle sublocaties die onder deze locatie vallen.',
 	// - PhysicalDevice (default entries for custom classes)
 	'Class:PhysicalDevice/Attribute:nb_u' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u']),
 	'Class:PhysicalDevice/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'dit toestel'),
@@ -49,9 +49,9 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:Rack/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'deze rack'),
 	// - Enclosure
 	'Class:Enclosure/Attribute:nb_u' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u']),
-	'Class:Enclosure/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'deze behuizing'),
+	'Class:Enclosure/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'deze enclosure'),
 	'Class:Enclosure/Attribute:position_v' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v']),
-	'Class:Enclosure/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:host'], 'de behuizing', 'de rack'),
+	'Class:Enclosure/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:host'], 'de enclosure', 'de rack'),
 	'Enclosure:baseinfo' => sprintf($aMolkobainThesaurus['Fieldset:baseinfo']),
 	'Enclosure:moreinfo' => sprintf($aMolkobainThesaurus['Fieldset:moreinfo']),
 	'Enclosure:otherinfo' => sprintf($aMolkobainThesaurus['Fieldset:otherinfo']),
@@ -63,7 +63,7 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:DatacenterDevice/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:device'], 'dit toestel'),
 	// - PDU
 	'Class:PDU/Attribute:nb_u' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u']),
-	'Class:PDU/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'dit toestel'),
+	'Class:PDU/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'deze PDU'),
 	'Class:PDU/Attribute:position_v' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v']),
 	'Class:PDU/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:device'], 'dit PDU'),
 ));
@@ -87,8 +87,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Molkobain:DatacenterView:Enclosure:Panel:Front:Title' => 'Voorkant',
 	// - Unmounted elements
 	'Molkobain:DatacenterView:Unmounted:Toggler:Tooltip' => 'Verberg / Toon',
-	'Molkobain:DatacenterView:Unmounted:Enclosures:Title' => 'Ongemonteerde behuizingen',
-	'Molkobain:DatacenterView:Unmounted:Enclosures:Title+' => 'Horend bij dit rack, maar positie nog niet bepaald (bewerk de behuizing om dit te doen)',
+	'Molkobain:DatacenterView:Unmounted:Enclosures:Title' => 'Ongemonteerde enclosures',
+	'Molkobain:DatacenterView:Unmounted:Enclosures:Title+' => 'Horend bij dit rack, maar positie nog niet bepaald (bewerk de enclosure om dit te doen)',
 	'Molkobain:DatacenterView:Unmounted:Devices:Title' => 'Ongemonteerde toestellen',
-	'Molkobain:DatacenterView:Unmounted:Devices:Title+' => 'Horend bij dit rack/behuizing, maar positie nog niet bepaald (bewerk het toestel om dit te doen)',
+	'Molkobain:DatacenterView:Unmounted:Devices:Title+' => 'Horend bij dit rack/enclosure, maar positie nog niet bepaald (bewerk het toestel om dit te doen)',
 ));
