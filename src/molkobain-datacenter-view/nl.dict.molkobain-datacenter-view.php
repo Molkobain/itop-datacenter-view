@@ -74,6 +74,10 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Molkobain:DatacenterView:NoElement' => 'Geen object',
 	// - Legend
 	'Molkobain:DatacenterView:Legend:Title' => 'Legende',
+	// - Filter
+	'Molkobain:DatacenterView:Filter:Title' => 'Filter~~',
+	'Molkobain:DatacenterView:Filter:Description' => 'Highlight matching names or serial / asset numbers~~',
+	'Molkobain:DatacenterView:Filter:Input:Placeholder' => 'eg. PDU, Backup, 1234, ...~~',
 	// - Options
 	'Molkobain:DatacenterView:Options:Title' => 'Opties',
 	'Molkobain:DatacenterView:Options:Option:ShowObsolete' => 'Toon objecten die buiten dienst zijn',

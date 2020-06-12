@@ -75,6 +75,10 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Molkobain:DatacenterView:NoElement' => 'No element',
 	// - Legend
 	'Molkobain:DatacenterView:Legend:Title' => 'Legend',
+	// - Filter
+	'Molkobain:DatacenterView:Filter:Title' => 'Filter',
+	'Molkobain:DatacenterView:Filter:Description' => 'Highlight matching names or serial / asset numbers',
+	'Molkobain:DatacenterView:Filter:Input:Placeholder' => 'eg. PDU, Backup, 1234, ...',
 	// - Options
 	'Molkobain:DatacenterView:Options:Title' => 'Options',
 	'Molkobain:DatacenterView:Options:Option:ShowObsolete' => 'Show obsolete elements',

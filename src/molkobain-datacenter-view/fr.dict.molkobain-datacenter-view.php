@@ -74,6 +74,10 @@ Dict::Add('FR FR', 'French', 'Français', array(
 	'Molkobain:DatacenterView:NoElement' => 'Aucun élément',
 	// - Legend
 	'Molkobain:DatacenterView:Legend:Title' => 'Légende',
+	// - Filter
+	'Molkobain:DatacenterView:Filter:Title' => 'Filtrer',
+	'Molkobain:DatacenterView:Filter:Description' => 'Trouver corresp. de noms ou numéros de série / asset',
+	'Molkobain:DatacenterView:Filter:Input:Placeholder' => 'ex: PDU, SSD, 1234, ...',
 	// - Options
 	'Molkobain:DatacenterView:Options:Title' => 'Options',
 	'Molkobain:DatacenterView:Options:Option:ShowObsolete' => 'Afficher élém. obsolètes',

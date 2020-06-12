@@ -107,6 +107,7 @@ $(function()
 				this._bindEvents();
 
 				this._initializeLegend();
+				this._initializeFilter();
 				this._initializeViews();
 				this._initializeUnmountedPanels();
 				this._initializeElements();
@@ -182,6 +183,16 @@ $(function()
 						me.element.find('.mdv-device').removeClass('mdv-fade-for-highlighting');
 					}
 				);
+			},
+			// - Add listeners to the filter
+			_initializeFilter: function()
+			{
+				var me = this;
+				this.element.find('.mdv-filter')
+				.find('.mdv-filter-clear-icon').on('click', function(){ me._onFilterClearIconClick($(this)); })
+				.end()
+				.find('.mdv-filter-input').on('keyup change', function(){ me._onFilterValueChanged($(this)); })
+				.end();
 			},
 			// - Make the markup & events binding for views (eg. rack panels, enclosure panel, ...)
 			_initializeViews: function()
@@ -381,6 +392,54 @@ $(function()
 					oSpotElem.removeClass('mdv-hidden');
 				}
 			},
+			// - Called when user clicks on the clear icon of the filter
+			_onFilterClearIconClick: function()
+			{
+				this.element.find('.mdv-filter .mdv-filter-input').val('').trigger('change');
+			},
+			// - Called when filter changed due to user or event
+			_onFilterValueChanged: function()
+			{
+				var aCheckedAttributes = ['data-name', 'data-serial-number', 'data-asset-number'];
+				var sFilterText = this._getFilterValue().toLowerCase().latinise();
+
+				if(sFilterText === '')
+				{
+					this.element.find('.mdv-device').removeClass('mdv-fade-for-highlighting');
+					this.element.find('.mdv-filter .mdv-filter-clear-icon').hide();
+				}
+				else
+				{
+					this.element.find('.mdv-filter .mdv-filter-clear-icon').show();
+					this.element.find('.mdv-device').each(function(){
+						var bMatching = false;
+
+						for(var iIdx in aCheckedAttributes)
+						{
+							var sValue = $(this).attr(aCheckedAttributes[iIdx]);
+							if(typeof sValue === 'undefined')
+							{
+								continue;
+							}
+
+							if(sValue.toLowerCase().latinise().indexOf(sFilterText) >= 0)
+							{
+								bMatching = true;
+								break;
+							}
+						}
+
+						if(bMatching)
+						{
+							$(this).removeClass('mdv-fade-for-highlighting');
+						}
+						else
+						{
+							$(this).addClass('mdv-fade-for-highlighting');
+						}
+					});
+				}
+			},
 
 			// Getters
 			// - Return a single datum from the object_data set
@@ -415,6 +474,11 @@ $(function()
 				}
 
 				return oSlotElem;
+			},
+			// - Get raw filter value from input (not lowercased nor latinized)
+			_getFilterValue: function()
+			{
+				return this.element.find('.mdv-filter .mdv-filter-input').val();
 			},
 
 			// Helpers

@@ -192,6 +192,12 @@ class DatacenterView
 		// - Legend
 		$sLegendTitle = Dict::S('Molkobain:DatacenterView:Legend:Title');
 
+		// - Filter
+		$sFilterTitle = Dict::S('Molkobain:DatacenterView:Filter:Title');
+		$sFilterDescription = Dict::S('Molkobain:DatacenterView:Filter:Description');
+		$sFilterInputTooltip = Dict::S('Molkobain:DatacenterView:Filter:Input:Placeholder');
+		$sFilterInputTooltipAsHTML = htmlentities($sFilterInputTooltip, ENT_QUOTES, 'UTF-8');
+
 		// - Options
 		$sOptionsTitle = Dict::S('Molkobain:DatacenterView:Options:Title');
 		$sOptionsOperation = static::ENUM_ENDPOINT_OPERATION_SUBMITOPTIONS;
@@ -239,6 +245,16 @@ HTML;
 				<!-- Important: There must be no spaces in this div, otherwise the :empty CSS rule will not work -->
 				<!-- Note: We can't use :blank yet as it is not implemented by any browser... -->
 				<div class="mhf-p-body" data-empty-text="{$sNoElementLabel}"></div>
+			</div>
+			<div class="mdv-filter mhf-panel">
+				<div class="mhf-p-header">				
+					<span class="mhf-ph-icon"><span class="fa fa-fw fa-filter"></span></span>
+					<span class="mhf-ph-title">{$sFilterTitle}</span>
+				</div>
+				<div class="mhf-p-body">
+					<div class="mdv-filter-description">{$sFilterDescription}</div>
+					<div class="mdv-filter-container"><input class="mdv-filter-input" type="text" placeholder="{$sFilterInputTooltipAsHTML}" /><span class="mdv-filter-clear-icon fa fa-fw fa-times"></span></div>
+				</div>
 			</div>
 			<div class="mdv-options mhf-panel">
 				<div class="mhf-p-header">				
@@ -395,16 +411,20 @@ EOF
 	 *
 	 * @return array
 	 * @throws \CoreException
+	 * @throws \Exception
 	 */
 	protected function GetObjectBaseData(DBObject $oObject)
 	{
+		$sObjClass = get_class($oObject);
 		$iNbU = (empty($oObject->Get('nb_u'))) ? 1 : (int) $oObject->Get('nb_u');
 
 		$aData = array(
 			'type' => static::FindObjectType($oObject),
-			'class' => get_class($oObject),
+			'class' => $sObjClass,
 			'id' => $oObject->GetKey(),
 			'name' => $oObject->GetName(),
+			'serial_number' => MetaModel::IsValidAttCode($sObjClass, 'serialnumber') ? $oObject->Get('serialnumber') : null,
+			'asset_number' => MetaModel::IsValidAttCode($sObjClass, 'asset_number') ? $oObject->Get('asset_number') : null,
 			'icon' => $oObject->GetIcon(false),
 			'url' => $oObject->GetHyperlink(), // Note: GetHyperlink() actually return the HTML markup
 			'nb_u' => $iNbU,
