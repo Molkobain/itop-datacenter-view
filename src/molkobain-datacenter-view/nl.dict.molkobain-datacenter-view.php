@@ -75,9 +75,9 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	// - Legend
 	'Molkobain:DatacenterView:Legend:Title' => 'Legende',
 	// - Filter
-	'Molkobain:DatacenterView:Filter:Title' => 'Filter~~',
-	'Molkobain:DatacenterView:Filter:Description' => 'Highlight matching names or serial / asset numbers~~',
-	'Molkobain:DatacenterView:Filter:Input:Placeholder' => 'eg. PDU, Backup, 1234, ...~~',
+	'Molkobain:DatacenterView:Filter:Title' => 'Filter',
+	'Molkobain:DatacenterView:Filter:Description' => 'Markeer overeenkomende namen of serie-/asset-nummers',
+	'Molkobain:DatacenterView:Filter:Input:Placeholder' => 'Bv. PDU, Backup, 1234, ...',
 	// - Options
 	'Molkobain:DatacenterView:Options:Title' => 'Opties',
 	'Molkobain:DatacenterView:Options:Option:ShowObsolete' => 'Toon objecten die buiten dienst zijn',
