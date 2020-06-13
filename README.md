@@ -32,6 +32,9 @@ Access device's main information on hover (customizable)
 Identify specific devices type by hovering the legend
 ![Overview - Legend](docs/mdv-overview-03.png)
 
+Highlight devices based on their name / serial number / asset number
+![Overview - Legend](docs/mdv-overview-04.png)
+
 
 ### Advanced features in the paid version 🚀
 * [Drag & Drop](#drag--drop)

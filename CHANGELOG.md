@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [1.7.0] - 2020-06-14
 ### Added
-- Add filter panel to highlight devices based on their name / serial number / asset number  
+- Add filter panel to highlight devices based on their name / serial number / asset number
 
 ## [1.6.0] - 2020-06-03
 ### Added
