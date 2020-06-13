@@ -14,6 +14,7 @@
  */
 /* Variables */
 /* - Helpers */
+/* - Filter */
 /* - Unmounted container */
 /* - Rack panel */
 /* - Rack unit */
@@ -49,6 +50,7 @@
 }
 .molkobain-datacenter-view .mdv-body .mdv-controls .mhf-panel {
   width: 200px;
+  font-size: 0.8rem;
 }
 .molkobain-datacenter-view .mdv-body .mdv-controls .mhf-panel .mhf-p-body {
   padding: 0.6rem;
@@ -57,7 +59,6 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: 0.8rem;
 }
 .molkobain-datacenter-view .mdv-body .mdv-controls .mdv-legend ul li {
   padding-bottom: 0.3rem;
@@ -99,6 +100,25 @@
 }
 .molkobain-datacenter-view .mdv-body .mdv-controls .mdv-legend ul li:last-of-type {
   padding-bottom: 0;
+}
+.molkobain-datacenter-view .mdv-body .mdv-controls .mdv-filter .mdv-filter-description {
+  margin-bottom: 0.5rem;
+}
+.molkobain-datacenter-view .mdv-body .mdv-controls .mdv-filter .mdv-filter-container {
+  position: relative;
+}
+.molkobain-datacenter-view .mdv-body .mdv-controls .mdv-filter .mdv-filter-container .mdv-filter-input {
+  width: 100%;
+  padding: 0.35rem 0.45rem;
+  border: 1px solid #C2C2C2;
+  border-radius: 3px;
+}
+.molkobain-datacenter-view .mdv-body .mdv-controls .mdv-filter .mdv-filter-container .mdv-filter-clear-icon {
+  position: absolute;
+  display: none;
+  top: 0.6rem;
+  right: 0.3rem;
+  cursor: pointer;
 }
 .molkobain-datacenter-view .mdv-body .mdv-controls .mdv-options ul li.mdv-of-item {
   margin-bottom: 0.6rem;

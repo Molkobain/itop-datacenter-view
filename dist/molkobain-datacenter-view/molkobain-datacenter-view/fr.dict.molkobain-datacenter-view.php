@@ -6,8 +6,25 @@
  *
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
+
+if(!isset($aMolkobainThesaurus)) $aMolkobainThesaurus = [];
+/** @var array $aMolkobainThesaurus Used to centralize from strings and use them in the dict. entries */
+$aMolkobainThesaurus = array_merge($aMolkobainThesaurus, [
+	// Datamodel
+	'Class/Attribute:nb_u' => 'Hauteur',
+	'Class/Attribute:nb_u+' => 'Hauteur %1$s en unités (U)',
+	'Class/Attribute:position_v' => 'Position',
+	'Class/Attribute:position_v+/Variant:host' => 'Position verticale (U) %1$s dans %2$s (Doit faire référence au bas %1$s et non au haut)',
+	'Class/Attribute:position_v+/Variant:device' => 'Position verticale (U) %1$s dans le châssis (ou rack si monté directement dessus). (Doit faire référence au bas %1$s et non au haut)',
+	// Fieldsets
+	'Fieldset:baseinfo' => 'Informations générales',
+	'Fieldset:moreinfo' => 'Informations complémentaires',
+	'Fieldset:otherinfo' => 'Autres informations',
+	'Fieldset:dates' => 'Dates',
+]);
+
+// Classes
 Dict::Add('FR FR', 'French', 'Français', array(
-	// Classes
 	// - LocationType
 	'Class:LocationType' => 'Type de lieu',
 	'Class:LocationType/Attribute:name' => 'Nom',
@@ -22,45 +39,52 @@ Dict::Add('FR FR', 'French', 'Français', array(
 	'Class:Location/Attribute:locations_list' => 'Lieux sous-jacents',
 	'Class:Location/Attribute:locations_list+' => 'Liste des lieux inclus dans celui-ci',
 	// - PhysicalDevice (default entries for custom classes)
-	'Class:PhysicalDevice/Attribute:nb_u' => 'Hauteur',
-	'Class:PhysicalDevice/Attribute:nb_u+' => 'Hauteur du matériel en unités (U)',
-	'Class:PhysicalDevice/Attribute:position_v' => 'Position',
-	'Class:PhysicalDevice/Attribute:position_v+' => 'Position verticale (U) du matériel dans le châssis (ou rack si monté directement dessus). Doit faire référence au bas du matériel et non au haut.',
+	'Class:PhysicalDevice/Attribute:nb_u' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u']),
+	'Class:PhysicalDevice/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'du matériel'),
+	'Class:PhysicalDevice/Attribute:position_v' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v']),
+	// Note: Physical device can be either an host (eg. enclosure) or a device (eg. server), so we use a generic sentence
+	'Class:PhysicalDevice/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:host'], 'du matériel', 'son hôte'),
 	// - Rack
-	'Class:Rack/Attribute:nb_u' => 'Hauteur',
-	'Class:Rack/Attribute:nb_u+' => 'Hauteur du rack en unités (U)',
+	'Class:Rack/Attribute:nb_u' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u']),
+	'Class:Rack/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'du rack'),
 	// - Enclosure
-	'Class:Enclosure/Attribute:nb_u' => 'Hauteur',
-	'Class:Enclosure/Attribute:nb_u+' => 'Hauteur du châssis en unités (U)',
-	'Class:Enclosure/Attribute:position_v' => 'Position',
-	'Class:Enclosure/Attribute:position_v+' => 'Position verticale (U) du châssis dans le rack (Doit faire référence au bas du châssis et non au haut)',
-	'Enclosure:baseinfo' => 'Informations générales',
-	'Enclosure:moreinfo' => 'Informations complémentaires',
-	'Enclosure:dates' => 'Dates',
-	'Enclosure:otherinfo' => 'Autres informations',
+	'Class:Enclosure/Attribute:nb_u' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u']),
+	'Class:Enclosure/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'du châssis'),
+	'Class:Enclosure/Attribute:position_v' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v']),
+	'Class:Enclosure/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:host'], 'du châssis', 'le rack'),
+	'Enclosure:baseinfo' => sprintf($aMolkobainThesaurus['Fieldset:baseinfo']),
+	'Enclosure:moreinfo' => sprintf($aMolkobainThesaurus['Fieldset:moreinfo']),
+	'Enclosure:otherinfo' => sprintf($aMolkobainThesaurus['Fieldset:otherinfo']),
+	'Enclosure:dates' => sprintf($aMolkobainThesaurus['Fieldset:dates']),
 	// - Datacenter device
-	'Class:DatacenterDevice/Attribute:nb_u' => 'Hauteur',
-	'Class:DatacenterDevice/Attribute:nb_u+' => 'Hauteur du matériel en unités (U)',
-	'Class:DatacenterDevice/Attribute:position_v' => 'Position',
-	'Class:DatacenterDevice/Attribute:position_v+' => 'Position verticale (U) du matériel dans le châssis (ou rack si monté directement dessus). Doit faire référence au bas du matériel et non au haut.',
+	'Class:DatacenterDevice/Attribute:nb_u' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u']),
+	'Class:DatacenterDevice/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'du matériel'),
+	'Class:DatacenterDevice/Attribute:position_v' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v']),
+	'Class:DatacenterDevice/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:device'], 'du matériel'),
 	// - PDU
-	'Class:PDU/Attribute:nb_u' => 'Hauteur',
-	'Class:PDU/Attribute:nb_u+' => 'Hauteur du PDU en unités (U)',
-	'Class:PDU/Attribute:position_v' => 'Position',
-	'Class:PDU/Attribute:position_v+' => 'Position verticale (U) du PDU dans le châssis (ou rack si monté directement dessus). Doit faire référence au bas du PDU et non au haut.',
+	'Class:PDU/Attribute:nb_u' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u']),
+	'Class:PDU/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'du PDU'),
+	'Class:PDU/Attribute:position_v' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v']),
+	'Class:PDU/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:device'], 'du PDU'),
+));
 
-	// UI
+// UI
+Dict::Add('FR FR', 'French', 'Français', array(
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Représentation graphique',
 	'Molkobain:DatacenterView:NoElement' => 'Aucun élément',
 	// - Legend
 	'Molkobain:DatacenterView:Legend:Title' => 'Légende',
+	// - Filter
+	'Molkobain:DatacenterView:Filter:Title' => 'Filtrer',
+	'Molkobain:DatacenterView:Filter:Description' => 'Trouver corresp. de noms ou numéros de série / asset',
+	'Molkobain:DatacenterView:Filter:Input:Placeholder' => 'ex: PDU, SSD, 1234, ...',
 	// - Options
 	'Molkobain:DatacenterView:Options:Title' => 'Options',
 	'Molkobain:DatacenterView:Options:Option:ShowObsolete' => 'Afficher élém. obsolètes',
 	'Molkobain:DatacenterView:Options:Option:ShowObsolete+' => 'Modifier l\'option ne prendra le pas sur les préférences utilisateurs que pour cet élément',
 	// - Tooltip
-	'Molkobain:DatacenterView:Element:Tooltip:Fieldset:base-info' => 'Informations générales',
-	'Molkobain:DatacenterView:Element:Tooltip:Fieldset:more-info' => 'Informations complémentaires',
+	'Molkobain:DatacenterView:Element:Tooltip:Fieldset:base-info' => sprintf($aMolkobainThesaurus['Fieldset:baseinfo']),
+	'Molkobain:DatacenterView:Element:Tooltip:Fieldset:more-info' => sprintf($aMolkobainThesaurus['Fieldset:moreinfo']),
 	// - Rack
 	'Molkobain:DatacenterView:Rack:Panel:Front:Title' => 'Avant',
 	// - Enclosure

@@ -5,13 +5,9 @@
 	<author><![CDATA[Guillaume Lajarige]]></author>
 	<label><![CDATA[Datacenter view]]></label>
 	<description><![CDATA[Visual representation of racks, enclosures & devices]]></description>
-	<version>1.6.0</version>
-	<release_date>2020-06-03</release_date>
-	<version_description><![CDATA[* Add "Location Type" typology and basic hierarchy to the "Location" class
-* Update dependencies to include their fixes
-* Rework the "Enclosure" presentation
-* Fix elements' plate overflow in some corner cases
-* Update translations]]></version_description>
+	<version>1.7.0</version>
+	<release_date>2020-06-14</release_date>
+	<version_description><![CDATA[Add filter panel to highlight devices based on their name / serial number / asset number]]></version_description>
 	<itop_version_min>2.4.0</itop_version_min>
 	<status>stable</status>
 	<mandatory>false</mandatory>

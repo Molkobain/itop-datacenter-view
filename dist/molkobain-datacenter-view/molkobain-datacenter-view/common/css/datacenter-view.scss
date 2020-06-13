@@ -38,6 +38,7 @@
 		.mdv-controls{
 			.mhf-panel{
 				width: 200px;
+				font-size: 0.8rem;
 
 				.mhf-p-body{
 					padding: 0.6rem;
@@ -46,7 +47,6 @@
 						margin: 0;
 						padding: 0;
 						list-style: none;
-						font-size: 0.8rem;
 					}
 				}
 			}
@@ -94,6 +94,28 @@
 						&:last-of-type{
 							padding-bottom: 0;
 						}
+					}
+				}
+			}
+			.mdv-filter{
+				.mdv-filter-description{
+					margin-bottom: 0.5rem;
+				}
+				.mdv-filter-container{
+					position: relative;
+
+					.mdv-filter-input{
+						width: 100%;
+						padding: 0.35rem 0.45rem;
+						border: 1px solid $filter-input-border-color;
+						border-radius: $filter-input-border-radius;
+					}
+					.mdv-filter-clear-icon{
+						position: absolute;
+						display: none;
+						top: 0.6rem;
+						right: 0.3rem;
+						cursor: pointer;
 					}
 				}
 			}

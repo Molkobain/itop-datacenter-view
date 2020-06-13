@@ -10,7 +10,7 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'molkobain-datacenter-view/1.6.0', array(
+	'molkobain-datacenter-view/1.7.0', array(
         // Identification
         'label' => 'Datacenter view (racks visual representation)',
         'category' => 'business',
