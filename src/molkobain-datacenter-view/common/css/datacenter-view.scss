@@ -106,13 +106,15 @@
 
 					.mdv-filter-input{
 						width: 100%;
-						padding: 0.2rem 0.35rem;
+						padding: 0.35rem 0.45rem;
+						border: 1px solid $filter-input-border-color;
+						border-radius: $filter-input-border-radius;
 					}
 					.mdv-filter-clear-icon{
 						position: absolute;
 						display: none;
-						top: 0.5rem;
-						right: 0.25rem;
+						top: 0.6rem;
+						right: 0.3rem;
 						cursor: pointer;
 					}
 				}

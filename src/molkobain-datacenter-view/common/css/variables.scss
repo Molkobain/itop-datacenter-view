@@ -8,46 +8,50 @@
 
 /* Variables */
 /* - Helpers */
-$box-shadow-small: 0 1px 1px rgba(0, 0, 0, 0.15);
+$box-shadow-small: 0 1px 1px rgba(0, 0, 0, 0.15) !default;
+
+/* - Filter */
+$filter-input-border-color: #C2C2C2 !default;
+$filter-input-border-radius: 3px !default;
 
 /* - Unmounted container */
-$unmounted-container-bg-color: #ffffff;
-$unmounted-spot-bg-color: #d85656;
-$unmounted-spot-color: #ffffff;
-$unmounted-spot-width: 15px;
+$unmounted-container-bg-color: #ffffff !default;
+$unmounted-spot-bg-color: #d85656 !default;
+$unmounted-spot-color: #ffffff !default;
+$unmounted-spot-width: 15px !default;
 /* - Rack panel */
-$rack-panel-outer-border-color: #c5c5c5;
-$rack-panel-outer-border: 1px solid $rack-panel-outer-border-color;
+$rack-panel-outer-border-color: #c5c5c5 !default;
+$rack-panel-outer-border: 1px solid $rack-panel-outer-border-color !default;
 /* - Rack unit */
-$rack-unit-number-width: 1.8rem;
+$rack-unit-number-width: 1.8rem !default;
 /* - Rack unit slot */
-$rack-unit-slot-width: 217px;
-$rack-unit-slot-height: 18px;
-$rack-unit-slot-bg-color: #ffffff;
-$rack-unit-slot-separator-color: #eaeaea;
+$rack-unit-slot-width: 217px !default;
+$rack-unit-slot-height: 18px !default;
+$rack-unit-slot-bg-color: #ffffff !default;
+$rack-unit-slot-separator-color: #eaeaea !default;
 /* - Element */
-$element-note-max-width: 6.5rem;
+$element-note-max-width: 6.5rem !default;
 /* - Enclosure */
-$enclosure-color: #939393;
-$enclosure-bg-color: #eaeaea;
-$enclosure-sidebar-bg-color-mounted: #83a967;
-$enclosure-sidebar-bg-color-unmounted: #da5757;
+$enclosure-color: #939393 !default;
+$enclosure-bg-color: #eaeaea !default;
+$enclosure-sidebar-bg-color-mounted: #83a967 !default;
+$enclosure-sidebar-bg-color-unmounted: #da5757 !default;
 /* - Enclosure unit slot */
-$enclosure-unit-slot-separator-color: #d9d9d9;
+$enclosure-unit-slot-separator-color: #d9d9d9 !default;
 /* - Device */
-$device-color: #ffffff;
+$device-color: #ffffff !default;
 
 /* - Tooltip */
-$tooltip-indicator-color: #434343;
-$tooltip-list-label-width: 7.5rem;
+$tooltip-indicator-color: #434343 !default;
+$tooltip-list-label-width: 7.5rem !default;
 
 /* - Object classes */
-$obj-class-default-bg-color: #8db46e;
-$obj-class-enclosure-bg-color: #eaeaea;
-$obj-class-server-bg-color: #3f627e;
-$obj-class-networkdevice-bg-color: #c85454;
-$obj-class-sanswitch-bg-color: lightsalmon;
-$obj-class-nas-bg-color: #80b469;
-$obj-class-storagesystem-bg-color: #eb913b;
-$obj-class-tapelibrary-bg-color: #7da9bc;
-$obj-class-pdu-bg-color: #c85454;
+$obj-class-default-bg-color: #8db46e !default;
+$obj-class-enclosure-bg-color: #eaeaea !default;
+$obj-class-server-bg-color: #3f627e !default;
+$obj-class-networkdevice-bg-color: #c85454 !default;
+$obj-class-sanswitch-bg-color: lightsalmon !default;
+$obj-class-nas-bg-color: #80b469 !default;
+$obj-class-storagesystem-bg-color: #eb913b !default;
+$obj-class-tapelibrary-bg-color: #7da9bc !default;
+$obj-class-pdu-bg-color: #c85454 !default;
