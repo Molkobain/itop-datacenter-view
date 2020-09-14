@@ -75,6 +75,9 @@
 						&[data-class="NetworkDevice"]::before{
 							background-color: $obj-class-networkdevice-bg-color;
 						}
+						&[data-class="GenericCommDevice"]::before{
+							background-color: $obj-class-networkdevice-bg-color;
+						}
 						&[data-class="SANSwitch"]::before{
 							background-color: $obj-class-sanswitch-bg-color;
 						}
@@ -322,6 +325,9 @@
 				background-color: $obj-class-server-bg-color;
 			}
 			&[data-class="NetworkDevice"]{
+				background-color: $obj-class-networkdevice-bg-color;
+			}
+			&[data-class="GenericCommDevice"]{
 				background-color: $obj-class-networkdevice-bg-color;
 			}
 			&[data-class="SANSwitch"]{
