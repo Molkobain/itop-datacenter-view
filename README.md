@@ -135,15 +135,22 @@ Manage devices with non standard size / positioning such as USB drives, vertical
 #### Misc. options
 * Us order: Reverse Us order per rack / enclosure to fit your set-up
 * Enclosure layout: Either display enclosure's elements or just the number of elements in it
+* Custom colors: Change the colors of each element types in the configuration editor
 
 ## Online demo
 You can try this extension on the online demo. There are already some racks, enclosures and devices mounted as an example. Just click on the links below to access it:
 * [Administration console](http://mbc.itop.molkobain.com/pages/UI.php?operation=details&class=Rack&id=15&c[menu]=SearchCIs&auth_user=admin&auth_pwd=admin#tabbedContent_0=8) (admin / admin)
 
 ## Compatibility
+### iTop versions
 Compatible with iTop 2.4+
 
-_Note: For people using both **Datacenter View Extended** and the great [TeemIP](https://www.teemip.net/) extension, you should consider using the [Datacenter view extended ❤ IPAM for iTop](https://github.com/Molkobain/itop-datacenter-view-extended-bridge-for-teemip) bridge for optimal integration._
+### Other extensions
+* **TeemIP** by @xtophe38:\
+For people using both **Datacenter View Extended** and the great [TeemIP](https://www.teemip.net/) extension, you should consider using the [Datacenter view extended ❤ IPAM for iTop](https://github.com/Molkobain/itop-datacenter-view-extended-bridge-for-teemip) bridge for optimal integration.
+
+* **Generic Connection Devices and Interfaces** by @Schirrms:\
+ For people using both this extension and the great [Generic Connection Devices and Interfaces](https://github.com/Schirrms/iTop-Generic-Connection) extension, you shoud consider using the [iTop-Generic-Connection-To-Datacenter-View](https://github.com/Schirrms/iTop-Generic-Connection-To-Datacenter-View) bridge for optimal integration.
 
 ## Dependencies
 * Module `molkobain-handy-framework`
