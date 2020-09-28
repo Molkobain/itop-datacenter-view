@@ -150,7 +150,7 @@ Compatible with iTop 2.4+
 For people using both **Datacenter View Extended** and the great [TeemIP](https://www.teemip.net/) extension, you should consider using the [Datacenter view extended ❤ IPAM for iTop](https://github.com/Molkobain/itop-datacenter-view-extended-bridge-for-teemip) bridge for optimal integration.
 
 * **Generic Connection Devices and Interfaces** by @Schirrms:\
- For people using both this extension and the great [Generic Connection Devices and Interfaces](https://github.com/Schirrms/iTop-Generic-Connection) extension, you shoud consider using the [iTop-Generic-Connection-To-Datacenter-View](https://github.com/Schirrms/iTop-Generic-Connection-To-Datacenter-View) bridge for optimal integration.
+ For people using both this extension and the great [Generic Connection Devices and Interfaces](https://github.com/Schirrms/iTop-Generic-Connection) extension, you should consider using the [iTop-Generic-Connection-To-Datacenter-View](https://github.com/Schirrms/iTop-Generic-Connection-To-Datacenter-View) bridge for optimal integration.
 
 ## Dependencies
 * Module `molkobain-handy-framework`
