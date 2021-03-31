@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.8.0] - 2021-03-31
+### Added
+- Add german translations thanks to viwedis GmbH!
+
 ## [1.7.0] - 2020-06-14
 ### Added
 - Add filter panel to highlight devices based on their name / serial number / asset number
@@ -90,7 +94,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.7.0...HEAD
+[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.8.0...HEAD
+[1.8.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.8.0
 [1.7.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.7.0
 [1.6.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.6.0
 [1.5.6]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.5.6

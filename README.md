@@ -229,11 +229,18 @@ Save the object and go back to the *rack*. The *server* will now appear in the *
 _Under construction_
 
 ## Contributors
-I would like to give a special thank you to the people who contributed to this:
+I would like to give a special thank you to the people who contributed to this
+
+### Names
  - Bostoen, Jeffrey a.k.a @jbostoen
  - Makhlouf, Hadi
+   
+### Aliases
  - @danama
  - @Schirrms
+
+### Companies
+ - viwedis GmbH
 
 ## Licensing
 This extension is under [AGPLv3](https://en.wikipedia.org/wiki/GNU_Affero_General_Public_License).
