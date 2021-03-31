@@ -5,9 +5,9 @@
 	<author><![CDATA[Guillaume Lajarige]]></author>
 	<label><![CDATA[Datacenter view]]></label>
 	<description><![CDATA[Visual representation of racks, enclosures & devices]]></description>
-	<version>1.7.0</version>
-	<release_date>2020-06-14</release_date>
-	<version_description><![CDATA[Add filter panel to highlight devices based on their name / serial number / asset number]]></version_description>
+	<version>1.8.0</version>
+	<release_date>2021-03-31</release_date>
+	<version_description><![CDATA[Add german translations thanks to viwedis GmbH!]]></version_description>
 	<itop_version_min>2.4.0</itop_version_min>
 	<status>stable</status>
 	<mandatory>false</mandatory>
