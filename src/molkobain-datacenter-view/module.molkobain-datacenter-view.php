@@ -97,7 +97,7 @@ if (!class_exists('DatacenterViewInstaller'))
 		{
 			if (version_compare($sPreviousVersion, '1.6.0', '<'))
 			{
-				SetupPage::log_info("|- Upgrading molkobain-datacenter-view from '$sPreviousVersion' to '$sCurrentVersion'. From v1.6.0, the extension brings the LocationType typology to better document Location objects. This adds some basic LocationTypes to bootstrap the user.");
+				SetupLog::Info("|- Upgrading molkobain-datacenter-view from '$sPreviousVersion' to '$sCurrentVersion'. From v1.6.0, the extension brings the LocationType typology to better document Location objects. This adds some basic LocationTypes to bootstrap the user.");
 
 				$aLTNames = array(
 					'Building',
@@ -109,7 +109,7 @@ if (!class_exists('DatacenterViewInstaller'))
 					$oLT = MetaModel::NewObject('LocationType');
 					$oLT->Set('name', $sLTName);
 					$oLT->DBWrite();
-					SetupPage::log_info("|  |- LocationType '$sLTName' created.");
+					SetupLog::Info("|  |- LocationType '$sLTName' created.");
 				}
 			}
 		}
