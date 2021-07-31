@@ -240,7 +240,7 @@ I would like to give a special thank you to the people who contributed to this
  - @Schirrms
 
 ### Companies
- - viwedis GmbH
+ - [viwedis GmbH](https://www.viwedis.de/)
 
 ## Licensing
 This extension is under [AGPLv3](https://en.wikipedia.org/wiki/GNU_Affero_General_Public_License).
