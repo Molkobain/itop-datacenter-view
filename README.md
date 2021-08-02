@@ -232,7 +232,8 @@ _Under construction_
 I would like to give a special thank you to the people who contributed to this
 
 ### Names
- - Bostoen, Jeffrey a.k.a @jbostoen
+ - Abello, Stephen  a.k.a [@steffunky](https://github.com/steffunky)
+ - Bostoen, Jeffrey a.k.a [@jbostoen](https://github.com/jbostoen)
  - Makhlouf, Hadi
    
 ### Aliases
