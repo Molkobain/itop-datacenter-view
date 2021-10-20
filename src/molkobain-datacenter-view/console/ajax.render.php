@@ -8,21 +8,24 @@
  */
 
 use Molkobain\iTop\Extension\DatacenterView\Common\DatacenterViewFactory;
+use Molkobain\iTop\Extension\DatacenterView\Common\Helper\ConfigHelper;
 
 /** @noinspection UsingInclusionOnceReturnValueInspection */
 @include_once '../approot.inc.php';
 @include_once '../../approot.inc.php';
 @include_once '../../../approot.inc.php';
-require_once APPROOT.'application/application.inc.php';
-require_once APPROOT.'application/webpage.class.inc.php';
-require_once APPROOT.'application/ajaxwebpage.class.inc.php';
 
 try
 {
+	require_once APPROOT.'application/application.inc.php';
 	require_once APPROOT.'/application/startup.inc.php';
+	if (ConfigHelper::IsRunningiTop30OrNewer() === false) {
+		require_once APPROOT.'application/webpage.class.inc.php';
+		require_once APPROOT.'application/ajaxwebpage.class.inc.php';
+		require_once APPROOT.'application/loginwebpage.class.inc.php';
+	}
 	require_once APPROOT.'/application/user.preferences.class.inc.php';
 
-	require_once APPROOT.'/application/loginwebpage.class.inc.php';
 	LoginWebPage::DoLoginEx('backoffice', false);
 
 	$oPage = new ajax_page("");
