@@ -386,6 +386,7 @@ EOF
 			'endpoint' => $this->GetEndpoint(),
 			'legend' => $this->GetLegendData($aObjectData),
 			'dict' => $this->GetDictEntries(),
+			'use_legacy_tooltips' => (ConfigHelper::IsRunningiTop30OrNewer() === false),
 		);
 
 		return ($bAsJSON) ? json_encode($aData) : $aData;
