@@ -29,7 +29,6 @@
   /* Reset for admin console mostly */
   box-sizing: border-box;
   min-width: 600px;
-  background-color: #eeeeee;
 }
 .molkobain-datacenter-view * {
   box-sizing: border-box;
@@ -37,7 +36,6 @@
 .molkobain-datacenter-view *::before, .molkobain-datacenter-view *::after {
   box-sizing: border-box;
   /* Fail-safe against very narrow pages */
-  /* Not in /css/css-variables.scss */
 }
 .molkobain-datacenter-view .mdv-header:not(:empty) {
   margin-bottom: 20px;

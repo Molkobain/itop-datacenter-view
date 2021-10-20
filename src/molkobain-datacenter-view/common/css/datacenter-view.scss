@@ -22,7 +22,6 @@
 
 	/* Fail-safe against very narrow pages */
 	min-width: 600px;
-	background-color: #eeeeee; /* Not in /css/css-variables.scss */
 
 	.mdv-header{
 		&:not(:empty){
