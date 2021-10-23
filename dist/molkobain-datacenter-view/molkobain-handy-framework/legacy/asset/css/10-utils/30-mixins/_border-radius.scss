@@ -1,0 +1,24 @@
+/*!
+ * Copyright (c) 2015 - 2020 Molkobain.
+ *
+ * This file is part of licensed extension.
+ *
+ * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
+ */
+
+/* Border radius */
+@mixin border-radius-300{
+	border-radius: 3px;
+}
+@mixin border-radius-400{
+	border-radius: 4px;
+}
+@mixin border-radius-500{
+	border-radius: 5px;
+}
+@mixin border-radius-600{
+	border-radius: 8px;
+}
+@mixin border-radius-full{
+	border-radius: 100%;
+}

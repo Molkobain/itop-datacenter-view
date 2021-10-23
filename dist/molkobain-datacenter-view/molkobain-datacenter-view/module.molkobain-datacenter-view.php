@@ -10,7 +10,7 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'molkobain-datacenter-view/1.8.0', array(
+	'molkobain-datacenter-view/1.9.0', array(
         // Identification
         'label' => 'Datacenter view (racks visual representation)',
         'category' => 'business',
@@ -18,7 +18,7 @@ SetupWebPage::AddModule(
         // Setup
         'dependencies' => array(
             'itop-datacenter-mgmt/2.4.0||itop-config-mgmt/2.4.0||itop-storage-mgmt/2.4.0',
-	        'molkobain-handy-framework/1.6.0',
+	        'molkobain-handy-framework/1.7.0',
 	        'molkobain-console-tooltips/1.1.1',
 	        'molkobain-newsroom-provider/1.1.0',
         ),
@@ -97,7 +97,7 @@ if (!class_exists('DatacenterViewInstaller'))
 		{
 			if (version_compare($sPreviousVersion, '1.6.0', '<'))
 			{
-				SetupPage::log_info("|- Upgrading molkobain-datacenter-view from '$sPreviousVersion' to '$sCurrentVersion'. From v1.6.0, the extension brings the LocationType typology to better document Location objects. This adds some basic LocationTypes to bootstrap the user.");
+				SetupLog::Info("|- Upgrading molkobain-datacenter-view from '$sPreviousVersion' to '$sCurrentVersion'. From v1.6.0, the extension brings the LocationType typology to better document Location objects. This adds some basic LocationTypes to bootstrap the user.");
 
 				$aLTNames = array(
 					'Building',
@@ -109,7 +109,7 @@ if (!class_exists('DatacenterViewInstaller'))
 					$oLT = MetaModel::NewObject('LocationType');
 					$oLT->Set('name', $sLTName);
 					$oLT->DBWrite();
-					SetupPage::log_info("|  |- LocationType '$sLTName' created.");
+					SetupLog::Info("|  |- LocationType '$sLTName' created.");
 				}
 			}
 		}

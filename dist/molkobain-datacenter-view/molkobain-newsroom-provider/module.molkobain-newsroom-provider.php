@@ -14,7 +14,7 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'molkobain-newsroom-provider/1.1.0',
+	'molkobain-newsroom-provider/1.3.0',
 	array(
 		// Identification
 		//
@@ -25,7 +25,7 @@ SetupWebPage::AddModule(
 		//
 		'dependencies' => array(
 			'itop-welcome-itil/2.4.0',
-			'molkobain-handy-framework/1.2.4',
+			'molkobain-handy-framework/1.5.1',
 		),
 		'mandatory' => true,
 		'visible' => true,
@@ -33,9 +33,13 @@ SetupWebPage::AddModule(
 		// Components
 		//
 		'datamodel' => array(
-			'common/confighelper.class.inc.php',
-			'core/newsroomprovider.class.inc.php',
-			'console/applicationuiextension.class.inc.php',
+			// Load extension autoloader
+			'vendor/autoload.php',
+			// Classes aliases
+			'src/Compatibility/ClassesAliases.php',
+			// Explicitly load APIs
+			'src/Core/NewsroomProvider.php',
+			'src/Extension/Hook/Console/PageUIExtension.php',
 		),
 		'webservice' => array(),
 		'data.struct' => array(// add your 'structure' definition XML files here,

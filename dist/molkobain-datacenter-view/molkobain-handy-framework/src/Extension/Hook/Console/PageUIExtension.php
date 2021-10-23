@@ -33,7 +33,22 @@ class PageUIExtension implements iPageUIExtension
 			return;
 		}
 
-		$oPage->add_saas('env-' . utils::GetCurrentEnvironment() . '/' . ConfigHelper::GetModuleCode() . '/asset/css/handy-framework.scss');
+		// Module CSS path
+		if (ConfigHelper::IsRunningiTop30OrNewer()) {
+			$sModuleCssBaseRelPath = 'env-' . utils::GetCurrentEnvironment() . '/' . ConfigHelper::GetModuleCode() . '/asset/css/';
+		} else {
+			$sModuleCssBaseRelPath = 'env-' . utils::GetCurrentEnvironment() . '/' . ConfigHelper::GetModuleCode() . '/legacy/asset/css/';
+		}
+
+		// Portal CSS path (for compilation of the global stylesheet)
+		if (ConfigHelper::IsRunningiTop27OrNewer()) {
+			$sPortalCssBaseRelPath = 'datamodels/2.x/itop-portal-base/portal/public/css/';
+		} else {
+			$sPortalCssBaseRelPath = 'datamodels/2.x/itop-portal-base/portal/web/css/';
+		}
+
+		$aScssImportPaths = array(APPROOT.$sModuleCssBaseRelPath, APPROOT.$sPortalCssBaseRelPath);
+		$oPage->add_linked_stylesheet(utils::GetAbsoluteUrlAppRoot().utils::GetCSSFromSASS($sModuleCssBaseRelPath.'handy-framework.scss', $aScssImportPaths));
 		$oPage->add_linked_script(ConfigHelper::GetAbsoluteModuleUrl() . 'asset/js/handy-framework.js');
 	}
 

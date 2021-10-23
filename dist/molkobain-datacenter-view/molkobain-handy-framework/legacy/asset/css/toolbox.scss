@@ -1,0 +1,30 @@
+/*!
+ * Copyright (c) 2015 - 2019 Molkobain.
+ *
+ * This file is part of licensed extension.
+ *
+ * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
+ */
+
+/********************************************************************************/
+/* The toolbox is meant to be used by other SCSS files to ease SCSS development */
+/********************************************************************************/
+
+/* Variables from iTop */
+/* Note: Import path of the portal will be added during call to the compiler */
+@import 'variables.scss';
+
+/* Files from the extension */
+/* Note: Import path to the module's CSS folder will be added during call to the compiler */
+@import '10-utils/10-variables/colors';
+@import '10-utils/30-mixins/border-radius';
+@import '10-utils/30-mixins/box-shadows';
+@import '10-utils/30-mixins/fonts';
+@import '10-utils/30-mixins/positionings';
+@import '10-utils/40-placeholders/box-sizings';
+
+
+
+
+
+

@@ -7,16 +7,16 @@
  */
 
 /* Positioning */
-@mixin display-flex-fully-centered {
+@mixin mhf-display-flex-fully-centered {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-@mixin display-flex-horizontally-centered {
+@mixin mhf-display-flex-horizontally-centered {
 	display: flex;
 	justify-content: center;
 }
-@mixin display-flex-vertically-centered {
+@mixin mhf-display-flex-vertically-centered {
 	display: flex;
 	align-items: center;
 }

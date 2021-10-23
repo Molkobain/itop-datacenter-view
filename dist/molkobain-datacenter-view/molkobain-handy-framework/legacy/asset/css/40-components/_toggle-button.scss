@@ -1,0 +1,117 @@
+/*!
+ * Copyright (c) 2015 - 2020 Molkobain.
+ *
+ * This file is part of licensed extension.
+ *
+ * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
+ */
+
+/* Toggle buttons: Inspired by Mauricio Allende @ https://codepen.io/mallendeo/pen/eLIiG */
+
+/* Variables */
+$toggle-button-off-bg-color: #eaeaea !default;
+$toggle-button-on-bg-color: $brand-primary !default;
+$toggle-button-switch-bg-color: #ffffff !default;
+
+/* Classes */
+.mhf-toggle-button{
+	@extend %mhf-reset-box-sizing;
+
+	font-size: 12pt;
+
+	.mhf-tb-input{
+		display: none;
+
+		+ .mhf-tb-button {
+			outline: 0;
+			display: inline-block;
+			vertical-align: middle;
+			width: 1.8rem;
+			height: 1.0rem;
+			position: relative;
+			cursor: pointer;
+			user-select: none;
+			&::after,
+			&::before {
+				position: relative;
+				display: block;
+				content: "";
+				width: 50%;
+				height: 100%;
+			}
+
+			&::after {
+				left: 0;
+			}
+
+			&::before {
+				display: none;
+			}
+		}
+
+		&:checked + .mhf-tb-button::after {
+			left: 50%;
+		}
+	}
+
+	/* Themes */
+	/* - Flat */
+	&.mhf-tb-flat{
+		.mhf-tb-input{
+			+ .mhf-tb-button{
+				padding: 2px;
+				border-radius: 2rem;
+				background-color: $toggle-button-off-bg-color;
+				box-shadow: inset 0 1px 1px 0px rgba(0, 0, 0, 0.15);
+				transition: all .4s ease;
+
+				&::after {
+					border-radius: 50%;
+					background-color: $toggle-button-switch-bg-color;
+					box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.12);
+					transition: all .2s ease;
+				}
+			}
+			&:checked + .mhf-tb-button {
+				background-color: $toggle-button-on-bg-color;
+			}
+			&:disabled + .mhf-tb-button {
+				background-color: darken($toggle-button-off-bg-color, 10%);
+
+				&::after{
+					background-color: darken($toggle-button-switch-bg-color, 10%);
+				}
+			}
+		}
+
+		&:hover,
+		&:focus{
+			.mhf-tb-input{
+				+ .mhf-tb-button{
+					background-color: darken($toggle-button-off-bg-color, 8%);
+				}
+				&:checked + .mhf-tb-button{
+					background-color: darken($toggle-button-on-bg-color, 8%);
+				}
+			}
+		}
+		&:active{
+			.mhf-tb-input{
+				+ .mhf-tb-button{
+					background-color: darken($toggle-button-off-bg-color, 15%);
+				}
+				&:checked + .mhf-tb-button{
+					background-color: darken($toggle-button-on-bg-color, 15%);
+				}
+			}
+		}
+	}
+}
+.mhf-toggle-button.mhf-pull-left,
+.mhf-toggle-button.mhf-pull-right,
+.mhf-pull-left .mhf-toggle-button,
+.mhf-pull-right .mhf-toggle-button{
+	.mhf-tb-button{
+		vertical-align: initial; /* Reset vertical alignment if floated */
+	}
+}

@@ -1,0 +1,32 @@
+/*!
+ * Copyright (c) 2015 - 2020 Molkobain.
+ *
+ * This file is part of licensed extension.
+ *
+ * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
+ */
+
+/* Helpers */
+.mhf-pull-left{
+	float: left;
+
+	&::after{
+		clear: both;
+	}
+}
+.mhf-pull-right{
+	float: right;
+
+	&::after{
+		clear: both;
+	}
+}
+.mhf-hide{
+	display: none !important;
+}
+
+/* Templates: HTML markup to be cloned for creating elements, always hidden */
+.mhf-templates{
+	@extend %mhf-reset-box-sizing;
+	display: none;
+}

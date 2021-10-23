@@ -1,0 +1,21 @@
+/*!
+ * Copyright (c) 2015 - 2020 Molkobain.
+ *
+ * This file is part of licensed extension.
+ *
+ * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
+ */
+
+/* Can't put a global CSS class to reset stuff as classes will be used here and there by extensions, so we use this injection */
+/* Note: Reset for admin console mostly */
+%mhf-reset-box-sizing{
+	box-sizing: border-box;
+	*{
+		box-sizing: border-box;
+
+		&::before,
+		&::after{
+			box-sizing: border-box;
+		}
+	}
+}

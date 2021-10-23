@@ -10,14 +10,15 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'molkobain-console-tooltips/1.1.2', array(
+	'molkobain-console-tooltips/1.3.0', array(
 	// Identification
 	'label' => 'Attributes description tooltip',
 		'category' => 'ui',
 	// Setup
 	'dependencies' => array(
-		'molkobain-handy-framework/1.2.4',
+		'molkobain-handy-framework/1.7.0',
 		'molkobain-newsroom-provider/1.0.1',
+		'molkobain-fontawesome5-pack/1.3.0',
 	),
 	'mandatory' => false,
 	'visible' => true,

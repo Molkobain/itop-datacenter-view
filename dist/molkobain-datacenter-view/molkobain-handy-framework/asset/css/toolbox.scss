@@ -11,16 +11,18 @@
 /********************************************************************************/
 
 /* Variables from iTop */
-@import '../datamodels/2.x/itop-portal-base/portal/web/css/variables.scss';
-@import '../datamodels/2.x/itop-portal-base/portal/public/css/variables.scss';
+/* Note: Import path of the portal will be added during call to the compiler */
+@import 'variables.scss';
 
 /* Files from the extension */
-@import '../env-production/molkobain-handy-framework/asset/css/10-utils/10-variables/colors';
-@import '../env-production/molkobain-handy-framework/asset/css/10-utils/30-mixins/border-radius';
-@import '../env-production/molkobain-handy-framework/asset/css/10-utils/30-mixins/box-shadows';
-@import '../env-production/molkobain-handy-framework/asset/css/10-utils/30-mixins/fonts';
-@import '../env-production/molkobain-handy-framework/asset/css/10-utils/30-mixins/positionings';
-@import '../env-production/molkobain-handy-framework/asset/css/10-utils/40-placeholders/box-sizings';
+/* Note: Import path to the module's CSS folder will be added during call to the compiler */
+@import '10-utils/10-variables/colors';
+@import '10-utils/10-variables/fonts';
+@import '10-utils/30-mixins/border-radius';
+@import '10-utils/30-mixins/box-shadows';
+@import '10-utils/30-mixins/fonts';
+@import '10-utils/30-mixins/positionings';
+@import '10-utils/40-placeholders/box-sizings';
 
 
 

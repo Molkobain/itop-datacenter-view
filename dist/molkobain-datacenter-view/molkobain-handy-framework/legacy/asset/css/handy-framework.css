@@ -1,0 +1,511 @@
+/*
+ * Copyright (c) 2015 - 2021 Molkobain.
+ *
+ * This file is part of licensed extension.
+ *
+ * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
+ */
+
+/* Note: Import path to the module's CSS folder will be added during call to the compiler */
+/********************************************************************************/
+/* The toolbox is meant to be used by other SCSS files to ease SCSS development */
+/********************************************************************************/
+/* Variables from iTop */
+/* Note: Import path of the portal will be added during call to the compiler */
+/* Files from the extension */
+/* Note: Import path to the module's CSS folder will be added during call to the compiler */
+/**************************************************************************/
+/* Colors come from the great TailWind website                            */
+/* https://tailwindcss.com/docs/customizing-colors/#default-color-palette */
+/**************************************************************************/
+/* White */
+/* Grey */
+/* Red */
+/* Orange */
+/* Green */
+/* Blue grey */
+/* Blue */
+/* Cyan */
+/* Purple */
+/* Border radius */
+/* Box shadows */
+/* Note: Variables are deprecated and will be removed soon, use mixins instead */
+/* Open Sans Medium */
+/* Open Sans Bold */
+/* Open Sans Italic */
+/* Positioning */
+/* Can't put a global CSS class to reset stuff as classes will be used here and there by extensions, so we use this injection */
+/* Note: Reset for admin console mostly */
+.mhf-templates, .mhf-button, .mhf-loader, .mhf-panel, .mhf-toggle-button, .mhf-tooltip {
+  box-sizing: border-box;
+}
+.mhf-templates *, .mhf-button *, .mhf-loader *, .mhf-panel *, .mhf-toggle-button *, .mhf-tooltip * {
+  box-sizing: border-box;
+}
+.mhf-templates *::before, .mhf-button *::before, .mhf-loader *::before, .mhf-panel *::before, .mhf-toggle-button *::before, .mhf-tooltip *::before, .mhf-templates *::after, .mhf-button *::after, .mhf-loader *::after, .mhf-panel *::after, .mhf-toggle-button *::after, .mhf-tooltip *::after {
+  box-sizing: border-box;
+}
+/* Helpers */
+.mhf-pull-left {
+  float: left;
+}
+.mhf-pull-left::after {
+  clear: both;
+}
+.mhf-pull-right {
+  float: right;
+}
+.mhf-pull-right::after {
+  clear: both;
+}
+.mhf-hide {
+  display: none !important;
+}
+/* Templates: HTML markup to be cloned for creating elements, always hidden */
+.mhf-templates {
+  display: none;
+}
+/* Buttons */
+/* Variables */
+/* Mixins */
+/* Classes */
+.mhf-button {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  transition-property: color, background-color;
+  transition-duration: 0.1s;
+  transition-timing-function: linear;
+}
+.mhf-button:active {
+  outline: none;
+}
+.mhf-button[disabled] {
+  cursor: not-allowed;
+}
+.mhf-button.mhf-button-simple {
+  min-width: 2.5rem;
+}
+.mhf-button.mhf-button-outline {
+  font-weight: bold;
+}
+.mhf-button.mhf-button-text {
+  font-weight: bold;
+}
+.mhf-button .mhf-button-icon {
+  margin-right: 0.6rem;
+}
+.mhf-button.mhf-button-simple {
+  /* Default style is put in the base button type selector... */
+  color: white;
+  background-color: #546e7a;
+  border-color: #546e7a;
+}
+.mhf-button.mhf-button-simple:hover {
+  background-color: #37474f;
+  border-color: #37474f;
+}
+.mhf-button.mhf-button-simple:active {
+  background-color: #37474f;
+  border-color: #37474f;
+}
+.mhf-button.mhf-button-simple.mhf-button-primary {
+  /* .. only specific styles have a dedicated class selector */
+  color: white;
+  background-color: #EA7D1E;
+  border-color: #EA7D1E;
+}
+.mhf-button.mhf-button-simple.mhf-button-primary:hover {
+  background-color: #da7014;
+  border-color: #da7014;
+}
+.mhf-button.mhf-button-simple.mhf-button-primary:active {
+  background-color: #cc6913;
+  border-color: #cc6913;
+}
+.mhf-button.mhf-button-simple.mhf-button-success {
+  /* .. only specific styles have a dedicated class selector */
+  color: white;
+  background-color: #689f38;
+  border-color: #689f38;
+}
+.mhf-button.mhf-button-simple.mhf-button-success:hover {
+  background-color: #558b2f;
+  border-color: #558b2f;
+}
+.mhf-button.mhf-button-simple.mhf-button-success:active {
+  background-color: #558b2f;
+  border-color: #558b2f;
+}
+.mhf-button.mhf-button-simple.mhf-button-warning {
+  /* .. only specific styles have a dedicated class selector */
+  color: white;
+  background-color: #f6ad55;
+  border-color: #f6ad55;
+}
+.mhf-button.mhf-button-simple.mhf-button-warning:hover {
+  background-color: #dd6b20;
+  border-color: #dd6b20;
+}
+.mhf-button.mhf-button-simple.mhf-button-warning:active {
+  background-color: #dd6b20;
+  border-color: #dd6b20;
+}
+.mhf-button.mhf-button-simple.mhf-button-danger {
+  /* .. only specific styles have a dedicated class selector */
+  color: white;
+  background-color: #c53030;
+  border-color: #c53030;
+}
+.mhf-button.mhf-button-simple.mhf-button-danger:hover {
+  background-color: #9b2c2c;
+  border-color: #9b2c2c;
+}
+.mhf-button.mhf-button-simple.mhf-button-danger:active {
+  background-color: #9b2c2c;
+  border-color: #9b2c2c;
+}
+.mhf-button.mhf-button-simple[disabled] {
+  /* .. disabled button is a particular style... */
+  color: #929fb1;
+  background-color: #e1e7ec;
+  border-color: #e1e7ec;
+}
+.mhf-button.mhf-button-simple[disabled]:active {
+  background-color: #e1e7ec;
+  border-color: #e1e7ec;
+}
+.mhf-button.mhf-button-simple[disabled]:hover {
+  background-color: #e1e7ec;
+  border-color: #e1e7ec;
+}
+.mhf-button.mhf-button-outline {
+  /* Default style is put in the base button type selector... */
+  background-color: white;
+  color: #37474f;
+  border-color: #37474f;
+}
+.mhf-button.mhf-button-outline:hover {
+  background-color: #f8f9fa;
+}
+.mhf-button.mhf-button-outline:active {
+  background-color: #eff1f4;
+}
+.mhf-button.mhf-button-outline.mhf-button-primary {
+  /* .. only specific styles have a dedicated class selector */
+  color: #EA7D1E;
+  border-color: #EA7D1E;
+}
+.mhf-button.mhf-button-outline.mhf-button-success {
+  /* .. only specific styles have a dedicated class selector */
+  color: #558b2f;
+  border-color: #558b2f;
+}
+.mhf-button.mhf-button-outline.mhf-button-warning {
+  /* .. only specific styles have a dedicated class selector */
+  color: #dd6b20;
+  border-color: #dd6b20;
+}
+.mhf-button.mhf-button-outline.mhf-button-danger {
+  /* .. only specific styles have a dedicated class selector */
+  color: #c53030;
+  border-color: #c53030;
+}
+.mhf-button.mhf-button-outline.mhf-button-hyperlink {
+  /* .. only specific styles have a dedicated class selector */
+  color: #4299e1;
+  border-color: #4299e1;
+}
+.mhf-button.mhf-button-outline[disabled] {
+  /* .. disabled button is a particular style... */
+  color: #929fb1;
+  border-color: #929fb1;
+  background-color: #e1e7ec;
+}
+.mhf-button.mhf-button-outline[disabled]:hover {
+  background-color: #e1e7ec;
+}
+.mhf-button.mhf-button-outline[disabled]:active {
+  background-color: #e1e7ec;
+}
+.mhf-button.mhf-button-text {
+  /* Default style is put in the base button type selector... */
+  color: #37474f;
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgba(255, 255, 255, 0);
+}
+.mhf-button.mhf-button-text:hover {
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+}
+.mhf-button.mhf-button-text:active {
+  background-color: #eff1f4;
+  border-color: #eff1f4;
+}
+.mhf-button.mhf-button-text.mhf-button-primary {
+  /* .. only specific styles have a dedicated class selector */
+  color: #EA7D1E;
+}
+.mhf-button.mhf-button-text.mhf-button-primary:hover {
+  color: #da7014;
+}
+.mhf-button.mhf-button-text.mhf-button-primary:active {
+  color: #cc6913;
+}
+.mhf-button.mhf-button-text.mhf-button-success {
+  /* .. only specific styles have a dedicated class selector */
+  color: #33691e;
+}
+.mhf-button.mhf-button-text.mhf-button-success:hover {
+  background-color: #dcedc8;
+  border-color: #dcedc8;
+}
+.mhf-button.mhf-button-text.mhf-button-success:active {
+  background-color: #c5e1a5;
+  border-color: #c5e1a5;
+}
+.mhf-button.mhf-button-text.mhf-button-warning {
+  /* .. only specific styles have a dedicated class selector */
+  color: #dd6b20;
+}
+.mhf-button.mhf-button-text.mhf-button-warning:hover {
+  color: #212934;
+  background-color: #feebc8;
+  border-color: #feebc8;
+}
+.mhf-button.mhf-button-text.mhf-button-warning:active {
+  color: #212934;
+  background-color: #fbd38d;
+  border-color: #fbd38d;
+}
+.mhf-button.mhf-button-text.mhf-button-danger {
+  /* .. only specific styles have a dedicated class selector */
+  color: #c53030;
+}
+.mhf-button.mhf-button-text.mhf-button-danger:hover {
+  color: #742a2a;
+  background-color: #fce8e8;
+  border-color: #fce8e8;
+}
+.mhf-button.mhf-button-text.mhf-button-danger:active {
+  color: #742a2a;
+  background-color: #fed7d7;
+  border-color: #fed7d7;
+}
+.mhf-button.mhf-button-text.mhf-button-hyperlink {
+  /* .. only specific styles have a dedicated class selector */
+  color: #4299e1;
+}
+.mhf-button.mhf-button-text.mhf-button-hyperlink:hover {
+  color: #2b6cb0;
+}
+.mhf-button.mhf-button-text.mhf-button-hyperlink:active {
+  color: #2c5282;
+}
+.mhf-button.mhf-button-text[disabled] {
+  /* .. disabled button is a particular style... */
+  color: #929fb1;
+}
+.mhf-button.mhf-button-text[disabled]:hover {
+  color: #929fb1;
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgba(255, 255, 255, 0);
+}
+.mhf-button.mhf-button-text[disabled]:active {
+  color: #929fb1;
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgba(255, 255, 255, 0);
+}
+/* Loader */
+.mhf-loader {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.2);
+  /* Alpha channel instead of opacity property, otherwise, content will be transparent too */
+  backdrop-filter: blur(2px);
+}
+.mhf-loader .mhf-loader-text {
+  text-align: center;
+  font-size: 3em;
+  color: #000;
+}
+.mhf-loader .fa-spin {
+  animation-duration: 1s;
+}
+/* Panels: Simple panel with an header and a body to display content nicely */
+/* Variables */
+/* Classes */
+.mhf-panel {
+  position: relative;
+  margin-bottom: 3rem;
+}
+.mhf-panel .mhf-p-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0 0.2rem;
+  font-size: 0.9rem;
+}
+.mhf-panel .mhf-p-header .mhf-ph-icon {
+  margin-right: 0.5rem;
+}
+.mhf-panel .mhf-p-header .mhf-ph-icon img {
+  max-width: 38px;
+}
+.mhf-panel .mhf-p-header .mhf-ph-actions {
+  position: absolute;
+  right: 0;
+}
+.mhf-panel .mhf-p-header .mhf-ph-actions .mhf-ph-toggler {
+  color: #EA7D1E;
+  cursor: pointer;
+  transition-property: transform;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+}
+.mhf-panel .mhf-p-body {
+  position: relative;
+  /*z-index: 0;*/
+  /* Must be below header */
+  margin-top: 0;
+  padding: 0.3rem;
+  background-color: #ffffff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease-in-out;
+}
+.mhf-panel .mhf-p-body:empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mhf-panel .mhf-p-body:empty::after {
+  content: attr(data-empty-text);
+  color: #777;
+  font-style: italic;
+}
+.mhf-panel:last-child {
+  margin-bottom: 0;
+}
+.mhf-panel.mhf-collapsed .mhf-ph-toggler {
+  transform: rotateZ(90deg);
+}
+.mhf-panel.mhf-collapsed .mhf-p-body {
+  margin-top: -50px;
+  min-height: 50px !important;
+  max-height: 50px !important;
+}
+.mhf-panel.mhf-collapsed .mhf-p-body > * {
+  display: none;
+}
+.mhf-panel.mhf-collapsed .mhf-p-body:empty::after {
+  content: "";
+}
+/* Toggle buttons: Inspired by Mauricio Allende @ https://codepen.io/mallendeo/pen/eLIiG */
+/* Variables */
+/* Classes */
+.mhf-toggle-button {
+  font-size: 12pt;
+}
+.mhf-toggle-button .mhf-tb-input {
+  display: none;
+}
+.mhf-toggle-button .mhf-tb-input + .mhf-tb-button {
+  outline: 0;
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.8rem;
+  height: 1rem;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+.mhf-toggle-button .mhf-tb-input + .mhf-tb-button::after, .mhf-toggle-button .mhf-tb-input + .mhf-tb-button::before {
+  position: relative;
+  display: block;
+  content: "";
+  width: 50%;
+  height: 100%;
+}
+.mhf-toggle-button .mhf-tb-input + .mhf-tb-button::after {
+  left: 0;
+}
+.mhf-toggle-button .mhf-tb-input + .mhf-tb-button::before {
+  display: none;
+}
+.mhf-toggle-button .mhf-tb-input:checked + .mhf-tb-button::after {
+  left: 50%;
+  /* Themes */
+  /* - Flat */
+}
+.mhf-toggle-button.mhf-tb-flat .mhf-tb-input + .mhf-tb-button {
+  padding: 2px;
+  border-radius: 2rem;
+  background-color: #eaeaea;
+  box-shadow: inset 0 1px 1px 0px rgba(0, 0, 0, 0.15);
+  transition: all 0.4s ease;
+}
+.mhf-toggle-button.mhf-tb-flat .mhf-tb-input + .mhf-tb-button::after {
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.12);
+  transition: all 0.2s ease;
+}
+.mhf-toggle-button.mhf-tb-flat .mhf-tb-input:checked + .mhf-tb-button {
+  background-color: #EA7D1E;
+}
+.mhf-toggle-button.mhf-tb-flat .mhf-tb-input:disabled + .mhf-tb-button {
+  background-color: #d1d1d1;
+}
+.mhf-toggle-button.mhf-tb-flat .mhf-tb-input:disabled + .mhf-tb-button::after {
+  background-color: #e6e6e6;
+}
+.mhf-toggle-button.mhf-tb-flat:hover .mhf-tb-input + .mhf-tb-button, .mhf-toggle-button.mhf-tb-flat:focus .mhf-tb-input + .mhf-tb-button {
+  background-color: #d6d6d6;
+}
+.mhf-toggle-button.mhf-tb-flat:hover .mhf-tb-input:checked + .mhf-tb-button, .mhf-toggle-button.mhf-tb-flat:focus .mhf-tb-input:checked + .mhf-tb-button {
+  background-color: #cc6913;
+}
+.mhf-toggle-button.mhf-tb-flat:active .mhf-tb-input + .mhf-tb-button {
+  background-color: #c4c4c4;
+}
+.mhf-toggle-button.mhf-tb-flat:active .mhf-tb-input:checked + .mhf-tb-button {
+  background-color: #ab5810;
+}
+.mhf-toggle-button.mhf-pull-left .mhf-tb-button, .mhf-toggle-button.mhf-pull-right .mhf-tb-button, .mhf-pull-left .mhf-toggle-button .mhf-tb-button, .mhf-pull-right .mhf-toggle-button .mhf-tb-button {
+  vertical-align: initial;
+  /* Reset vertical alignment if floated */
+}
+/* Tooltips */
+.mhf-tooltip {
+  /* qTip tooltips */
+}
+.mhf-tooltip.qtip .qtip-tip {
+  z-index: 1;
+  /* To put tip above wrapper box-shadow */
+}
+.mhf-tooltip.qtip .qtip-wrapper {
+  box-shadow: 0 2px 15px 2px rgba(0, 0, 0, 0.15);
+}
+.mhf-tooltip.qtip .qtip-wrapper .qtip-contentWrapper {
+  border: none !important;
+}
+.mhf-tooltip.qtip .qtip-wrapper .qtip-contentWrapper .qtip-content {
+  padding: 9px 9px !important;
+}
+.mhf-tooltip.qtip .qtip-wrapper .qtip-contentWrapper .qtip-content img {
+  max-width: 100%;
+  height: initial !important;
+  /* !important to overload the height in the style attribute of the image, otherwise image ratio is wicked */
+}

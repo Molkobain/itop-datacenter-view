@@ -8,50 +8,50 @@
 
 /* Variables */
 /* - Helpers */
-$box-shadow-small: 0 1px 1px rgba(0, 0, 0, 0.15) !default;
+$mdv-box-shadow-small: 0 1px 1px rgba(0, 0, 0, 0.15) !default;
 
 /* - Filter */
-$filter-input-border-color: #C2C2C2 !default;
-$filter-input-border-radius: 3px !default;
+$mdv-filter-input-border-color: #C2C2C2 !default;
+$mdv-filter-input-border-radius: 3px !default;
 
 /* - Unmounted container */
-$unmounted-container-bg-color: #ffffff !default;
-$unmounted-spot-bg-color: #d85656 !default;
-$unmounted-spot-color: #ffffff !default;
-$unmounted-spot-width: 15px !default;
+$mdv-unmounted-container-bg-color: #ffffff !default;
+$mdv-unmounted-spot-bg-color: #d85656 !default;
+$mdv-unmounted-spot-color: #ffffff !default;
+$mdv-unmounted-spot-width: 15px !default;
 /* - Rack panel */
-$rack-panel-outer-border-color: #c5c5c5 !default;
-$rack-panel-outer-border: 1px solid $rack-panel-outer-border-color !default;
+$mdv-rack-panel-outer-border-color: #c5c5c5 !default;
+$mdv-rack-panel-outer-border: 1px solid $mdv-rack-panel-outer-border-color !default;
 /* - Rack unit */
-$rack-unit-number-width: 1.8rem !default;
+$mdv-rack-unit-number-width: 36px !default;
 /* - Rack unit slot */
-$rack-unit-slot-width: 217px !default;
-$rack-unit-slot-height: 18px !default;
-$rack-unit-slot-bg-color: #ffffff !default;
-$rack-unit-slot-separator-color: #eaeaea !default;
+$mdv-rack-unit-slot-width: 217px !default;
+$mdv-rack-unit-slot-height: 18px !default;
+$mdv-rack-unit-slot-bg-color: #ffffff !default;
+$mdv-rack-unit-slot-separator-color: #eaeaea !default;
 /* - Element */
-$element-note-max-width: 6.5rem !default;
+$mdv-element-note-max-width: 95px !default;
 /* - Enclosure */
-$enclosure-color: #939393 !default;
-$enclosure-bg-color: #eaeaea !default;
-$enclosure-sidebar-bg-color-mounted: #83a967 !default;
-$enclosure-sidebar-bg-color-unmounted: #da5757 !default;
+$mdv-enclosure-color: #939393 !default;
+$mdv-enclosure-bg-color: #eaeaea !default;
+$mdv-enclosure-sidebar-bg-color-mounted: #83a967 !default;
+$mdv-enclosure-sidebar-bg-color-unmounted: #da5757 !default;
 /* - Enclosure unit slot */
-$enclosure-unit-slot-separator-color: #d9d9d9 !default;
+$mdv-enclosure-unit-slot-separator-color: #d9d9d9 !default;
 /* - Device */
-$device-color: #ffffff !default;
+$mdv-device-color: #ffffff !default;
 
 /* - Tooltip */
-$tooltip-indicator-color: #434343 !default;
-$tooltip-list-label-width: 7.5rem !default;
+$mdv-tooltip-indicator-color: #434343 !default;
+$mdv-tooltip-list-label-width: 120px !default;
 
 /* - Object classes */
-$obj-class-default-bg-color: #8db46e !default;
-$obj-class-enclosure-bg-color: #eaeaea !default;
-$obj-class-server-bg-color: #3f627e !default;
-$obj-class-networkdevice-bg-color: #c85454 !default;
-$obj-class-sanswitch-bg-color: lightsalmon !default;
-$obj-class-nas-bg-color: #80b469 !default;
-$obj-class-storagesystem-bg-color: #eb913b !default;
-$obj-class-tapelibrary-bg-color: #7da9bc !default;
-$obj-class-pdu-bg-color: #c85454 !default;
+$mdv-obj-class-default-bg-color: #8db46e !default;
+$mdv-obj-class-enclosure-bg-color: #eaeaea !default;
+$mdv-obj-class-server-bg-color: #3f627e !default;
+$mdv-obj-class-networkdevice-bg-color: #c85454 !default;
+$mdv-obj-class-sanswitch-bg-color: lightsalmon !default;
+$mdv-obj-class-nas-bg-color: #80b469 !default;
+$mdv-obj-class-storagesystem-bg-color: #eb913b !default;
+$mdv-obj-class-tapelibrary-bg-color: #7da9bc !default;
+$mdv-obj-class-pdu-bg-color: #c85454 !default;

@@ -1,0 +1,294 @@
+/*!
+ * Copyright (c) 2015 - 2020 Molkobain.
+ *
+ * This file is part of licensed extension.
+ *
+ * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
+ */
+
+/* Buttons */
+
+/* Variables */
+$button-padding: (
+	medium: 0.4rem 0.8rem,
+);
+$button-themes: (
+	simple: (
+		default: (
+			color: $color-white-100,
+			background-color: $color-blue-grey-600,
+			border-color: $color-blue-grey-600,
+			hover: (
+				background-color: $color-blue-grey-800,
+				border-color: $color-blue-grey-800,
+			),
+			active: (
+				background-color: $color-blue-grey-800,
+				border-color: $color-blue-grey-800,
+			)
+		),
+		primary: (
+			color: $color-white-100,
+			background-color: $brand-primary,
+			border-color: $brand-primary,
+			hover: (
+				background-color: darken($brand-primary, 5%),
+				border-color: darken($brand-primary, 5%),
+			),
+			active: (
+				background-color: darken($brand-primary, 8%),
+				border-color: darken($brand-primary, 8%),
+			)
+		),
+		success: (
+			color: $color-white-100,
+			background-color: $color-green-700,
+			border-color: $color-green-700,
+			hover: (
+				background-color: $color-green-800,
+				border-color: $color-green-800,
+			),
+			active: (
+				background-color: $color-green-800,
+				border-color: $color-green-800,
+			)
+		),
+		warning: (
+			color: $color-white-100,
+			background-color: $color-orange-400,
+			border-color: $color-orange-400,
+			hover: (
+				background-color: $color-orange-600,
+				border-color: $color-orange-600,
+			),
+			active: (
+				background-color: $color-orange-600,
+				border-color: $color-orange-600,
+			)
+		),
+		danger: (
+			color: $color-white-100,
+			background-color: $color-red-700,
+			border-color: $color-red-700,
+			hover: (
+				background-color: $color-red-800,
+				border-color: $color-red-800,
+			),
+			active: (
+				background-color: $color-red-800,
+				border-color: $color-red-800,
+			)
+		),
+		disabled: (
+			color: $color-grey-600,
+			background-color: $color-grey-200,
+			border-color: $color-grey-200,
+			active: (
+				background-color: $color-grey-200,
+				border-color: $color-grey-200,
+			),
+			hover: (
+				background-color: $color-grey-200,
+				border-color: $color-grey-200,
+			),
+		),
+	),
+	outline: (
+		default: (
+			background-color: $color-white-100,
+			color: $color-blue-grey-800,
+			border-color: $color-blue-grey-800,
+			hover: (
+				background-color: $color-grey-100,
+			),
+			active: (
+				background-color: darken($color-grey-100, 3%),
+			)
+		),
+		primary: (
+			color: $brand-primary,
+			border-color: $brand-primary,
+		),
+		success: (
+			color: $color-green-800,
+			border-color: $color-green-800,
+		),
+		warning: (
+			color: $color-orange-600,
+			border-color: $color-orange-600,
+		),
+		danger: (
+			color: $color-red-700,
+			border-color: $color-red-700,
+		),
+		hyperlink: (
+			color: $color-blue-500,
+			border-color: $color-blue-500,
+		),
+		disabled: (
+			color: $color-grey-600,
+			border-color: $color-grey-600,
+			background-color: $color-grey-200,
+			hover: (
+				background-color: $color-grey-200,
+			),
+			active: (
+				background-color: $color-grey-200,
+			)
+		),
+	),
+	text: (
+		default: (
+			color: $color-blue-grey-800,
+			background-color: $color-transparent,
+			border-color: $color-transparent,
+			hover: (
+				background-color: $color-grey-100,
+				border-color: $color-grey-100,
+			),
+			active: (
+				background-color: darken($color-grey-100, 3%),
+				border-color: darken($color-grey-100, 3%),
+			)
+		),
+		primary: (
+			color: $brand-primary,
+			hover: (
+				color: darken($brand-primary, 5%),
+			),
+			active: (
+				color: darken($brand-primary, 8%),
+			)
+		),
+		success: (
+			color: $color-green-900,
+			hover: (
+				background-color: $color-green-100,
+				border-color: $color-green-100,
+			),
+			active: (
+				background-color: $color-green-200,
+				border-color: $color-green-200,
+			)
+		),
+		warning: (
+			color: $color-orange-600,
+			hover: (
+				color: $color-grey-900,
+				background-color: $color-orange-200,
+				border-color: $color-orange-200,
+			),
+			active: (
+				color: $color-grey-900,
+				background-color: $color-orange-300,
+				border-color: $color-orange-300,
+			)
+		),
+		danger: (
+			color: $color-red-700,
+			hover: (
+				color: $color-red-900,
+				background-color: $color-red-100,
+				border-color: $color-red-100,
+			),
+			active: (
+				color: $color-red-900,
+				background-color: $color-red-200,
+				border-color: $color-red-200,
+			)
+		),
+		hyperlink: (
+			color: $color-blue-500,
+			hover: (
+				color: $color-blue-700,
+			),
+			active: (
+				color: $color-blue-800,
+			),
+		),
+		disabled: (
+			color: $color-grey-600,
+			hover: (
+				color: $color-grey-600,
+				background-color: $color-transparent,
+				border-color: $color-transparent,
+			),
+			active: (
+				color: $color-grey-600,
+				background-color: $color-transparent,
+				border-color: $color-transparent,
+			),
+		),
+	)
+);
+
+/* Mixins */
+@mixin button-properties($properties){
+	@each $property-name, $property-value in $properties {
+		@if ($property-name == 'hover') or ($property-name == 'active') or ($property-name == 'focus') {
+			&:#{$property-name} {
+				@each $subproperty-name, $subproperty-value in $property-value {
+					#{$subproperty-name}: $subproperty-value;
+				}
+			}
+		} @else {
+			#{$property-name}: $property-value;
+		}
+	}
+}
+
+/* Classes */
+.mhf-button {
+	@extend %mhf-reset-box-sizing;
+	padding: map_get($button-padding, medium);
+	border: 1px solid transparent;
+	@include border-radius-300;
+	cursor: pointer;
+	transition-property: color, background-color;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+
+	&:active{
+		outline: none;
+	}
+	&[disabled]{
+		cursor: not-allowed;
+	}
+
+	&.mhf-button-simple {
+		min-width: 2.5rem;
+	}
+	&.mhf-button-outline {
+		font-weight: bold;
+	}
+	&.mhf-button-text {
+		font-weight: bold;
+	}
+
+	.mhf-button-icon{
+		margin-right: 0.6rem;
+	}
+
+	@each $type, $styles in $button-themes {
+		&.mhf-button-#{$type} {
+			@each $style, $properties in $styles {
+				@if($style == 'default'){
+					/* Default style is put in the base button type selector... */
+					@include button-properties($properties);
+				}
+				@else if($style == 'disabled'){
+					&[disabled]{
+						/* .. disabled button is a particular style... */
+						@include button-properties($properties);
+					}
+				}
+				@else{
+					&.mhf-button-#{$style} {
+						/* .. only specific styles have a dedicated class selector */
+						@include button-properties($properties);
+					}
+				}
+			}
+		}
+	}
+}

@@ -7,18 +7,18 @@
  */
 
 /* Border radius */
-@mixin border-radius-300{
+@mixin mhf-border-radius-300{
 	border-radius: 3px;
 }
-@mixin border-radius-400{
+@mixin mhf-border-radius-400{
 	border-radius: 4px;
 }
-@mixin border-radius-500{
+@mixin mhf-border-radius-500{
 	border-radius: 5px;
 }
-@mixin border-radius-600{
+@mixin mhf-border-radius-600{
 	border-radius: 8px;
 }
-@mixin border-radius-full{
+@mixin mhf-border-radius-full{
 	border-radius: 100%;
 }

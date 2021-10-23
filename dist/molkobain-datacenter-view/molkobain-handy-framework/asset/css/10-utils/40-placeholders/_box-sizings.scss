@@ -7,7 +7,7 @@
  */
 
 /* Can't put a global CSS class to reset stuff as classes will be used here and there by extensions, so we use this injection */
-/* Note: Reset for admin console mostly */
+/* Note: Reset for admin console mostly in iTop 2.7 and older */
 %mhf-reset-box-sizing{
 	box-sizing: border-box;
 	*{

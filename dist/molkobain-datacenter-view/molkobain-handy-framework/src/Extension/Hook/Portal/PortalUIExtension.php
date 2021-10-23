@@ -37,9 +37,12 @@ class PortalUIExtension extends AbstractPortalUIExtension
 		$sURLBase = ConfigHelper::GetAbsoluteModuleUrl();
 
 		// Note: Here we pass the compiled .css file in order to be compatible with iTop 2.5 and earlier (ApplicationHelper::LoadUIExtensions() refactoring that uses utils::GetCSSFromSASS())
-		$aReturn = array(
-			$sURLBase . 'asset/css/handy-framework.css?v=' . $sModuleVersion,
-		);
+		$aReturn = array();
+		if (ConfigHelper::IsRunningiTop30OrNewer()) {
+			$aReturn[] = $sURLBase . 'asset/css/handy-framework.css?v=' . $sModuleVersion;
+		} else {
+			$aReturn[] = $sURLBase . 'legacy/asset/css/handy-framework.css?v=' . $sModuleVersion;
+		}
 
 		return $aReturn;
 	}

@@ -253,7 +253,7 @@ HTML;
 				</div>
 				<div class="mhf-p-body">
 					<div class="mdv-filter-description">{$sFilterDescription}</div>
-					<div class="mdv-filter-container"><input class="mdv-filter-input" type="text" placeholder="{$sFilterInputTooltipAsHTML}" /><span class="mdv-filter-clear-icon fa fa-fw fa-times"></span></div>
+					<div class="mdv-filter-container"><input class="mdv-filter-input" type="search" placeholder="{$sFilterInputTooltipAsHTML}" /></div>
 				</div>
 			</div>
 			<div class="mdv-options mhf-panel">
@@ -386,6 +386,7 @@ EOF
 			'endpoint' => $this->GetEndpoint(),
 			'legend' => $this->GetLegendData($aObjectData),
 			'dict' => $this->GetDictEntries(),
+			'use_legacy_tooltips' => (ConfigHelper::IsRunningiTop30OrNewer() === false),
 		);
 
 		return ($bAsJSON) ? json_encode($aData) : $aData;
@@ -698,7 +699,7 @@ EOF
 		{
 			if(count($aAttCodes) > 0)
 			{
-				$sAttributesHTML .= '<div class="mdv-dt-list-wrapper mdv-dt-' . $sAttCategory . '">';
+				$sAttributesHTML .= '<div class="mdv-et-list-wrapper mdv-dt-' . $sAttCategory . '">';
 				$sAttributesHTML .= '<fieldset><legend>' . Dict::S('Molkobain:DatacenterView:Element:Tooltip:Fieldset:' . $sAttCategory) . '</legend>';
 				$sAttributesHTML .= '<ul>';
 				foreach($aAttCodes as $sAttCode)
@@ -724,7 +725,7 @@ EOF
 					{
 						$sAttValue = htmlentities($oAttDef->GetValueLabel($oObject->Get($sAttCode)), ENT_QUOTES, 'UTF-8');
 					}
-					$sAttributesHTML .= '<li><span class="mdv-dtl-label">' . $sAttLabel . '</span><span class="mdv-dtl-value">' . $sAttValue . '</span></li>';
+					$sAttributesHTML .= '<li><span class="mdv-etl-label">' . $sAttLabel . '</span><span class="mdv-etl-value">' . $sAttValue . '</span></li>';
 				}
 				$sAttributesHTML .= '</ul>';
 				$sAttributesHTML .= '</fieldset>';
@@ -733,9 +734,9 @@ EOF
 		}
 
 		$sHTML = <<<HTML
-	<div class="mdv-dt-header">
-		<span class="mdv-dth-icon">{$sClassImage}</span>
-		<span class="mdv-dth-name">{$sObjName}</span>
+	<div class="mdv-et-header">
+		<span class="mdv-eth-icon">{$sClassImage}</span>
+		<span class="mdv-eth-name">{$sObjName}</span>
 	</div>
 	{$sAttributesHTML}
 HTML;

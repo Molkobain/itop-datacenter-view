@@ -9,29 +9,30 @@
 /* Panels: Simple panel with an header and a body to display content nicely */
 
 /* Variables */
-$panel-color: #444 !default;
-$panel-bg-color: #ffffff !default;
-$panel-empty-hint-color: #777 !default;
-$panel-collapse-icon-color: $brand-primary !default;
-$panel-collapsed-height: 50px !default;
+$mhf-panel-color: #444 !default;
+$mhf-panel-bg-color: #ffffff !default;
+$mhf-panel-border: 1px solid $mhf-color-grey-400 !default;
+$mhf-panel-empty-hint-color: #777 !default;
+$mhf-panel-collapse-icon-color: $mhf-color-grey-900 !default;
+$mhf-panel-collapsed-height: 50px !default;
 
 /* Classes */
 .mhf-panel{
 	@extend %mhf-reset-box-sizing;
 	position: relative;
-	margin-bottom: 3rem;
+	margin-bottom: 48px;
 
 	.mhf-p-header{
 		position: relative;
 		z-index: 1;
 		display: flex;
 		align-items: center;
-		margin-bottom: 0.5rem;
-		padding: 0 0.2rem;
-		font-size: 0.9rem;
+		margin-bottom: 8px;
+		padding: 0 4px;
+		@include mhf-font-size-14;
 
 		.mhf-ph-icon{
-			margin-right: 0.5rem;
+			margin-right: 8px;
 
 			img{
 				max-width: 38px;
@@ -42,7 +43,7 @@ $panel-collapsed-height: 50px !default;
 			right: 0;
 
 			.mhf-ph-toggler{
-				color: $panel-collapse-icon-color;
+				color: $mhf-panel-collapse-icon-color;
 				cursor: pointer;
 				transition-property: transform;
 				transition-duration: 0.2s;
@@ -54,9 +55,10 @@ $panel-collapsed-height: 50px !default;
 		position: relative;
 		/*z-index: 0;*/ /* Must be below header */
 		margin-top: 0;
-		padding: 0.3rem;
-		background-color: $panel-bg-color;
-		box-shadow: $box-shadow-lightest;
+		padding: 10px;
+		background-color: $mhf-panel-bg-color;
+		border: $mhf-panel-border;
+		@include mhf-border-radius-300;
 		transition: all 0.2s ease-in-out;
 
 		&:empty{
@@ -66,7 +68,7 @@ $panel-collapsed-height: 50px !default;
 
 			&::after{
 				content: attr(data-empty-text);
-				color: $panel-empty-hint-color;
+				color: $mhf-panel-empty-hint-color;
 				font-style: italic;
 			}
 		}
@@ -80,9 +82,9 @@ $panel-collapsed-height: 50px !default;
 			transform: rotateZ(90deg);
 		}
 		.mhf-p-body{
-			margin-top: -$panel-collapsed-height;
-			min-height: $panel-collapsed-height !important;
-			max-height: $panel-collapsed-height !important;
+			margin-top: -$mhf-panel-collapsed-height;
+			min-height: $mhf-panel-collapsed-height !important;
+			max-height: $mhf-panel-collapsed-height !important;
 
 			> *{
 				display: none;

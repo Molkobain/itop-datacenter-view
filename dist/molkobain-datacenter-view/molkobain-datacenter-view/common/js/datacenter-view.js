@@ -18,10 +18,12 @@ $(function()
 				endpoint: null,
 				legend: {},
 				dict: {},
+				use_legacy_tooltips: false,
 				defaults: {
 					rack_unit_slot_height: 18,
 					panel_code: 'front',
 					units_order: 'regular',
+					// Only for legacy tooltips
 					tooltip_options: {
 						show: 'mouseover',
 						hide: 'mouseout',
@@ -284,19 +286,27 @@ $(function()
 				this._updateDeviceHeight(oDeviceElem);
 
 				// Tooltip
-				// Note: We need to do a deep copy
-				var oQTipOptions = $.extend(
-					true,
-					{},
-					this.options.defaults.tooltip_options,
-					{ content: oDevice.tooltip.content }
-				);
-				// Note: We don't use the .closest() yet for performance reasons. If this goes recurse, we might want to consider it though.
-				if(oHostElem.closest('.mdv-unmounted-type').length > 0)
-				{
-					oQTipOptions.position.adjust.x = -15;
+				var bIsDeviceInUnmountedPanel = oHostElem.closest('.mdv-unmounted-type').length > 0;
+				if (this.options.use_legacy_tooltips) {
+					// Note: We need to do a deep copy
+					var oQTipOptions = $.extend(
+						true,
+						{},
+						this.options.defaults.tooltip_options,
+						{ content: oDevice.tooltip.content }
+					);
+					// Note: We don't use the .closest() yet for performance reasons. If this goes recurse, we might want to consider it though.
+					if(bIsDeviceInUnmountedPanel) {
+						oQTipOptions.position.adjust.x = -16;
+					}
+					oDeviceElem.qtip(oQTipOptions);
+				} else {
+					oDeviceElem.attr('data-tooltip-html-enabled', true)
+						.attr('data-tooltip-placement', 'left')
+						.attr('data-tooltip-distance-offset', bIsDeviceInUnmountedPanel ? '24' : '42')
+						.attr('data-tooltip-theme', 'molkobain-light mdv-element-tooltip')
+						.attr('data-tooltip-content', oDevice.tooltip.content);
 				}
-				oDeviceElem.qtip(oQTipOptions);
 
 				oDeviceElem.appendTo(oHostElem);
 
@@ -316,8 +326,14 @@ $(function()
 					function(){
 						me.element.find('[data-toggle="tooltip"][title!=""]').each(function(){
 							// Put tooltip
-							var sContent = $('<div />').text($(this).attr('title')).html();
-							$(this).qtip( { content: sContent, show: 'mouseover', hide: 'mouseout', style: { name: 'molkobain-dark', tip: 'bottomMiddle' }, position: { corner: { target: 'topMiddle', tooltip: 'bottomMiddle' }, adjust: { y: -5}} } );
+							var sContentRaw = $(this).attr('title');
+							if (me.options.use_legacy_tooltips) {
+								var sContent = $('<div />').text(sContentRaw).html();
+								$(this).qtip( { content: sContent, show: 'mouseover', hide: 'mouseout', style: { name: 'molkobain-dark', tip: 'bottomMiddle' }, position: { corner: { target: 'topMiddle', tooltip: 'bottomMiddle' }, adjust: { y: -5}} } );
+							} else {
+								$(this).attr('data-tooltip-placement', 'top');
+								$(this).attr('data-tooltip-content', sContentRaw);
+							}
 
 							// Remove native title
 							$(this).attr('title', '');

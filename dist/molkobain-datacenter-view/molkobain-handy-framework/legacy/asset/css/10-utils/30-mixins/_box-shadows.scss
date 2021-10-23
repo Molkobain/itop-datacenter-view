@@ -1,0 +1,35 @@
+/*!
+ * Copyright (c) 2015 - 2020 Molkobain.
+ *
+ * This file is part of licensed extension.
+ *
+ * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
+ */
+
+/* Box shadows */
+/* Note: Variables are deprecated and will be removed soon, use mixins instead */
+$box-shadow-lightest: 0 1px 1px rgba(0, 0, 0, 0.15) !default;
+$box-shadow-lighter: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24) !default;
+$box-shadow-light: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23) !default;
+$box-shadow-regular: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23) !default;
+$box-shadow-strong: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22) !default;
+$box-shadow-stronger: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22) !default;
+$box-shadow-transition: all 0.3s cubic-bezier(.25,.8,.25,1) !default;
+@mixin box-shadow-lightest{
+	box-shadow: $box-shadow-lightest;
+}
+@mixin box-shadow-lighter{
+	box-shadow: $box-shadow-lighter;
+}
+@mixin box-shadow-light{
+	box-shadow: $box-shadow-light;
+}
+@mixin box-shadow-regular{
+	box-shadow: $box-shadow-regular;
+}
+@mixin box-shadow-strong{
+	box-shadow: $box-shadow-strong;
+}
+@mixin box-shadow-stronger{
+	box-shadow: $box-shadow-stronger;
+}

@@ -9,26 +9,26 @@
 /* Buttons */
 
 /* Variables */
-$button-padding: (
+$mhf-button-padding: (
 	medium: 0.4rem 0.8rem,
 );
-$button-themes: (
+$mhf-button-themes: (
 	simple: (
 		default: (
-			color: $color-white-100,
-			background-color: $color-blue-grey-600,
-			border-color: $color-blue-grey-600,
+			color: $mhf-color-white-100,
+			background-color: $mhf-color-blue-grey-600,
+			border-color: $mhf-color-blue-grey-600,
 			hover: (
-				background-color: $color-blue-grey-800,
-				border-color: $color-blue-grey-800,
+				background-color: $mhf-color-blue-grey-800,
+				border-color: $mhf-color-blue-grey-800,
 			),
 			active: (
-				background-color: $color-blue-grey-800,
-				border-color: $color-blue-grey-800,
+				background-color: $mhf-color-blue-grey-800,
+				border-color: $mhf-color-blue-grey-800,
 			)
 		),
 		primary: (
-			color: $color-white-100,
+			color: $mhf-color-white-100,
 			background-color: $brand-primary,
 			border-color: $brand-primary,
 			hover: (
@@ -41,68 +41,68 @@ $button-themes: (
 			)
 		),
 		success: (
-			color: $color-white-100,
-			background-color: $color-green-700,
-			border-color: $color-green-700,
+			color: $mhf-color-white-100,
+			background-color: $mhf-color-green-700,
+			border-color: $mhf-color-green-700,
 			hover: (
-				background-color: $color-green-800,
-				border-color: $color-green-800,
+				background-color: $mhf-color-green-800,
+				border-color: $mhf-color-green-800,
 			),
 			active: (
-				background-color: $color-green-800,
-				border-color: $color-green-800,
+				background-color: $mhf-color-green-800,
+				border-color: $mhf-color-green-800,
 			)
 		),
 		warning: (
-			color: $color-white-100,
-			background-color: $color-orange-400,
-			border-color: $color-orange-400,
+			color: $mhf-color-white-100,
+			background-color: $mhf-color-orange-400,
+			border-color: $mhf-color-orange-400,
 			hover: (
-				background-color: $color-orange-600,
-				border-color: $color-orange-600,
+				background-color: $mhf-color-orange-600,
+				border-color: $mhf-color-orange-600,
 			),
 			active: (
-				background-color: $color-orange-600,
-				border-color: $color-orange-600,
+				background-color: $mhf-color-orange-600,
+				border-color: $mhf-color-orange-600,
 			)
 		),
 		danger: (
-			color: $color-white-100,
-			background-color: $color-red-700,
-			border-color: $color-red-700,
+			color: $mhf-color-white-100,
+			background-color: $mhf-color-red-700,
+			border-color: $mhf-color-red-700,
 			hover: (
-				background-color: $color-red-800,
-				border-color: $color-red-800,
+				background-color: $mhf-color-red-800,
+				border-color: $mhf-color-red-800,
 			),
 			active: (
-				background-color: $color-red-800,
-				border-color: $color-red-800,
+				background-color: $mhf-color-red-800,
+				border-color: $mhf-color-red-800,
 			)
 		),
 		disabled: (
-			color: $color-grey-600,
-			background-color: $color-grey-200,
-			border-color: $color-grey-200,
+			color: $mhf-color-grey-600,
+			background-color: $mhf-color-grey-200,
+			border-color: $mhf-color-grey-200,
 			active: (
-				background-color: $color-grey-200,
-				border-color: $color-grey-200,
+				background-color: $mhf-color-grey-200,
+				border-color: $mhf-color-grey-200,
 			),
 			hover: (
-				background-color: $color-grey-200,
-				border-color: $color-grey-200,
+				background-color: $mhf-color-grey-200,
+				border-color: $mhf-color-grey-200,
 			),
 		),
 	),
 	outline: (
 		default: (
-			background-color: $color-white-100,
-			color: $color-blue-grey-800,
-			border-color: $color-blue-grey-800,
+			background-color: $mhf-color-white-100,
+			color: $mhf-color-blue-grey-800,
+			border-color: $mhf-color-blue-grey-800,
 			hover: (
-				background-color: $color-grey-100,
+				background-color: $mhf-color-grey-100,
 			),
 			active: (
-				background-color: darken($color-grey-100, 3%),
+				background-color: darken($mhf-color-grey-100, 3%),
 			)
 		),
 		primary: (
@@ -110,45 +110,45 @@ $button-themes: (
 			border-color: $brand-primary,
 		),
 		success: (
-			color: $color-green-800,
-			border-color: $color-green-800,
+			color: $mhf-color-green-800,
+			border-color: $mhf-color-green-800,
 		),
 		warning: (
-			color: $color-orange-600,
-			border-color: $color-orange-600,
+			color: $mhf-color-orange-600,
+			border-color: $mhf-color-orange-600,
 		),
 		danger: (
-			color: $color-red-700,
-			border-color: $color-red-700,
+			color: $mhf-color-red-700,
+			border-color: $mhf-color-red-700,
 		),
 		hyperlink: (
-			color: $color-blue-500,
-			border-color: $color-blue-500,
+			color: $mhf-color-blue-500,
+			border-color: $mhf-color-blue-500,
 		),
 		disabled: (
-			color: $color-grey-600,
-			border-color: $color-grey-600,
-			background-color: $color-grey-200,
+			color: $mhf-color-grey-600,
+			border-color: $mhf-color-grey-600,
+			background-color: $mhf-color-grey-200,
 			hover: (
-				background-color: $color-grey-200,
+				background-color: $mhf-color-grey-200,
 			),
 			active: (
-				background-color: $color-grey-200,
+				background-color: $mhf-color-grey-200,
 			)
 		),
 	),
 	text: (
 		default: (
-			color: $color-blue-grey-800,
-			background-color: $color-transparent,
-			border-color: $color-transparent,
+			color: $mhf-color-blue-grey-800,
+			background-color: $mhf-color-transparent,
+			border-color: $mhf-color-transparent,
 			hover: (
-				background-color: $color-grey-100,
-				border-color: $color-grey-100,
+				background-color: $mhf-color-grey-100,
+				border-color: $mhf-color-grey-100,
 			),
 			active: (
-				background-color: darken($color-grey-100, 3%),
-				border-color: darken($color-grey-100, 3%),
+				background-color: darken($mhf-color-grey-100, 3%),
+				border-color: darken($mhf-color-grey-100, 3%),
 			)
 		),
 		primary: (
@@ -161,69 +161,69 @@ $button-themes: (
 			)
 		),
 		success: (
-			color: $color-green-900,
+			color: $mhf-color-green-900,
 			hover: (
-				background-color: $color-green-100,
-				border-color: $color-green-100,
+				background-color: $mhf-color-green-100,
+				border-color: $mhf-color-green-100,
 			),
 			active: (
-				background-color: $color-green-200,
-				border-color: $color-green-200,
+				background-color: $mhf-color-green-200,
+				border-color: $mhf-color-green-200,
 			)
 		),
 		warning: (
-			color: $color-orange-600,
+			color: $mhf-color-orange-600,
 			hover: (
-				color: $color-grey-900,
-				background-color: $color-orange-200,
-				border-color: $color-orange-200,
+				color: $mhf-color-grey-900,
+				background-color: $mhf-color-orange-200,
+				border-color: $mhf-color-orange-200,
 			),
 			active: (
-				color: $color-grey-900,
-				background-color: $color-orange-300,
-				border-color: $color-orange-300,
+				color: $mhf-color-grey-900,
+				background-color: $mhf-color-orange-300,
+				border-color: $mhf-color-orange-300,
 			)
 		),
 		danger: (
-			color: $color-red-700,
+			color: $mhf-color-red-700,
 			hover: (
-				color: $color-red-900,
-				background-color: $color-red-100,
-				border-color: $color-red-100,
+				color: $mhf-color-red-900,
+				background-color: $mhf-color-red-100,
+				border-color: $mhf-color-red-100,
 			),
 			active: (
-				color: $color-red-900,
-				background-color: $color-red-200,
-				border-color: $color-red-200,
+				color: $mhf-color-red-900,
+				background-color: $mhf-color-red-200,
+				border-color: $mhf-color-red-200,
 			)
 		),
 		hyperlink: (
-			color: $color-blue-500,
+			color: $mhf-color-blue-500,
 			hover: (
-				color: $color-blue-700,
+				color: $mhf-color-blue-700,
 			),
 			active: (
-				color: $color-blue-800,
+				color: $mhf-color-blue-800,
 			),
 		),
 		disabled: (
-			color: $color-grey-600,
+			color: $mhf-color-grey-600,
 			hover: (
-				color: $color-grey-600,
-				background-color: $color-transparent,
-				border-color: $color-transparent,
+				color: $mhf-color-grey-600,
+				background-color: $mhf-color-transparent,
+				border-color: $mhf-color-transparent,
 			),
 			active: (
-				color: $color-grey-600,
-				background-color: $color-transparent,
-				border-color: $color-transparent,
+				color: $mhf-color-grey-600,
+				background-color: $mhf-color-transparent,
+				border-color: $mhf-color-transparent,
 			),
 		),
 	)
 );
 
 /* Mixins */
-@mixin button-properties($properties){
+@mixin mhf-button-properties($properties){
 	@each $property-name, $property-value in $properties {
 		@if ($property-name == 'hover') or ($property-name == 'active') or ($property-name == 'focus') {
 			&:#{$property-name} {
@@ -240,9 +240,9 @@ $button-themes: (
 /* Classes */
 .mhf-button {
 	@extend %mhf-reset-box-sizing;
-	padding: map_get($button-padding, medium);
+	padding: map_get($mhf-button-padding, medium);
 	border: 1px solid transparent;
-	@include border-radius-300;
+	@include mhf-border-radius-300;
 	cursor: pointer;
 	transition-property: color, background-color;
 	transition-duration: 0.1s;
@@ -269,23 +269,23 @@ $button-themes: (
 		margin-right: 0.6rem;
 	}
 
-	@each $type, $styles in $button-themes {
+	@each $type, $styles in $mhf-button-themes {
 		&.mhf-button-#{$type} {
 			@each $style, $properties in $styles {
 				@if($style == 'default'){
 					/* Default style is put in the base button type selector... */
-					@include button-properties($properties);
+					@include mhf-button-properties($properties);
 				}
 				@else if($style == 'disabled'){
 					&[disabled]{
 						/* .. disabled button is a particular style... */
-						@include button-properties($properties);
+						@include mhf-button-properties($properties);
 					}
 				}
 				@else{
 					&.mhf-button-#{$style} {
 						/* .. only specific styles have a dedicated class selector */
-						@include button-properties($properties);
+						@include mhf-button-properties($properties);
 					}
 				}
 			}

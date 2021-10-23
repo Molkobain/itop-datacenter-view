@@ -1,0 +1,34 @@
+/*!
+ * Copyright (c) 2015 - 2020 Molkobain.
+ *
+ * This file is part of licensed extension.
+ *
+ * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
+ */
+
+/* Loader */
+.mhf-loader{
+	@extend %mhf-reset-box-sizing;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 5;
+	background-color: rgba(0, 0, 0, 0.20); /* Alpha channel instead of opacity property, otherwise, content will be transparent too */
+	backdrop-filter: blur(2px);
+
+	.mhf-loader-text{
+		text-align: center;
+		font-size: 3em;
+		color: #000;
+	}
+	.fa-spin{
+		animation-duration: 1s;
+	}
+}
