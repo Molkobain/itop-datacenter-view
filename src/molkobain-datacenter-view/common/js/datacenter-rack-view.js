@@ -196,6 +196,7 @@ $(function()
 								.attr('data-tooltip-html-enabled', true)
 								.attr('data-tooltip-placement', 'left')
 								.attr('data-tooltip-distance-offset', '16')
+								.attr('data-tooltip-theme', 'molkobain-light mdv-element-tooltip')
 								.attr('data-tooltip-content', oEnclosure.tooltip.content);
 						}
 					}

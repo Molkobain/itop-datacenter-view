@@ -6,6 +6,7 @@
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
 
+@import '../env-production/molkobain-handy-framework/asset/css/toolbox.scss';
 @import '../env-production/molkobain-datacenter-view/common/css/variables.scss';
 
 .molkobain-datacenter-view{
@@ -37,11 +38,9 @@
 		.mdv-controls{
 			.mhf-panel{
 				width: 200px;
-				font-size: 0.8rem;
+				@include mhf-font-size-12;
 
 				.mhf-p-body{
-					padding: 0.6rem;
-
 					ul{
 						margin: 0;
 						padding: 0;
@@ -52,42 +51,42 @@
 			.mdv-legend{
 				ul{
 					li{
-						padding-bottom: 0.3rem; /* Padding instead of margin for a smoother transition between elements while fading */
+						padding-bottom: 4px; /* Padding instead of margin for a smoother transition between elements while fading */
 						cursor: pointer;
 
 						&::before{
 							content: "";
 							display: inline-block;
-							margin-right: 0.5rem;
+							margin-right: 8px;
 							width: 8px;
 							height: 8px;
-							border-radius: 100%;
-							background-color: $obj-class-default-bg-color;
+							@include mhf-border-radius-full;
+							background-color: $mdv-obj-class-default-bg-color;
 						}
 
 						&[data-class="Enclosure"]::before{
-							background-color: $obj-class-enclosure-bg-color;
+							background-color: $mdv-obj-class-enclosure-bg-color;
 						}
 						&[data-class="Server"]::before{
-							background-color: $obj-class-server-bg-color;
+							background-color: $mdv-obj-class-server-bg-color;
 						}
 						&[data-class="NetworkDevice"]::before{
-							background-color: $obj-class-networkdevice-bg-color;
+							background-color: $mdv-obj-class-networkdevice-bg-color;
 						}
 						&[data-class="SANSwitch"]::before{
-							background-color: $obj-class-sanswitch-bg-color;
+							background-color: $mdv-obj-class-sanswitch-bg-color;
 						}
 						&[data-class="NAS"]::before{
-							background-color: $obj-class-nas-bg-color;
+							background-color: $mdv-obj-class-nas-bg-color;
 						}
 						&[data-class="StorageSystem"]::before{
-							background-color: $obj-class-storagesystem-bg-color;
+							background-color: $mdv-obj-class-storagesystem-bg-color;
 						}
 						&[data-class="TapeLibrary"]::before{
-							background-color: $obj-class-tapelibrary-bg-color;
+							background-color: $mdv-obj-class-tapelibrary-bg-color;
 						}
 						&[data-class="PDU"]::before{
-							background-color: $obj-class-pdu-bg-color;
+							background-color: $mdv-obj-class-pdu-bg-color;
 						}
 
 						&:last-of-type{
@@ -98,33 +97,30 @@
 			}
 			.mdv-filter{
 				.mdv-filter-description{
-					margin-bottom: 0.5rem;
+					margin-bottom: 8px;
 				}
 				.mdv-filter-container{
 					position: relative;
 
 					.mdv-filter-input{
 						width: 100%;
-						padding: 0.35rem 0.45rem;
-						border: 1px solid $filter-input-border-color;
-						border-radius: $filter-input-border-radius;
-					}
-					.mdv-filter-clear-icon{
-						position: absolute;
-						display: none;
-						top: 0.6rem;
-						right: 0.3rem;
-						cursor: pointer;
+						padding: 6px 8px;
+						border: 1px solid $mdv-filter-input-border-color;
+						border-radius: $mdv-filter-input-border-radius;
 					}
 				}
 			}
 			.mdv-options{
 				ul{
 					li.mdv-of-item{
-						margin-bottom: 0.6rem;
+						margin-bottom: 10px;
 
 						&:last-child{
 							margin-bottom: 0;
+						}
+
+						label > *{
+							vertical-align: middle;
 						}
 					}
 				}
@@ -135,7 +131,7 @@
 
 			.mdv-rack-panel,
 			.mdv-enclosure-panel{
-				margin-right: 8rem;
+				margin-right: 128px;
 
 				&:last-child{
 					margin-right: 0;
@@ -145,10 +141,10 @@
 		.mdv-unmounted{
 			.mdv-unmounted-type.mhf-panel{
 				position: relative;
-				width: calc(#{$rack-unit-slot-width} + #{$element-note-max-width} + 1.5rem);
+				width: calc(#{$mdv-rack-unit-slot-width} + #{$mdv-element-note-max-width} + 24px); /* 24px = 2*padding-x + a little margin */
 
 				.mhf-p-header{
-					margin-bottom: 0.2rem;
+					margin-bottom: 4px;
 
 					.mhf-ph-icon{
 						position: relative;
@@ -161,13 +157,13 @@
 							position: absolute;
 							bottom: calc(100% - 16px);
 							right: -2px;
-							min-width: $unmounted-spot-width;
-							height: $unmounted-spot-width;
+							min-width: $mdv-unmounted-spot-width;
+							height: $mdv-unmounted-spot-width;
 							border-radius: 4px;
 							text-align: center;
-							font-size: 0.6rem;
-							background: $unmounted-spot-bg-color;
-							color: $unmounted-spot-color;
+							@include mhf-font-size-10;
+							background: $mdv-unmounted-spot-bg-color;
+							color: $mdv-unmounted-spot-color;
 							transition: all 0.15s ease-in-out;
 
 							&.mdv-hidden{
@@ -186,7 +182,7 @@
 					/* Removed because overflow was messing with drag&drop */
 
 					> .mdv-element{
-						margin-bottom: 0.3rem;
+						margin-bottom: 6px;
 
 						&:last-of-type{
 							margin-bottom: 0;
@@ -194,7 +190,7 @@
 					}
 					> .mdv-enclosure{
 						&::after{
-							background-color: $enclosure-sidebar-bg-color-unmounted;
+							background-color: $mdv-enclosure-sidebar-bg-color-unmounted;
 						}
 					}
 				}
@@ -205,8 +201,8 @@
 		.mdv-element-note{
 			position: absolute;
 			top: 0;
-			left: calc(100% + 0.6rem);
-			max-width: $element-note-max-width;
+			left: calc(100% + 10px);
+			max-width: $mdv-element-note-max-width;
 			height: 100%;
 			display: flex;
 			justify-content: left;
@@ -219,8 +215,8 @@
 			font-style: italic;
 
 			> i{
-				margin-right: 0.3rem;
-				font-size: 0.6rem;
+				margin-right: 6px;
+				@include mhf-font-size-10;
 			}
 		}
 
@@ -230,9 +226,9 @@
 
 			.mdv-rp-title,
 			.mdv-ep-title{
-				margin-left: $rack-unit-number-width; /* Must equals to .mdv-ru-left width */
-				margin-bottom: 0.3rem;
-				font-size: 0.85rem;
+				margin-left: $mdv-rack-unit-number-width; /* Must equals to .mdv-ru-left width */
+				margin-bottom: 6px;
+				@include mhf-font-size-14;
 			}
 			.mdv-rp-view,
 			.mdv-ep-view{
@@ -251,19 +247,19 @@
 
 						/* Enclosure & units border */
 						.mdv-eu-slot{
-							/*background-color: $rack-unit-slot-bg-color;*/
-							border-left: $rack-panel-outer-border;
-							border-right: $rack-panel-outer-border;
-							border-bottom: 1px solid $rack-unit-slot-separator-color;
+							/*background-color: $mdv-rack-unit-slot-bg-color;*/
+							border-left: $mdv-rack-panel-outer-border;
+							border-right: $mdv-rack-panel-outer-border;
+							border-bottom: 1px solid $mdv-rack-unit-slot-separator-color;
 						}
 						&:first-child{
 							.mdv-eu-slot{
-								border-top: $rack-panel-outer-border;
+								border-top: $mdv-rack-panel-outer-border;
 							}
 						}
 						&:last-child{
 							.mdv-eu-slot{
-								border-bottom: $rack-panel-outer-border;
+								border-bottom: $mdv-rack-panel-outer-border;
 							}
 						}
 					}
@@ -276,11 +272,11 @@
 		}
 		.mdv-element{
 			position: relative;
-			width: $rack-unit-slot-width;
-			height: $rack-unit-slot-height;
+			width: $mdv-rack-unit-slot-width;
+			height: $mdv-rack-unit-slot-height;
 			text-align: center;
-			font-size: 0.7rem;
-			box-shadow: $box-shadow-small;
+			@include mhf-font-size-12;
+			box-shadow: $mdv-box-shadow-small;
 			user-select: none;
 			transition-property: box-shadow, opacity;
 			transition-duration: 0.2s, 0.3s;
@@ -294,7 +290,7 @@
 				text-decoration: none;
 			}
 			.object-ref-icon{
-				margin-right: 0.3rem;
+				margin-right: 6px;
 				vertical-align: initial; /* Overload the 1px from console CSS */
 			}
 
@@ -306,9 +302,9 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-around;
-			padding: 0.3rem 0.3rem;
-			background-color: $obj-class-default-bg-color;
-			color: $device-color;
+			padding: 6px 6px;
+			background-color: $mdv-obj-class-default-bg-color;
+			color: $mdv-device-color;
 
 			> *{
 				overflow-x: hidden;
@@ -318,25 +314,25 @@
 			}
 
 			&[data-class="Server"]{
-				background-color: $obj-class-server-bg-color;
+				background-color: $mdv-obj-class-server-bg-color;
 			}
 			&[data-class="NetworkDevice"]{
-				background-color: $obj-class-networkdevice-bg-color;
+				background-color: $mdv-obj-class-networkdevice-bg-color;
 			}
 			&[data-class="SANSwitch"]{
-				background-color: $obj-class-sanswitch-bg-color;
+				background-color: $mdv-obj-class-sanswitch-bg-color;
 			}
 			&[data-class="NAS"]{
-				background-color: $obj-class-nas-bg-color;
+				background-color: $mdv-obj-class-nas-bg-color;
 			}
 			&[data-class="StorageSystem"]{
-				background-color: $obj-class-storagesystem-bg-color;
+				background-color: $mdv-obj-class-storagesystem-bg-color;
 			}
 			&[data-class="TapeLibrary"]{
-				background-color: $obj-class-tapelibrary-bg-color;
+				background-color: $mdv-obj-class-tapelibrary-bg-color;
 			}
 			&[data-class="PDU"]{
-				background-color: $obj-class-pdu-bg-color;
+				background-color: $mdv-obj-class-pdu-bg-color;
 			}
 		}
 		.mdv-enclosure{
@@ -345,9 +341,9 @@
 					display: none; /* Will be displayed ONLY on enclosure page, when displayed as a panel */
 				}
 				.mdv-eu-slot{
-					color: $enclosure-color;
-					background-color: $enclosure-bg-color;
-					border-top: 1px solid $enclosure-unit-slot-separator-color;
+					color: $mdv-enclosure-color;
+					background-color: $mdv-enclosure-bg-color;
+					border-top: 1px solid $mdv-enclosure-unit-slot-separator-color;
 				}
 				&:first-of-type{
 					.mdv-eu-slot{
@@ -364,21 +360,21 @@
 				right: -4px;
 				width: 4px;
 				height: 100%;
-				background-color: $enclosure-sidebar-bg-color-mounted;
+				background-color: $mdv-enclosure-sidebar-bg-color-mounted;
 				border-top-right-radius: 3px;
 				border-bottom-right-radius: 3px;
-				box-shadow: $box-shadow-small;
+				box-shadow: $mdv-box-shadow-small;
 			}
 		}
 
 		.mdv-host-unit{
-			font-size: 0.7rem;
+			@include mhf-font-size-12;
 
 			.mdv-hu-slot{
 				display: flex;
 				position: relative; /* In order to make devices absolute and higher than the slot */
-				height: $rack-unit-slot-height;
-				width: $rack-unit-slot-width;
+				height: $mdv-rack-unit-slot-height;
+				width: $mdv-rack-unit-slot-width;
 				box-sizing: content-box; /* Cause content has a fixed size */
 
 				> .mdv-device,
@@ -404,27 +400,28 @@
 
 			.mdv-ru-left,
 			.mdv-eu-left{
-				padding: 0 0.3rem;
-				width: $rack-unit-number-width;
+				padding: 0 6px;
+				width: $mdv-rack-unit-number-width;
 				text-align: right;
+				font-family: "Verdana", "monospace";
 			}
 
 			/* Rack & units border */
 			&{
 				.mdv-ru-slot{
-					background-color: $rack-unit-slot-bg-color;
-					border-left: $rack-panel-outer-border;
-					border-right: $rack-panel-outer-border;
-					border-bottom: 1px solid $rack-unit-slot-separator-color;
+					background-color: $mdv-rack-unit-slot-bg-color;
+					border-left: $mdv-rack-panel-outer-border;
+					border-right: $mdv-rack-panel-outer-border;
+					border-bottom: 1px solid $mdv-rack-unit-slot-separator-color;
 				}
 				&:first-child{
 					.mdv-ru-slot{
-						border-top: $rack-panel-outer-border;
+						border-top: $mdv-rack-panel-outer-border;
 					}
 				}
 				&:last-child{
 					.mdv-ru-slot{
-						border-bottom: $rack-panel-outer-border;
+						border-bottom: $mdv-rack-panel-outer-border;
 					}
 				}
 			}
@@ -446,78 +443,81 @@
 		content: "?";
 		position: absolute;
 		right: -0.4rem;
-		font-size: 0.6rem;
-		color: $tooltip-indicator-color;
+		@include mhf-font-size-10;
+		color: $mdv-tooltip-indicator-color;
 	}
 }
 /* - Tooltip itself */
-.mhf-tooltip{
-	.mdv-dt-header{
-		display: flex;
-		justify-content: left;
-		align-items: center;
-		margin-bottom: 1.2rem;
-		font-weight: bold;
-		font-size: 0.9rem;
+.tippy-box[data-theme~="mdv-element-tooltip"]{
+	.tippy-content{
+		white-space: unset; /* To remove the extra space between lines */
+	}
+}
+.mdv-et-header{
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	margin-bottom: 24px;
+	font-weight: bold;
+	@include mhf-font-size-18;
 
-		.mdv-dth-icon{
-			margin-right: 0.5rem;
+	.mdv-eth-icon{
+		margin-right: 8px;
 
-			img{
-				max-width: 32px !important; /* To override the global tooltip content max-width on images */
-			}
+		img{
+			max-width: 38px !important; /* To override the global tooltip content max-width on images */
 		}
 	}
-	.mdv-dt-list-wrapper{
-		margin-bottom: 1.5rem;
-		padding: 0 3px;
+}
+.mdv-et-list-wrapper{
+	margin-bottom: 24px;
+	padding: 0 3px;
 
-		fieldset{
-			padding: 0;
-			border: none;
+	fieldset{
+		padding: 0;
+		border: none;
+		border-radius: 0;
+
+		legend{
+			margin-bottom: 8px;
+			padding: 0 0 2px 0;
+			width: 100%;
+			text-align: left;
+			color: #444444;
+			background-color: transparent;
+			border-bottom: 1px solid #dedede;
 			border-radius: 0;
+		}
+		ul{
+			margin: 0;
+			padding-left: 0;
+			list-style: none;
 
-			legend{
-				margin-bottom: 0.5rem;
-				padding: 0 0 0.1rem 0;
-				width: 100%;
-				text-align: left;
-				color: #444444;
-				background-color: transparent;
-				border-bottom: 1px solid #dedede;
-				border-radius: 0;
-			}
-			ul{
-				margin: 0;
-				padding-left: 0;
-				list-style: none;
+			li{
+				margin-bottom: 6px;
+				font-size: 11px;
 
-				li{
-					margin-bottom: 0.3rem;
-					font-size: 11px;
+				.mdv-etl-label{
+					display: inline-block;
+					width: $mdv-tooltip-list-label-width;
+					font-weight: bold;
 
-					.mdv-dtl-label{
-						display: inline-block;
-						width: $tooltip-list-label-width;
-						font-weight: bold;
-
-						&::after{
-							content: ":";
-							margin-right: 0.3rem;
-						}
+					&::after{
+						content: ":";
+						margin-right: 6px;
 					}
-					.mdv-dtl-value{
-					}
+				}
+				.mdv-dtl-value{
+				}
 
-					&:last-of-type{
-						margin-bottom: 0;
-					}
+				&:last-of-type{
+					margin-bottom: 0;
 				}
 			}
 		}
+	}
 
-		&:last-of-type{
-			margin-bottom: 0;
-		}
+	&:last-of-type{
+		margin-bottom: 0;
 	}
 }

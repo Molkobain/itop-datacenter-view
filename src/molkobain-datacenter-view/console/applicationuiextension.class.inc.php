@@ -57,7 +57,16 @@ class ApplicationUIExtension implements iApplicationUIExtension
 		$oPage->add_linked_script($sJSRootUrl . $sJSWidgetFilename . '?v=' . ConfigHelper::GetModuleVersion());
 
 		// - CSS files
-		$oPage->add_saas('env-' . utils::GetCurrentEnvironment() . '/' . ConfigHelper::GetModuleCode() . '/common/css/datacenter-view.scss');
+		$sModuleCssBaseRelPath = 'env-' . utils::GetCurrentEnvironment() . '/' . ConfigHelper::GetModuleCode() . '/common/css/';
+		// Portal CSS path (for compilation of the global stylesheet)
+		if (ConfigHelper::IsRunningiTop27OrNewer()) {
+			$sPortalCssBaseRelPath = 'datamodels/2.x/itop-portal-base/portal/public/css/';
+		} else {
+			$sPortalCssBaseRelPath = 'datamodels/2.x/itop-portal-base/portal/web/css/';
+		}
+		$aScssImportPaths = array(APPROOT.$sPortalCssBaseRelPath);
+		$oPage->add_linked_stylesheet(utils::GetAbsoluteUrlAppRoot().utils::GetCSSFromSASS($sModuleCssBaseRelPath.'datacenter-view.scss', $aScssImportPaths));
+//		$oPage->add_saas('env-' . utils::GetCurrentEnvironment() . '/' . ConfigHelper::GetModuleCode() . '/common/css/datacenter-view.scss');
 
 		// Add content in an async tab
 		$sPreviousTab = $oPage->GetCurrentTab();

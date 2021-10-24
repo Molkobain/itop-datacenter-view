@@ -303,7 +303,8 @@ $(function()
 				} else {
 					oDeviceElem.attr('data-tooltip-html-enabled', true)
 						.attr('data-tooltip-placement', 'left')
-						.attr('data-tooltip-distance-offset', bIsDeviceInUnmountedPanel ? '16' : '32')
+						.attr('data-tooltip-distance-offset', bIsDeviceInUnmountedPanel ? '24' : '42')
+						.attr('data-tooltip-theme', 'molkobain-light mdv-element-tooltip')
 						.attr('data-tooltip-content', oDevice.tooltip.content);
 				}
 
