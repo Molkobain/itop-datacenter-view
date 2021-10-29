@@ -507,14 +507,15 @@
 						margin-right: 6px;
 					}
 				}
-				.mdv-dtl-value{
-				}
 
 				&:last-of-type{
 					margin-bottom: 0;
 				}
 			}
 		}
+	}
+	img {
+		height: auto !important /* Overload inline style put by the HTML editor, otherwise images will be stretched */
 	}
 
 	&:last-of-type{
