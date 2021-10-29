@@ -14,7 +14,7 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'molkobain-handy-framework/1.7.0',
+	'molkobain-handy-framework/1.7.1',
 	array(
 		// Identification
 		//
@@ -23,9 +23,7 @@ SetupWebPage::AddModule(
 
 		// Setup
 		//
-		'dependencies' => array(
-			'itop-welcome-itil/2.4.0'
-		),
+		'dependencies' => array(),
 		'mandatory' => true,
 		'visible' => false,
 
