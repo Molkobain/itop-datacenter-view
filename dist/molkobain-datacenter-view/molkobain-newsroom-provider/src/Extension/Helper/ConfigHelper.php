@@ -9,8 +9,10 @@
 
 namespace Molkobain\iTop\Extension\NewsroomProvider\Helper;
 
+use MetaModel;
 use Molkobain\iTop\Extension\HandyFramework\Helper\ConfigHelper as BaseConfigHelper;
 use UserRights;
+use utils;
 
 /**
  * Class ConfigHelper
@@ -28,6 +30,26 @@ class ConfigHelper extends BaseConfigHelper
 	// Note: Mind to update defaults values in the module file when changing those default values.
 	const DEFAULT_SETTING_DEBUG = false;
 	const DEFAULT_SETTING_ENDPOINT = 'https://www.molkobain.com/support/pages/exec.php?exec_module=molkobain-newsroom-editor&exec_page=index.php';
+
+	/**
+	 * Newsroom will be enabled only if manually enabled in the conf. parameters or if not in a Combodo product
+	 *
+	 * @inheritDoc
+	 */
+	public static function IsEnabled()
+	{
+		// We do NOT use the default value {@see BaseConfigHelper::GetSetting()} on purpose, so we know if the param. has been manually set or not
+		$bEnabled = MetaModel::GetModuleSetting(static::MODULE_NAME, 'enabled', null);
+
+		// Manually set, keep this value...
+		if ($bEnabled !== null) {
+			return $bEnabled;
+		}
+
+		// ... else check if in a Combodo product
+		$bIsCombodoProduct = utils::GetCompiledModuleVersion('itsm-designer-connector') !== null;
+		return $bIsCombodoProduct ? false : true;
+	}
 
 	/**
 	 * Returns true if the debug option is enabled

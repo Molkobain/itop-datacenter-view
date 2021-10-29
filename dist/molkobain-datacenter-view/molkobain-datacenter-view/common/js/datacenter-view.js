@@ -396,7 +396,7 @@ $(function()
 
 				// Update element count
 				var oSpotElem = oPanelElem.find('.mdv-uth-spot');
-				var iElementCount = oPanelElem.find('.mdv-ut-body > .mdv-element').length;
+				var iElementCount = oPanelElem.find('.mdv-ut-body > .mdv-element:visible').length;
 
 				oSpotElem.text(iElementCount);
 				if(iElementCount === 0)

@@ -66,7 +66,6 @@ class ApplicationUIExtension implements iApplicationUIExtension
 		}
 		$aScssImportPaths = array(APPROOT.$sPortalCssBaseRelPath);
 		$oPage->add_linked_stylesheet(utils::GetAbsoluteUrlAppRoot().utils::GetCSSFromSASS($sModuleCssBaseRelPath.'datacenter-view.scss', $aScssImportPaths));
-//		$oPage->add_saas('env-' . utils::GetCurrentEnvironment() . '/' . ConfigHelper::GetModuleCode() . '/common/css/datacenter-view.scss');
 
 		// Add content in an async tab
 		$sPreviousTab = $oPage->GetCurrentTab();
