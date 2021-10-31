@@ -10,6 +10,8 @@
 * [Configuration](#configuration)
 * [How to](#how-to)
 * [Change log](CHANGELOG.md)
+* [Contributors](#contributors)
+* [Third parties](#third-parties)
 
 ## Support
 If you like this project, you can buy me beer, always appreciated! 🍻😁
@@ -245,3 +247,7 @@ I would like to give a special thank you to the people who contributed to this
 
 ## Licensing
 This extension is under [AGPLv3](https://en.wikipedia.org/wiki/GNU_Affero_General_Public_License).
+
+## Third parties
+This extension embeds some third-party resources:
+  * Zero-U panel icon (USB memory stick) comes from [Icons8](https://icons8.com/icon/FlnYHAW3wYBn/usb-memory-stick)
