@@ -25,7 +25,7 @@ $aMolkobainThesaurus = array_merge($aMolkobainThesaurus, [
 ]);
 
 // Classes
-Dict::Add('CZ CZ', 'Czech', 'Česky', array(
+Dict::Add('CS CZ', 'Czech', 'Čeština', array(
 	// - LocationType
 	'Class:LocationType' => 'Typy míst',
 	'Class:LocationType/Attribute:name' => 'Jméno',
