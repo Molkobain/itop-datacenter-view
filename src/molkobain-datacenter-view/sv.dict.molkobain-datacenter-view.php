@@ -70,7 +70,7 @@ Dict::Add('SV SV', 'Swedish', 'Svenska', array(
 ));
 
 // UI
-Dict::Add('EN US', 'English', 'English', array(
+Dict::Add('SV SV', 'Swedish', 'Svenska', array(
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Graphisk vy',
 	'Molkobain:DatacenterView:NoElement' => 'Inget element',
 	// - Legend
