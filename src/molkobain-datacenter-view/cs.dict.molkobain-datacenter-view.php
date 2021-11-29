@@ -70,7 +70,7 @@ Dict::Add('CS CZ', 'Czech', 'Čeština', array(
 ));
 
 // UI
-Dict::Add('CZ CZ', 'Czech', 'Česky', array(
+Dict::Add('CS CZ', 'Czech', 'Čeština', array(
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Grafické zobrazení',
 	'Molkobain:DatacenterView:NoElement' => 'Žádný prvek',
 	// - Legend
