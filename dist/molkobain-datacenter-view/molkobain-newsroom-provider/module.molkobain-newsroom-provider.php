@@ -53,6 +53,9 @@ SetupWebPage::AddModule(
 
 		// Default settings
 		//
-		'settings' => array(),
+		'settings' => array(
+			// Force newsroom on mdv free version
+			'enabled' => true,
+		),
 	)
 );
