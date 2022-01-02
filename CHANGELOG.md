@@ -5,6 +5,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.10.0] - 2022-01-02
+### Added
+- Add support for Czech and Sweidh thanks to @xmstspider
+- Add counter on unmounted panels
+
+### Changed
+- Fix minor visual glitches
+- Remove compatibility with iTop 2.5 and older
+
 ## [1.9.0] - 2021-10-20
 ### Changed
 - Add compatibility with iTop 3.0+
@@ -99,7 +108,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.9.0...HEAD
+[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.10.0...HEAD
+[1.10.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.10.0
 [1.9.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.9.0
 [1.8.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.8.0
 [1.7.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.7.0

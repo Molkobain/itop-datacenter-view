@@ -145,7 +145,7 @@ You can try this extension on the online demo. There are already some racks, enc
 
 ## Compatibility
 ### iTop versions
-Compatible with iTop 2.4+
+Compatible with iTop 2.6+
 
 ### Other extensions
 * **TeemIP** by @xtophe38:\
