@@ -252,3 +252,4 @@ This extension is under [AGPLv3](https://en.wikipedia.org/wiki/GNU_Affero_Genera
 ## Third parties
 This extension embeds some third-party resources:
   * Zero-U panel icon (USB memory stick) comes from [Icons8](https://icons8.com/icon/FlnYHAW3wYBn/usb-memory-stick)
+  * Some class icons come from [Icons8](https://icons8.com)
