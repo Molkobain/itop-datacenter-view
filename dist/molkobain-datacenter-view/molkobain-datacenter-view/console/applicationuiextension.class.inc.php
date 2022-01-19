@@ -44,6 +44,11 @@ class ApplicationUIExtension implements iApplicationUIExtension
 			return;
 		}
 
+		// Don't display graphical view is element still being created
+		if ($oObject->IsNew()) {
+			return;
+		}
+
 		// Retrieve DatacenterView
 		$oDatacenterView = DatacenterViewFactory::BuildFromObject($oObject);
 		$oDatacenterView->SetObjectInEditMode($bEditMode);

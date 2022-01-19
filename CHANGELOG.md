@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.10.1] - 2022-01-19
+### Changed
+- Fix crash in "Graphical view" tab if opened during object creation
+
 ## [1.10.0] - 2022-01-02
 ### Added
 - Add support for Czech and Sweidh thanks to @xmstspider
@@ -108,7 +112,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.10.0...HEAD
+[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.10.1...HEAD
+[1.10.1]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.10.1
 [1.10.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.10.0
 [1.9.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.9.0
 [1.8.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.8.0
