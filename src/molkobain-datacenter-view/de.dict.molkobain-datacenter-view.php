@@ -18,9 +18,9 @@ $aMolkobainThesaurus = array_merge($aMolkobainThesaurus, [
 	'Class/Attribute:position_v+/Variant:device' => 'Vertikale Position (HE) von %1$s im Gehäuse (oder im Rack sofern direkt verbaut). (Muss die unterste Position sein, nicht die obere)',
 
 	// Fieldsets
-	'Fieldset:baseinfo' => 'Allgemein Information',
-	'Fieldset:moreinfo' => 'Weitere Information',
-	'Fieldset:otherinfo' => 'Andere Information',
+	'Fieldset:baseinfo' => 'Allgemeine Informationen',
+	'Fieldset:moreinfo' => 'Weitere Informationen',
+	'Fieldset:otherinfo' => 'Andere Informationen',
 	'Fieldset:dates' => 'Daten',
 ]);
 
