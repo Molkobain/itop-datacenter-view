@@ -235,6 +235,7 @@ I would like to give a special thank you to the people who contributed to this
 
 ### Names
  - Abello, Stephen  a.k.a [@steffunky](https://github.com/steffunky)
+ - Beer, Christian a.k.a [@ChristianBeer](https://github.com/ChristianBeer)
  - Bostoen, Jeffrey a.k.a [@jbostoen](https://github.com/jbostoen)
  - Makhlouf, Hadi
  - Sedlak, Zdenek a.k.a [@xmstspider](https://github.com/xmstspider)
