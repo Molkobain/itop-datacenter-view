@@ -18,9 +18,9 @@ $aMolkobainThesaurus = array_merge($aMolkobainThesaurus, [
 	'Class/Attribute:position_v+/Variant:device' => 'Vertikale Position (HE) von %1$s im Gehäuse (oder im Rack sofern direkt verbaut). (Muss die unterste Position sein, nicht die obere)',
 
 	// Fieldsets
-	'Fieldset:baseinfo' => 'Allgemein Information',
-	'Fieldset:moreinfo' => 'Weitere Information',
-	'Fieldset:otherinfo' => 'Andere Information',
+	'Fieldset:baseinfo' => 'Allgemeine Informationen',
+	'Fieldset:moreinfo' => 'Weitere Informationen',
+	'Fieldset:otherinfo' => 'Andere Informationen',
 	'Fieldset:dates' => 'Daten',
 ]);
 
@@ -36,37 +36,37 @@ Dict::Add('DE DE', 'German', 'German', array(
 	'Class:Location/Attribute:locationtype_id' => 'Typ',
 	'Class:Location/Attribute:locationtype_id+' => 'Welche Art von Standort ist es und welchen Zweck hat es?',
 	'Class:Location/Attribute:parent_id' => 'Eltern',
-	'Class:Location/Attribute:parent_id+' => 'Standort, wo sich dies befindet (z.B. ein \'Raum\', \'Stockwerk\' or a \'Gebäude\')',
-	'Class:Location/Attribute:locations_list' => '´Kinder-Standorte',
+	'Class:Location/Attribute:parent_id+' => 'Standort, wo sich dieses befindet (z.B. ein \'Raum\', \'Stockwerk\' oder ein \'Gebäude\')',
+	'Class:Location/Attribute:locations_list' => 'Kinder-Standorte',
 	'Class:Location/Attribute:locations_list+' => 'Liste aller beinhalteten Standorte',
 	// - PhysicalDevice (default entries for custom classes)
 	'Class:PhysicalDevice/Attribute:nb_u' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u']),
-	'Class:PhysicalDevice/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'Das Element'),
+	'Class:PhysicalDevice/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'dem Element'),
 	'Class:PhysicalDevice/Attribute:position_v' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v']),
 	// Note: Physical device can be either an host (eg. enclosure) or a device (eg. server), so we use a generic sentence
-	'Class:PhysicalDevice/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:host'], 'Das Element', 'Sein Host'),
+	'Class:PhysicalDevice/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:host'], 'dem Element', 'seinem Host'),
 	// - Rack
 	'Class:Rack/Attribute:nb_u' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u']),
-	'Class:Rack/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'Das Rack'),
+	'Class:Rack/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'dem Rack'),
 	// - Enclosure
 	'Class:Enclosure/Attribute:nb_u' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u']),
-	'Class:Enclosure/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'Das Gehäuse'),
+	'Class:Enclosure/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'dem Gehäuse'),
 	'Class:Enclosure/Attribute:position_v' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v']),
-	'Class:Enclosure/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:host'], 'Das Gehäuse', 'Das Rack'),
+	'Class:Enclosure/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:host'], 'dem Gehäuse', 'dem Rack'),
 	'Enclosure:baseinfo' => sprintf($aMolkobainThesaurus['Fieldset:baseinfo']),
 	'Enclosure:moreinfo' => sprintf($aMolkobainThesaurus['Fieldset:moreinfo']),
 	'Enclosure:otherinfo' => sprintf($aMolkobainThesaurus['Fieldset:otherinfo']),
 	'Enclosure:dates' => sprintf($aMolkobainThesaurus['Fieldset:dates']),
 	// - Datacenter device
 	'Class:DatacenterDevice/Attribute:nb_u' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u']),
-	'Class:DatacenterDevice/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'Das Gerät'),
+	'Class:DatacenterDevice/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'dem Gerät'),
 	'Class:DatacenterDevice/Attribute:position_v' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v']),
-	'Class:DatacenterDevice/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:device'], 'Das Gerät'),
+	'Class:DatacenterDevice/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:device'], 'dem Gerät'),
 	// - PDU
 	'Class:PDU/Attribute:nb_u' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u']),
-	'Class:PDU/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'Das Gerät'),
+	'Class:PDU/Attribute:nb_u+' => sprintf($aMolkobainThesaurus['Class/Attribute:nb_u+'], 'der PDU'),
 	'Class:PDU/Attribute:position_v' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v']),
-	'Class:PDU/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:device'], 'Die PDU'),
+	'Class:PDU/Attribute:position_v+' => sprintf($aMolkobainThesaurus['Class/Attribute:position_v+/Variant:device'], 'der PDU'),
 ));
 
 // UI
