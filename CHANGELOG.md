@@ -1,3 +1,5 @@
+<button onclick="history.back()">Back</button>
+
 # Changelog
 All notable changes to this project will be documented in this file.
 

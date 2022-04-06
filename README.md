@@ -1,17 +1,15 @@
 👋 [Available on Molkobain I/O](https://www.molkobain.com/product/datacenter-view/)
 
 # iTop extension: molkobain-datacenter-view
-* [Description](#description)
-* [Advanced features](#advanced-features-in-the-paid-version-)
-* [Online demo](#online-demo)
-* [Compatibility](#compatibility)
-* [Downloads](#downloads)
-* [Installation](#installation)
-* [Configuration](#configuration)
-* [How to](#how-to)
-* [Change log](CHANGELOG.md)
-* [Contributors](#contributors)
-* [Third parties](#third-parties)
+
+  * [Description](#description)
+  * [Advanced features](#advanced-features-in-the-paid-version-)
+  * [Online demo](#online-demo)
+  * [Downloads](#download-the-extension)
+  * [Installation & configuration](#installation--configuration)
+  * [Tutorials](#tutorials)
+  * [Contributors](#contributors)
+  * [Dependencies & third parties](#dependencies)
 
 ## Support
 If you like this project, you can buy me beer, always appreciated! 🍻😁
@@ -20,11 +18,12 @@ If you like this project, you can buy me beer, always appreciated! 🍻😁
 
 ## Description
 Easily manage & visualize your racks, enclosures and datacenter devices.
-* See at a glace where your devices are.
-* Check which attached devices have no position set.
-* Toggle obsolete devices easily.
-* Full support of english, french, dutch, german, czech & swedish languages.
-* External applications like racktables or rackmonkey are no longer necessary to visualize your data.
+
+  * See at a glace where your devices are.
+  * Check which attached devices have no position set.
+  * Toggle obsolete devices easily.
+  * Full support of english, french, dutch, german, czech & swedish languages.
+  * External applications like racktables or rackmonkey are no longer necessary to visualize your data.
 
 ![Overview](docs/mdv-overview-01.png)
 
@@ -39,218 +38,75 @@ Highlight devices based on their name / serial number / asset number
 
 
 ### Advanced features in the paid version 🚀
-* [Drag & Drop](#drag--drop)
-* [Complex enclosures support (grid system)](#complex-enclosures-support)
-* [Rear panel support](#rear-panel-support)
-* [Occupancy rates](#occupancy-rates)
-* [Power capacity](#power-capacity)
-* [Weight capacity](#weight-capacity)
-* [Consistency checks](#consistency-checks)
-* [Audit rules](#audit-rules)
-* [Reserved slots](#reserved-slots)
-* [Custom classes](#custom-classes)
-* [Zero-U devices](#zero-u-devices)
-* [Misc. options](#misc-options)
+Full presentation & documentation available of the advanced features are available [here](https://molkobain.github.io/itop-extensions-documentation/molkobain-datacenter-view-extended/).
+
+  * [Drag & Drop](https://molkobain.github.io/itop-extensions-documentation/molkobain-datacenter-view-extended/docs/features/drag-and-drop.html)
+  * [Complex enclosures support (grid system)](https://molkobain.github.io/itop-extensions-documentation/molkobain-datacenter-view-extended/docs/features/complex-enclosures.html)
+  * [Rear panel support](https://molkobain.github.io/itop-extensions-documentation/molkobain-datacenter-view-extended/docs/features/graphical-tab-overview.html)
+  * [Occupancy rates](https://molkobain.github.io/itop-extensions-documentation/molkobain-datacenter-view-extended/docs/features/occupancy-rates.html)
+  * [Power & weight capacities](https://molkobain.github.io/itop-extensions-documentation/molkobain-datacenter-view-extended/#documentation)
+  * [Consistency checks & audit rules](https://molkobain.github.io/itop-extensions-documentation/molkobain-datacenter-view-extended/#documentation)
+  * [Reserved slots & Zero-U devices](https://molkobain.github.io/itop-extensions-documentation/molkobain-datacenter-view-extended/#documentation)
+  * [And more](https://molkobain.github.io/itop-extensions-documentation/molkobain-datacenter-view-extended/#documentation)
 
 👋 _Paid version is now available on [Molkobain I/O](https://www.molkobain.com/product/datacenter-view-extended/)!_
 
-#### Drag & Drop
-Drag & drop elements in the graphical view to easily set their position instead of manually editing each elements!
-![Pro features - Rear panel](docs/mdv-profeatures-drag-01.png)
-
-#### Complex enclosures support
-Support any enclosure form factor with the grid layout. From vertical server-blades to devices with heterogeneous widths / heights. 🤩
-
-Follow the wizard to design the layout...
-![Pro features - Rear panel](docs/mdv-profeatures-gridlayoutwizard-01.png)
-
-... then easily position your devices.
-![Pro features - Rear panel](docs/mdv-profeatures-gridlayout-02.png)
-
-![Pro features - Rear panel](docs/mdv-profeatures-gridlayout-05.png)
-
-![Pro features - Rear panel](docs/mdv-profeatures-gridlayout-06.png)
-
-#### Rear panel support
-* Available in both racks and enclosures
-* Automatically shows occupancy on the opposite panel
-
-![Pro features - Rear panel](docs/mdv-profeatures-panels-01.png)
-
-#### Occupancy rates
-* Keep an eye on your racks and enclosures occupancy rate in real time
-* Distinct indicators for front and rear panels
-
-![Pro features - Occupancy rates](docs/mdv-profeatures-occuprates-02.png)
-
-![Pro features - Occupancy rates](docs/mdv-profeatures-occuprates-01.png)
-
-#### Power capacity
-Keep an eye on your racks power consumption:
-* Fill devices expected consumption
-* Max. expected consumption on each rack & enclosure is automatically computed
-* Compare it with contracted power and actual power reading
-
-![Pro features - Rack power](docs/mdv-profeatures-rackpower-01.png)
-
-#### Weight capacity
-Keep an eye on your racks & enclosures weight capacity:
-* Fill devices weight
-* Cumulated weight on each rack & enclosure is automatically computed
-* Compare it with the maximum weight allowed by the element itself or the server room specs
-
-![Pro features - Rack weight](docs/mdv-profeatures-rackweight-01.png)
-
-#### Consistency checks
-Optional consistency checks are made on elements during creation / update:
-* Overlapping elements
-* Malpositioned elements (outside rack's / enclosure's grid)
-* Total elements' height exceeds rack's / enclosure's capacity
-
-![Pro features - Consistency checks](docs/mdv-profeatures-consistency-01.png)
-
-#### Audit rules
-Comes with a bunch of audit rules to keep your datacenter vision clear:
-* Production elements should have position set when attached to a rack or enclosure
-* Positioned elements should be attached to a rack or enclosure
-* Positioned elements should have *Rack units* attribute set
-* Positioned elements should not overlap another one
-* Positioned elements should not be outside its rack's or enclosure's (exceed height or malpositioned)
-
-![Pro features - Audit rules](docs/mdv-profeatures-audit-01.png)
-
-#### Reserved slots
-Two new object classes to better describe your racks and enclosures:
-* ReservedSlot: Reserve space in a rack / enclosure for any future usage or element.
-* MiscEquipmentSlot: Mark space as used for patch panel or cable management for example.
-
-![Pro features - Reserved slots](docs/mdv-profeatures-reservedslots-01.png)
-
-#### Custom classes
-You have some custom classes _(not derivating from DatacenterDevice)_ that you would like to use in racks and enclosures? No problem! Just register them in the `custom_device_classes` config. parameter, make sure they have the required attributes _(see documentation)_ and they will automatically appear. 👌
-
-#### Zero-U devices
-Manage devices with non standard size / positioning such as USB drives, vertical PDUs, non rackable devices, ... Just mark them as such to make them appaer in the bottom-right panel of their host, easy as pie!
-
-![Pro features - Zero-U devices](docs/mdv-profeatures-zerou-01.png)
-
-#### Misc. options
-* Us order: Reverse Us order per rack / enclosure to fit your set-up
-* Enclosure layout: Either display enclosure's elements or just the number of elements in it
-* Custom colors: Change the colors of each element types in the configuration editor
-
 ## Online demo
 You can try this extension on the online demo. There are already some racks, enclosures and devices mounted as an example. Just click on the links below to access it:
-* [Administration console](http://mbc.itop.molkobain.com/pages/UI.php?operation=details&class=Rack&id=15&c[menu]=SearchCIs&auth_user=admin&auth_pwd=admin#tabbedContent_0=8) (admin / admin)
 
-## Compatibility
-### iTop versions
-Compatible with iTop 2.6+
+  * [Administration console](http://mbc.itop.molkobain.com/pages/UI.php?operation=details&class=Rack&id=15&c[menu]=SearchCIs&auth_user=admin&auth_pwd=admin#tabbedContent_0=8) (admin / admin)
 
-### Other extensions
-* **TeemIP** by @xtophe38:\
-For people using both **Datacenter View Extended** and the great [TeemIP](https://www.teemip.net/) extension, you should consider using the [Datacenter view extended ❤ IPAM for iTop](https://github.com/Molkobain/itop-datacenter-view-extended-bridge-for-teemip) bridge for optimal integration.
-
-* **Generic Connection Devices and Interfaces** by @Schirrms:\
- For people using both this extension and the great [Generic Connection Devices and Interfaces](https://github.com/Schirrms/iTop-Generic-Connection) extension, you should consider using the [iTop-Generic-Connection-To-Datacenter-View](https://github.com/Schirrms/iTop-Generic-Connection-To-Datacenter-View) bridge for optimal integration.
-
-## Dependencies
-* Module `molkobain-handy-framework`
-* Module `molkobain-console-tooltips`
-* Module `molkobain-newsroom-provider`
-
-*Note: All dependencies are included in the `dist/` folder, so all you need to do is follow the installation section below.*
-
-## Downloads
+## Download the extension
 Stable releases can be found either on the [releases page](https://github.com/Molkobain/itop-datacenter-view/releases) or on [Molkobain I/O](https://www.molkobain.com/product/datacenter-view/).
 
 Downloading it directly from the *Clone or download* will get you the version under development which might be unstable.
 
-## Installation
-* Unzip the extension
-* Copy the ``molkobain-datacenter-view`` folder under ``<PATH_TO_ITOP>/extensions`` folder of your iTop
-* Run iTop setup & select extension *Datacenter view*
+## Installation & configuration
 
-*Your folders should look like this*
+  * [Installation](docs/configuration/installation.md)
+  * [Datamodel changes](docs/configuration/datamodel-changes.md)
+  * [Configuration parameters](docs/configuration/configuration-parameters.md)
+  * [Change log](CHANGELOG.md)
 
-![Extensions folder](docs/mdv-install.png)
+## Tutorials
 
-## Configuration
-No configuration needed, the extension can be used out of the box!
-
-### Parameters
-Some configuration parameters are available from the Configuration editor of the console:
-* `enabled` Enable / disable the extension without having to uninstall it. Value can be `true` or `false`.
-* `device_tooltip_attributes` Specify which attributes to display in the devices tooltip on hover. Must be an array of object classes pointing to an array of attributes (see example below).
-
-*Default values:*
-```
-'enabled' => true,
-'device_tooltip_attributes' => array(
-    'DatacenterDevice' => array(
-        'brand_id',
-        'model_id',
-        'serialnumber',
-        'asset_number',
-    ),
-    'NetworkDevice' => array(
-        'networkdevicetype_id',
-        'brand_id',
-        'model_id',
-        'ram',
-        'serialnumber',
-        'asset_number',
-    ),
-    'Server' => array(
-        'brand_id',
-        'model_id',
-        'osfamily_id',
-        'cpu',
-        'ram',
-        'serialnumber',
-        'asset_number',
-    ),
-),
-```
-
-## How to
-### Free version (molkobain-datacenter-view)
-#### Position a device on a rack
-A quick example to show how to manually position a device on a rack.
-
-In this example, the *Rack 2* has a *Server* attached but is listed among the *unmounted* devices. This is because the *server* has no *position* set.
-![How to - Unmounted device](docs/mdv-howto-positionserver-01.png)
-
-To fix this, edit the *server* and make sure it has both *position* and *rack units* (its height) set.
-![How to - Edit device](docs/mdv-howto-positionserver-02.png)
-
-Save the object and go back to the *rack*. The *server* will now appear in the *front* panel!
-![How to - Result](docs/mdv-howto-positionserver-03.png)
-
-#### Paid version (molkobain-datacenter-view-extended)
-_Under construction_
+  * [Position a device on a rack](docs/tutorials/position-device-on-rack.md)
 
 ## Contributors
 I would like to give a special thank you to the people who contributed to this
 
 ### Names
- - Abello, Stephen  a.k.a [@steffunky](https://github.com/steffunky)
- - Beer, Christian a.k.a [@ChristianBeer](https://github.com/ChristianBeer)
- - Bostoen, Jeffrey a.k.a [@jbostoen](https://github.com/jbostoen)
- - Makhlouf, Hadi
- - Sedlak, Zdenek a.k.a [@xmstspider](https://github.com/xmstspider)
+
+ * Abello, Stephen  a.k.a [@steffunky](https://github.com/steffunky)
+ * Beer, Christian a.k.a [@ChristianBeer](https://github.com/ChristianBeer)
+ * Bostoen, Jeffrey a.k.a [@jbostoen](https://github.com/jbostoen)
+ * Makhlouf, Hadi
+ * Sedlak, Zdenek a.k.a [@xmstspider](https://github.com/xmstspider)
+ * Schirrmann, Pascal a.k.a [@Schirrms](https://github.com/Schirrms)
    
 ### Aliases
- - @danama
- - @Schirrms
+
+ * [@danama](https://github.com/danama)
 
 ### Companies
- - [viwedis GmbH](https://www.viwedis.de/)
+
+ * [viwedis GmbH](https://www.viwedis.de/)
 
 ## Licensing
 This extension is under [AGPLv3](https://en.wikipedia.org/wiki/GNU_Affero_General_Public_License).
 
-## Third parties
-This extension embeds some third-party resources:
+## Dependencies
+This extension embeds some resources that are necessary for it to work. \
+Everything is included in the distributed packages, no extra effort needed.
+
+### iTop modules
+
+  * Module [molkobain-handy-framework](https://github.com/Molkobain/itop-handy-framework)
+  * Module [molkobain-console-tooltips](https://github.com/Molkobain/itop-console-tooltips)
+  * Module [molkobain-newsroom-provider](https://github.com/Molkobain/itop-newsroom-provider)
+
+### Third parties
+
   * Zero-U panel icon (USB memory stick) comes from [Icons8](https://icons8.com/icon/FlnYHAW3wYBn/usb-memory-stick)
   * Some class icons come from [Icons8](https://icons8.com)
+  
