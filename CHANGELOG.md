@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.11.0] - 2022-04-12
+### Added
+  * Add warning message in graphcial view when no height defined for racks / enclosures
+
 ## [1.10.2] - 2022-04-06
 ### Changed
   * Update german translations thanks to @ChristianBeer
@@ -119,7 +123,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
   * Initial release
 
-[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.10.2...HEAD
+[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.11.0...HEAD
+[1.11.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.11.0
 [1.10.2]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.10.2
 [1.10.1]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.10.1
 [1.10.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.10.0
