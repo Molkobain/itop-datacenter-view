@@ -72,6 +72,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Grafische weergave',
 	'Molkobain:DatacenterView:NoElement' => 'Geen object',
+	// - Messages
+	'Molkobain:DatacenterView:WarningMessage:NoHeightForHost' => 'No height defined for the element, devices might not display correctly.~~',
 	// - Legend
 	'Molkobain:DatacenterView:Legend:Title' => 'Legende',
 	// - Filter

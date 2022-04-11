@@ -73,6 +73,8 @@ Dict::Add('CS CZ', 'Czech', 'Čeština', array(
 Dict::Add('CS CZ', 'Czech', 'Čeština', array(
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Grafické zobrazení',
 	'Molkobain:DatacenterView:NoElement' => 'Žádný prvek',
+	// - Messages
+	'Molkobain:DatacenterView:WarningMessage:NoHeightForHost' => 'No height defined for the element, devices might not display correctly.~~',
 	// - Legend
 	'Molkobain:DatacenterView:Legend:Title' => 'Legenda',
 	// - Filter

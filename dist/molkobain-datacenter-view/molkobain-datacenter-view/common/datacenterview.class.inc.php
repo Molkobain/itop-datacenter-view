@@ -189,6 +189,16 @@ class DatacenterView
 		$sNoElementLabel = Dict::S('Molkobain:DatacenterView:NoElement');
 
 		// Add markup
+		// - Header messages
+		$sHeaderMessagesAsHTML = '';
+		//   No height defined for element
+		if ((int) $this->oObject->Get('nb_u') === 0) {
+			$sDictAsHTML = htmlentities(Dict::S('Molkobain:DatacenterView:WarningMessage:NoHeightForHost'), ENT_QUOTES, 'UTF-8');
+			$sHeaderMessagesAsHTML .= <<<HTML
+<div class="header_message message_warning ibo-alert ibo-is-warning">{$sDictAsHTML}</div>
+HTML;
+		}
+
 		// - Legend
 		$sLegendTitle = Dict::S('Molkobain:DatacenterView:Legend:Title');
 
@@ -234,7 +244,7 @@ HTML;
 		// Note: We could split this in protected methods for overloading (PrepareHtml, PrepareJs, ...)
 		$oOutput->AddHtml(<<<HTML
 <div class="molkobain-datacenter-view-container" data-portal="backoffice">
-	<div class="mdv-header"></div>
+	<div class="mdv-header">$sHeaderMessagesAsHTML</div>
 	<div class="mdv-body">
 		<div class="mdv-controls">
 			<div class="mdv-legend mhf-panel">

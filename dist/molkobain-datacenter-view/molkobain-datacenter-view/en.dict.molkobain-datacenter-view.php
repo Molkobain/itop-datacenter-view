@@ -73,6 +73,8 @@ Dict::Add('EN US', 'English', 'English', array(
 Dict::Add('EN US', 'English', 'English', array(
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Graphical view',
 	'Molkobain:DatacenterView:NoElement' => 'No element',
+	// - Messages
+	'Molkobain:DatacenterView:WarningMessage:NoHeightForHost' => 'No height defined for the element, devices might not display correctly.',
 	// - Legend
 	'Molkobain:DatacenterView:Legend:Title' => 'Legend',
 	// - Filter
