@@ -72,6 +72,8 @@ Dict::Add('FR FR', 'French', 'Français', array(
 Dict::Add('FR FR', 'French', 'Français', array(
 	'Molkobain:DatacenterView:Tabs:View:Title' => 'Représentation graphique',
 	'Molkobain:DatacenterView:NoElement' => 'Aucun élément',
+	// - Messages
+	'Molkobain:DatacenterView:WarningMessage:NoHeightForHost' => 'Hauteur non définie pour l\'élément, les matériels peuvent ne pas s\'afficher correctement.',
 	// - Legend
 	'Molkobain:DatacenterView:Legend:Title' => 'Légende',
 	// - Filter
