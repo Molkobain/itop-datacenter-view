@@ -69,7 +69,10 @@ class ApplicationUIExtension implements iApplicationUIExtension
 		} else {
 			$sPortalCssBaseRelPath = 'datamodels/2.x/itop-portal-base/portal/web/css/';
 		}
-		$aScssImportPaths = array(APPROOT.$sPortalCssBaseRelPath);
+		$aScssImportPaths = [
+			APPROOT.$sPortalCssBaseRelPath,
+			MODULESROOT, // For imports of modules files
+		];
 		$oPage->add_linked_stylesheet(utils::GetAbsoluteUrlAppRoot().utils::GetCSSFromSASS($sModuleCssBaseRelPath.'datacenter-view.scss', $aScssImportPaths));
 
 		// Add content in an async tab
