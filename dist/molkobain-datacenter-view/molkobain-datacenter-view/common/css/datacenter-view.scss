@@ -6,7 +6,7 @@
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
 
-/* Paths relative to the current environment so it works in any of them, but the env. folder path MUST be passed to the SCSS compiler */
+/* Paths relative to the current environment so it works in any of them, but the env. folder path MUST be passed as an import path to the SCSS compiler */
 @import 'molkobain-handy-framework/asset/css/toolbox.scss';
 @import 'molkobain-datacenter-view/common/css/variables.scss';
 
