@@ -558,7 +558,7 @@ $(function()
 
 				if(oHostElem.hasClass('mdv-hu-slot'))
 				{
-					var iHostColWidth = Math.ceil(oHostElem.outerWidth());
+					var iHostColWidth = oHostElem.outerWidth(); // Don't round width otherwise the computed width will be too short
 					var iHostNbCols = parseInt(oHostElem.closest('.mdv-host-panel').attr('data-nb-cols'));
 					var iDeviceNbCols = parseInt(oDeviceElem.attr('data-nb-cols'));
 
@@ -567,7 +567,7 @@ $(function()
 					{
 						iDeviceNbCols = iHostNbCols
 					}
-					oDeviceElem.css('width', 'calc( (' + iHostColWidth + 'px - 1px) * ' + iDeviceNbCols + ' - 1px)');
+					oDeviceElem.css('width', 'calc(' + iHostColWidth + 'px * ' + iDeviceNbCols + ' - 1px)');
 				}
 
 				if(bStoreOriginalWidth)
