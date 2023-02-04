@@ -499,7 +499,7 @@ EOF
 				$oDeviceSearch = DBObjectSearch::FromOQL('SELECT '.$sDeviceClass.' WHERE rack_id = :rack_id AND enclosure_id = 0');
 				$oDeviceSearch->SetShowObsoleteData($this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE));
 				$oDeviceSet = new DBObjectSet($oDeviceSearch, array(), array('rack_id' => $oRack->GetKey()));
-				/** @var \DatacenterDevice $oDevice */
+				/** @var \DatacenterDevice|\PDU|\DBObject $oDevice Note that \DBObject is only there for custom DM classes */
 				while($oDevice = $oDeviceSet->Fetch())
 				{
 					$aDeviceData = $this->GetDeviceData($oDevice);
@@ -554,7 +554,7 @@ EOF
 				$oDeviceSearch = DBObjectSearch::FromOQL('SELECT '.$sDeviceClass.' WHERE rack_id = :rack_id AND enclosure_id = :enclosure_id');
 				$oDeviceSearch->SetShowObsoleteData($this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE));
 				$oDeviceSet = new DBObjectSet($oDeviceSearch, array(), array('rack_id' => $oEnclosure->Get('rack_id'), 'enclosure_id' => $oEnclosure->GetKey()));
-				/** @var \DatacenterDevice $oDevice */
+				/** @var \DatacenterDevice|\PDU|\DBObject $oDevice Note that \DBObject is only there for custom DM classes */
 				while($oDevice = $oDeviceSet->Fetch())
 				{
 					$aDeviceData = $this->GetDeviceData($oDevice);
