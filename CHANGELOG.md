@@ -7,6 +7,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.11.2]
+### Changed
+  * Increase iTop min. version to 2.7.0
+  * Fix dependencies marked as optional instead of mandatory
+
 ## [1.11.1] - 2022-09-20
 ### Changed
   * Fix devices width glitch on enclosure with few columns

@@ -5,12 +5,12 @@
 	<author><![CDATA[Guillaume Lajarige]]></author>
 	<label><![CDATA[Datacenter view]]></label>
 	<description><![CDATA[Visual representation of racks, enclosures & devices]]></description>
-	<version>1.11.1</version>
+	<version>1.11.2</version>
 	<release_date>2022-09-20</release_date>
 	<version_description><![CDATA[
-  * Fix devices width glitch on enclosure with few columns
-	* Fix compatibility with "Location hierarchy" extension]]></version_description>
-	<itop_version_min>2.6.0</itop_version_min>
+  * Increase iTop min. version to 2.7.0
+	* Fix dependencies marked as optional instead of mandatory]]></version_description>
+	<itop_version_min>2.7.0</itop_version_min>
 	<status>stable</status>
 	<mandatory>false</mandatory>
 	<more_info_url>https://github.com/Molkobain/itop-datacenter-view</more_info_url>
