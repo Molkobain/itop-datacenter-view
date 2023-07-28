@@ -20,7 +20,7 @@ SetupWebPage::AddModule(
             'itop-datacenter-mgmt/2.7.0 && itop-config-mgmt/2.7.0 && itop-storage-mgmt/2.7.0', // Mandatory dependencies, we should consider bridge modules in the future
 	        'molkobain-handy-framework/1.7.0 || combodo-location-hierarchy/1.0.0', // Optional dependency on location hierarchy
 	        'molkobain-handy-framework/1.7.0',
-	        'molkobain-console-tooltips/1.1.1',
+	        'molkobain-console-tooltips/1.1.1 || itop-structure/3.0.0', // Optional dependency, only for iTop 2.7 and older
 	        'molkobain-newsroom-provider/1.1.0',
         ),
         'mandatory' => false,
