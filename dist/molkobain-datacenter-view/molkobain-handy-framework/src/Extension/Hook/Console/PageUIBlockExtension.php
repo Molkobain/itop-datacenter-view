@@ -9,29 +9,50 @@
 
 namespace Molkobain\iTop\Extension\HandyFramework\Hook\Console;
 
-use AbstractPageUIExtension;
+use iBackofficeLinkedScriptsExtension;
+use iBackofficeLinkedStylesheetsExtension;
 use iTopWebPage;
 use utils;
 use Molkobain\iTop\Extension\HandyFramework\Helper\ConfigHelper;
 
-// Protection, only for iTop 2.4-2.7
-if(version_compare(ITOP_VERSION, '2.3', '>') && version_compare(ITOP_VERSION, '3.0', '<')) {
+
+// Protection for iTop 2.7 and older
+if(version_compare(ITOP_VERSION, '3.0', '>=')) {
 	/**
-	 * Class PageUIExtension
+	 * Class PageUIBlockExtension
 	 *
 	 * @package Molkobain\iTop\Extension\HandyFramework\Console\Extension
+	 * @since 1.10.0
 	 */
-	class PageUIExtension extends AbstractPageUIExtension
+	class PageUIBlockExtension implements iBackofficeLinkedScriptsExtension, iBackofficeLinkedStylesheetsExtension
 	{
-		/**
-		 * @inheritdoc
-		 * @throws \Exception
+		/*
+		 * inheritdoc
 		 */
-		public function GetNorthPaneHtml(iTopWebPage $oPage)
+		public function GetLinkedScriptsAbsUrls() : array
 		{
+			$aUrls = [];
+
 			// Check if enabled
 			if (ConfigHelper::IsEnabled() === false) {
-				return;
+				return $aUrls;
+			}
+
+			$aUrls[] = ConfigHelper::GetAbsoluteModuleUrl() . 'asset/js/handy-framework.js';
+
+			return $aUrls;
+		}
+
+		/**
+		 * @inheritdoc
+		 */
+		public function GetLinkedStylesheetsAbsUrls() : array
+		{
+			$aUrls = [];
+
+			// Check if enabled
+			if (ConfigHelper::IsEnabled() === false) {
+				return $aUrls;
 			}
 
 			// Module CSS path
@@ -40,8 +61,9 @@ if(version_compare(ITOP_VERSION, '2.3', '>') && version_compare(ITOP_VERSION, '3
 			$sPortalCssBaseRelPath = 'datamodels/2.x/itop-portal-base/portal/public/css/';
 
 			$aScssImportPaths = array(APPROOT . $sModuleCssBaseRelPath, APPROOT . $sPortalCssBaseRelPath);
-			$oPage->add_linked_stylesheet(utils::GetAbsoluteUrlAppRoot() . utils::GetCSSFromSASS($sModuleCssBaseRelPath . 'handy-framework.scss', $aScssImportPaths));
-			$oPage->add_linked_script(ConfigHelper::GetAbsoluteModuleUrl() . 'asset/js/handy-framework.js');
+			$aUrls[] = utils::GetAbsoluteUrlAppRoot() . utils::GetCSSFromSASS($sModuleCssBaseRelPath . 'handy-framework.scss', $aScssImportPaths);
+
+			return $aUrls;
 		}
 	}
 }

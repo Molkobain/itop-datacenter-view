@@ -14,7 +14,7 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'molkobain-fontawesome5-pack/1.4.0',
+	'molkobain-fontawesome5-pack/1.5.0',
 	array(
 		// Identification
 		//
@@ -31,10 +31,12 @@ SetupWebPage::AddModule(
 		// Components
 		//
 		'datamodel' => array(
-			'console/pageuiextension.class.inc.php',
 			// Important: Legacy class MUST be loaded before the standard.
-			'portal/portaluiextensionlegacy.class.inc.php',
-			'portal/portaluiextension.class.inc.php',
+			'console/PageUIExtensionLegacy.php',
+			'console/PageUIExtension.php',
+			// Important: Legacy class MUST be loaded before the standard.
+			'portal/PortalUIExtensionLegacy.php',
+			'portal/PortalUIExtension.php',
 		),
 		'webservice' => array(
 			

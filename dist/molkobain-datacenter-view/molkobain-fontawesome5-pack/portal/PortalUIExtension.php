@@ -14,8 +14,8 @@ use AbstractPortalUIExtension;
 use MetaModel;
 use Symfony\Component\DependencyInjection\Container;
 
-// Protection for iTop 2.6 and older
-if(!class_exists('Molkobain\\iTop\\Extension\\FontAwesome5\\Portal\\Extension\\PortalUIExtensionLegacy'))
+// Protection, for iTop 2.7-3.0 only (As of iTop 3.0 FontAwesome is acutally already updated to v5.12, but we decide to obselete this extension from iTop 3.1+)
+if(!class_exists('Molkobain\\iTop\\Extension\\FontAwesome5\\Portal\\Extension\\PortalUIExtensionLegacy') && version_compare(ITOP_VERSION, '3.1', '<'))
 {
 	/**
 	 * Class PortalUIExtension
