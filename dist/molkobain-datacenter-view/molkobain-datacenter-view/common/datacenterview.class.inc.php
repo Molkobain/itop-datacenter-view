@@ -249,7 +249,7 @@ HTML;
 		<div class="mdv-controls">
 			<div class="mdv-legend mhf-panel">
 				<div class="mhf-p-header">
-					<span class="mhf-ph-icon"><span class="fa fa-fw fa-list"></span></span>
+					<span class="mhf-ph-icon"><span class="fas fa-fw fa-list"></span></span>
 					<span class="mhf-ph-title">{$sLegendTitle}</span>
 				</div>
 				<!-- Important: There must be no spaces in this div, otherwise the :empty CSS rule will not work -->
@@ -258,7 +258,7 @@ HTML;
 			</div>
 			<div class="mdv-filter mhf-panel">
 				<div class="mhf-p-header">				
-					<span class="mhf-ph-icon"><span class="fa fa-fw fa-filter"></span></span>
+					<span class="mhf-ph-icon"><span class="fas fa-fw fa-filter"></span></span>
 					<span class="mhf-ph-title">{$sFilterTitle}</span>
 				</div>
 				<div class="mhf-p-body">
@@ -268,7 +268,7 @@ HTML;
 			</div>
 			<div class="mdv-options mhf-panel">
 				<div class="mhf-p-header">				
-					<span class="mhf-ph-icon"><span class="fa fa-fw fa-cog"></span></span>
+					<span class="mhf-ph-icon"><span class="fas fa-fw fa-cog"></span></span>
 					<span class="mhf-ph-title">{$sOptionsTitle}</span>
 				</div>
 				<div class="mhf-p-body">
@@ -290,7 +290,7 @@ HTML;
 	
 		<div class="mhf-loader mhf-hide">
 			<div class="mhf-loader-text">
-				<span class="fa fa-spin fa-refresh fa-fw"></span>
+				<span class="fas fa-spin fa-sync-alt fa-fw"></span>
 			</div>
 		</div>
 	</div>
@@ -344,7 +344,7 @@ HTML;
 				</span>
 				<span class="mhf-ph-title"></span>
 				<span class="mhf-ph-actions mhf-pull-right">
-					<span class="mhf-ph-toggler fa fa-fw fa-caret-down" title="{$sTogglerTooltip}"></span>
+					<span class="mhf-ph-toggler fas fa-fw fa-caret-down" title="{$sTogglerTooltip}"></span>
 				</span>
 			</div>
 			<!-- Important: There must be no spaces in this div, otherwise the :empty CSS rule will not work -->
@@ -499,7 +499,7 @@ EOF
 				$oDeviceSearch = DBObjectSearch::FromOQL('SELECT '.$sDeviceClass.' WHERE rack_id = :rack_id AND enclosure_id = 0');
 				$oDeviceSearch->SetShowObsoleteData($this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE));
 				$oDeviceSet = new DBObjectSet($oDeviceSearch, array(), array('rack_id' => $oRack->GetKey()));
-				/** @var \DatacenterDevice $oDevice */
+				/** @var \DatacenterDevice|\PDU|\DBObject $oDevice Note that \DBObject is only there for custom DM classes */
 				while($oDevice = $oDeviceSet->Fetch())
 				{
 					$aDeviceData = $this->GetDeviceData($oDevice);
@@ -554,7 +554,7 @@ EOF
 				$oDeviceSearch = DBObjectSearch::FromOQL('SELECT '.$sDeviceClass.' WHERE rack_id = :rack_id AND enclosure_id = :enclosure_id');
 				$oDeviceSearch->SetShowObsoleteData($this->GetOption(static::ENUM_OPTION_CODE_SHOWOBSOLETE));
 				$oDeviceSet = new DBObjectSet($oDeviceSearch, array(), array('rack_id' => $oEnclosure->Get('rack_id'), 'enclosure_id' => $oEnclosure->GetKey()));
-				/** @var \DatacenterDevice $oDevice */
+				/** @var \DatacenterDevice|\PDU|\DBObject $oDevice Note that \DBObject is only there for custom DM classes */
 				while($oDevice = $oDeviceSet->Fetch())
 				{
 					$aDeviceData = $this->GetDeviceData($oDevice);

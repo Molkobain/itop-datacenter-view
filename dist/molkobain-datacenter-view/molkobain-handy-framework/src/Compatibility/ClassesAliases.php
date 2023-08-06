@@ -38,9 +38,17 @@ class ToggleButton extends \Molkobain\iTop\Extension\HandyFramework\UI\ToggleBut
 
 namespace Molkobain\iTop\Extension\HandyFramework\Console\Extension;
 
-class PageUIExtension extends \Molkobain\iTop\Extension\HandyFramework\Hook\Console\PageUIExtension
-{
+// Protection against extended class not existing (iTop 3.0+)
+if (class_exists('\\Molkobain\\iTop\\Extension\\HandyFramework\\Hook\\Console\\PageUIExtension')) {
+	class PageUIExtension extends \Molkobain\iTop\Extension\HandyFramework\Hook\Console\PageUIExtension
+	{
 
+	}
+} else {
+	class PageUIExtension extends \Molkobain\iTop\Extension\HandyFramework\Hook\Console\PageUIBlockExtension
+	{
+
+	}
 }
 
 namespace Molkobain\iTop\Extension\HandyFramework\Portal\Extension;
