@@ -174,7 +174,7 @@ $(function()
 									// Note: Url actually contains the hyperlink markup
 									$('<div />')
 										.addClass('mdv-element-note')
-										.html('<i class="fas fa fa-link" aria-hidden="true"></i>' + oEnclosure.url)
+										.html('<i class="fas fa-link" aria-hidden="true"></i>' + oEnclosure.url)
 										.appendTo(oDeviceElem);
 								}
 							}

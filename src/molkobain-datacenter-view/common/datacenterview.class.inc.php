@@ -249,7 +249,7 @@ HTML;
 		<div class="mdv-controls">
 			<div class="mdv-legend mhf-panel">
 				<div class="mhf-p-header">
-					<span class="mhf-ph-icon"><span class="fa fa-fw fa-list"></span></span>
+					<span class="mhf-ph-icon"><span class="fas fa-fw fa-list"></span></span>
 					<span class="mhf-ph-title">{$sLegendTitle}</span>
 				</div>
 				<!-- Important: There must be no spaces in this div, otherwise the :empty CSS rule will not work -->
@@ -258,7 +258,7 @@ HTML;
 			</div>
 			<div class="mdv-filter mhf-panel">
 				<div class="mhf-p-header">				
-					<span class="mhf-ph-icon"><span class="fa fa-fw fa-filter"></span></span>
+					<span class="mhf-ph-icon"><span class="fas fa-fw fa-filter"></span></span>
 					<span class="mhf-ph-title">{$sFilterTitle}</span>
 				</div>
 				<div class="mhf-p-body">
@@ -268,7 +268,7 @@ HTML;
 			</div>
 			<div class="mdv-options mhf-panel">
 				<div class="mhf-p-header">				
-					<span class="mhf-ph-icon"><span class="fa fa-fw fa-cog"></span></span>
+					<span class="mhf-ph-icon"><span class="fas fa-fw fa-cog"></span></span>
 					<span class="mhf-ph-title">{$sOptionsTitle}</span>
 				</div>
 				<div class="mhf-p-body">
@@ -290,7 +290,7 @@ HTML;
 	
 		<div class="mhf-loader mhf-hide">
 			<div class="mhf-loader-text">
-				<span class="fa fa-spin fa-refresh fa-fw"></span>
+				<span class="fas fa-spin fa-sync-alt fa-fw"></span>
 			</div>
 		</div>
 	</div>
@@ -344,7 +344,7 @@ HTML;
 				</span>
 				<span class="mhf-ph-title"></span>
 				<span class="mhf-ph-actions mhf-pull-right">
-					<span class="mhf-ph-toggler fa fa-fw fa-caret-down" title="{$sTogglerTooltip}"></span>
+					<span class="mhf-ph-toggler fas fa-fw fa-caret-down" title="{$sTogglerTooltip}"></span>
 				</span>
 			</div>
 			<!-- Important: There must be no spaces in this div, otherwise the :empty CSS rule will not work -->
