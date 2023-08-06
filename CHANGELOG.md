@@ -7,10 +7,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-## [1.11.2]
+## [1.12.0]
+### Added
+* Add compatibility with iTop 3.1+
+
 ### Changed
   * Increase iTop min. version to 2.7.0
-  * Fix dependencies marked as optional instead of mandatory
+  * Migrate deprecated usages of FontAwesome v4
+  * Migrate deprecated usages of `\ajax_page` class
+  * Remove molkobain-console-tooltips from mandatory dependencies as it is now included in iTop 3.0+
+  * Fix dependencies marked as optional instead of mandatory (thanks to [@Hipska](https://github.com/Hipska))
 
 ## [1.11.1] - 2022-09-20
 ### Changed
@@ -136,7 +142,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
   * Initial release
 
-[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.11.1...HEAD
+[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.12.0...HEAD
+[1.12.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.12.0
 [1.11.1]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.11.1
 [1.11.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.11.0
 [1.10.2]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.10.2
