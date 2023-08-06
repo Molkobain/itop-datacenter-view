@@ -23,12 +23,15 @@ try
 		require_once APPROOT.'application/webpage.class.inc.php';
 		require_once APPROOT.'application/ajaxwebpage.class.inc.php';
 		require_once APPROOT.'application/loginwebpage.class.inc.php';
+
+		$oPage = new ajax_page('');
+	} else {
+		$oPage = new AjaxPage('');
 	}
 	require_once APPROOT.'/application/user.preferences.class.inc.php';
 
 	LoginWebPage::DoLoginEx('backoffice', false);
 
-	$oPage = new ajax_page("");
 	$oPage->no_cache();
 
 	$sOperation = utils::ReadParam('operation', '');
