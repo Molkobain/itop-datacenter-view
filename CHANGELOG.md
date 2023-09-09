@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [1.12.0]
 ### Added
-* Add compatibility with iTop 3.1+
+  * Add compatibility with iTop 3.1+
 
 ### Changed
   * Increase iTop min. version to 2.7.0
