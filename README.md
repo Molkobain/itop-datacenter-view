@@ -49,7 +49,7 @@ Full presentation & documentation available of the advanced features are availab
   * [Reserved slots & Zero-U devices](https://molkobain.github.io/itop-extensions-documentation/molkobain-datacenter-view-extended/#documentation)
   * [And more](https://molkobain.github.io/itop-extensions-documentation/molkobain-datacenter-view-extended/#documentation)
 
-👋 _Paid version is now available on [Molkobain I/O](https://www.molkobain.com/product/datacenter-view-extended/)!_
+👋 _Paid version is now available on [iTop Hub](https://store.itophub.io/en_US/products/molkobain-datacenter-view-extended)!_
 
 ## Online demo
 You can try this extension on the online demo. There are already some racks, enclosures and devices mounted as an example. Just click on the links below to access it:
