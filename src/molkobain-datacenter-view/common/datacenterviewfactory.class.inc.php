@@ -72,9 +72,8 @@ class DatacenterViewFactory
 	public static function RegisterClass($sClass)
 	{
 		// Check if class instance of DatacenterView
-		if(!is_subclass_of($sClass, static::DEFAULT_DATACENTER_VIEW_CLASS))
-		{
-			throw new Exception('Could not register "'.$sClass.'" has DatacenterView class as it does not extends it.');
+		if(false === is_a($sClass, static::DEFAULT_DATACENTER_VIEW_CLASS, true)) {
+			throw new Exception('Could not register "'.$sClass.'" as DatacenterView class as it does not extends it.');
 		}
 
 		static::$sDatacenterViewClass = $sClass;
