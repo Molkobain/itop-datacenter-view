@@ -5,13 +5,10 @@
 	<author><![CDATA[Guillaume Lajarige]]></author>
 	<label><![CDATA[Datacenter view]]></label>
 	<description><![CDATA[Visual representation of racks, enclosures & devices]]></description>
-	<version>1.12.0</version>
-	<release_date>2023-09-09</release_date>
+	<version>1.12.1</version>
+	<release_date>2023-10-02</release_date>
 	<version_description><![CDATA[
-  * Add compatibility with iTop 3.1+
-  * Increase iTop min. version to 2.7.0
-	* Migrate usages of deprecated APIs
-	* Fix dependencies marked as optional instead of mandatory (thanks to @Hipska)]]></version_description>
+  * Fix compilation error due to wrong prototype for Molkobain\iTop\Extension\FontAwesome5\Console\Extension\PageUIExtension::GetLinkedStylesheetsAbsUrls()]]></version_description>
 	<itop_version_min>2.7.0</itop_version_min>
 	<status>stable</status>
 	<mandatory>false</mandatory>

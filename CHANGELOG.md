@@ -7,7 +7,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-## [1.12.0]
+## [1.12.1] - 2023-10-02
+## Changed
+  * Fix compilation error due to wrong prototype for Molkobain\iTop\Extension\FontAwesome5\Console\Extension\PageUIExtension::GetLinkedStylesheetsAbsUrls()
+
+## [1.12.0] - 2023-09-09
 ### Added
   * Add compatibility with iTop 3.1+
 
@@ -142,7 +146,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
   * Initial release
 
-[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.12.0...HEAD
+[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.12.1...HEAD
+[1.12.1]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.12.1
 [1.12.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.12.0
 [1.11.1]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.11.1
 [1.11.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.11.0
