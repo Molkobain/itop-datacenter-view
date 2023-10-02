@@ -26,7 +26,7 @@ if(!class_exists('Molkobain\\iTop\\Extension\\FontAwesome5\\Console\\Extension\\
 		/**
 		 * @inheritdoc
 		 */
-		public function GetLinkedStylesheetsAbsUrls(iTopWebPage $oPage): array
+		public function GetLinkedStylesheetsAbsUrls(): array
 		{
 			if (MetaModel::GetConfig()->GetModuleSetting('molkobain-fontawesome5-pack', 'enabled', true) === false) {
 				return [];
