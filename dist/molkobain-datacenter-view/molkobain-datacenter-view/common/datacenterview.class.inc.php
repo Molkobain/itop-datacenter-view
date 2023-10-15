@@ -440,10 +440,15 @@ EOF
 			'url' => $oObject->GetHyperlink(), // Note: GetHyperlink() actually return the HTML markup
 			'nb_u' => $iNbU,
 			'nb_cols' => static::DEFAULT_NB_COLS,
-			'tooltip' => array(
-				'content' => $this->MakeDeviceTooltipContent($oObject),
-			),
 		);
+
+		// Optional tooltip
+		$sTooltipContent = $this->MakeDeviceTooltipContent($oObject);
+		if ($sTooltipContent !== null) {
+			$aData['tooltip'] = [
+				'content' => $sTooltipContent,
+			];
+		}
 
 		return $aData;
 	}
@@ -673,13 +678,22 @@ EOF
 	 *
 	 * @param \DBObject $oObject
 	 *
-	 * @return string
+	 * @return string|null HTML content of the $oObject tooltip if there no summary card available
 	 * @throws \CoreException
 	 * @throws \Exception
+	 *
+	 * @since v1.13.0 Returns null in iTop 3.1+ if a summary card if available for $oObject
 	 */
 	protected function MakeDeviceTooltipContent(DBObject $oObject)
 	{
 		$sObjClass = get_class($oObject);
+
+		// First, check if there is a summary card for that class, in which case we'll use it instead of our custom tooltip
+		$aSummaryItems = MetaModel::GetZListItems($sObjClass, 'summary');
+		if ((count($aSummaryItems) > 0) && (false === ConfigHelper::GetSetting('force_device_tooltip_even_with_summary_card'))) {
+			return null;
+		}
+
 		$aObjMandatoryAttCodes = array('finalclass', 'org_id', 'status', 'business_criticity', 'enclosure_id');
 		$aObjOptionalAttCodes = array();
 

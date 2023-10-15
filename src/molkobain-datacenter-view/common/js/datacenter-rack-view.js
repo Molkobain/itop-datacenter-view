@@ -181,23 +181,25 @@ $(function()
 						}
 
 						// Tooltip
-						if (this.options.use_legacy_tooltips) {
-							// Note: We need to do a deep copy
-							var oQTipOptions = $.extend(
-								true,
-								{},
-								this.options.defaults.tooltip_options,
-								{ content: oEnclosure.tooltip.content }
-							);
-							oQTipOptions.position.adjust.x = -16;
-							oEnclosureElem.find('.mdv-element-note').qtip(oQTipOptions);
-						} else {
-							oEnclosureElem.find('.mdv-element-note')
+						if (oEnclosure.tooltip !== undefined) {
+							if (this.options.use_legacy_tooltips) {
+								// Note: We need to do a deep copy
+								var oQTipOptions = $.extend(
+									true,
+									{},
+									this.options.defaults.tooltip_options,
+									{ content: oEnclosure.tooltip.content }
+								);
+								oQTipOptions.position.adjust.x = -16;
+								oEnclosureElem.find('.mdv-element-note').qtip(oQTipOptions);
+							} else {
+								oEnclosureElem.find('.mdv-element-note')
 								.attr('data-tooltip-html-enabled', true)
 								.attr('data-tooltip-placement', 'left')
 								.attr('data-tooltip-distance-offset', '16')
 								.attr('data-tooltip-theme', 'molkobain-light mdv-element-tooltip')
 								.attr('data-tooltip-content', oEnclosure.tooltip.content);
+							}
 						}
 					}
 				}

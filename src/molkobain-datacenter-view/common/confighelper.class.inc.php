@@ -26,6 +26,11 @@ class ConfigHelper extends BaseConfigHelper
     // Note: Mind to update defaults values in the module file when changing those default values.
 	/** @var bool Default debug value */
     const DEFAULT_SETTING_DEBUG = false;
+	/**
+	 * @var bool Default value, tooltips will not be displayed if summary card available (iTop 3.1+)
+	 * @since v1.13.0
+	 */
+	const DEFAULT_SETTING_FORCE_DEVICE_TOOLTIP_EVEN_WITH_SUMMARY_CARD = false;
     /** @var array|null Default attributes to be displayed in the device tooltip */
     const DEFAULT_SETTING_DEVICE_TOOLTIP_ATTRIBUTES = null;
 

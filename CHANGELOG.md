@@ -6,9 +6,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+### Added
+  * Add `business_criticity` and `serialnumber` attributes to default summary cards
+
+### Changed
+  * Use iTop 3.1 summary cards instead of tooltips when available in the graphical view
+    * Conf. param. `device_tooltip_attributes` becomes obsolete for iTop 3.1+
+    * Note that a new `force_device_tooltip_even_with_summary_card` allows you to force the tooltip even when there is a summary card
 
 ## [1.12.1] - 2023-10-02
-## Changed
+### Changed
   * Fix compilation error due to wrong prototype for Molkobain\iTop\Extension\FontAwesome5\Console\Extension\PageUIExtension::GetLinkedStylesheetsAbsUrls()
 
 ## [1.12.0] - 2023-09-09

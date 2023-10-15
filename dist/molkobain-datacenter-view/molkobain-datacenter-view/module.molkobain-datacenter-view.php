@@ -53,6 +53,7 @@ SetupWebPage::AddModule(
 	        // Module specific settings go here, if any
 	        'enabled' => true,
 	        'debug' => false,
+			'force_device_tooltip_even_with_summary_card' => false,
 	        'device_tooltip_attributes' => array(
 		        'DatacenterDevice' => array(
 			        'brand_id',

@@ -287,25 +287,27 @@ $(function()
 
 				// Tooltip
 				var bIsDeviceInUnmountedPanel = oHostElem.closest('.mdv-unmounted-type').length > 0;
-				if (this.options.use_legacy_tooltips) {
-					// Note: We need to do a deep copy
-					var oQTipOptions = $.extend(
-						true,
-						{},
-						this.options.defaults.tooltip_options,
-						{ content: oDevice.tooltip.content }
-					);
-					// Note: We don't use the .closest() yet for performance reasons. If this goes recurse, we might want to consider it though.
-					if(bIsDeviceInUnmountedPanel) {
-						oQTipOptions.position.adjust.x = -16;
-					}
-					oDeviceElem.qtip(oQTipOptions);
-				} else {
-					oDeviceElem.attr('data-tooltip-html-enabled', true)
+				if (oDevice.tooltip !== undefined) {
+					if (this.options.use_legacy_tooltips) {
+						// Note: We need to do a deep copy
+						var oQTipOptions = $.extend(
+							true,
+							{},
+							this.options.defaults.tooltip_options,
+							{ content: oDevice.tooltip.content }
+						);
+						// Note: We don't use the .closest() yet for performance reasons. If this goes recurse, we might want to consider it though.
+						if (bIsDeviceInUnmountedPanel) {
+							oQTipOptions.position.adjust.x = -16;
+						}
+						oDeviceElem.qtip(oQTipOptions);
+					} else {
+						oDeviceElem.attr('data-tooltip-html-enabled', true)
 						.attr('data-tooltip-placement', 'left')
 						.attr('data-tooltip-distance-offset', bIsDeviceInUnmountedPanel ? '24' : '42')
 						.attr('data-tooltip-theme', 'molkobain-light mdv-element-tooltip')
 						.attr('data-tooltip-content', oDevice.tooltip.content);
+					}
 				}
 
 				oDeviceElem.appendTo(oHostElem);

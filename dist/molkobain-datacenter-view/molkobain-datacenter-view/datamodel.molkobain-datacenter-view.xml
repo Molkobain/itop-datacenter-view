@@ -278,6 +278,13 @@
 						</item>
 					</items>
 				</list>
+				<summary>
+					<items>
+						<item id="business_criticity" _delta="define_if_not_exists">
+							<rank>15</rank>
+						</item>
+					</items>
+				</summary>
 			</presentation>
 		</class>
 		<class id="DatacenterDevice" _delta="must_exist">
@@ -346,6 +353,16 @@
 						</item>
 					</items>
 				</list>
+				<summary>
+					<items>
+						<item id="business_criticity" _delta="define_if_not_exists">
+							<rank>15</rank>
+						</item>
+						<item id="serialnumber" _delta="define_if_not_exists">
+							<rank>40</rank>
+						</item>
+					</items>
+				</summary>
 			</presentation>
 		</class>
 		<class id="NAS" _delta="must_exist">
@@ -383,6 +400,16 @@
 						</item>
 					</items>
 				</list>
+				<summary>
+					<items>
+						<item id="business_criticity" _delta="define_if_not_exists">
+							<rank>15</rank>
+						</item>
+						<item id="serialnumber" _delta="define_if_not_exists">
+							<rank>40</rank>
+						</item>
+					</items>
+				</summary>
 			</presentation>
 		</class>
 		<class id="NetworkDevice" _delta="must_exist">
@@ -420,6 +447,13 @@
 						</item>
 					</items>
 				</list>
+				<summary>
+					<items>
+						<item id="serialnumber" _delta="define_if_not_exists">
+							<rank>90</rank>
+						</item>
+					</items>
+				</summary>
 			</presentation>
 		</class>
 		<class id="SANSwitch" _delta="must_exist">
@@ -457,6 +491,16 @@
 						</item>
 					</items>
 				</list>
+				<summary>
+					<items>
+						<item id="business_criticity" _delta="define_if_not_exists">
+							<rank>15</rank>
+						</item>
+						<item id="serialnumber" _delta="define_if_not_exists">
+							<rank>40</rank>
+						</item>
+					</items>
+				</summary>
 			</presentation>
 		</class>
 		<class id="Server" _delta="must_exist">
@@ -494,6 +538,13 @@
 						</item>
 					</items>
 				</list>
+				<summary>
+					<items>
+						<item id="serialnumber" _delta="define_if_not_exists">
+							<rank>70</rank>
+						</item>
+					</items>
+				</summary>
 			</presentation>
 		</class>
 		<class id="StorageSystem" _delta="must_exist">
@@ -531,6 +582,16 @@
 						</item>
 					</items>
 				</list>
+				<summary>
+					<items>
+						<item id="business_criticity" _delta="define_if_not_exists">
+							<rank>15</rank>
+						</item>
+						<item id="serialnumber" _delta="define_if_not_exists">
+							<rank>40</rank>
+						</item>
+					</items>
+				</summary>
 			</presentation>
 		</class>
 		<class id="TapeLibrary" _delta="must_exist">
@@ -568,6 +629,16 @@
 						</item>
 					</items>
 				</list>
+				<summary>
+					<items>
+						<item id="business_criticity" _delta="define_if_not_exists">
+							<rank>15</rank>
+						</item>
+						<item id="serialnumber" _delta="define_if_not_exists">
+							<rank>40</rank>
+						</item>
+					</items>
+				</summary>
 			</presentation>
 		</class>
 		<class id="PDU" _delta="must_exist">
@@ -643,6 +714,16 @@
 						</item>
 					</items>
 				</details>
+				<summary>
+					<items>
+						<item id="business_criticity" _delta="define_if_not_exists">
+							<rank>15</rank>
+						</item>
+						<item id="serialnumber" _delta="define_if_not_exists">
+							<rank>50</rank>
+						</item>
+					</items>
+				</summary>
 			</presentation>
 		</class>
 	</classes>
