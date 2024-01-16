@@ -5,10 +5,12 @@
 	<author><![CDATA[Guillaume Lajarige]]></author>
 	<label><![CDATA[Datacenter view]]></label>
 	<description><![CDATA[Visual representation of racks, enclosures & devices]]></description>
-	<version>1.12.1</version>
-	<release_date>2023-10-02</release_date>
+	<version>1.13.0</version>
+	<release_date>2024-01-17</release_date>
 	<version_description><![CDATA[
-  * Fix compilation error due to wrong prototype for Molkobain\iTop\Extension\FontAwesome5\Console\Extension\PageUIExtension::GetLinkedStylesheetsAbsUrls()]]></version_description>
+	* Add `business_criticity` and `serialnumber` attributes to default summary cards
+	* Use iTop 3.1 summary cards instead of tooltips when available in the graphical view
+  * Disable location type feature if "Location hierarchy" module is present]]></version_description>
 	<itop_version_min>2.7.0</itop_version_min>
 	<status>stable</status>
 	<mandatory>false</mandatory>

@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+
+## [1.13.0]
 ### Added
   * Add `business_criticity` and `serialnumber` attributes to default summary cards
 
@@ -13,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   * Use iTop 3.1 summary cards instead of tooltips when available in the graphical view
     * Conf. param. `device_tooltip_attributes` becomes obsolete for iTop 3.1+
     * Note that a new `force_device_tooltip_even_with_summary_card` allows you to force the tooltip even when there is a summary card
+  * Disable location type feature if "Location hierarchy" module is present
 
 ## [1.12.1] - 2023-10-02
 ### Changed
@@ -153,7 +156,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
   * Initial release
 
-[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.12.1...HEAD
+[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.13.0...HEAD
+[1.13.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.13.0
 [1.12.1]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.12.1
 [1.12.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.12.0
 [1.11.1]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.11.1
