@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.3">
+	<classes>
+		<!--
+			Note: We don't delete the `LocationType` class, otherwise there will be nothing left to compile in the model.molkobain-datacenter-view.php file
+			which will cause an error when iTop will try to load this file as it is references in module.molkobain-datacenter-view.php.
+
+			This could be addressed once the module is compatible iTop 3.2+ only as it will no longer be mandatory to reference the model.xxx.php file.
+
+			<class id="LocationType" _delta="delete_if_exists" />
+		-->
+		<class id="Location">
+			<fields>
+				<field id="locationtype_id" _delta="delete_if_exists" />
+			</fields>
+			<presentation>
+				<details>
+					<items>
+						<item id="locationtype_id" _delta="delete_if_exists" />
+						<item id="parent_id" _delta="delete_if_exists" />
+					</items>
+				</details>
+				<default_search>
+					<items>
+						<item id="locationtype_id" _delta="delete_if_exists" />
+					</items>
+				</default_search>
+				<list>
+					<items>
+						<item id="locationtype_id" _delta="delete_if_exists" />
+					</items>
+				</list>
+			</presentation>
+		</class>
+	</classes>
+	<!--
+	<user_rights>
+		<groups>
+			<group id="General">
+				<classes>
+					<class id="LocationType" _delta="delete_if_exists" />
+				</classes>
+			</group>
+		</groups>
+	</user_rights>
+	-->
+	<menus>
+		<menu id="Typology">
+			<definition>
+				<cells>
+					<cell id="0">
+						<dashlets>
+							<dashlet id="LocationType" _delta="delete_if_exists" />
+						</dashlets>
+					</cell>
+				</cells>
+			</definition>
+		</menu>
+	</menus>
+</itop_design>
