@@ -7,7 +7,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-## [1.13.0]
+## [1.14.0] - 2024-08-29
+### Added
+  * Add compatibility with iTop 3.2+
+
+### Changed
+  * Migrate deprecated usages of `WebPage::add_linked_script()` and `WebPage::add_linked_stylesheet()`
+
+## [1.13.0] - 2024-01-17
 ### Added
   * Add `business_criticity` and `serialnumber` attributes to default summary cards
 
@@ -156,7 +163,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
   * Initial release
 
-[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.13.0...HEAD
+[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.14.0...HEAD
+[1.14.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.14.0
 [1.13.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.13.0
 [1.12.1]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.12.1
 [1.12.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.12.0
