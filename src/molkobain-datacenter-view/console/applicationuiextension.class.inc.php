@@ -58,8 +58,13 @@ class ApplicationUIExtension implements iApplicationUIExtension
 		$sJSRootUrl = utils::GetAbsoluteUrlModulesRoot() . ConfigHelper::GetModuleCode() . '/common/js/';
 		$sJSWidgetFilename = 'datacenter-' . strtolower($oDatacenterView->GetType()) . '-view.js';
 
-		$oPage->add_linked_script($sJSRootUrl . 'datacenter-view.js' . '?v=' . ConfigHelper::GetModuleVersion());
-		$oPage->add_linked_script($sJSRootUrl . $sJSWidgetFilename . '?v=' . ConfigHelper::GetModuleVersion());
+		if (version_compare(ITOP_DESIGN_LATEST_VERSION, '3.2', '<')) {
+			$oPage->add_linked_script($sJSRootUrl . 'datacenter-view.js' . '?v=' . ConfigHelper::GetModuleVersion());
+			$oPage->add_linked_script($sJSRootUrl . $sJSWidgetFilename . '?v=' . ConfigHelper::GetModuleVersion());
+		} else {
+			$oPage->LinkScriptFromModule(ConfigHelper::GetModuleCode() . '/common/js/' . 'datacenter-view.js' . '?v=' . ConfigHelper::GetModuleVersion());
+			$oPage->LinkScriptFromModule(ConfigHelper::GetModuleCode() . '/common/js/' . $sJSWidgetFilename . '?v=' . ConfigHelper::GetModuleVersion());
+		}
 
 		// - CSS files
 		$sModuleCssBaseRelPath = 'env-' . utils::GetCurrentEnvironment() . '/' . ConfigHelper::GetModuleCode() . '/common/css/';
@@ -73,7 +78,12 @@ class ApplicationUIExtension implements iApplicationUIExtension
 			APPROOT.$sPortalCssBaseRelPath,
 			MODULESROOT, // For imports of modules files
 		];
-		$oPage->add_linked_stylesheet(utils::GetAbsoluteUrlAppRoot().utils::GetCSSFromSASS($sModuleCssBaseRelPath.'datacenter-view.scss', $aScssImportPaths));
+
+		if (version_compare(ITOP_DESIGN_LATEST_VERSION, '3.2', '<')) {
+			$oPage->add_linked_stylesheet(utils::GetAbsoluteUrlAppRoot() . utils::GetCSSFromSASS($sModuleCssBaseRelPath . 'datacenter-view.scss', $aScssImportPaths));
+		} else {
+			$oPage->LinkStylesheetFromAppRoot(utils::GetCSSFromSASS($sModuleCssBaseRelPath . 'datacenter-view.scss', $aScssImportPaths));
+		}
 
 		// Add content in an async tab
 		$sPreviousTab = $oPage->GetCurrentTab();
