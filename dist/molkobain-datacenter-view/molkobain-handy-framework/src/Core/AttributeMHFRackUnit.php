@@ -13,6 +13,17 @@
 class AttributeMHFRackUnit extends AttributeInteger
 {
 	/**
+	 * @var string Suffix of the rack unit, appended to values
+	 * @since v1.10.2
+	 */
+	const RACK_UNIT_SUFFIX = 'U';
+	/**
+	 * @var string Label of an empty value
+	 * @since v1.10.2
+	 */
+	const EMPTY_VALUE_LABEL = '-';
+
+	/**
 	 * @inheritdoc
 	 */
 	public function GetValueLabel($sValue)
@@ -20,11 +31,11 @@ class AttributeMHFRackUnit extends AttributeInteger
 		$sValueLabel = parent::GetValueLabel($sValue);
 		if(($sValueLabel !== null) && ($sValueLabel !== ''))
 		{
-			$sValueLabel .= 'U';
+			$sValueLabel .= static::RACK_UNIT_SUFFIX;
 		}
 		else
 		{
-			$sValueLabel = '-';
+			$sValueLabel = static::EMPTY_VALUE_LABEL;
 		}
 
 		return $sValueLabel;
@@ -38,11 +49,11 @@ class AttributeMHFRackUnit extends AttributeInteger
 		$sHTMLValue = parent::GetAsHTML($sValue, $oHostObject, $bLocalize);
 		if(($sHTMLValue !== null) && ($sHTMLValue !== ''))
 		{
-			$sHTMLValue .= 'U';
+			$sHTMLValue .= static::RACK_UNIT_SUFFIX;
 		}
 		else
 		{
-			$sHTMLValue = '-';
+			$sHTMLValue = static::EMPTY_VALUE_LABEL;
 		}
 
 		return $sHTMLValue;

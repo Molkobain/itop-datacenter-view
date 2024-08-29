@@ -11,6 +11,7 @@ namespace Molkobain\iTop\Extension\NewsroomProvider\Helper;
 
 use MetaModel;
 use Molkobain\iTop\Extension\HandyFramework\Helper\ConfigHelper as BaseConfigHelper;
+use SimpleCrypt;
 use UserRights;
 use utils;
 
@@ -23,7 +24,7 @@ use utils;
 class ConfigHelper extends BaseConfigHelper
 {
 	const MODULE_NAME = 'molkobain-newsroom-provider';
-	const API_VERSION = '1.1';
+	const API_VERSION = '1.3';
 
 	const SETTING_CONST_FQCN = 'Molkobain\\iTop\\Extension\\NewsroomProvider\\Helper\\ConfigHelper';
 
@@ -47,7 +48,7 @@ class ConfigHelper extends BaseConfigHelper
 		}
 
 		// ... else check if in a Combodo product
-		$bIsCombodoProduct = utils::GetCompiledModuleVersion('itsm-designer-connector') !== null;
+		$bIsCombodoProduct = static::IsCombodoProductPackage();
 		return $bIsCombodoProduct ? false : true;
 	}
 
@@ -62,21 +63,27 @@ class ConfigHelper extends BaseConfigHelper
 	}
 
 	/**
+	 * @return bool True if the current iTop instance is a Combodo product package
+	 * @since v1.6.0
+	 */
+	public static function IsCombodoProductPackage()
+	{
+		return utils::GetCompiledModuleVersion('itsm-designer-connector') !== null;
+	}
+
+	/**
 	 * Returns the version of the API called on the remote server
 	 *
 	 * @return string
+	 * @since v1.6.0 Renamed from GetVersion to GetAPIVersion
 	 */
-	public static function GetVersion()
+	public static function GetAPIVersion()
 	{
 		return static::API_VERSION;
 	}
 
 	/**
-	 * Returns an hash to identify the current user
-	 *
-	 * Note: User ID is sent as a non-reversible hash to ensure user's privacy
-	 *
-	 * @return string
+	 * @return string Encrypted current user ID, non-reversible to ensure user's privacy
 	 */
 	public static function GetUserHash()
 	{
@@ -87,18 +94,36 @@ class ConfigHelper extends BaseConfigHelper
 	}
 
 	/**
-	 * Returns an hash to identify the current iTop instance
-	 *
-	 * Note: iTop UUID is sent as a non-reversible hash to ensure user's privacy
-	 *
-	 * @return string
+	 * @return string Encrypted UUID of the iTop web instance, non-reversible to ensure user's privacy
+	 * @since v1.6.0 Renamed from GetInstanceHash to GetWebInstanceHashAsEncrypted
+	 * @since v1.7.0 Renamed from GetWebInstanceHashAsEncrypted to GetWebInstanceHash
 	 */
-	public static function GetInstanceHash()
+	public static function GetWebInstanceHash()
 	{
 		$sITopUUID = (string) trim(@file_get_contents(APPROOT . 'data/instance.txt'), "{} \n");
 
-		// Note: We don't retrieve DB UUID for now as it is not of any use for now.
 		return hash('fnv1a64', $sITopUUID);
+	}
+
+	/**
+	 * @return string Encrypted UUID of the iTop database instance, non-reversible to ensure user's privacy
+	 * @since v1.6.0
+	 * @since v1.7.0 Renamed from GetDBInstanceHashAsEncrypted to GetDBInstanceHash
+	 */
+	public static function GetDBInstanceHash()
+	{
+		$sITopUUID = (string) trim(DBProperty::GetProperty('database_uuid', ''), "{}");
+
+		return hash('fnv1a64', $sITopUUID);
+	}
+
+	/**
+	 * @return string Encrypted URL of the iTop application
+	 * @since v1.6.0
+	 */
+	public static function GetApplicationURLAsEncrypted()
+	{
+		return static::EncryptData(utils::GetAbsoluteUrlAppRoot());
 	}
 
 	/**
@@ -121,5 +146,45 @@ class ConfigHelper extends BaseConfigHelper
 	public static function GetApplicationVersion()
 	{
 		return defined('ITOP_VERSION') ? ITOP_VERSION : 'unknown';
+	}
+
+	/**
+	 * @return string Encrypted PHP version currently ran by the iTop webserver
+	 * @since v1.6.0
+	 */
+	public static function GetPHPVersionAsEncrypted()
+	{
+		return static::EncryptData(phpversion());
+	}
+
+	/**
+	 * @return string Pipe-separated list of installed Molkobain modules
+	 * @since v1.7.0
+	 */
+	public static function GetMolkobainInstalledModules()
+	{
+		/** @var string[] $aMolkobainModulesIDs */
+		$aMolkobainModulesIDs = [];
+
+		foreach (GetModulesInfo() as $sModuleCode => $aModuleData) {
+			if (strpos($sModuleCode, 'molkobain-') === 0) {
+				$aMolkobainModulesIDs[] = $sModuleCode . '/' . $aModuleData['version'];
+			}
+		}
+
+		return implode('|', $aMolkobainModulesIDs);
+	}
+
+	/**
+	 * @param string $sData String data to encrypt
+	 *
+	 * @return string Encrypted string
+	 * @since v1.6.0
+	 */
+	protected static function EncryptData($sData)
+	{
+		// Use "Simple" encryption method to ensure compatibility with all iTop instances
+		$oCryptService = new SimpleCrypt("Simple");
+		return $oCryptService->Encrypt(static::GetAPIVersion(), $sData);
 	}
 }

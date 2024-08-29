@@ -9,11 +9,16 @@ class ComposerStaticInit51b6967c94ebf1305ca550b5257cae49
     public static $prefixLengthsPsr4 = array (
         'M' => 
         array (
+            'Molkobain\\iTop\\Extension\\NewsroomProvider\\Core\\' => 47,
             'Molkobain\\iTop\\Extension\\NewsroomProvider\\' => 42,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Molkobain\\iTop\\Extension\\NewsroomProvider\\Core\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Core',
+        ),
         'Molkobain\\iTop\\Extension\\NewsroomProvider\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/Extension',
@@ -21,7 +26,9 @@ class ComposerStaticInit51b6967c94ebf1305ca550b5257cae49
     );
 
     public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Molkobain\\iTop\\Extension\\NewsroomProvider\\Helper\\ConfigHelper' => __DIR__ . '/../..' . '/src/Extension/Helper/ConfigHelper.php',
+        'Molkobain\\iTop\\Extension\\NewsroomProvider\\Hook\\Console\\PageProductBeam' => __DIR__ . '/../..' . '/src/Extension/Hook/Console/PageProductBeam.php',
         'Molkobain\\iTop\\Extension\\NewsroomProvider\\Hook\\Console\\PageUIExtension' => __DIR__ . '/../..' . '/src/Extension/Hook/Console/PageUIExtension.php',
     );
 

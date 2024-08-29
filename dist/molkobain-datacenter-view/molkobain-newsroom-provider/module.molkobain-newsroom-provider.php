@@ -14,7 +14,7 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'molkobain-newsroom-provider/1.5.0',
+	'molkobain-newsroom-provider/1.7.0',
 	array(
 		// Identification
 		//
@@ -38,6 +38,7 @@ SetupWebPage::AddModule(
 			'src/Compatibility/ClassesAliases.php',
 			// Explicitly load APIs
 			'src/Core/NewsroomProvider.php',
+			'src/Extension/Hook/Console/PageProductBeam.php',
 			'src/Extension/Hook/Console/PageUIExtension.php',
 		),
 		'webservice' => array(),

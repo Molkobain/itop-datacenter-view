@@ -33,8 +33,8 @@ if(class_exists('NewsroomProviderBase'))
 		 */
 		public function GetTTL()
 		{
-			// Update every hour
-			return 60 * 60;
+			// Update every 4 hours
+			return 4 * 60 * 60;
 		}
 
 		/**
@@ -142,6 +142,7 @@ if(class_exists('NewsroomProviderBase'))
 
 		/**
 		 * @inheritDoc
+		 * @since 1.7.0 Return an URL instead of null
 		 */
 		public function GetPreferencesUrl()
 		{
@@ -149,21 +150,41 @@ if(class_exists('NewsroomProviderBase'))
 		}
 
 		/**
-		 * Returns an URL to the news editor for the $sOperation and current user
+		 * @return string URL for the beam operation (notify newsroom editor of my existance)
+		 * @since v1.7.0
+		 */
+		public function GetBeamURL() : string
+		{
+			return $this->MakeUrl('beam');
+		}
+
+		/**
+		 * Returns a URL to the news editor for the $sOperation and current user
 		 *
 		 * @param string $sOperation
 		 *
 		 * @return string
+		 * @since 1.7.0 Add `php-version` and `molkobain-modules` parameters to the URL
 		 */
 		private function MakeUrl($sOperation)
 		{
-			return ConfigHelper::GetSetting('endpoint')
-				. '&operation=' . $sOperation
-				. '&version=' . ConfigHelper::GetVersion()
-				. '&user=' . urlencode(ConfigHelper::GetUserHash())
-				. '&instance=' . urlencode(ConfigHelper::GetInstanceHash())
-				. '&app-name=' . urlencode(ConfigHelper::GetApplicationName())
-				. '&app-version=' . urlencode(ConfigHelper::GetApplicationVersion());
+			$aParams = [
+				'operation=' . $sOperation,
+				'version=' . ConfigHelper::GetAPIVersion(),
+				'user=' . urlencode(ConfigHelper::GetUserHash()),
+				'web-instance=' . urlencode(ConfigHelper::GetWebInstanceHash()),
+				'app-name=' . urlencode(ConfigHelper::GetApplicationName()),
+				'app-version=' . urlencode(ConfigHelper::GetApplicationVersion()),
+				'php-version=' . urlencode(ConfigHelper::GetPHPVersionAsEncrypted()),
+				'molkobain-modules=' . urlencode(ConfigHelper::GetMolkobainInstalledModules()),
+			];
+
+			// Only for Combodo products, not community package
+			if (ConfigHelper::IsCombodoProductPackage()) {
+				$aParams[] = 'app-uri=' . urlencode(ConfigHelper::GetApplicationURLAsEncrypted());
+			}
+
+			return ConfigHelper::GetSetting('endpoint') . '&' . implode('&', $aParams);
 		}
 	}
 }
