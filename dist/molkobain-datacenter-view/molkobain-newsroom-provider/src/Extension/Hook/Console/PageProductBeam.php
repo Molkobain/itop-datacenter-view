@@ -33,7 +33,7 @@ if (version_compare(ITOP_VERSION, '3.0.0', '<')) {
 		 */
 		public function GetNorthPaneHtml(iTopWebPage $oPage)
 		{
-			if (false === UserRights::IsAdministrator() && false === UserRights::IsActionAllowed('ResourceDesignerConnectorMenu', UR_ACTION_MODIFY)) {
+			if (false === UserRights::IsAdministrator() && class_exists('ResourceDesignerConnectorMenu') && false === UserRights::IsActionAllowed('ResourceDesignerConnectorMenu', UR_ACTION_MODIFY)) {
 				return "";
 			}
 
@@ -100,7 +100,10 @@ JS
 		 */
 		public function GetReadyScript(): string
 		{
-			if (false === UserRights::IsAdministrator() && false === UserRights::IsActionAllowed('ResourceDesignerConnectorMenu', UR_ACTION_MODIFY)) {
+			if (false === UserRights::IsAdministrator()
+                && class_exists('ResourceDesignerConnectorMenu')
+                && false === UserRights::IsActionAllowed('ResourceDesignerConnectorMenu', UR_ACTION_MODIFY)
+            ) {
 				return "";
 			}
 
