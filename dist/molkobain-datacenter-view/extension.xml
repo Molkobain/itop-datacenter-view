@@ -5,11 +5,11 @@
 	<author><![CDATA[Guillaume Lajarige]]></author>
 	<label><![CDATA[Datacenter view]]></label>
 	<description><![CDATA[Visual representation of racks, enclosures & devices]]></description>
-	<version>1.14.0</version>
-	<release_date>2024-08-29</release_date>
+	<version>1.14.1</version>
+	<release_date>2024-09-18</release_date>
 	<version_description><![CDATA[
-	* Add compatibility with iTop 3.2+
-  * Migrate deprecated usages of `WebPage::add_linked_script()` and `WebPage::add_linked_stylesheet()`]]></version_description>
+	* Fix crash when loading newsroom on a non-admin user in the backoffice
+]]></version_description>
 	<itop_version_min>2.7.0</itop_version_min>
 	<status>stable</status>
 	<mandatory>false</mandatory>

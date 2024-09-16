@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.14.1] - 2024-09-18
+### Change
+  * Fix crash when loading newsroom on a non-admin user in the backoffice
+
 ## [1.14.0] - 2024-08-29
 ### Added
   * Add compatibility with iTop 3.2+
@@ -163,7 +167,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
   * Initial release
 
-[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.14.0...HEAD
+[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.14.1...HEAD
+[1.14.1]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.14.1
 [1.14.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.14.0
 [1.13.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.13.0
 [1.12.1]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.12.1
