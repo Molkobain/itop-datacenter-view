@@ -102,8 +102,10 @@ Everything is included in the distributed packages, no extra effort needed.
 
 ### iTop modules
 
-  * Module [molkobain-handy-framework](https://github.com/Molkobain/itop-handy-framework)
   * Module [molkobain-console-tooltips](https://github.com/Molkobain/itop-console-tooltips)
+  * Module [molkobain-datacenter-view-bridge-for-combodo-location-hierarchy](https://github.com/Molkobain/itop-datacenter-view-bridge-for-combodo-location-hierarchy)
+  * Module [molkobain-fontawesome5-pack](https://github.com/Molkobain/itop-fontawesome5-pack)
+  * Module [molkobain-handy-framework](https://github.com/Molkobain/itop-handy-framework)
   * Module [molkobain-newsroom-provider](https://github.com/Molkobain/itop-newsroom-provider)
 
 ### Third parties
