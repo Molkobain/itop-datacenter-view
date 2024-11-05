@@ -7,8 +7,22 @@
 
 			This could be addressed once the module is compatible iTop 3.2+ only as it will no longer be mandatory to reference the model.xxx.php file.
 
-			<class id="LocationType" _delta="delete_if_exists" />
+			In the meantime, we must remove the linkedset pointing to the `Location->locationtype_id` as it no longer exists, otherwise we'll have an error during setup
+			when it first tries to create the base `LocationType`objects in `\DatacenterViewInstaller::AfterDatabaseCreation()`
 		-->
+		<class id="LocationType">
+			<fields>
+				<field id="locations_list"  _delta="delete_if_exists" />
+			</fields>
+			<presentation>
+				<details>
+					<items>
+						<item id="locations_list" _delta="delete_if_exists">
+						</item>
+					</items>
+				</details>
+			</presentation>
+		</class>
 		<class id="Location">
 			<fields>
 				<field id="locationtype_id" _delta="delete_if_exists" />
