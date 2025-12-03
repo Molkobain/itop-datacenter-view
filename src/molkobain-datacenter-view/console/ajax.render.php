@@ -90,7 +90,7 @@ try
 				catch(Exception $e)
 				{
 					$aOutput['status'] = 'error';
-					$aOutput['message'] = htmlentities($e->GetMessage(), ENT_QUOTES, 'utf-8');
+					$aOutput['message'] = $e->GetMessage();
 				}
 
 				$oPage->SetContentType('application/json');
