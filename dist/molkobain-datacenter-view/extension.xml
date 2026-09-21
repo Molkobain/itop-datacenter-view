@@ -5,12 +5,16 @@
 	<author><![CDATA[Guillaume Lajarige]]></author>
 	<label><![CDATA[Datacenter view]]></label>
 	<description><![CDATA[Visual representation of racks, enclosures & devices]]></description>
-	<version>1.14.4</version>
-	<release_date>2025-12-03</release_date>
+	<version>1.15.0</version>
+	<release_date>2026-09-21</release_date>
 	<version_description><![CDATA[
-	* Fix error message on async operations being double HTML encoded
+* Increase iTop min. version to 3.2.1
+* Add compatibility with iTop 3.3+
+* Fix SCSS import issue with iTop 3.3+
+* Fix error due to incorrect namespace in use clause
+* Move dictionaries to dedicated folder
 ]]></version_description>
-	<itop_version_min>2.7.0</itop_version_min>
+	<itop_version_min>3.2.1</itop_version_min>
 	<status>stable</status>
 	<mandatory>false</mandatory>
 	<more_info_url>https://molkobain.github.io/itop-extensions-documentation/molkobain-datacenter-view</more_info_url>

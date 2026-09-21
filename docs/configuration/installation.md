@@ -4,7 +4,7 @@
 
 ## Compatibility
 ### Compatibility with iTop
-The extension is compatible with iTop 2.6+.
+The extension is compatible with iTop 3.2.1+.
 
 ### Compatibility with other extensions
 * **Generic Connection Devices and Interfaces** by @Schirrms:\
