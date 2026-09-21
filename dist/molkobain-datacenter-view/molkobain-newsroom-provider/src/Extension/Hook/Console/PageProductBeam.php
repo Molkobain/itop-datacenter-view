@@ -17,127 +17,60 @@ use Molkobain\iTop\Extension\NewsroomProvider\Helper\ConfigHelper;
 use Molkobain\iTop\Extension\NewsroomProvider\Core\MolkobainNewsroomProvider;
 use UserRights;
 
-if (version_compare(ITOP_VERSION, '3.0.0', '<')) {
-	/**
-	 * Class PageUIExtension
-	 *
-	 * Fallback of the newsroom provider for Combodo products (not used in Community version)
-	 *
-	 * @since v1.7.0
-	 */
-	class PageProductBeam implements iPageUIExtension
-	{
-		/**
-		 * @inheritDoc
-		 * @throws \Exception
-		 */
-		public function GetNorthPaneHtml(iTopWebPage $oPage)
-		{
-			if (false === UserRights::IsAdministrator() && class_exists('ResourceDesignerConnectorMenu') && false === UserRights::IsActionAllowed('ResourceDesignerConnectorMenu', UR_ACTION_MODIFY)) {
-				return "";
-			}
+/**
+ * Class PageProductBeam
+ *
+ * Fallback of the newsroom provider for Combodo products (not used in Community version)
+ * @since v1.7.0
+ */
+class PageProductBeam implements iBackofficeReadyScriptExtension
+{
+    /**
+     * @inheritDoc
+     */
+    public function GetReadyScript(): string
+    {
+        if (false === UserRights::IsAdministrator()
+            && class_exists('ResourceDesignerConnectorMenu')
+            && false === UserRights::IsActionAllowed('ResourceDesignerConnectorMenu', UR_ACTION_MODIFY)
+        ) {
+            return "";
+        }
 
-			if (false === ConfigHelper::IsCombodoProductPackage()) {
-				return "";
-			}
+        if (false === ConfigHelper::IsCombodoProductPackage()) {
+            return "";
+        }
 
-			if (false === isset($_SESSION['auth_user'])) {
-				return "";
-			}
+        // Since Combodo request for their N°9773 bug, we made this possible to disable for customers which server don't have Internet access, otherwise it would introduce a 30s delay on each page as the beam could not reach our server
+        if (false === ConfigHelper::IsEnabled()) {
+            return "";
+        }
 
-			$oNewsroomProvider = new MolkobainNewsroomProvider();
-			$iTTL = $oNewsroomProvider->GetTTL();
+        if (false === Session::IsInitialized()) {
+            return "";
+        }
 
-			// Don't beam if TTL is not reached
-			$iCurrentTime = time();
-			if (isset($_SESSION['molkobain-newsroom-provider-last-beam']) && ($iCurrentTime - $_SESSION['molkobain-newsroom-provider-last-beam']) <= $iTTL) {
-				return "";
-			}
+        $oNewsroomProvider = new MolkobainNewsroomProvider();
+        $iTTL = $oNewsroomProvider->GetTTL();
 
-			$_SESSION['molkobain-newsroom-provider-last-beam'] = $iCurrentTime;
+        // Don't beam if TTL is not reached
+        $iCurrentTime = time();
+        if (Session::IsSet('molkobain-newsroom-provider-last-beam') && ($iCurrentTime - Session::Get('molkobain-newsroom-provider-last-beam')) <= $iTTL) {
+            return "";
+        }
 
-			$sBeamURL = $oNewsroomProvider->GetBeamURL();
-			$sBeamURLForJSON = json_encode($sBeamURL);
+        Session::Set('molkobain-newsroom-provider-last-beam', $iCurrentTime);
 
-			$oPage->add_ready_script(<<<JS
-	$.ajax({ type: "POST",
-	         url: $sBeamURLForJSON,
-	         async: true,
-	         dataType : 'json',
-	         crossDomain: true
-	 });
-JS
-			);
-		}
+        $sBeamURL = $oNewsroomProvider->GetBeamURL();
+        $sBeamURLForJSON = json_encode($sBeamURL);
 
-		/**
-		 * @inheritDoc
-		 */
-		public function GetSouthPaneHtml(iTopWebPage $oPage)
-		{
-			// Do nothing
-		}
-
-		/**
-		 * @inheritDoc
-		 */
-		public function GetBannerHtml(iTopWebPage $oPage)
-		{
-			// Do nothing
-		}
-	}
-} else {
-	/**
-	 * Class PageProductBeam
-	 *
-	 * Fallback of the newsroom provider for Combodo products (not used in Community version)
-	 * @since v1.7.0
-	 */
-	class PageProductBeam implements iBackofficeReadyScriptExtension
-	{
-		/**
-		 * @inheritDoc
-		 */
-		public function GetReadyScript(): string
-		{
-			if (false === UserRights::IsAdministrator()
-                && class_exists('ResourceDesignerConnectorMenu')
-                && false === UserRights::IsActionAllowed('ResourceDesignerConnectorMenu', UR_ACTION_MODIFY)
-            ) {
-				return "";
-			}
-
-			if (false === ConfigHelper::IsCombodoProductPackage()) {
-				return "";
-			}
-
-			if (false === Session::IsInitialized()) {
-				return "";
-			}
-
-			$oNewsroomProvider = new MolkobainNewsroomProvider();
-			$iTTL = $oNewsroomProvider->GetTTL();
-
-			// Don't beam if TTL is not reached
-			$iCurrentTime = time();
-			if (Session::IsSet('molkobain-newsroom-provider-last-beam') && ($iCurrentTime - Session::Get('molkobain-newsroom-provider-last-beam')) <= $iTTL) {
-				return "";
-			}
-
-			Session::Set('molkobain-newsroom-provider-last-beam', $iCurrentTime);
-
-			$sBeamURL = $oNewsroomProvider->GetBeamURL();
-			$sBeamURLForJSON = json_encode($sBeamURL);
-
-			return <<<JS
-	$.ajax({ type: "POST",
-	         url: $sBeamURLForJSON,
-	         async: true,
-	         dataType : 'json',
-	         crossDomain: true
-	 });
+        return <<<JS
+$.ajax({ type: "POST",
+         url: $sBeamURLForJSON,
+         async: true,
+         dataType : 'json',
+         crossDomain: true
+ });
 JS;
-		}
-	}
-
+    }
 }

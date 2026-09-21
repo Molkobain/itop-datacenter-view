@@ -40,7 +40,7 @@ if(class_exists('NewsroomProviderBase'))
 		/**
 		 * @inheritDoc
 		 */
-		public function IsApplicable(User $oUser = null)
+		public function IsApplicable(?User $oUser = null)
 		{
 			if(!ConfigHelper::IsEnabled())
 			{

@@ -11,7 +11,6 @@ return array(
     'Molkobain\\iTop\\Extension\\HandyFramework\\Helper\\StringHelper' => $baseDir . '/src/Extension/Helper/StringHelper.php',
     'Molkobain\\iTop\\Extension\\HandyFramework\\Helper\\UIHelper' => $baseDir . '/src/Extension/Helper/UIHelper.php',
     'Molkobain\\iTop\\Extension\\HandyFramework\\Hook\\Console\\PageUIBlockExtension' => $baseDir . '/src/Extension/Hook/Console/PageUIBlockExtension.php',
-    'Molkobain\\iTop\\Extension\\HandyFramework\\Hook\\Console\\PageUIExtension' => $baseDir . '/src/Extension/Hook/Console/PageUIExtension.php',
     'Molkobain\\iTop\\Extension\\HandyFramework\\Hook\\Portal\\PortalUIExtension' => $baseDir . '/src/Extension/Hook/Portal/PortalUIExtension.php',
     'Molkobain\\iTop\\Extension\\HandyFramework\\UI\\ToggleButton' => $baseDir . '/src/Extension/UI/ToggleButton.php',
 );

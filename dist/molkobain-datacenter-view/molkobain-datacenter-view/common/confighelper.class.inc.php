@@ -9,7 +9,7 @@
 
 namespace Molkobain\iTop\Extension\DatacenterView\Common\Helper;
 
-use Molkobain\iTop\Extension\HandyFramework\Common\Helper\ConfigHelper as BaseConfigHelper;
+use Molkobain\iTop\Extension\HandyFramework\Helper\ConfigHelper as BaseConfigHelper;
 
 /**
  * Class ConfigHelper

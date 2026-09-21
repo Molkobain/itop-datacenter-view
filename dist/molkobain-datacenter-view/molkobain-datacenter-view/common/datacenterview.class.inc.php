@@ -22,8 +22,8 @@ use DatacenterDevice;
 use utils;
 use appUserPreferences;
 use Combodo\iTop\Renderer\RenderingOutput;
-use Molkobain\iTop\Extension\HandyFramework\Common\Helper\UIHelper;
-use Molkobain\iTop\Extension\HandyFramework\Common\Helper\StringHelper;
+use Molkobain\iTop\Extension\HandyFramework\Helper\UIHelper;
+use Molkobain\iTop\Extension\HandyFramework\Helper\StringHelper;
 use Molkobain\iTop\Extension\DatacenterView\Common\Helper\ConfigHelper;
 
 /**

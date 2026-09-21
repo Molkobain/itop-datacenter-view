@@ -29,7 +29,6 @@ class ComposerStaticInit51b6967c94ebf1305ca550b5257cae49
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Molkobain\\iTop\\Extension\\NewsroomProvider\\Helper\\ConfigHelper' => __DIR__ . '/../..' . '/src/Extension/Helper/ConfigHelper.php',
         'Molkobain\\iTop\\Extension\\NewsroomProvider\\Hook\\Console\\PageProductBeam' => __DIR__ . '/../..' . '/src/Extension/Hook/Console/PageProductBeam.php',
-        'Molkobain\\iTop\\Extension\\NewsroomProvider\\Hook\\Console\\PageUIExtension' => __DIR__ . '/../..' . '/src/Extension/Hook/Console/PageUIExtension.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

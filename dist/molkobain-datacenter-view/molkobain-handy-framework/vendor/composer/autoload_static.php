@@ -26,7 +26,6 @@ class ComposerStaticInita1cbc55cc2aa5154ecc963a60fa0e5bb
         'Molkobain\\iTop\\Extension\\HandyFramework\\Helper\\StringHelper' => __DIR__ . '/../..' . '/src/Extension/Helper/StringHelper.php',
         'Molkobain\\iTop\\Extension\\HandyFramework\\Helper\\UIHelper' => __DIR__ . '/../..' . '/src/Extension/Helper/UIHelper.php',
         'Molkobain\\iTop\\Extension\\HandyFramework\\Hook\\Console\\PageUIBlockExtension' => __DIR__ . '/../..' . '/src/Extension/Hook/Console/PageUIBlockExtension.php',
-        'Molkobain\\iTop\\Extension\\HandyFramework\\Hook\\Console\\PageUIExtension' => __DIR__ . '/../..' . '/src/Extension/Hook/Console/PageUIExtension.php',
         'Molkobain\\iTop\\Extension\\HandyFramework\\Hook\\Portal\\PortalUIExtension' => __DIR__ . '/../..' . '/src/Extension/Hook/Portal/PortalUIExtension.php',
         'Molkobain\\iTop\\Extension\\HandyFramework\\UI\\ToggleButton' => __DIR__ . '/../..' . '/src/Extension/UI/ToggleButton.php',
     );

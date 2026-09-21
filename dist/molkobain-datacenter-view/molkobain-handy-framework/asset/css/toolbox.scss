@@ -11,8 +11,12 @@
 /********************************************************************************/
 
 /* Variables from iTop */
-/* Note: Import path of the portal will be added during call to the compiler */
-@import 'variables.scss';
+/* Note: No import path needed on the PHP side: utils::GetCSSFromSASS() always adds the iTop /css folder */
+@import 'common/utils/variables/all';
+
+/* Legacy bootstrap variables, mapped the same way the iTop 3.3 portal maps them in its own variables.scss */
+$brand-primary: $common-color-primary-600 !default;
+$gray: $common-color-grey-600 !default;
 
 /* Files from the extension */
 /* Note: Import path to the module's CSS folder will be added during call to the compiler */

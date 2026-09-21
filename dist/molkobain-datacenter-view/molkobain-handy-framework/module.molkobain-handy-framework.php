@@ -14,7 +14,7 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'molkobain-handy-framework/1.10.3',
+	'molkobain-handy-framework/1.12.0',
 	array(
 		// Identification
 		//
@@ -24,7 +24,7 @@ SetupWebPage::AddModule(
 		// Setup
 		//
 		'dependencies' => array(
-			'itop-welcome-itil/2.7.0 || itop-structure/3.0.0', // Ensure installation on iTop 2.7+ only
+			'itop-structure/3.2.1', // Ensure installation on iTop 3.2.1+ only
 		),
 		'mandatory' => true,
 		'visible' => false,
@@ -34,12 +34,9 @@ SetupWebPage::AddModule(
 		'datamodel' => array(
 			// Load extension autoloader
 			'vendor/autoload.php',
-			// Classes aliases
-			'src/Compatibility/ClassesAliases.php',
 			// Explicitly load attribute types
 			'src/Core/AttributeMHFRackUnit.php',
 		    // Explicitly load APIs
-			'src/Extension/Hook/Console/PageUIExtension.php',
 			'src/Extension/Hook/Console/PageUIBlockExtension.php',
 			'src/Extension/Hook/Portal/PortalUIExtension.php',
 		),
