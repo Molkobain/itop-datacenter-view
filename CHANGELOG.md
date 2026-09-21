@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [1.15.0] - 2026-09-21
 ### Added
   * Add compatibility with iTop 3.3+
+  * Add compatibility with PHP 8.4
 
 ### Changed
   * Increase iTop min. version to 3.2.1
