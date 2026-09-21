@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   * Fix SCSS import issue with iTop 3.3+
   * Fix error due to incorrect namespace in use clause
   * Move dictionaries to dedicated folder
+  * Remove molkobain-console-tooltips as it was deprecated
 
 ## [1.14.4] - 2025-12-03
 ### Changed
