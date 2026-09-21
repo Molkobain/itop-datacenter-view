@@ -190,7 +190,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
   * Initial release
 
-[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.14.4...HEAD
+[Unreleased]: https://github.com/Molkobain/itop-datacenter-view/compare/v1.15.0...HEAD
+[1.15.0]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.15.0
 [1.14.4]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.14.4
 [1.14.3]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.14.3
 [1.14.2]: https://github.com/Molkobain/itop-datacenter-view/releases/tag/v1.14.2
